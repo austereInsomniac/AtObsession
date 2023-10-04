@@ -79,7 +79,7 @@ public class game_state : MonoBehaviour
 
     public void setTime(int t)
     {
-        onTimeChanged(time, t);
+        notifyOnTimeChanged(time, t);
         time = t;
     }
 
@@ -122,6 +122,23 @@ public class game_state : MonoBehaviour
     public void addOnTimeChange(changeTime newTimeChanged) 
     {
         onTimeChanged += newTimeChanged;
+    }
+
+    private void notifyOnTimeChanged(int oldTime, int newTime)
+    {
+        onTimeChanged(oldTime, newTime);
+    }
+
+
+    // remove later
+    private void Start()
+    {
+        addOnTimeChange(doNothing);
+    }
+
+    private void doNothing(int t, int t2)
+    {
+        
     }
 
 }
