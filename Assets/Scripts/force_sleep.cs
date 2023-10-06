@@ -25,7 +25,7 @@ public class force_sleep : MonoBehaviour
     //for testing only
     public void increaseTime_TESTING()
     {
-        if(time == 24)
+        if(time == 23)
         {
             time = 1;
         }
