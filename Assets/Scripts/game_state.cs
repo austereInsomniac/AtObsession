@@ -134,6 +134,7 @@ public class game_state : MonoBehaviour
     private void Start()
     {
         addOnTimeChange(doNothing);
+        addOnWellnessChange(doNothing);
     }
 
     private void doNothing(int t, int t2)
