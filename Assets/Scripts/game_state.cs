@@ -8,7 +8,7 @@ public class game_state : MonoBehaviour
     private int day = 1;
     // time is in terms of minutes since midnight
     // 480 is 8am
-    private int time = 480;
+    private int time = 180;
     private int reputation = 20;
     private int subscribers = 1000;
     private int ending = 0;
@@ -23,7 +23,7 @@ public class game_state : MonoBehaviour
 
     public delegate void changeTime(int oldTime, int newTime);
     private changeTime onTimeChanged;
-   
+
     // getters
     public int getWellness()
     {
@@ -31,8 +31,8 @@ public class game_state : MonoBehaviour
     }
 
     public int getDay()
-    { 
-        return day; 
+    {
+        return day;
     }
 
     public int getTime()
@@ -119,11 +119,25 @@ public class game_state : MonoBehaviour
         onWellnessChanged(oldWellness, newWellness);
     }
 
-    public void addOnTimeChange(changeTime newTimeChanged) 
+    public void addOnTimeChange(changeTime newTimeChanged)
     {
         onTimeChanged += newTimeChanged;
     }
 
+    public void notifyOnTimeChange(int oldTime, int newTime)
+    {
+        onTimeChanged(oldTime, newTime);
+    }
+    private void Start()
+    {
+        addOnTimeChange(doNothing);
+        addOnWellnessChange(doNothing);
+    }
+
+    private void doNothing(int t, int t2)
+    {
+
+    }
 }
 
 
