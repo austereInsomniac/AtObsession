@@ -63,9 +63,9 @@ public class object_for_all_variables : MonoBehaviour
     public void doAnAction(int index)
     {
         // update each statistic
-        player.GetComponent<game_state>().setWellness(player.GetComponent<game_state>().getWellness() + action.getWellness());
-        player.GetComponent<game_state>().setTime(player.GetComponent<game_state>().getTime() + action.getTime());
-        player.GetComponent<game_state>().setMoney(player.GetComponent<game_state>().getMoney() + action.getMoney());
+        player.GetComponent<game_state>().updateWellness(action.getWellness());
+        player.GetComponent<game_state>().updateTime(action.getTime());
+        player.GetComponent<game_state>().updateMoney(action.getMoney());
     }
     // Start is called before the first frame update
     void Start()
