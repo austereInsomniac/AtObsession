@@ -153,6 +153,7 @@ public class game_state : MonoBehaviour
     {
         addOnTimeChange(doNothing);
         addOnWellnessChange(doNothing);
+        addOnSubscribersChange(doNothing);
     }
 
     private void doNothing(int t, int t2)
