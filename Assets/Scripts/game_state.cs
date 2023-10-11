@@ -26,6 +26,9 @@ public class game_state : MonoBehaviour
 
     public delegate void changeTime(int oldTime, int newTime);
     private changeTime onTimeChanged;
+
+    public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
+    private changeSubscribers onSubscribersChanged;
    
     // getters
     public int getWellness()
@@ -94,6 +97,7 @@ public class game_state : MonoBehaviour
 
     public void setSubscribers(int s)
     {
+        notifyOnSubscribersChange(subscribers, s);
         subscribers = s;
     }
 
@@ -131,6 +135,16 @@ public class game_state : MonoBehaviour
     private void notifyOnTimeChanged(int oldTime, int newTime)
     {
         onTimeChanged(oldTime, newTime);
+    }
+
+    public void addOnSubscribersChange(changeSubscribers changeSubscribers)
+    {
+        onSubscribersChanged += changeSubscribers;
+    }
+
+    private void notifyOnSubscribersChange(int oldSubscribers, int newSubscribers)
+    {
+        onSubscribersChanged(oldSubscribers, newSubscribers);
     }
 
 
