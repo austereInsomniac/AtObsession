@@ -73,7 +73,7 @@ public class game_state : MonoBehaviour
     {
         notifyOnWellnessChanged(wellness, w);
         wellness = w;
-        Debug.Log(wellness);
+       // Debug.Log(wellness);
     }
 
     public void setDay(int d)
@@ -83,8 +83,10 @@ public class game_state : MonoBehaviour
 
     public void setTime(int t)
     {
+        Debug.Log(t);
         notifyOnTimeChanged(time, t);
         time = t;
+        Debug.Log(time);
     }
 
     public void setReputation(int r)
