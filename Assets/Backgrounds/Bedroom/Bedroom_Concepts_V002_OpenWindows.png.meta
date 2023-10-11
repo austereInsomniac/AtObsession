@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -160,7 +160,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Bedroom_Concepts_V002_OpenWindows_0
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 509
+        width: 173
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a41eca87d43584994c3d01efd7d980
+      internalID: 1263165184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom_Concepts_V002_OpenWindows_1
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 509
+        width: 173
+        height: 203
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e1dc301f86cda44be1295cab21a046
+      internalID: -1584269510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom_Concepts_V002_OpenWindows_2
+      rect:
+        serializedVersion: 2
+        x: 1448
+        y: 127
+        width: 165
+        height: 750
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4cd55efe6bdc541b5ab2381fbe9d12
+      internalID: 1074299852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bedroom_Concepts_V002_OpenWindows_3
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 97
+        width: 450
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd73fea6aa2776b40a963c5bbc8adfc2
+      internalID: -999797088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -171,7 +255,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bedroom_Concepts_V002_OpenWindows_0: 1263165184
+      Bedroom_Concepts_V002_OpenWindows_1: -1584269510
+      Bedroom_Concepts_V002_OpenWindows_2: 1074299852
+      Bedroom_Concepts_V002_OpenWindows_3: -999797088
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
