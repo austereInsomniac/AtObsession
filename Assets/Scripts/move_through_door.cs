@@ -5,10 +5,10 @@ using UnityEngine;
 public class move_through_door : MonoBehaviour
 {
 
-    public Vector2 bedroom = new Vector2(33, 0);
-    public Vector2 bathroom = new Vector2(4116, 0);
-    public Vector2 kitchen = new Vector2(1039, 0);
-    public Vector2 livingRoom = new Vector2(2066, 0);
+    public Vector3 bedroom = new Vector3(33, 0, -10);
+    public Vector3 bathroom = new Vector3(4116, 0, -10);
+    public Vector3 kitchen = new Vector3(1039, 0, -10);
+    public Vector3 livingRoom = new Vector3(2066, 0, -10);
 
     public GameObject player;
     public GameObject bathroomDoorEnter;
@@ -44,22 +44,26 @@ public class move_through_door : MonoBehaviour
 
             if(hit.collider == bedroomDoorEnter.GetComponent<BoxCollider2D>())
             {
+                Debug.Log("Something was clicked");
                 player.transform.position = bedroom;
             }
 
             if (hit.collider == bedroomLeave.GetComponent<BoxCollider2D>())
             {
+                Debug.Log("Something was clicked");
                 player.transform.position = livingRoom;
 
             }
 
             if (hit.collider == kitchenEnter.GetComponent<BoxCollider2D>())
             {
+                Debug.Log("Something was clicked");
                 player.transform.position = kitchen;
             }
 
             if (hit.collider == kitchenLeave.GetComponent<BoxCollider2D>())
             {
+                Debug.Log("Something was clicked");
                 player.transform.position = livingRoom;
             }
         } 
