@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class do_an_action_script : MonoBehaviour
 {
-    public float notificationDisplayTime = 3.0f;
     public string notificationMessage = "Your wellness decreased!";
 
     public notification_script notification;
@@ -53,7 +52,7 @@ public class do_an_action_script : MonoBehaviour
     {
        if (notification != null)
         {
-            notification.ShowNotifications(notificationMessage, notificationDisplayTime);
+            notification.ShowNotifications(notificationMessage);
         }
     }
 }
