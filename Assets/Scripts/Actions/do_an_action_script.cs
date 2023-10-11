@@ -31,10 +31,6 @@ public class do_an_action_script : MonoBehaviour
 
         notification = FindObjectOfType<notification_script>();
 
-        if (notification == null)
-        {
-            Debug.LogError("Script Not Found.");
-        }
         changeTime = 60;
         player.GetComponent<game_state>().addOnTimeChange(player.GetComponent<force_sleep>().forceSleep);
     }
