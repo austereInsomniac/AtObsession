@@ -72,43 +72,42 @@ public class game_state : MonoBehaviour
     }
 
     // setters
-    public void setWellness(int w)
+    public void updateWellness(int w)
     {
-        notifyOnWellnessChanged(wellness, w);
-        wellness = w;
-        Debug.Log(wellness);
+        notifyOnWellnessChanged(wellness, wellness + w);
+        wellness = wellness + w;
     }
 
-    public void setDay(int d)
+    public void updateDay(int d)
     {
-        day = d;
+        day = day + d;
     }
 
-    public void setTime(int t)
+    public void updateTime(int t)
     {
-        notifyOnTimeChanged(time, t);
-        time = t;
+        notifyOnTimeChanged(time, time + t);
+        time = time + t;
     }
 
-    public void setReputation(int r)
+    public void updateReputation(int r)
     {
-        reputation = r;
+        reputation = reputation + r;
     }
 
-    public void setSubscribers(int s)
+    public void updateSubscribers(int s)
     {
-        notifyOnSubscribersChange(subscribers, s);
-        subscribers = s;
+        notifyOnSubscribersChange(subscribers, subscribers + s);
+        subscribers = subscribers + s;
     }
 
-    public void setEnding(int e)
+    public void updateEnding(int e)
     {
-        ending = e;
+        ending = ending + e;
     }
 
-    public void setMoney(double m)
+    public void updateMoney(double m)
     {
-        money = m;
+        money = money + m;
     }
 
     // delegate methods
