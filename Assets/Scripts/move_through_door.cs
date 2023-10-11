@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class move_through_door : MonoBehaviour
 {
+    
+    [SerializeField]
+    public Vector2 bedroom = new Vector2(33, 0);
 
+    [SerializeField]
+    public Vector2 bathroom = new Vector2(4116, 0);
+
+    [SerializeField]
+    public Vector2 kitchen = new Vector2(1039, 0);
+
+    [SerializeField]
+    public Vector2 livingRoom = new Vector2(2066, 0);
+
+    GameObject player;
+    GameObject bathroomDoorEnter;
+    GameObject bedRoomDoorEnter;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +31,6 @@ public class move_through_door : MonoBehaviour
     // Update is called once per frame
     public void OnMouseDown()
     {
-        Vector3 pos = new Vector3(0, 0, 5);
         Debug.Log("Click");
         if (Input.GetMouseButtonDown(0))
         {
@@ -24,10 +40,10 @@ public class move_through_door : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if(hit.collider != null)
+            if(hit.collider == bathroomDoorEnter.GetComponent<BoxCollider2D>())
             {
                 Debug.Log("Something was clicked");
-                Camera.main.transform.position = pos;
+                player.transform.position = bathroom;
             }
         } 
     }
