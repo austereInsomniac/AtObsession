@@ -17,6 +17,9 @@ public class game_state : MonoBehaviour
 
     private static int randomizerSeed;
 
+    // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
+    private int hunger;
+
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
     private changeWellness onWellnessChanged;
@@ -70,6 +73,7 @@ public class game_state : MonoBehaviour
     {
         notifyOnWellnessChanged(wellness, w);
         wellness = w;
+        Debug.Log(wellness);
     }
 
     public void setDay(int d)
@@ -134,6 +138,7 @@ public class game_state : MonoBehaviour
     private void Start()
     {
         addOnTimeChange(doNothing);
+        addOnWellnessChange(doNothing);
     }
 
     private void doNothing(int t, int t2)
