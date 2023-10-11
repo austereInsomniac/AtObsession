@@ -35,6 +35,8 @@ public class do_an_action_script : MonoBehaviour
         {
             Debug.LogError("Script Not Found.");
         }
+        changeTime = 60;
+        player.GetComponent<game_state>().addOnTimeChange(player.GetComponent<force_sleep>().forceSleep);
     }
 
     public void doAnAction()
