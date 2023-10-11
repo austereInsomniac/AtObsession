@@ -74,9 +74,9 @@ public class shop : MonoBehaviour
         if (!item.isPurchased())
         {
             // adjust the game state data
-            GetComponent<game_state>().setWellness(GetComponent<game_state>().getWellness() + item.getWellness());
-            GetComponent<game_state>().setMoney(GetComponent<game_state>().getMoney() + item.getMoney());
-            GetComponent<game_state>().setReputation(GetComponent<game_state>().getReputation() + item.getReputation());
+            GetComponent<game_state>().updateWellness(item.getWellness());
+            GetComponent<game_state>().updateMoney(item.getMoney());
+            GetComponent<game_state>().updateReputation(item.getReputation());
 
             // block future purchse
             item.purchaseItem();
