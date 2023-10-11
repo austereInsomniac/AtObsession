@@ -17,9 +17,9 @@ public class move_through_door : MonoBehaviour
     [SerializeField]
     public Vector2 livingRoom = new Vector2(2066, 0);
 
-    GameObject player;
-    GameObject bathroomDoorEnter;
-    GameObject bedRoomDoorEnter;
+    public GameObject player;
+    public GameObject bathroomDoorEnter;
+    public GameObject bedroomDoorEnter;
 
     
     // Start is called before the first frame update
