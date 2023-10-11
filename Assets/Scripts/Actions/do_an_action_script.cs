@@ -24,6 +24,8 @@ public class do_an_action_script : MonoBehaviour
     {
         // "Player" is the name of the Game Object with the game_state script
         player = GameObject.Find("Player");
+        changeTime = 60;
+        player.GetComponent<game_state>().addOnTimeChange(player.GetComponent<force_sleep>().forceSleep);
     }
 
     public void doAnAction()
