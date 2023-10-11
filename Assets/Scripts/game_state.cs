@@ -26,6 +26,9 @@ public class game_state : MonoBehaviour
 
     public delegate void changeTime(int oldTime, int newTime);
     private changeTime onTimeChanged;
+
+    public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
+    private changeSubscribers onSubscribersChanged;
    
     // getters
     public int getWellness()
@@ -69,44 +72,42 @@ public class game_state : MonoBehaviour
     }
 
     // setters
-    public void setWellness(int w)
+    public void updateWellness(int w)
     {
-        notifyOnWellnessChanged(wellness, w);
-        wellness = w;
-       // Debug.Log(wellness);
+        notifyOnWellnessChanged(wellness, wellness + w);
+        wellness = wellness + w;
     }
 
-    public void setDay(int d)
+    public void updateDay(int d)
     {
-        day = d;
+        day = day + d;
     }
 
-    public void setTime(int t)
+    public void updateTime(int t)
     {
-        Debug.Log(t);
-        notifyOnTimeChanged(time, t);
-        time = t;
-        Debug.Log(time);
+        notifyOnTimeChanged(time, time + t);
+        time = time + t;
     }
 
-    public void setReputation(int r)
+    public void updateReputation(int r)
     {
-        reputation = r;
+        reputation = reputation + r;
     }
 
-    public void setSubscribers(int s)
+    public void updateSubscribers(int s)
     {
-        subscribers = s;
+        notifyOnSubscribersChange(subscribers, subscribers + s);
+        subscribers = subscribers + s;
     }
 
-    public void setEnding(int e)
+    public void updateEnding(int e)
     {
-        ending = e;
+        ending = ending + e;
     }
 
-    public void setMoney(double m)
+    public void updateMoney(double m)
     {
-        money = m;
+        money = money + m;
     }
 
     // delegate methods
@@ -135,12 +136,23 @@ public class game_state : MonoBehaviour
         onTimeChanged(oldTime, newTime);
     }
 
+    public void addOnSubscribersChange(changeSubscribers changeSubscribers)
+    {
+        onSubscribersChanged += changeSubscribers;
+    }
+
+    private void notifyOnSubscribersChange(int oldSubscribers, int newSubscribers)
+    {
+        onSubscribersChanged(oldSubscribers, newSubscribers);
+    }
+
 
     // remove later
     private void Start()
     {
         addOnTimeChange(doNothing);
         addOnWellnessChange(doNothing);
+        addOnSubscribersChange(doNothing);
     }
 
     private void doNothing(int t, int t2)
