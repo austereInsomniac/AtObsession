@@ -8,7 +8,7 @@ public class game_state : MonoBehaviour
     private int day = 1;
     // time is in terms of minutes since midnight
     // 480 is 8am
-    private int time = 180;
+    private int time = 480;
     private int reputation = 20;
     private int subscribers = 1000;
     private int ending = 0;
@@ -17,13 +17,16 @@ public class game_state : MonoBehaviour
 
     private static int randomizerSeed;
 
+    // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
+    private int hunger;
+
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
     private changeWellness onWellnessChanged;
 
     public delegate void changeTime(int oldTime, int newTime);
     private changeTime onTimeChanged;
-
+   
     // getters
     public int getWellness()
     {
@@ -31,8 +34,8 @@ public class game_state : MonoBehaviour
     }
 
     public int getDay()
-    {
-        return day;
+    { 
+        return day; 
     }
 
     public int getTime()
@@ -70,6 +73,7 @@ public class game_state : MonoBehaviour
     {
         notifyOnWellnessChanged(wellness, w);
         wellness = w;
+        Debug.Log(wellness);
     }
 
     public void setDay(int d)
@@ -79,7 +83,7 @@ public class game_state : MonoBehaviour
 
     public void setTime(int t)
     {
-        onTimeChanged(time, t);
+        notifyOnTimeChanged(time, t);
         time = t;
     }
 
@@ -119,15 +123,18 @@ public class game_state : MonoBehaviour
         onWellnessChanged(oldWellness, newWellness);
     }
 
-    public void addOnTimeChange(changeTime newTimeChanged)
+    public void addOnTimeChange(changeTime newTimeChanged) 
     {
         onTimeChanged += newTimeChanged;
     }
 
-    public void notifyOnTimeChange(int oldTime, int newTime)
+    private void notifyOnTimeChanged(int oldTime, int newTime)
     {
         onTimeChanged(oldTime, newTime);
     }
+
+
+    // remove later
     private void Start()
     {
         addOnTimeChange(doNothing);
@@ -136,8 +143,9 @@ public class game_state : MonoBehaviour
 
     private void doNothing(int t, int t2)
     {
-
+        
     }
+
 }
 
 
