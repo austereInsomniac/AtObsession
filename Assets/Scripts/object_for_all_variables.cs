@@ -47,6 +47,8 @@ public class object_for_all_variables : MonoBehaviour
 
     GameObject player;
 
+    public int wellness = 0;
+
     System.Random rand = new System.Random();
     int RandonmInteger()
     {
@@ -56,7 +58,6 @@ public class object_for_all_variables : MonoBehaviour
         randomNumber *= 5;
         return randomNumber;
     }
-
     void Awake()
     {
         // "Player" is the name of the Game Object with the game_state script
@@ -92,6 +93,16 @@ public class object_for_all_variables : MonoBehaviour
         
         activities = new Dictionary<string, ActionVariables>();
         activities.Add("Cook Food", new ActionVariables(10, 30, 5.00));
-
+        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));
+        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));
+        activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
+        activities.Add("Go to sleep", new ActionVariables(30, 400, 0.00));//adjust this one
+        activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
+        activities.Add("Forced Sleep", new ActionVariables(-5, 240, 0.00));
+        activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
+        activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
+        activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
+        activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
+        activities.Add("Exercise at the gym", new ActionVariables(8, 120, 15.00));
     }
 }
