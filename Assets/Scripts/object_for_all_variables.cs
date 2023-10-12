@@ -50,13 +50,45 @@ public class object_for_all_variables : MonoBehaviour
     public int wellness = 0;
 
     System.Random rand = new System.Random();
-    int RandonmInteger()
+
+    //int SkipToMorning(int currentTime)
+    //{
+    //    currentTime = action.getTime();
+
+    //}
+    int RandomTimeBig()
     {
         int randomNumber;
 
         randomNumber = rand.Next(60 / 5, 120 / 5);
         randomNumber *= 5;
         return randomNumber;
+    }
+
+    int RandomTimeSmall()
+    {
+        int randomNumber;
+
+        randomNumber = rand.Next(30 / 5, 60 / 5);
+        randomNumber *= 5;
+        return randomNumber;
+    }
+
+    int RandonmWellness()
+    {
+        int randomNumber;
+        randomNumber = rand.Next(1, 2);
+        if (randomNumber == 1)
+        {
+            return -15;
+        }
+        if (randomNumber == 2) {
+            return 15;
+        }
+        else {
+            return 0;
+        }
+   
     }
     void Awake()
     {
@@ -92,17 +124,21 @@ public class object_for_all_variables : MonoBehaviour
         };
         
         activities = new Dictionary<string, ActionVariables>();
-        activities.Add("Cook Food", new ActionVariables(10, 30, 5.00));
-        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));
-        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));
+        activities.Add("Cook Food", new ActionVariables(10, 30, 5.00));//hunger
+        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
+        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
         activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
-        activities.Add("Go to sleep", new ActionVariables(30, 400, 0.00));//adjust this one
+        activities.Add("Go to sleep", new ActionVariables(30, 400, 0.00));//make this so the time skips to 8 am
         activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
         activities.Add("Forced Sleep", new ActionVariables(-5, 240, 0.00));
         activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
         activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
         activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
         activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
-        activities.Add("Exercise at the gym", new ActionVariables(8, 120, 15.00));
+        activities.Add("Exercise at the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
+        activities.Add("Hang out with friends", new ActionVariables(RandonmWellness(), RandomTimeBig(), 0.00));
+        activities.Add("Go for a walk", new ActionVariables(10, 25, 0));
+        activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00));
+        activities.Add("Exercise at home", new ActionVariables(8, 20, 0.00));
     }
 }
