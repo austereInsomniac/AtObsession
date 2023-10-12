@@ -31,11 +31,12 @@ public class do_an_action_script : MonoBehaviour
     public void doAnAction()
     {
         // update each statistic
-        player.GetComponent<game_state>().updateWellness(changeWellness);
+        //player.GetComponent<game_state>().updateWellness(changeWellness);
         player.GetComponent<game_state>().updateTime(changeTime);
         player.GetComponent<game_state>().updateReputation(changeRep);
         player.GetComponent<game_state>().updateSubscribers(changeSubs);
         player.GetComponent<game_state>().updateMoney(changeMoney);
         player.GetComponent<game_state>().updateEnding(changeEnd);
+        player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
     }
 }
