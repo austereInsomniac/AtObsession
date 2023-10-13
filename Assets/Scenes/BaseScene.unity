@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -819,10 +820,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7897e6bd3861e87419c2e20c73accdaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bedroom: {x: 33, y: 0}
-  bathroom: {x: 4116, y: 0}
-  kitchen: {x: 1039, y: 0}
-  livingRoom: {x: 2066, y: 0}
+  bedroomLocation: {x: 0, y: 0, z: 0}
+  bathroomLocation: {x: 0, y: 0, z: 5}
+  kitchenLocation: {x: 0, y: 0, z: 10}
+  livingRoomLocation: {x: 0, y: 0, z: 20}
+  computerLocation: {x: 0, y: 0, z: 15}
+  livingRoom: {fileID: 0}
+  bedroom: {fileID: 0}
+  bathroom: {fileID: 0}
+  kitchen: {fileID: 0}
   player: {fileID: 519420028}
   bathroomDoorEnter: {fileID: 1265072288}
   bedroomDoorEnter: {fileID: 1657679357}
@@ -830,6 +836,18 @@ MonoBehaviour:
   bedroomLeave: {fileID: 1056357986}
   kitchenLeave: {fileID: 2013929805}
   leaveHouse: {fileID: 1394731169}
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b515760ccb323c4bb361030b85a0fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &588611812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1598,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1286756905
@@ -1782,7 +1800,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1394731172
@@ -1927,7 +1945,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1633628412
@@ -2154,7 +2172,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1693334876
@@ -2621,7 +2639,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2016968322
@@ -2938,6 +2956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78674396a1a56f488ea155df396307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationMessage: Your wellness decreased!
+  notification: {fileID: 0}
   changeWellness: -10
   changeTime: 0
   changeRep: 0
