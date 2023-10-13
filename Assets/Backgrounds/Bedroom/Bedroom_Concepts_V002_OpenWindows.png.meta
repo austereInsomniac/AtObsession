@@ -133,19 +133,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -176,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1a41eca87d43584994c3d01efd7d980
-      internalID: 1263165184
+      spriteID: 576fb37b407261b49b2dceb85a9aa3ef
+      internalID: -509899635
       vertices: []
       indices: 
       edges: []
@@ -197,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90e1dc301f86cda44be1295cab21a046
-      internalID: -1584269510
+      spriteID: b8314ea62a80f9b41a34ed6ca2c4759f
+      internalID: -870728350
       vertices: []
       indices: 
       edges: []
@@ -218,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba4cd55efe6bdc541b5ab2381fbe9d12
-      internalID: 1074299852
+      spriteID: f8bc90ea201772043aa303d2f9a390c9
+      internalID: 1642761609
       vertices: []
       indices: 
       edges: []
@@ -239,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd73fea6aa2776b40a963c5bbc8adfc2
-      internalID: -999797088
+      spriteID: 61497517fb88e5b41a91240de3102447
+      internalID: -1798082142
       vertices: []
       indices: 
       edges: []
@@ -256,10 +243,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bedroom_Concepts_V002_OpenWindows_0: 1263165184
-      Bedroom_Concepts_V002_OpenWindows_1: -1584269510
-      Bedroom_Concepts_V002_OpenWindows_2: 1074299852
-      Bedroom_Concepts_V002_OpenWindows_3: -999797088
+      Bedroom_Concepts_V002_OpenWindows_0: -509899635
+      Bedroom_Concepts_V002_OpenWindows_1: -870728350
+      Bedroom_Concepts_V002_OpenWindows_2: 1642761609
+      Bedroom_Concepts_V002_OpenWindows_3: -1798082142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
