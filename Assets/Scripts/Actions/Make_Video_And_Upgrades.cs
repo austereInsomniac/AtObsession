@@ -47,7 +47,7 @@ public class make_video_get_subscriber : MonoBehaviour
                 break;
         }
         int r = Random.Range(0, 10);
-        int newSubscribers = (int)(3*starCount) + (reputation);
+        int newSubscribers = (int)(3*starCount) + (reputation +r);
 
 
         newSubscribers = (int)newSubscribers/5;
@@ -64,9 +64,11 @@ public class make_video_get_subscriber : MonoBehaviour
         player.GetComponent<game_state>().updateSubscribers(newSubscribers);
         player.GetComponent<game_state>().updateMoney(money);
         player.GetComponent<game_state>().updateReputation(3);
+        player.GetComponent<game_state>().updateTime((starCount * 60));
+        Debug.Log("Current Hour" + (player.GetComponent<game_state>().getTime()/60));
 
-        //Debug.Log("Subscribers: " + player.GetComponent<game_state>().getSubscribers());
-        //Debug.Log("Gained Subscribers: " + (newSubscribers));
+        Debug.Log("Subscribers: " + player.GetComponent<game_state>().getSubscribers());
+        Debug.Log("Gained Subscribers: " + (newSubscribers));
         //Debug.Log("Money: " + player.GetComponent<game_state>().getMoney());
         //Debug.Log("Reputation: " + player.GetComponent<game_state>().getReputation());
 
