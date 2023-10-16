@@ -12,22 +12,28 @@ public class stalker_prototype_script : MonoBehaviour
     private float maxTimeBetweenEvents = 30; // Maximum time between events
     private float nextEventTime = 0; // Timestamp when next event should start
 
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
+        // "Player" is the name of the Game Object with the game_state script
+        player = GameObject.Find("Player");
         TriggerStalkerEvent(); // Start with initial event
     }
 
     // Update is called once per frame
     void Update()
     {
+        int wellness = player.GetComponent<game_state>().getWellness();
+        int day = player.GetComponent<game_state>().getDay();
         // Check if it's time to end the event.
         if (isStalkerEvent && Time.time >= eventEndTime)
         {
             EndStalkerEvent();
         }
         // Check if it's time to trigger a new event.
-        else if (!isStalkerEvent && Time.time >= nextEventTime)
+        else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
         {
             TriggerStalkerEvent();
         }
