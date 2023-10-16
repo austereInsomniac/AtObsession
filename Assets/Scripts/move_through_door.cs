@@ -25,7 +25,13 @@ public class move_through_door : MonoBehaviour
     public GameObject bedroomLeave;
     public GameObject kitchenLeave; 
     public GameObject leaveHouse;
-    
+
+    public GameObject bathroomButtons;
+    public GameObject bedroomButtons;
+    public GameObject kitchenButtons;
+    public GameObject livingroomButtons;
+
+    public GameObject canvas;
 
     private void Start()
     {
@@ -50,6 +56,10 @@ public class move_through_door : MonoBehaviour
                 Vector3 temp = bathroom.transform.position;
                 bathroom.transform.position = livingRoom.transform.position;
                 livingRoom.transform.position = temp;
+
+                Vector3 tempButton = bathroomButtons.transform.position;
+                bathroomButtons.transform.position = livingroomButtons.transform.position;
+                livingroomButtons.transform.position = tempButton;
             }
 
             if(hit.collider == bedroomDoorEnter.GetComponent<BoxCollider2D>())
@@ -58,6 +68,10 @@ public class move_through_door : MonoBehaviour
                 Vector3 temp = bedroom.transform.position;
                 bedroom.transform.position = livingRoom.transform.position;
                 livingRoom.transform.position = temp;
+
+                Vector3 tempButton = bedroomButtons.transform.position;
+                bedroomButtons.transform.position = livingroomButtons.transform.position;
+                livingroomButtons.transform.position = tempButton;
             }
 
             if (hit.collider == bedroomLeave.GetComponent<BoxCollider2D>())
@@ -67,6 +81,10 @@ public class move_through_door : MonoBehaviour
                 bedroom.transform.position = livingRoom.transform.position;
                 livingRoom.transform.position = temp;
 
+                Vector3 tempButton = bedroomButtons.transform.position;
+                bedroomButtons.transform.position = livingroomButtons.transform.position;
+                livingroomButtons.transform.position = tempButton;
+
             }
 
             if (hit.collider == kitchenEnter.GetComponent<BoxCollider2D>())
@@ -75,6 +93,10 @@ public class move_through_door : MonoBehaviour
                 Vector3 temp = kitchen.transform.position;
                 kitchen.transform.position = livingRoom.transform.position;
                 livingRoom.transform.position = temp;
+
+                Vector3 tempButton = kitchenButtons.transform.position;
+                kitchenButtons.transform.position = livingroomButtons.transform.position;
+                livingroomButtons.transform.position = tempButton;
             }
 
             if (hit.collider == kitchenLeave.GetComponent<BoxCollider2D>())
@@ -83,6 +105,10 @@ public class move_through_door : MonoBehaviour
                 Vector3 temp = kitchen.transform.position;
                 kitchen.transform.position = livingRoom.transform.position;
                 livingRoom.transform.position = temp;
+
+                Vector3 tempButton = kitchenButtons.transform.position;
+                kitchenButtons.transform.position = livingroomButtons.transform.position;
+                livingroomButtons.transform.position = tempButton;
             }
         } 
     }
