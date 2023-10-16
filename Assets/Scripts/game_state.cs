@@ -17,12 +17,18 @@ public class game_state : MonoBehaviour
 
     private static int randomizerSeed;
 
+    // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
+    private int hunger;
+
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
     private changeWellness onWellnessChanged;
 
     public delegate void changeTime(int oldTime, int newTime);
     private changeTime onTimeChanged;
+
+    public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
+    private changeSubscribers onSubscribersChanged;
    
     // getters
     public int getWellness()
@@ -66,41 +72,48 @@ public class game_state : MonoBehaviour
     }
 
     // setters
-    public void setWellness(int w)
+    public void updateWellness(int w)
     {
-        notifyOnWellnessChanged(wellness, w);
-        wellness = w;
+        notifyOnWellnessChanged(wellness, wellness + w);
+        wellness = wellness + w;
     }
 
-    public void setDay(int d)
+    public void updateDay(int d)
     {
-        day = d;
+        day = day + d;
     }
 
-    public void setTime(int t)
+    public void updateTime(int t)
     {
-        onTimeChanged(time, t);
-        time = t;
+        notifyOnTimeChanged(time, time + t);
+        time = time + t;
     }
 
-    public void setReputation(int r)
+    public void updateReputation(int r)
     {
-        reputation = r;
+        reputation = reputation + r;
     }
 
-    public void setSubscribers(int s)
+    public void updateSubscribers(int s)
     {
-        subscribers = s;
+        notifyOnSubscribersChange(subscribers, subscribers + s);
+        subscribers = subscribers + s;
     }
 
-    public void setEnding(int e)
+    public void updateEnding(int e)
     {
-        ending = e;
+        ending = ending + e;
     }
 
-    public void setMoney(double m)
+    public void updateMoney(double m)
     {
-        money = m;
+        money = money + m;
+    }
+
+    public void advanceDay()
+    {
+        day = day + 1;
+        time = 480;
     }
 
     // delegate methods
@@ -122,6 +135,35 @@ public class game_state : MonoBehaviour
     public void addOnTimeChange(changeTime newTimeChanged) 
     {
         onTimeChanged += newTimeChanged;
+    }
+
+    private void notifyOnTimeChanged(int oldTime, int newTime)
+    {
+        onTimeChanged(oldTime, newTime);
+    }
+
+    public void addOnSubscribersChange(changeSubscribers changeSubscribers)
+    {
+        onSubscribersChanged += changeSubscribers;
+    }
+
+    private void notifyOnSubscribersChange(int oldSubscribers, int newSubscribers)
+    {
+        onSubscribersChanged(oldSubscribers, newSubscribers);
+    }
+
+
+    // remove later
+    private void Start()
+    {
+        addOnTimeChange(doNothing);
+        addOnWellnessChange(doNothing);
+        addOnSubscribersChange(doNothing);
+    }
+
+    private void doNothing(int t, int t2)
+    {
+        
     }
 
 }
