@@ -20,7 +20,7 @@ public class update_text : MonoBehaviour
     void Update()
     {
         // update the text
-        string updateText = "" + player.GetComponent<game_state>().getWellness();
+        string updateText = "Wellness: " + player.GetComponent<game_state>().getWellness();
         text.SetText(updateText);
     }
 

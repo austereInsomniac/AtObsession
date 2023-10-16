@@ -8,73 +8,57 @@ public class make_video_get_subscriber : MonoBehaviour
 {
 
     [SerializeField]
-    private int subscribers = 500;
+    private int subscribers; // Creates a local instance of the subscribers variable
     [SerializeField]
-    public int upgradeLevel;
-    [SerializeField]
-    private double subscriberIncreasePercentage = 0;
-    [SerializeField]
-    private int reputation = 50;
+    private int reputation; // Creates a local Instance of the reputation varaible
 
-    public void makeVideoGetSubscriber()
+    GameObject player;
+    void Awake()
     {
+        player = GameObject.Find("Player"); //Identifies the player object
+    }
 
-        switch (upgradeLevel)
-        {
-            case 1:
-                subscriberIncreasePercentage = 0.1;
-                reputation += (int)(reputation * 0.05); break;
-            case 2:
-                subscriberIncreasePercentage = 0.2;
-                reputation += (int)(reputation * 0.05); break;
-            case 3:
-                subscriberIncreasePercentage = 0.3;
-                reputation += (int)(reputation * 0.05); break;
-            case 4:
-                subscriberIncreasePercentage = 0.4;
-                reputation += (int)(reputation * 0.05); break;
-            case 5:
-                subscriberIncreasePercentage = 0.5;
-                reputation += (int)(reputation * 0.05); break;
-            default:
-                subscriberIncreasePercentage = 0.6;
-                reputation += (int)(reputation * 0.05); break;
-        }
-        Debug.Log("Gained Subscribers: " + (int)(subscribers * subscriberIncreasePercentage));
-        subscribers += (int)(subscribers * subscriberIncreasePercentage);
-        Debug.Log("Current Subscribers: " + subscribers + "\nNew Reuptation: " + getReputation());
+    // Update is called once per frame
+    void Update()
+    {
+        subscribers = player.GetComponent<game_state>().getSubscribers(); //Sets the local subscribers to be the amount in the game state
+        reputation = player.GetComponent<game_state>().getReputation(); //Sets the local reputation to be the amount in the game state
+    }
+
+    //Does all the math for making a video using starCount as hours
+    public void makeVideoGetSubscriber(int starCount)
+    {
+        //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%
+        int r = Random.Range(0, 10);
+        int newSubscribers = (int)(3*starCount) + (reputation +r);
+        newSubscribers = (int)newSubscribers/5;
+
+        subscribers += newSubscribers; //Update to the new number of subscribers
+
+        int money = (int)(subscribers * .10); //Assigns a money variable to be 10% of the new subscriber count
+
+        player.GetComponent<game_state>().updateSubscribers(newSubscribers); //Changes the game state subscribers value
+        player.GetComponent<game_state>().updateMoney(money); //Changes the game state money value to be updated
+        player.GetComponent<game_state>().updateReputation(3); //Changes reputation by 3 each video
+        player.GetComponent<game_state>().updateTime((starCount * 60)); //changes time by star count(amount of hours) * 60 minutes
+        player.GetComponent<game_state>().updateWellness(-(starCount * 3)); // -3 Wellness per hour
+
+
+
+        //Debug.Log("Current Hour" + (player.GetComponent<game_state>().getTime()/60));
+        //Debug.Log("Subscribers: " + player.GetComponent<game_state>().getSubscribers());
+        //Debug.Log("Gained Subscribers: " + (newSubscribers));
+        //Debug.Log("Money: " + player.GetComponent<game_state>().getMoney());
+        //Debug.Log("Reputation: " + player.GetComponent<game_state>().getReputation());
+
     }
     public int getSubscribers()
     {
         return subscribers;
     }
 
-    public int getUpgradeLevel()
-    {
-        return upgradeLevel;
-    }
     public int getReputation()
     {
         return reputation;
-    }
-    public double getSubscriberIncreasePercentage()
-    {
-        return subscriberIncreasePercentage;
-    }
-
-    public void upgradeComputer()
-    {
-        upgradeLevel++;
-    }
-    public void setUpgradeLevel(int upgradedLevel)
-    {
-        upgradeLevel = upgradedLevel;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
