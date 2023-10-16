@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4b526821d0ff1240a8012c37ca3d13f
+guid: 5139411f383f0504c9e3c910773ef020
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_0
+      name: Bathroom_Assests_V001_2
       rect:
         serializedVersion: 2
-        x: 638
-        y: 509
-        width: 173
-        height: 203
+        x: 750
+        y: 253
+        width: 414
+        height: 498
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 576fb37b407261b49b2dceb85a9aa3ef
-      internalID: -509899635
+      spriteID: 52ccfcde41d69c64093c2a5e64cd69d1
+      internalID: 1988120235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_1
+      name: Bathroom_Assests_V001_5
       rect:
         serializedVersion: 2
-        x: 1118
-        y: 509
-        width: 173
-        height: 203
+        x: 563
+        y: 163
+        width: 166
+        height: 241
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8314ea62a80f9b41a34ed6ca2c4759f
-      internalID: -870728350
+      spriteID: 3622b4fcb2b6ed6459ceb695ddbeb6a6
+      internalID: -1933304248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_2
+      name: Bathroom_Assests_V001_6
       rect:
         serializedVersion: 2
-        x: 1448
-        y: 127
-        width: 165
-        height: 750
+        x: 1193
+        y: 156
+        width: 188
+        height: 406
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,29 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bc90ea201772043aa303d2f9a390c9
-      internalID: 1642761609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_3
-      rect:
-        serializedVersion: 2
-        x: 308
-        y: 97
-        width: 450
-        height: 345
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61497517fb88e5b41a91240de3102447
-      internalID: -1798082142
+      spriteID: 178e22fb4f1de5a4b958d3eca5d7ad21
+      internalID: -766338548
       vertices: []
       indices: 
       edges: []
@@ -243,10 +222,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bedroom_Concepts_V002_OpenWindows_0: -509899635
-      Bedroom_Concepts_V002_OpenWindows_1: -870728350
-      Bedroom_Concepts_V002_OpenWindows_2: 1642761609
-      Bedroom_Concepts_V002_OpenWindows_3: -1798082142
+      Bathroom_Assests_V001_0: 316681267
+      Bathroom_Assests_V001_1: 1755852606
+      Bathroom_Assests_V001_2: 1988120235
+      Bathroom_Assests_V001_3: 1746305484
+      Bathroom_Assests_V001_4: 264947193
+      Bathroom_Assests_V001_5: -1933304248
+      Bathroom_Assests_V001_6: -766338548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

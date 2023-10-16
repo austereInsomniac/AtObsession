@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class do_an_action_script : MonoBehaviour
 {
-    public string notificationMessage = "Your wellness decreased!";
-
-    public notification_script notification;
-
     // increase in each statistic
     [SerializeField]
     private int changeWellness;
@@ -28,10 +24,7 @@ public class do_an_action_script : MonoBehaviour
     {
         // "Player" is the name of the Game Object with the game_state script
         player = GameObject.Find("Player");
-
-        notification = FindObjectOfType<notification_script>();
-
-        changeTime = 60;
+        changeTime = 0;
         player.GetComponent<game_state>().addOnTimeChange(player.GetComponent<force_sleep>().forceSleep);
     }
 
@@ -44,13 +37,6 @@ public class do_an_action_script : MonoBehaviour
         player.GetComponent<game_state>().updateSubscribers(changeSubs);
         player.GetComponent<game_state>().updateMoney(changeMoney);
         player.GetComponent<game_state>().updateEnding(changeEnd);
-    }
-
-    public void ShowNotificationOnClick()
-    {
-       if (notification != null)
-        {
-            notification.ShowNotifications(notificationMessage);
-        }
+        player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
     }
 }

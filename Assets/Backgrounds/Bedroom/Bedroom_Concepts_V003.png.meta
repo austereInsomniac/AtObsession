@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a4b526821d0ff1240a8012c37ca3d13f
+guid: 9f4b7d6404be3bc4cbaeddb048773cc3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,91 +147,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_0
-      rect:
-        serializedVersion: 2
-        x: 638
-        y: 509
-        width: 173
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 576fb37b407261b49b2dceb85a9aa3ef
-      internalID: -509899635
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_1
-      rect:
-        serializedVersion: 2
-        x: 1118
-        y: 509
-        width: 173
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8314ea62a80f9b41a34ed6ca2c4759f
-      internalID: -870728350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_2
-      rect:
-        serializedVersion: 2
-        x: 1448
-        y: 127
-        width: 165
-        height: 750
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8bc90ea201772043aa303d2f9a390c9
-      internalID: 1642761609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bedroom_Concepts_V002_OpenWindows_3
-      rect:
-        serializedVersion: 2
-        x: 308
-        y: 97
-        width: 450
-        height: 345
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 61497517fb88e5b41a91240de3102447
-      internalID: -1798082142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -242,11 +158,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Bedroom_Concepts_V002_OpenWindows_0: -509899635
-      Bedroom_Concepts_V002_OpenWindows_1: -870728350
-      Bedroom_Concepts_V002_OpenWindows_2: 1642761609
-      Bedroom_Concepts_V002_OpenWindows_3: -1798082142
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
