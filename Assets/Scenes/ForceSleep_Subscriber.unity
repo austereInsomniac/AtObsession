@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -330,6 +331,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   wellness: 0
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4ed7b02654035b408a6c5b8a4b91ca1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribers: 1000
+  upgradeLevel: 1
+  subscriberIncreasePercentage: 0
+  reputation: 20
 --- !u!1 &1770612084
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +360,6 @@ GameObject:
   - component: {fileID: 1770612088}
   - component: {fileID: 1770612087}
   - component: {fileID: 1770612090}
-  - component: {fileID: 1770612091}
   m_Layer: 5
   m_Name: Sleep
   m_TagString: Untagged
@@ -495,20 +511,6 @@ MonoBehaviour:
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
---- !u!114 &1770612091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770612084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7e8462d1bcd294da8d50f0ffd77019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 0
-  wellness: 0
 --- !u!1 &1845837891
 GameObject:
   m_ObjectHideFlags: 0

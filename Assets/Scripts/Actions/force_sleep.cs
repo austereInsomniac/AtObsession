@@ -6,11 +6,6 @@ using UnityEngine;
 public class force_sleep : MonoBehaviour
 
 {
-    [SerializeField]
-    private int time;
-    [SerializeField]
-    private int wellness;
-
     GameObject player;
 
     void Awake()
@@ -20,11 +15,11 @@ public class force_sleep : MonoBehaviour
 
     public void forceSleep(int oldTime, int newTime)
     {
-        Debug.Log(newTime);
-        if (oldTime == 240)
+        if ((oldTime >= 240 && oldTime<=480) ||(oldTime >=1680 && oldTime <=1920))
         {
-            Debug.Log(oldTime);
-            wellness -= 5;
+            player.GetComponent<game_state>().advanceDay();
+            player.GetComponent<game_state>().updateWellness(-5);
+            Debug.Log("New Day!");
             //Move to the bedroom
         }
         //else

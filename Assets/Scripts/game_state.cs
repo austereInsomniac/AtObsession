@@ -110,6 +110,12 @@ public class game_state : MonoBehaviour
         money = money + m;
     }
 
+    public void advanceDay()
+    {
+        day = day + 1;
+        time = 480;
+    }
+
     // delegate methods
 
     // call this method with a parameter method to make the parameter method be called when wellness changed
