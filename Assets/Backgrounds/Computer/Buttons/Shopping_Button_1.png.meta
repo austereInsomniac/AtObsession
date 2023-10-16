@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9f40b0cdea6611044baf3bef3456a84c
+guid: 2d52c29a03981d649a6d0df66ace1dd8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Abason_Computer_Button_0
+      name: Shopping_Button_1_0
       rect:
         serializedVersion: 2
-        x: 2345
-        y: 148
-        width: 9710
-        height: 7836
+        x: 2415
+        y: 116
+        width: 9703
+        height: 7826
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46388712a62d48141b13a3853fc9dd2e
-      internalID: -1580262504
+      spriteID: 02ccac97cc3e1b04a8976e513690f904
+      internalID: -41027555
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Abason_Computer_Button_0: -1580262504
+      Shopping_Button_1_0: -41027555
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

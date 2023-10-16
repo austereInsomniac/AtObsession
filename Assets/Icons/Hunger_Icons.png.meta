@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9f40b0cdea6611044baf3bef3456a84c
+guid: 59c6a36926755f94fa14193442655177
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Abason_Computer_Button_0
+      name: Hunger_Icons_0
       rect:
         serializedVersion: 2
-        x: 2345
-        y: 148
-        width: 9710
-        height: 7836
+        x: 525
+        y: 112
+        width: 855
+        height: 855
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46388712a62d48141b13a3853fc9dd2e
-      internalID: -1580262504
+      spriteID: b5d310264fdb16d4aae6013d10d022e7
+      internalID: 1730224000
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Abason_Computer_Button_0: -1580262504
+      Hunger_Icons_0: 1730224000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
