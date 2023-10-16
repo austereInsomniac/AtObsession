@@ -11,20 +11,36 @@ public class move_through_door : MonoBehaviour
 
     [SerializeField]
     private GameObject other;
-    [SerializeField]   
+    [SerializeField]
     private GameObject otherCanvas;
     [SerializeField]
     private GameObject thisCanvas;
 
-    private void moveLocation(GameObject other, GameObject otherCanvas, GameObject thisCanvas)
+    private GameObject player;
+    private GameObject bedroomCanvas;
+
+    private void Start()
+    {
+        player = GameObject.Find("Player");
+        bedroomCanvas = GameObject.Find("Bedroom Canvas");
+    }
+    public void moveLocation(GameObject other, GameObject otherCanvas, GameObject thisCanvas)
     {
         // move this room away
         this.transform.parent.parent.position = storedLocation;
         thisCanvas.transform.position = storedLocation;
-        
+
         // move new room in 
         other.transform.position = cameraLocation;
-        otherCanvas.transform.position= cameraLocation;
+        otherCanvas.transform.position = cameraLocation;
+
+        // update location in game state
+        player.GetComponent<game_state>().moveLocation(other, otherCanvas);
+    }
+
+    public void goToBedroom(){
+        moveLocation(player.GetComponent<game_state>().getLocation(), 
+            player.GetComponent<game_state>().getLocationCanvas(), bedroomCanvas);
     }
 
     public void OnMouseDown()
@@ -42,4 +58,5 @@ public class move_through_door : MonoBehaviour
             }
         } 
     }
+
 }
