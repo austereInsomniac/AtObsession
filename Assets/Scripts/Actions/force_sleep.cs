@@ -6,47 +6,22 @@ using UnityEngine;
 public class force_sleep : MonoBehaviour
 
 {
-    [SerializeField]
-    private int time;
-    [SerializeField]
-    private int wellness;
-
-    GameObject player;
+    GameObject player; //Creates an unassigned GameObject
 
     void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player");//assigns game object to the player
     }
 
+    //Forced sleep method takes in the original time and the new time of an action
     public void forceSleep(int oldTime, int newTime)
     {
-        Debug.Log(newTime);
-        if (oldTime == 240)
+        //If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
+        if ((oldTime >= 240 && oldTime<=480) ||(oldTime >=1680 && oldTime <=1920)) 
         {
-            Debug.Log(oldTime);
-            wellness -= 5;
+            player.GetComponent<game_state>().advanceDay(); //Runs the advance day method
+            player.GetComponent<game_state>().updateWellness(-5); // Lowers your wellness
             //Move to the bedroom
         }
-        //else
-        //{
-        //    player.GetComponent<game_state>().setTime(newTime);
-        //}
-
-
-        // player.GetComponent<game_state>().notifyOnTimeChange(oldTime, newTime);
     }
-
-    //for testing only
-    //public void increaseTime_TESTING()
-    //{
-    //    if(time == 23)
-    //    {
-    //        time = 1;
-    //    }
-    //    else 
-    //    { 
-    //        time++; 
-    //    }
-
-    //}
 }

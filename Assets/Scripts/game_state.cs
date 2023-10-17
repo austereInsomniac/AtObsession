@@ -6,19 +6,20 @@ public class game_state : MonoBehaviour
 {
     private int wellness = 80;
     private int day = 1;
-    // time is in terms of minutes since midnight
-    // 480 is 8am
+    // time is in terms of minutes since midnight - 480 is 8am
     private int time = 480;
     private int reputation = 20;
     private int subscribers = 1000;
     private int ending = 0;
 
     private double money = 100.00;
-
     private static int randomizerSeed;
 
     // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
     private int hunger;
+
+    private GameObject location;
+    private GameObject locationCanvas;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
@@ -66,10 +67,11 @@ public class game_state : MonoBehaviour
         return money;
     }
 
-    public int getSeed()
-    {
-        return randomizerSeed;
-    }
+    public int getSeed() {  return randomizerSeed; }
+
+    public GameObject getLocation() { return location; }
+
+    public GameObject getLocationCanvas() { return locationCanvas;}
 
     // setters
     public void updateWellness(int w)
@@ -108,6 +110,18 @@ public class game_state : MonoBehaviour
     public void updateMoney(double m)
     {
         money = money + m;
+    }
+
+    public void advanceDay()
+    {
+        day = day + 1;
+        time = 480;
+    }
+
+    public void moveLocation(GameObject newLocation, GameObject newCanvas)
+    {
+        location = newLocation;
+        locationCanvas = newCanvas;
     }
 
     // delegate methods
