@@ -1533,6 +1533,7 @@ GameObject:
   - component: {fileID: 295765334}
   - component: {fileID: 295765333}
   - component: {fileID: 295765332}
+  - component: {fileID: 295765336}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1628,6 +1629,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1044.6666, y: 585.3333}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &295765336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295765331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
 --- !u!1 &344919244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,6 +2577,7 @@ GameObject:
   - component: {fileID: 453300906}
   - component: {fileID: 453300905}
   - component: {fileID: 453300908}
+  - component: {fileID: 453300909}
   m_Layer: 5
   m_Name: freshen up
   m_TagString: Untagged
@@ -2633,7 +2648,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 453300906}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 453300908}
+        m_TargetAssemblyTypeName: object_for_all_variables, Assembly-CSharp
+        m_MethodName: Action
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &453300906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2684,7 +2711,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wellness: 0
+  key: Freshen up
+--- !u!220 &453300909
+LightProbeGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453300903}
+  m_Enabled: 1
+  m_SourcePositions:
+  - {x: 1, y: 1, z: 1}
+  - {x: 1, y: 1, z: -1}
+  - {x: 1, y: -1, z: 1}
+  - {x: 1, y: -1, z: -1}
+  - {x: -1, y: 1, z: 1}
+  - {x: -1, y: 1, z: -1}
+  - {x: -1, y: -1, z: 1}
+  - {x: -1, y: -1, z: -1}
+  m_Dering: 1
 --- !u!1 &475584965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2868,6 +2913,7 @@ GameObject:
   - component: {fileID: 519420034}
   - component: {fileID: 519420036}
   - component: {fileID: 519420037}
+  - component: {fileID: 519420038}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -3002,6 +3048,18 @@ MonoBehaviour:
   other: {fileID: 0}
   otherCanvas: {fileID: 0}
   thisCanvas: {fileID: 0}
+--- !u!114 &519420038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7e8462d1bcd294da8d50f0ffd77019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &520385362
 GameObject:
   m_ObjectHideFlags: 0
