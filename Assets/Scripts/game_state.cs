@@ -76,19 +76,48 @@ public class game_state : MonoBehaviour
     // setters
     public void updateWellness(int w)
     {
-        notifyOnWellnessChanged(wellness, wellness + w);
-        wellness = wellness + w;
-    }
-
-    public void updateDay(int d)
-    {
-        day = day + d;
+        if (wellness + w >= 100)
+        {
+            notifyOnWellnessChanged(wellness, 100);
+            wellness = 100;
+        }
+        else if (wellness + w <= 0)
+        {
+            // die
+            notifyOnWellnessChanged(wellness, 0);
+            wellness = 0;
+        }
+        else
+        {
+            notifyOnWellnessChanged(wellness, wellness + w);
+            wellness += w;
+        }
     }
 
     public void updateTime(int t)
     {
-        notifyOnTimeChanged(time, time + t);
-        time = time + t;
+        // force sleep 
+        // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
+        if ((time >= 240 && time <= 480) || (time >= 1680 && time <= 1920))
+        {
+            notifyOnTimeChanged(time, 480); // call delegates
+            time = 480; // set time to 8am
+            updateWellness(-20); // Lowers your wellness
+            GetComponent<move_location>().goToBedroom();  // Move to the bedroom
+            // run sleep method
+        }
+        else
+        {
+            notifyOnTimeChanged(time, time + t);
+            time = time + t;
+        }
+
+        // adjust day
+        if (time >= 1440)
+        {
+            // update day
+            day++;
+        }
     }
 
     public void updateReputation(int r)
@@ -110,12 +139,6 @@ public class game_state : MonoBehaviour
     public void updateMoney(double m)
     {
         money = money + m;
-    }
-
-    public void advanceDay()
-    {
-        day = day + 1;
-        time = 480;
     }
 
     public void moveLocation(GameObject newLocation, GameObject newCanvas)

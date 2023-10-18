@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 
-public class move_through_door : MonoBehaviour
+public class move_location : MonoBehaviour
 {
     private Vector3 storedLocation = new Vector3(2000, 0, 0);
     private Vector3 cameraLocation = new Vector3(0, 0, 0);
