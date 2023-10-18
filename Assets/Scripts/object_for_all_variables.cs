@@ -109,8 +109,7 @@ public class object_for_all_variables : MonoBehaviour
     //    // "Player" is the name of the Game Object with the game_state script
        
     //    player = GameObject.Find("Player");
-    //    player.GetComponent<game_state>().updateTime(activities[]);
-        
+    //    player.GetComponent<game_state>().updateTime(activities[]); 
     //}
 
     public void doAnAction(int index)
