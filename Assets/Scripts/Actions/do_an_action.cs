@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class do_an_action_script : MonoBehaviour
+public class do_an_action : MonoBehaviour
 {
     // increase in each statistic
     [SerializeField]
@@ -35,6 +35,6 @@ public class do_an_action_script : MonoBehaviour
         player.GetComponent<game_state>().updateSubscribers(changeSubs);
         player.GetComponent<game_state>().updateMoney(changeMoney);
         player.GetComponent<game_state>().updateEnding(changeEnd);
-        player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
+        //player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
     }
 }
