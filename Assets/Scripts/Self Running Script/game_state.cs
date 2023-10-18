@@ -30,7 +30,13 @@ public class game_state : MonoBehaviour
 
     public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
     private changeSubscribers onSubscribersChanged;
-   
+
+    private void Awake()
+    {
+        location = GameObject.Find("Living Room");
+        locationCanvas = GameObject.Find("Living Room Canvas");
+    }
+
     // getters
     public int getWellness()
     {
@@ -94,28 +100,29 @@ public class game_state : MonoBehaviour
 
     public void updateTime(int t)
     {
+        time += t;
+
+        if (time >= 1440)
+        {
+            // update day if we hit midnight
+            day++;
+            time -= 1440;
+        }
+
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        if ((time > 240 && time < 480) || (time > 1680 && time < 1920))
+        // bug if an action is longer than 4 hours...
+        if ((time > 240 && time < 480))
         {
-            notifyOnTimeChanged(time, 480); // call delegates
+            Debug.Log(time);
             time = 480; // set time to 8am
+            Debug.Log(time);
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method
         }
-        else
-        {
-            notifyOnTimeChanged(time, time + t);
-            time = time + t;
-        }
 
-        // adjust day
-        if (time >= 1440)
-        {
-            // update day
-            day++;
-        }
+        notifyOnTimeChanged(time - t, time);
     }
 
     public void updateReputation(int r)
