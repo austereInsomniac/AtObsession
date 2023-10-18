@@ -96,7 +96,7 @@ public class game_state : MonoBehaviour
     {
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        if ((time >= 240 && time < 480) || (time >= 1680 && time < 1920))
+        if ((time > 240 && time < 480) || (time > 1680 && time < 1920))
         {
             notifyOnTimeChanged(time, 480); // call delegates
             time = 480; // set time to 8am
