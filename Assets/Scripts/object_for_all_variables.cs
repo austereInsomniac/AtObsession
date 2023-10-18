@@ -51,6 +51,8 @@ class ActionVariables
 public class object_for_all_variables : MonoBehaviour
 {
 
+    [SerializeField]
+    private string key;
 
     List<ActionVariables> listVariables;
     Dictionary<string, ActionVariables> activities;
@@ -59,11 +61,7 @@ public class object_for_all_variables : MonoBehaviour
 
     GameObject player;
 
-    public int wellness = 0;
-
     System.Random rand = new System.Random();
-
-    
 
     //int SkipToMorning(int currentTime)
     //{
@@ -104,13 +102,13 @@ public class object_for_all_variables : MonoBehaviour
         }
    
     }
-    //void Awake()
-    //{
-    //    // "Player" is the name of the Game Object with the game_state script
-       
-    //    player = GameObject.Find("Player");
-    //    player.GetComponent<game_state>().updateTime(activities[]); 
-    //}
+    void Awake()
+    {
+        // "Player" is the name of the Game Object with the game_state script
+
+        player = GameObject.Find("Player");
+        
+    }
 
     public void doAnAction(int index)
     {
@@ -121,25 +119,24 @@ public class object_for_all_variables : MonoBehaviour
         method.updateMoney(action.getMoney());
     }
 
-    public void Action(string activityName)
-    {
+    public void Action()
+    {     
         // update each statistic
-        game_state method = player.GetComponent<game_state>();
-        ActionVariables activity = activities[activityName];
-        method.updateWellness(activity.getWellness());
-        method.updateTime(activity.getTime());
-        method.updateMoney(activity.getMoney());
+       // game_state method = player.GetComponent<game_state>();
+        ActionVariables activity = activities[key];
+        player.GetComponent<game_state>().updateWellness(activity.getWellness());
+        player.GetComponent<game_state>().updateTime(activity.getTime());
+        player.GetComponent<game_state>().updateMoney(activity.getMoney());
     }
     // Start is called before the first frame update
     void Start()
     {
-
         activities = new Dictionary<string, ActionVariables>();
         activities.Add("Cook food", new ActionVariables(10, 30, 5.00));//hunger
         activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
         activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
-        activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
-        activities.Add("Go to sleep", new ActionVariables(30, 480 - action.getTime(), 0.00));//use the equation to adjust the wellness 
+       // activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
+        activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00));//use the equation to adjust the wellness 
         activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
         activities.Add("Forced Sleep", new ActionVariables(-5, 480 - 120, 0.00));
         activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));

@@ -31,8 +31,8 @@ public class update_text : MonoBehaviour
     void updateTimeText(int oldTime, int newTime)
     {
         // update the time text
-        string updateText = "" + (GetComponent<game_state>().getTime() / 60) + ":" 
-                            + (GetComponent<game_state>().getTime() % 60);
+        string updateText = "" + (newTime / 60) + ":" 
+                            + (newTime % 60);
         timeText.SetText(updateText);
         // issue: minute ending in 0 will only display one digit
 
