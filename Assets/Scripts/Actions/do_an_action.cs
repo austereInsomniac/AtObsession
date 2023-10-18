@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class do_an_action_script : MonoBehaviour
+public class do_an_action : MonoBehaviour
 {
     public notification_script notification;
     public int notifNum;

@@ -31,13 +31,13 @@ public class update_text : MonoBehaviour
     void updateTimeText(int oldTime, int newTime)
     {
         // update the time text
-        string updateText = "Time: " + (GetComponent<game_state>().getTime() / 60) + ":" 
+        string updateText = "" + (GetComponent<game_state>().getTime() / 60) + ":" 
                             + (GetComponent<game_state>().getTime() % 60);
         timeText.SetText(updateText);
         // issue: minute ending in 0 will only display one digit
 
         // update the day text
-        updateText = "Day: " + GetComponent<game_state>().getDay();
+        updateText = "" + GetComponent<game_state>().getDay();
         dayText.SetText(updateText);
     }
 

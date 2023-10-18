@@ -100,13 +100,15 @@ public class game_state : MonoBehaviour
         {
             // update day if we hit midnight
             day++;
+            time -= 1440;
         }
 
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
         // bug if an action is longer than 4 hours...
-        if ((time > 240 && time < 480) || (time > 1680))
+        if ((time > 240 && time < 480))
         {
+            Debug.Log(time);
             time = 480; // set time to 8am
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
@@ -114,8 +116,6 @@ public class game_state : MonoBehaviour
         }
 
         notifyOnTimeChanged(time - t, time);
-        Debug.Log(time);
-        Debug.Log(t);
     }
 
     public void updateReputation(int r)
