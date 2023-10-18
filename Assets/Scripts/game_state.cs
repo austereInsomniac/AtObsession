@@ -77,28 +77,26 @@ public class game_state : MonoBehaviour
     public void updateWellness(int w)
     {
         if (wellness + w >= 100)
-        {
-            notifyOnWellnessChanged(wellness, 100);
+        { 
             wellness = 100;
         }
         else if (wellness + w <= 0)
         {
             // die
-            notifyOnWellnessChanged(wellness, 0);
             wellness = 0;
         }
         else
         {
-            notifyOnWellnessChanged(wellness, wellness + w);
             wellness += w;
         }
+        notifyOnWellnessChanged(wellness - w, wellness);
     }
 
     public void updateTime(int t)
     {
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        if ((time >= 240 && time <= 480) || (time >= 1680 && time <= 1920))
+        if ((time >= 240 && time < 480) || (time >= 1680 && time < 1920))
         {
             notifyOnTimeChanged(time, 480); // call delegates
             time = 480; // set time to 8am
