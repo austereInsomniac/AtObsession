@@ -94,28 +94,28 @@ public class game_state : MonoBehaviour
 
     public void updateTime(int t)
     {
+        time += t;
+
+        if (time >= 1440)
+        {
+            // update day if we hit midnight
+            day++;
+        }
+
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        if ((time > 240 && time < 480) || (time > 1680 && time < 1920))
+        // bug if an action is longer than 4 hours...
+        if ((time > 240 && time < 480) || (time > 1680))
         {
-            notifyOnTimeChanged(time, 480); // call delegates
             time = 480; // set time to 8am
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method
         }
-        else
-        {
-            notifyOnTimeChanged(time, time + t);
-            time = time + t;
-        }
 
-        // adjust day
-        if (time >= 1440)
-        {
-            // update day
-            day++;
-        }
+        notifyOnTimeChanged(time - t, time);
+        Debug.Log(time);
+        Debug.Log(t);
     }
 
     public void updateReputation(int r)
