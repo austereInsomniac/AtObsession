@@ -30,7 +30,13 @@ public class game_state : MonoBehaviour
 
     public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
     private changeSubscribers onSubscribersChanged;
-   
+
+    private void Awake()
+    {
+        location = GameObject.Find("Living Room");
+        locationCanvas = GameObject.Find("Living Room Canvas");
+    }
+
     // getters
     public int getWellness()
     {
@@ -110,6 +116,7 @@ public class game_state : MonoBehaviour
         {
             Debug.Log(time);
             time = 480; // set time to 8am
+            Debug.Log(time);
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method

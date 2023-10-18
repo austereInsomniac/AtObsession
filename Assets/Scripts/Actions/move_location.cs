@@ -14,33 +14,37 @@ public class move_location : MonoBehaviour
     [SerializeField]
     private GameObject otherCanvas;
     [SerializeField]
+    private GameObject thisO;
+    [SerializeField]
     private GameObject thisCanvas;
 
     private GameObject player;
+    private GameObject bedroom;
     private GameObject bedroomCanvas;
 
     private void Start()
     {
         player = GameObject.Find("Player");
+        bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
     }
-    public void moveLocation(GameObject other, GameObject otherCanvas, GameObject thisCanvas)
+    public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
         // move this room away
-        this.transform.parent.parent.position = storedLocation;
-        thisCanvas.transform.position = storedLocation;
+        this_.transform.position = storedLocation;
+        thisCanvas_.transform.position = storedLocation;
 
         // move new room in 
-        other.transform.position = cameraLocation;
-        otherCanvas.transform.position = cameraLocation;
+        other_.transform.position = cameraLocation;
+        otherCanvas_.transform.position = cameraLocation;
 
         // update location in game state
         player.GetComponent<game_state>().moveLocation(other, otherCanvas);
     }
 
     public void goToBedroom(){
-        moveLocation(player.GetComponent<game_state>().getLocation(), 
-            player.GetComponent<game_state>().getLocationCanvas(), bedroomCanvas);
+        moveLocation(bedroom, bedroomCanvas, player.GetComponent<game_state>().getLocation(), 
+            player.GetComponent<game_state>().getLocationCanvas());
     }
 
     public void OnMouseDown()
@@ -54,7 +58,7 @@ public class move_location : MonoBehaviour
 
             if(hit.collider == this.GetComponent<BoxCollider2D>())
             {
-                moveLocation(other, otherCanvas, thisCanvas);
+                moveLocation(other, otherCanvas, thisO, thisCanvas);
             }
         } 
     }

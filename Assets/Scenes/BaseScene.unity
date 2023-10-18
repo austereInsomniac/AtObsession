@@ -720,6 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 187794239}
   otherCanvas: {fileID: 440524149}
+  thisO: {fileID: 2034303693}
   thisCanvas: {fileID: 416206899}
 --- !u!1 &107295005
 GameObject:
@@ -1423,6 +1424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 187794239}
   otherCanvas: {fileID: 440524149}
+  thisO: {fileID: 1848319988}
   thisCanvas: {fileID: 1693334876}
 --- !u!61 &288241911
 BoxCollider2D:
@@ -1777,6 +1779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 2034303693}
   otherCanvas: {fileID: 416206899}
+  thisO: {fileID: 1286756905}
   thisCanvas: {fileID: 1170410439}
 --- !u!1 &351716678
 GameObject:
@@ -3001,6 +3004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 0}
   otherCanvas: {fileID: 0}
+  thisO: {fileID: 0}
   thisCanvas: {fileID: 0}
 --- !u!1 &520385362
 GameObject:
@@ -4610,6 +4614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 2034303693}
   otherCanvas: {fileID: 416206899}
+  thisO: {fileID: 187794239}
   thisCanvas: {fileID: 440524149}
 --- !u!1 &1074298736
 GameObject:
@@ -5773,6 +5778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 1286756905}
   otherCanvas: {fileID: 1170410439}
+  thisO: {fileID: 2034303693}
   thisCanvas: {fileID: 416206899}
 --- !u!1 &1501118634
 GameObject:
@@ -6459,6 +6465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 795864648}
   otherCanvas: {fileID: 1444107621}
+  thisO: {fileID: 2034303693}
   thisCanvas: {fileID: 416206899}
 --- !u!1 &1579268211
 GameObject:
@@ -7995,6 +8002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 2034303693}
   otherCanvas: {fileID: 416206899}
+  thisO: {fileID: 795864648}
   thisCanvas: {fileID: 1444107621}
 --- !u!1 &2027831818
 GameObject:
@@ -8765,6 +8773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   other: {fileID: 1848319988}
   otherCanvas: {fileID: 1693334876}
+  thisO: {fileID: 187794239}
   thisCanvas: {fileID: 440524149}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
