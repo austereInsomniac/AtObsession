@@ -685,6 +685,7 @@ GameObject:
   - component: {fileID: 80696998}
   - component: {fileID: 80696997}
   - component: {fileID: 80696996}
+  - component: {fileID: 80697000}
   m_Layer: 5
   m_Name: Video_Option_Three
   m_TagString: Untagged
@@ -735,7 +736,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 80696997}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 80697000}
+        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &80696997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,6 +806,20 @@ RectTransform:
   m_AnchoredPosition: {x: 312.99988, y: 127}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &80697000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80696995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribers: 0
+  reputation: 0
 --- !u!1 &83017163
 GameObject:
   m_ObjectHideFlags: 0
@@ -7024,6 +7051,7 @@ GameObject:
   - component: {fileID: 1261345389}
   - component: {fileID: 1261345388}
   - component: {fileID: 1261345387}
+  - component: {fileID: 1261345391}
   m_Layer: 5
   m_Name: Video_Option_Five
   m_TagString: Untagged
@@ -7074,7 +7102,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1261345388}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261345391}
+        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1261345388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7132,6 +7172,20 @@ RectTransform:
   m_AnchoredPosition: {x: 12.999878, y: -128}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1261345391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261345386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribers: 0
+  reputation: 0
 --- !u!1 &1286756905
 GameObject:
   m_ObjectHideFlags: 0
@@ -7409,6 +7463,7 @@ GameObject:
   - component: {fileID: 1443477987}
   - component: {fileID: 1443477986}
   - component: {fileID: 1443477985}
+  - component: {fileID: 1443477988}
   m_Layer: 5
   m_Name: Video_Option_Two
   m_TagString: Untagged
@@ -7478,7 +7533,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1443477986}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1443477988}
+        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1443477986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7517,6 +7584,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1443477983}
   m_CullTransparentMesh: 1
+--- !u!114 &1443477988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443477983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribers: 0
+  reputation: 0
 --- !u!1 &1444107621
 GameObject:
   m_ObjectHideFlags: 0
@@ -9679,6 +9760,7 @@ GameObject:
   - component: {fileID: 1855336878}
   - component: {fileID: 1855336877}
   - component: {fileID: 1855336876}
+  - component: {fileID: 1855336880}
   m_Layer: 5
   m_Name: Video_Option_One
   m_TagString: Untagged
@@ -9729,7 +9811,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1855336877}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1855336880}
+        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1855336877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9787,6 +9881,20 @@ RectTransform:
   m_AnchoredPosition: {x: -279.00012, y: 129}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1855336880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855336875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribers: 0
+  reputation: 0
 --- !u!1 &1875204780
 GameObject:
   m_ObjectHideFlags: 0
@@ -10227,6 +10335,7 @@ GameObject:
   - component: {fileID: 2027831821}
   - component: {fileID: 2027831820}
   - component: {fileID: 2027831819}
+  - component: {fileID: 2027831823}
   m_Layer: 5
   m_Name: Video_Option_Four
   m_TagString: Untagged
@@ -10277,7 +10386,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2027831820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2027831823}
+        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2027831820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10335,6 +10456,20 @@ RectTransform:
   m_AnchoredPosition: {x: -279.00012, y: -128}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2027831823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027831818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscribers: 0
+  reputation: 0
 --- !u!1 &2031003581
 GameObject:
   m_ObjectHideFlags: 0

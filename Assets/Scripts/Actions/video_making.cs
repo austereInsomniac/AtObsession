@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Diagnostics.CodeAnalysis;
 
-public class make_video_get_subscriber : MonoBehaviour
+public class video_making : MonoBehaviour
 {
 
     [SerializeField]
@@ -26,7 +26,7 @@ public class make_video_get_subscriber : MonoBehaviour
     }
 
     //Does all the math for making a video using starCount as hours
-    public void makeVideoGetSubscriber(int starCount)
+    public void makeVideo(int starCount)
     {
         //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%
         int r = Random.Range(0, 10);
