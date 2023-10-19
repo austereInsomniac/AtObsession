@@ -32,6 +32,9 @@ public class game_state : MonoBehaviour
     public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
     private changeSubscribers onSubscribersChanged;
 
+    public delegate void changeMoney(double oldMoney, double newMoney);
+    private changeMoney onMoneyChanged;
+
     private void Awake()
     {
         location = GameObject.Find("Living Room");
@@ -100,9 +103,7 @@ public class game_state : MonoBehaviour
         // bug if an action is longer than 4 hours...
         if ((time > 240 && time < 480))
         {
-            Debug.Log(time);
             time = 480; // set time to 8am
-            Debug.Log(time);
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method
@@ -130,6 +131,7 @@ public class game_state : MonoBehaviour
     public void updateMoney(double m)
     {
         money = money + m;
+        notifyOnMoneyChange(money - m, money);
     }
 
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
@@ -174,18 +176,29 @@ public class game_state : MonoBehaviour
         onSubscribersChanged(oldSubscribers, newSubscribers);
     }
 
+    public void addOnMoneyChange(changeMoney changeMoney)
+    {
+        onMoneyChanged += changeMoney;
+    }
+
+    private void notifyOnMoneyChange(double oldMoney, double newMoney)
+    {
+        onMoneyChanged(oldMoney, newMoney);
+    }
+
+
     // remove later
     private void Start()
     {
         addOnTimeChange(doNothing);
         addOnWellnessChange(doNothing);
         addOnSubscribersChange(doNothing);
+        addOnMoneyChange(doNothing2);
     }
 
-    private void doNothing(int t, int t2)
-    {
-        
-    }
+    private void doNothing(int t, int t2) { }
+
+    private void doNothing2(double t, double t2) { }
 }
 
 
