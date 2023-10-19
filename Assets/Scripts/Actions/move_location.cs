@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class move_location : MonoBehaviour

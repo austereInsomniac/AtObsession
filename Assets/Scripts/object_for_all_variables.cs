@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-using UnityEditor.VersionControl;
 //using System.Random;
 using UnityEngine.XR;
 using JetBrains.Annotations;
@@ -44,9 +43,6 @@ class ActionVariables
 
     }
 }
-
-
-
 
 public class object_for_all_variables : MonoBehaviour
 {
