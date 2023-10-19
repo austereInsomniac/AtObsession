@@ -14,18 +14,18 @@ public class toggle_menu : MonoBehaviour
     [SerializeField] 
     private CanvasGroup menu;
 
-    GameObject blocker;
+    //GameObject blocker;
     Component[] buttons;
 
     private void Awake()
     {
-        blocker = GameObject.Find("Raycast Blocker");
+        // = GameObject.Find("Raycast Blocker");
         buttons = menu.GetComponentsInChildren<UnityEngine.UI.Button>(true);
     }
 
     private void Start()
     {
-        blocker.SetActive(false);
+        //blocker.SetActive(false);
 
         foreach (UnityEngine.UI.Button button in buttons)
         {
@@ -35,7 +35,7 @@ public class toggle_menu : MonoBehaviour
 
     public void open()
     {
-        blocker.SetActive(true);
+        //blocker.SetActive(true);
         menu.alpha = 1;
 
         foreach (UnityEngine.UI.Button button in buttons)
@@ -46,7 +46,7 @@ public class toggle_menu : MonoBehaviour
 
     public void close()
     {
-        blocker.SetActive(false);
+        //blocker.SetActive(false);
         menu.alpha = 0;
 
         foreach (UnityEngine.UI.Button button in buttons)
@@ -64,7 +64,7 @@ public class toggle_menu : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if (hit.collider == this.GetComponent<BoxCollider2D>() && !blocker.activeSelf)
+            if (hit.collider == this.GetComponent<BoxCollider2D>())
             {
                 open();
             }
