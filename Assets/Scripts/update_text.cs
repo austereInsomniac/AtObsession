@@ -11,7 +11,8 @@ public class update_text : MonoBehaviour
     TMP_Text timeText;
     TMP_Text wellnessText;
 
-    void Awake() {
+    void Awake() 
+    {
         dayText = GameObject.Find("Day Text").GetComponent<TMP_Text>();
         timeText = GameObject.Find("Time Text").GetComponent<TMP_Text>();
         wellnessText = GameObject.Find("Wellness Text").GetComponent<TMP_Text>();
@@ -19,6 +20,13 @@ public class update_text : MonoBehaviour
         // add delegates
         GetComponent<game_state>().addOnWellnessChange(updateWellnessText);
         GetComponent<game_state>().addOnTimeChange(updateTimeText);
+    }
+
+    private void Start()
+    {
+        // run all displays immediately
+        updateWellnessText(GetComponent<game_state>().getWellness(), GetComponent<game_state>().getWellness());
+        updateTimeText(GetComponent<game_state>().getTime(), GetComponent<game_state>().getTime());
     }
 
     void updateWellnessText(int oldW, int newW)
@@ -40,5 +48,4 @@ public class update_text : MonoBehaviour
         updateText = "" + GetComponent<game_state>().getDay();
         dayText.SetText(updateText);
     }
-
 }
