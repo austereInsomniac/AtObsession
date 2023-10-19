@@ -21,12 +21,14 @@ public class move_location : MonoBehaviour
     private GameObject player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
+    private GameObject blocker;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player");
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        blocker = GameObject.Find("Raycast Blocker");
     }
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
@@ -56,7 +58,7 @@ public class move_location : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            if(hit.collider == this.GetComponent<BoxCollider2D>())
+            if(hit.collider == this.GetComponent<BoxCollider2D>() && !blocker.activeSelf)
             {
                 moveLocation(other, otherCanvas, thisO, thisCanvas);
             }

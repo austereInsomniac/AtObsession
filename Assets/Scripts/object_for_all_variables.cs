@@ -100,33 +100,21 @@ public class object_for_all_variables : MonoBehaviour
         else {
             return 0;
         }
-   
     }
     void Awake()
     {
         // "Player" is the name of the Game Object with the game_state script
-
         player = GameObject.Find("Player");
-        
     }
 
-    public void doAnAction(int index)
+    public void doAction()
     {
         // update each statistic
-        game_state method = player.GetComponent<game_state>();
-        method.updateWellness(action.getWellness());
-        method.updateTime(action.getTime());
-        method.updateMoney(action.getMoney());
-    }
-
-    public void Action()
-    {     
-        // update each statistic
-       // game_state method = player.GetComponent<game_state>();
-        ActionVariables activity = activities[key];
-        player.GetComponent<game_state>().updateWellness(activity.getWellness());
-        player.GetComponent<game_state>().updateTime(activity.getTime());
-        player.GetComponent<game_state>().updateMoney(activity.getMoney());
+        // game_state method = player.GetComponent<game_state>();
+            ActionVariables activity = activities[key];
+            player.GetComponent<game_state>().updateWellness(activity.getWellness());
+            player.GetComponent<game_state>().updateTime(activity.getTime());
+            player.GetComponent<game_state>().updateMoney(activity.getMoney());
     }
     // Start is called before the first frame update
     void Start()
