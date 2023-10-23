@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class move_location : MonoBehaviour
@@ -21,12 +20,14 @@ public class move_location : MonoBehaviour
     private GameObject player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
+    //private GameObject blocker;
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.Find("Player");
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        //blocker = GameObject.Find("Raycast Blocker");
     }
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {

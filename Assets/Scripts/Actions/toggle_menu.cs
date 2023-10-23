@@ -1,24 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class AppearOnClick : MonoBehaviour
+public class toggle_menu : MonoBehaviour
 {
     // V1 Riley
     // V2 Mackenzie 10/16/2023
 
-    [SerializeField] private CanvasGroup Menu;
+    [SerializeField] 
+    private CanvasGroup menu;
+
+    //GameObject blocker;
+    Component[] buttons;
+
+    private void Awake()
+    {
+        // = GameObject.Find("Raycast Blocker");
+        buttons = menu.GetComponentsInChildren<UnityEngine.UI.Button>(true);
+    }
+
+    private void Start()
+    {
+        //blocker.SetActive(false);
+
+        foreach (UnityEngine.UI.Button button in buttons)
+        {
+            button.interactable = false;
+        }
+    }
 
     public void open()
     {
-        Menu.alpha = 1;
-        Menu.blocksRaycasts = true;
+        //blocker.SetActive(true);
+        menu.alpha = 1;
+
+        foreach (UnityEngine.UI.Button button in buttons)
+        {
+            button.interactable = true;
+        }
     }
 
     public void close()
     {
-        Menu.alpha = 0;
-        Menu.blocksRaycasts = false;
+        //blocker.SetActive(false);
+        menu.alpha = 0;
+
+        foreach (UnityEngine.UI.Button button in buttons)
+        {
+            button.interactable = false;
+        }
     }
 
     public void OnMouseDown()

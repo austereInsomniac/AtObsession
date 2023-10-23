@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class game_state : MonoBehaviour
 {
-    private int wellness = 80;
-    private int day = 1;
-    // time is in terms of minutes since midnight - 480 is 8am
-    private int time = 480;
-    private int reputation = 20;
-    private int subscribers = 1000;
-    private int ending = 0;
+    private int wellness;
+    private int reputation;
+    private int subscribers;
+    private int ending;
 
-    private double money = 100.00;
-    private static int randomizerSeed;
+    // time is in terms of minutes since midnight - 480 is 8am
+    private int time;
+    private int day;
+
+    private double money;
 
     // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
     private int hunger;
 
+    // current room and its canvas
     private GameObject location;
     private GameObject locationCanvas;
 
@@ -31,49 +32,37 @@ public class game_state : MonoBehaviour
     public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
     private changeSubscribers onSubscribersChanged;
 
+    public delegate void changeMoney(double oldMoney, double newMoney);
+    private changeMoney onMoneyChanged;
+
     private void Awake()
     {
         location = GameObject.Find("Living Room");
         locationCanvas = GameObject.Find("Living Room Canvas");
+
+        wellness = 80;
+        day = 1;
+        time = 480;
+        reputation = 20;
+        subscribers = 1000;
+        ending = 0;
+        money = 100.00;
     }
 
     // getters
-    public int getWellness()
-    {
-        return wellness;
-    }
+    public int getWellness() { return wellness; }
 
-    public int getDay()
-    { 
-        return day; 
-    }
+    public int getDay() { return day; }
 
-    public int getTime()
-    {
-        return time;
-    }
+    public int getTime() { return time; }
 
-    public int getReputation()
-    {
-        return reputation;
-    }
+    public int getReputation() { return reputation; }
 
-    public int getSubscribers()
-    {
-        return subscribers;
-    }
+    public int getSubscribers() { return subscribers; }
 
-    public int getEnding()
-    {
-        return ending;
-    }
+    public int getEnding() { return ending; }
 
-    public double getMoney()
-    {
-        return money;
-    }
-
-    public int getSeed() {  return randomizerSeed; }
+    public double getMoney() { return money; }
 
     public GameObject getLocation() { return location; }
 
@@ -114,9 +103,7 @@ public class game_state : MonoBehaviour
         // bug if an action is longer than 4 hours...
         if ((time > 240 && time < 480))
         {
-            Debug.Log(time);
             time = 480; // set time to 8am
-            Debug.Log(time);
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method
@@ -144,6 +131,7 @@ public class game_state : MonoBehaviour
     public void updateMoney(double m)
     {
         money = money + m;
+        notifyOnMoneyChange(money - m, money);
     }
 
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
@@ -188,6 +176,16 @@ public class game_state : MonoBehaviour
         onSubscribersChanged(oldSubscribers, newSubscribers);
     }
 
+    public void addOnMoneyChange(changeMoney changeMoney)
+    {
+        onMoneyChanged += changeMoney;
+    }
+
+    private void notifyOnMoneyChange(double oldMoney, double newMoney)
+    {
+        onMoneyChanged(oldMoney, newMoney);
+    }
+
 
     // remove later
     private void Start()
@@ -195,13 +193,12 @@ public class game_state : MonoBehaviour
         addOnTimeChange(doNothing);
         addOnWellnessChange(doNothing);
         addOnSubscribersChange(doNothing);
+        addOnMoneyChange(doNothing2);
     }
 
-    private void doNothing(int t, int t2)
-    {
-        
-    }
+    private void doNothing(int t, int t2) { }
 
+    private void doNothing2(double t, double t2) { }
 }
 
 

@@ -30,7 +30,8 @@ public class stalker_prototype_script : MonoBehaviour
 
     GameObject player;
     
-    public int randomEvent;
+    private int randomEvent;
+    public notification_script notification;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,7 +76,12 @@ public class stalker_prototype_script : MonoBehaviour
         // Handle stalker event logic here.
         eventDuration = Random.Range(5, 20); // Set random event duration between 5 and 20 seconds
         eventEndTime = Time.time + eventDuration; // Calculate when the event should end.
-        Debug.Log("Stalker event " + EventNumber + " is active!");
+        string eventMessage = "Stalker event " + EventNumber + " is active!";
+        if (notification != null)
+        {
+            notification.ShowNotifications(eventMessage);
+        }
+        Debug.Log(eventMessage);
 
         // Calculate the time for the next stalker event.
         float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
