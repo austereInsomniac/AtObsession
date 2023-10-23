@@ -118,7 +118,7 @@ public class object_for_all_variables : MonoBehaviour
         method.updateTime(action.getTime());
         method.updateMoney(action.getMoney());
     }
-
+s
     public void Action()
     {     
         // update each statistic
