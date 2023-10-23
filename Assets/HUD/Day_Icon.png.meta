@@ -165,10 +165,10 @@ TextureImporter:
       name: Day_Icon_0
       rect:
         serializedVersion: 2
-        x: 473
-        y: 14
-        width: 938
-        height: 1058
+        x: 53
+        y: 576
+        width: 413
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
