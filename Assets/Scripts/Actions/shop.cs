@@ -71,7 +71,7 @@ public class shop : MonoBehaviour
         buyableItem item = buyableItems[index];
 
         //check if the item had been purchased
-        if (!item.isPurchased() && GetComponent<game_state>().getMoney() >= (-1 * item.getMoney()))
+        if (!item.isPurchased())
         {
             // adjust the game state data
             GetComponent<game_state>().updateWellness(item.getWellness());

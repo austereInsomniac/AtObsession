@@ -9,10 +9,6 @@ public class change_filter_color : MonoBehaviour
         // add the update method to the wellness delegate
         GameObject player = GameObject.Find("Player");
         player.GetComponent<game_state>().addOnWellnessChange(changeFilterOpacity);
-
-        // run the filter when the game starts
-        changeFilterOpacity(player.GetComponent<game_state>().getWellness(), 
-                            player.GetComponent<game_state>().getWellness());
     }
 
     // this method is called every time wellness is updated
