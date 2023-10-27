@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c8bd528062b5b24a890d4a5a4771d47
+guid: 08624835b354c594a81020226628187f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menus_0
+      name: Day_Icon_0
       rect:
         serializedVersion: 2
-        x: 563
-        y: 105
-        width: 795
-        height: 915
+        x: 53
+        y: 576
+        width: 413
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 616624b9985cd9f47ba797619d90980f
-      internalID: 453834549
+      spriteID: 799663c8dc4294f40a3e3efe46d06148
+      internalID: 714455250
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Menus_0: 453834549
+      Day_Icon_0: 714455250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

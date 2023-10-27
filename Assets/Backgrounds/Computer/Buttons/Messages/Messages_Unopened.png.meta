@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c8bd528062b5b24a890d4a5a4771d47
+guid: ae308de368fac3544aaed67d4c31d0a7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menus_0
+      name: Messages_Unopened_0
       rect:
         serializedVersion: 2
-        x: 563
-        y: 105
-        width: 795
-        height: 915
+        x: 135
+        y: 689
+        width: 1605
+        height: 263
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 616624b9985cd9f47ba797619d90980f
-      internalID: 453834549
+      spriteID: 7ed1ec4a2c8513d48af97c4fd13669e4
+      internalID: -1767254092
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Menus_0: 453834549
+      Messages_Unopened_0: -1767254092
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c8bd528062b5b24a890d4a5a4771d47
+guid: c7f6d882c52464a4d948128d8ddb5b50
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,33 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -162,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menus_0
+      name: Delete_Mail_Bttn_0
       rect:
         serializedVersion: 2
-        x: 563
-        y: 105
-        width: 795
-        height: 915
+        x: 1478
+        y: 832
+        width: 240
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 616624b9985cd9f47ba797619d90980f
-      internalID: 453834549
+      spriteID: 77aaec138b3d78947aedcd6278af25d1
+      internalID: 1691916407
       vertices: []
       indices: 
       edges: []
@@ -193,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Menus_0: 453834549
+      Delete_Mail_Bttn_0: 1691916407
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c8bd528062b5b24a890d4a5a4771d47
+guid: 43febde00701e6644a33f9db7dc53ae9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,33 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -162,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menus_0
+      name: Chitter_Computer_Button 1_0
       rect:
         serializedVersion: 2
-        x: 563
-        y: 105
-        width: 795
-        height: 915
+        x: 2359
+        y: 193
+        width: 9682
+        height: 7812
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 616624b9985cd9f47ba797619d90980f
-      internalID: 453834549
+      spriteID: 87314e772b5af4e408063a617259674b
+      internalID: -265406819
       vertices: []
       indices: 
       edges: []
@@ -193,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Menus_0: 453834549
+      Chitter_Computer_Button 1_0: -265406819
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c8bd528062b5b24a890d4a5a4771d47
+guid: ec482abccffde344485243407e4eb715
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menus_0
+      name: Report_Mail_Bttn_0
       rect:
         serializedVersion: 2
-        x: 563
-        y: 105
-        width: 795
-        height: 915
+        x: 1478
+        y: 720
+        width: 240
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 616624b9985cd9f47ba797619d90980f
-      internalID: 453834549
+      spriteID: 9eabeb917e97de9409426dec085b9631
+      internalID: -1398479534
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Menus_0: 453834549
+      Report_Mail_Bttn_0: -1398479534
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

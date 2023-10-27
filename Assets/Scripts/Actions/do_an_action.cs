@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class do_an_action_script : MonoBehaviour
+public class do_an_action : MonoBehaviour
 {
+    public notification_script notification;
+    public int notifNum;
+
     // increase in each statistic
     [SerializeField]
     private int changeWellness;
@@ -24,8 +27,6 @@ public class do_an_action_script : MonoBehaviour
     {
         // "Player" is the name of the Game Object with the game_state script
         player = GameObject.Find("Player");
-        changeTime = 0;
-        player.GetComponent<game_state>().addOnTimeChange(player.GetComponent<force_sleep>().forceSleep);
     }
 
     public void doAnAction()
@@ -37,6 +38,18 @@ public class do_an_action_script : MonoBehaviour
         player.GetComponent<game_state>().updateSubscribers(changeSubs);
         player.GetComponent<game_state>().updateMoney(changeMoney);
         player.GetComponent<game_state>().updateEnding(changeEnd);
-        player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
+        //player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
+    }
+
+    public void ShowNotificationOnClick()
+    {
+        List<string> notifications;
+        notifications = new List<string>();
+        notifications.Add("That didn't make you feel very good");
+        notifications.Add("You feel refreshed");
+        if (notification != null)
+        {
+            notification.ShowNotifications(notifications[notifNum]);
+        }
     }
 }
