@@ -74,6 +74,21 @@ public class stalker_prototype_script : MonoBehaviour
             }
         }
     }
+    public void SpecificStalkerEvent(int EventNum)
+    {
+        int wellness = player.GetComponent<game_state>().getWellness();
+        int day = player.GetComponent<game_state>().getDay();
+        // Check if it's time to end the event.
+            if (isStalkerEvent && Time.time >= eventEndTime)
+            {
+                EndStalkerEvent();
+            }
+            // Check if it's time to trigger a new event.
+            else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
+            {
+                TriggerStalkerEvent(EventNum);
+            }
+    }
     void TurnOff()
     {
         if (isOn)
