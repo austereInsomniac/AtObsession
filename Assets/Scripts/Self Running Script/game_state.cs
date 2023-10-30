@@ -89,11 +89,12 @@ public class game_state : MonoBehaviour
 
     public void updateTime(int t)
     {
+        // update time
         time += t;
 
+        // update day if we hit midnight
         if (time >= 1440)
         {
-            // update day if we hit midnight
             day++;
             time -= 1440;
         }
@@ -109,7 +110,29 @@ public class game_state : MonoBehaviour
             // run sleep method
         }
 
+        // update hunger
+        updateHunger(t);
+
         notifyOnTimeChanged(time - t, time);
+    }
+
+    private void updateHunger(int t)
+    {
+        hunger += t;
+
+        // player is hungry
+        if(hunger >= 4)
+        {
+            // display icon
+            // notification
+        }
+
+        // for each time jump, lower wellness
+        if(hunger > 4)
+        {
+            // for every hour you are hungry after the origional notification, lower wellness by 10
+            updateWellness((int)(-t * .1666 +.5));
+        }
     }
 
     public void updateReputation(int r)
@@ -134,6 +157,7 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money - m, money);
     }
 
+    // the players current room has changd
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
         location = newLocation;
