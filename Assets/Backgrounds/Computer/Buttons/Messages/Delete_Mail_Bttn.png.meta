@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e92bd5f8a05ead444aa2a7b98dcb2805
+guid: 57877819d411b3e43a59bc7c9969d556
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Time_Icon_0
+      name: Delete_Mail_Bttn_0
       rect:
         serializedVersion: 2
-        x: 630
-        y: 486
-        width: 465
-        height: 473
+        x: 1478
+        y: 832
+        width: 240
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec9382ac38e5aa74286960191e7882ce
-      internalID: -496748874
+      spriteID: c2de507276a7ff44dac800b7cf11845a
+      internalID: 1930742262
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Time_Icon_0: -496748874
+      Delete_Mail_Bttn_0: 1930742262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

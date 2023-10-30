@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e92bd5f8a05ead444aa2a7b98dcb2805
+guid: 95f3156812887cf41b7d11c9bdd77a70
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,33 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -162,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Time_Icon_0
+      name: Pink_DM_Unopened_0
       rect:
         serializedVersion: 2
-        x: 630
-        y: 486
-        width: 465
-        height: 473
+        x: 135
+        y: 689
+        width: 1605
+        height: 263
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec9382ac38e5aa74286960191e7882ce
-      internalID: -496748874
+      spriteID: 8d9ab322641c60440920e12fa0eff617
+      internalID: 1325249460
       vertices: []
       indices: 
       edges: []
@@ -193,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Time_Icon_0: -496748874
+      Pink_DM_Unopened_0: 1325249460
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

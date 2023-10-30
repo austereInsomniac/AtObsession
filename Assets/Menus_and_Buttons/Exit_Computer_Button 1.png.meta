@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e92bd5f8a05ead444aa2a7b98dcb2805
+guid: 2040341d1997bff44bb439c3d9e01041
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,33 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -162,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Time_Icon_0
+      name: Exit_Computer_Button 1_0
       rect:
         serializedVersion: 2
-        x: 630
-        y: 486
-        width: 465
-        height: 473
+        x: 2366
+        y: 172
+        width: 9689
+        height: 7812
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec9382ac38e5aa74286960191e7882ce
-      internalID: -496748874
+      spriteID: 5b9973c671471f14786a5c486cb44c03
+      internalID: 290493075
       vertices: []
       indices: 
       edges: []
@@ -193,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Time_Icon_0: -496748874
+      Exit_Computer_Button 1_0: 290493075
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

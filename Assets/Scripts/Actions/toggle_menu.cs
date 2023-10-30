@@ -14,19 +14,19 @@ public class toggle_menu : MonoBehaviour
     [SerializeField] 
     private CanvasGroup menu;
 
-    //GameObject blocker;
-    Component[] buttons;
+    private UnityEngine.UI.Image menuBlocker;
+    private BoxCollider2D menuCollider;
+    private Component[] buttons;
 
     private void Awake()
     {
-        // = GameObject.Find("Raycast Blocker");
+        menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
+        menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         buttons = menu.GetComponentsInChildren<UnityEngine.UI.Button>(true);
     }
 
     private void Start()
     {
-        //blocker.SetActive(false);
-
         foreach (UnityEngine.UI.Button button in buttons)
         {
             button.interactable = false;
@@ -35,8 +35,10 @@ public class toggle_menu : MonoBehaviour
 
     public void open()
     {
-        //blocker.SetActive(true);
         menu.alpha = 1;
+        menu.blocksRaycasts = true;
+        menuBlocker.enabled = true;
+        menuCollider.enabled = true;
 
         foreach (UnityEngine.UI.Button button in buttons)
         {
@@ -46,8 +48,10 @@ public class toggle_menu : MonoBehaviour
 
     public void close()
     {
-        //blocker.SetActive(false);
         menu.alpha = 0;
+        menu.blocksRaycasts = false;
+        menuBlocker.enabled = false;
+        menuCollider.enabled = false;
 
         foreach (UnityEngine.UI.Button button in buttons)
         {

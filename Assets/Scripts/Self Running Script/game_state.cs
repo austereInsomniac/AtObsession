@@ -119,7 +119,7 @@ public class game_state : MonoBehaviour
 
     public void updateSubscribers(int s)
     {
-        notifyOnSubscribersChange(subscribers, subscribers + s);
+        //notifyOnSubscribersChange(subscribers, subscribers + s);
         subscribers = subscribers + s;
     }
 

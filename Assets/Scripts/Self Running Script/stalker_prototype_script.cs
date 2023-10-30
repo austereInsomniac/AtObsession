@@ -18,6 +18,7 @@ class StalkerEvents
 }
 public class stalker_prototype_script : MonoBehaviour
 {
+    private bool isOn = true;
     List<string> eventKeys;
     Dictionary<string, StalkerEvents> stalkerEvents;
     private bool isStalkerEvent = false; // Tracks if event is happening
@@ -27,6 +28,8 @@ public class stalker_prototype_script : MonoBehaviour
     private float minTimeBetweenEvents = 10; // Minimum time between events
     private float maxTimeBetweenEvents = 30; // Maximum time between events
     private float nextEventTime = 0; // Timestamp when next event should start
+
+    private int eventNum;
 
     GameObject player;
     
@@ -38,6 +41,7 @@ public class stalker_prototype_script : MonoBehaviour
         // "Player" is the name of the Game Object with the game_state script
         player = GameObject.Find("Player");
         stalkerEvents = new Dictionary<string, StalkerEvents>();
+        
         stalkerEvents.Add("Email", new StalkerEvents(0, 1, 1));
         stalkerEvents.Add("Knock on door", new StalkerEvents(1, 2, 1));
         stalkerEvents.Add("Gift in the mail", new StalkerEvents(1, 3, 1));
@@ -51,26 +55,74 @@ public class stalker_prototype_script : MonoBehaviour
         eventKeys.Add("Suspicious friend");
         eventKeys.Add("Window Figure");
         randomEvent = Random.Range(1, eventKeys.Count);
-        TriggerStalkerEvent(randomEvent); // Start with initial event
+       // TriggerStalkerEvent(randomEvent); // Start with initial event
     }
     
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        Debug.Log(eventNum);
         int wellness = player.GetComponent<game_state>().getWellness();
         int day = player.GetComponent<game_state>().getDay();
         // Check if it's time to end the event.
-        if (isStalkerEvent && Time.time >= eventEndTime)
+        if (isOn)
         {
-            EndStalkerEvent();
-        }
-        // Check if it's time to trigger a new event.
-        else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
-        {
-            TriggerStalkerEvent(randomEvent);
+            if (isStalkerEvent && Time.time >= eventEndTime)
+            {
+                EndStalkerEvent();
+            }
+            // Check if it's time to trigger a new event.
+            else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
+            {
+                if (eventNum == 0)
+                {
+                    TriggerStalkerEvent(randomEvent);
+                }
+                else
+                {
+                    TriggerStalkerEvent(eventNum);
+                }
+            }
         }
     }
+    //public void SpecificStalkerEvent(int EventNum)
+    //{
+    //    int wellness = player.GetComponent<game_state>().getWellness();
+    //    int day = player.GetComponent<game_state>().getDay();
+    //    // Check if it's time to end the event.
+    //        if (isStalkerEvent && Time.time >= eventEndTime)
+    //        {
+    //            EndStalkerEvent();
+    //        }
+    //        // Check if it's time to trigger a new event.
+    //        else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
+    //        {
+    //            TriggerStalkerEvent(EventNum);
+    //        }
+    //}
 
+    public void setEventNum(int eventNum)
+    {
+        this.eventNum = eventNum;
+    }
+
+    public void TurnOff()
+    {
+        Debug.Log(isOn);
+        if (isOn)
+        {
+            isOn = false;
+            Debug.Log(isOn);
+        }
+        Debug.Log(isOn);
+    }
+    public void TurnOn()
+    {
+        if (!isOn)
+        {
+            isOn = true;
+        }
+    }
     private void TriggerStalkerEvent(int EventNumber)
     {
         // Handle stalker event logic here.

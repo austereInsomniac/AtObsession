@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e92bd5f8a05ead444aa2a7b98dcb2805
+guid: 12918bde77b4b4a4f8c0fbd4384f6bb2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Time_Icon_0
+      name: Blue_DM_Opened_0
       rect:
         serializedVersion: 2
-        x: 630
-        y: 486
-        width: 465
-        height: 473
+        x: 135
+        y: 411
+        width: 1605
+        height: 263
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec9382ac38e5aa74286960191e7882ce
-      internalID: -496748874
+      spriteID: dca9281919279de4a964737ddffbf561
+      internalID: 287221095
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Time_Icon_0: -496748874
+      Blue_DM_Opened_0: 287221095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
