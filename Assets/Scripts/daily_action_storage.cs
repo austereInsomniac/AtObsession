@@ -19,8 +19,6 @@ class ActionVariables
 
     }
 
-
-
     public int getWellness()
     {
         return wellness;
@@ -44,7 +42,7 @@ class ActionVariables
     }
 }
 
-public class object_for_all_variables : MonoBehaviour
+public class daily_action_storage : MonoBehaviour
 {
 
     [SerializeField]
@@ -59,11 +57,6 @@ public class object_for_all_variables : MonoBehaviour
 
     System.Random rand = new System.Random();
 
-    //int SkipToMorning(int currentTime)
-    //{
-    //    currentTime = action.getTime();
-
-    //}
     int RandomTimeBig()
     {
         int randomNumber;
@@ -82,7 +75,7 @@ public class object_for_all_variables : MonoBehaviour
         return randomNumber;
     }
 
-    int RandonmWellness()
+    int RandomWellness()
     {
         int randomNumber;
         randomNumber = rand.Next(1, 2);
@@ -106,12 +99,12 @@ public class object_for_all_variables : MonoBehaviour
     public void doAction()
     {
         // update each statistic
-        // game_state method = player.GetComponent<game_state>();
-            ActionVariables activity = activities[key];
-            player.GetComponent<game_state>().updateWellness(activity.getWellness());
-            player.GetComponent<game_state>().updateTime(activity.getTime());
-            player.GetComponent<game_state>().updateMoney(activity.getMoney());
+        ActionVariables activity = activities[key];
+        player.GetComponent<game_state>().updateWellness(activity.getWellness());
+        player.GetComponent<game_state>().updateTime(activity.getTime());
+        player.GetComponent<game_state>().updateMoney(activity.getMoney());
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,7 +121,7 @@ public class object_for_all_variables : MonoBehaviour
         activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
         activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
         activities.Add("Exercise at the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
-        activities.Add("Hang out with friends", new ActionVariables(RandonmWellness(), RandomTimeBig(), 0.00));
+        activities.Add("Hang out with friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00));
         activities.Add("Go for a walk", new ActionVariables(10, 25, 0));
         activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00));
         activities.Add("Exercise at home", new ActionVariables(8, 20, 0.00));
