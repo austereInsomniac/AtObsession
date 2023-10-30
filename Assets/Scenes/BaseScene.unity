@@ -1133,6 +1133,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stalkerOff: 0
   stalkerNum: 5
+  infiniteMoney: 1
+  infiniteSubscribers: 1
+  infiniteReputation: 1
+  infiniteWellness: 1
+  noWellness: 0
+  dayStart: 5
+  dayLimit: 0
 --- !u!4 &91907304
 Transform:
   m_ObjectHideFlags: 0
