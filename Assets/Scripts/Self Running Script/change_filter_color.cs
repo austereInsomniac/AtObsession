@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class change_filter_color : MonoBehaviour
@@ -23,13 +24,24 @@ public class change_filter_color : MonoBehaviour
     public void changeFilterOpacity(int oldW, int newW)
     {
         // the division by two represents how strong the maximum strength filter could be (2 = 50% oppacity)
-        Color color = this.GetComponent<SpriteRenderer>().color;
+        UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
         color.a = (float)(50 - (newW / 2))/100;
         this.GetComponent<SpriteRenderer>().color = color;
     }
 
     public void changeGradientOpacity(int oldW, int newW)
     {
+        // ceate a color and set to transparent
+        UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
+        color.a = 0;
+
+        if (newW <= 30)
+        {
+            // make the color not transparent when wellness is low
+            color.a = (float)(50 - (newW / 2)) / 100;
+        }
         
+        // chage color every update
+        this.GetComponent<SpriteRenderer>().color = color;
     }
 }
