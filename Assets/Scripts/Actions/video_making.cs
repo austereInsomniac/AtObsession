@@ -35,7 +35,8 @@ public class video_making : MonoBehaviour
 
         subscribers += newSubscribers; //Update to the new number of subscribers
 
-        int money = (int)(subscribers * .10); //Assigns a money variable to be 10% of the new subscriber count
+        int randomMoney = Random.Range(-5, 20);
+        int money = (int)(subscribers * .02) + randomMoney; //Assigns a money variable to be 10% of the new subscriber count
 
         player.GetComponent<game_state>().updateSubscribers(newSubscribers); //Changes the game state subscribers value
         player.GetComponent<game_state>().updateMoney(money); //Changes the game state money value to be updated
