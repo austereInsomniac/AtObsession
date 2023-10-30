@@ -9,10 +9,13 @@ public class change_filter_color : MonoBehaviour
         // add the update method to the wellness delegate
         GameObject player = GameObject.Find("Player");
         player.GetComponent<game_state>().addOnWellnessChange(changeFilterOpacity);
+        player.GetComponent<game_state>().addOnWellnessChange(changeGradientOpacity);
 
         // run the filter when the game starts
         changeFilterOpacity(player.GetComponent<game_state>().getWellness(), 
                             player.GetComponent<game_state>().getWellness());
+        changeGradientOpacity(player.GetComponent<game_state>().getWellness(),
+                              player.GetComponent<game_state>().getWellness());
     }
 
     // this method is called every time wellness is updated
@@ -23,5 +26,10 @@ public class change_filter_color : MonoBehaviour
         Color color = this.GetComponent<SpriteRenderer>().color;
         color.a = (float)(50 - (newW / 2))/100;
         this.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void changeGradientOpacity(int oldW, int newW)
+    {
+        
     }
 }

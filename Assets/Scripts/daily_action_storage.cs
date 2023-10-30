@@ -112,18 +112,17 @@ public class daily_action_storage : MonoBehaviour
         activities.Add("Cook food", new ActionVariables(10, 30, 5.00));//hunger
         activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
         activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
-       // activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
         activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00));//use the equation to adjust the wellness 
         activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
         activities.Add("Forced Sleep", new ActionVariables(-5, 480 - 120, 0.00));
         activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
         activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
         activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
-        activities.Add("Do household chores", new ActionVariables(8, 15, 0.00));
-        activities.Add("Exercise at the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
-        activities.Add("Hang out with friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00));
+        activities.Add("Do chores", new ActionVariables(8, 15, 0.00));
+        activities.Add("Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
+        activities.Add("Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00));
         activities.Add("Go for a walk", new ActionVariables(10, 25, 0));
         activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00));
-        activities.Add("Exercise at home", new ActionVariables(8, 20, 0.00));
+        activities.Add("Lift weights", new ActionVariables(8, 20, 0.00));
     }
 }
