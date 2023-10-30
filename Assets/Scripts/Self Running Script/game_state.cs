@@ -8,12 +8,12 @@ public class game_state : MonoBehaviour
     private int reputation;
     private int subscribers;
     private int ending;
+    private double money;
+    private bool hasDied;
 
     // time is in terms of minutes since midnight - 480 is 8am
     private int time;
     private int day;
-
-    private double money;
 
     // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
     private int hunger;
@@ -47,6 +47,7 @@ public class game_state : MonoBehaviour
         subscribers = 1000;
         ending = 0;
         money = 100.00;
+        hasDied = false;
     }
 
     // getters
@@ -77,13 +78,23 @@ public class game_state : MonoBehaviour
         }
         else if (wellness + w <= 0)
         {
-            // die
             wellness = 0;
+
+            if (hasDied)
+            {
+                // die
+            }
+            else
+            {
+                // call hospital scene 
+                hasDied = true;
+            }
         }
         else
         {
             wellness += w;
         }
+
         notifyOnWellnessChanged(wellness - w, wellness);
     }
 
@@ -130,9 +141,18 @@ public class game_state : MonoBehaviour
         // for each time jump, lower wellness
         if(hunger > 4)
         {
-            // for every hour you are hungry after the origional notification, lower wellness by 10
-            updateWellness((int)(-t * .1666 +.5));
+            // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
+            int over = 4 - hunger;
+            int loss = Mathf.Min(t, over);
+
+            // for every hour you are hungry after the original notification, lower wellness by 10
+            updateWellness((int)(-loss * .1666 +.5));
         }
+    }
+
+    public void resetHunger() {
+        // run after the time change
+        hunger = 0;
     }
 
     public void updateReputation(int r)
