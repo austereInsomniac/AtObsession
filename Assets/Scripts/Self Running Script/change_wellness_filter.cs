@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
-public class change_filter_color : MonoBehaviour
+public class change_wellness_filter : MonoBehaviour
 {
     private void Start()
     {
         // add the update method to the wellness delegate
         GameObject player = GameObject.Find("Player");
         player.GetComponent<game_state>().addOnWellnessChange(changeFilterOpacity);
-        player.GetComponent<game_state>().addOnWellnessChange(changeGradientOpacity);
 
         // run the filter when the game starts
         changeFilterOpacity(player.GetComponent<game_state>().getWellness(), 
                             player.GetComponent<game_state>().getWellness());
-        changeGradientOpacity(player.GetComponent<game_state>().getWellness(),
-                              player.GetComponent<game_state>().getWellness());
     }
 
     // this method is called every time wellness is updated
@@ -26,22 +23,6 @@ public class change_filter_color : MonoBehaviour
         // the division by two represents how strong the maximum strength filter could be (2 = 50% oppacity)
         UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
         color.a = (float)(50 - (newW / 2))/100;
-        this.GetComponent<SpriteRenderer>().color = color;
-    }
-
-    public void changeGradientOpacity(int oldW, int newW)
-    {
-        // ceate a color and set to transparent
-        UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
-        color.a = 0;
-
-        if (newW <= 30)
-        {
-            // make the color not transparent when wellness is low
-            color.a = (float)(50 - (newW / 2)) / 100;
-        }
-        
-        // chage color every update
         this.GetComponent<SpriteRenderer>().color = color;
     }
 }
