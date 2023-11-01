@@ -120,7 +120,12 @@ public class game_state : MonoBehaviour
         locationManager.goToBedroom();
         hasDied = true;
 
+        wellness = 50;
+
         // give the hospital text
+
+        // turn off the hud
+        GameObject.Find("HUD").SetActive(false);
     }
 
     public void updateTime(int t)
@@ -164,7 +169,7 @@ public class game_state : MonoBehaviour
             hungerHUD.enabled = true;
 
             // display notification
-            notificationManager.ShowNotifications("You are hungy.");
+            notificationManager.ShowNotifications("You are hungry.");
         }
         else
         {
