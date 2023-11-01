@@ -122,29 +122,30 @@ public class daily_action_storage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        activities = new Dictionary<string, ActionVariables>();
+        activities = new Dictionary<string, ActionVariables>
+        {
+            // living room
+            { "Do chores", new ActionVariables(8, 15, 0.00) },
+            { "Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00) },
+            { "Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00) },
+            { "Go for a walk", new ActionVariables(10, 25, 0) },
+            { "Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00) },
+            { "Lift weights", new ActionVariables(8, 20, 0.00) },
+            { "Eat at a restaurant", new ActionVariables(10, 60, 25.00) },//hunger
 
-        // living room
-        activities.Add("Do chores", new ActionVariables(8, 15, 0.00));
-        activities.Add("Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
-        activities.Add("Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00));
-        activities.Add("Go for a walk", new ActionVariables(10, 25, 0));
-        activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00));
-        activities.Add("Lift weights", new ActionVariables(8, 20, 0.00));
-        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
-        
-        // kitchen
-        activities.Add("Cook food", new ActionVariables(10, 30, 5.00));//hunger
-        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
+            // kitchen
+            { "Cook food", new ActionVariables(10, 30, 5.00) },//hunger
+            { "Eat a snack", new ActionVariables(10, 5, 0.00) },//hunger
 
-        // bedroom
-        activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00));//use the equation to adjust the wellness 
-        activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
+            // bedroom
+            { "Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00) },//use the equation to adjust the wellness 
+            { "Take a nap", new ActionVariables(20, 120, 0.00) },
 
-        // bathroom
-        activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
-        activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
-        activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
+            // bathroom
+            { "Freshen up", new ActionVariables(3, 5, 0.00) },
+            { "Shower", new ActionVariables(8, 20, 0.00) },
+            { "Bubble bath", new ActionVariables(12, 45, 0.00) }
+        };
 
         Debug.Log("test");
 
