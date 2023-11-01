@@ -14,10 +14,14 @@ public class toggle_menu : MonoBehaviour
     [SerializeField] 
     private CanvasGroup menu;
 
+    private UnityEngine.UI.Image menuBlocker;
+    private BoxCollider2D menuCollider;
     private Component[] buttons;
 
     private void Awake()
     {
+        menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
+        menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         buttons = menu.GetComponentsInChildren<UnityEngine.UI.Button>(true);
     }
 
@@ -32,6 +36,9 @@ public class toggle_menu : MonoBehaviour
     public void open()
     {
         menu.alpha = 1;
+        menu.blocksRaycasts = true;
+        menuBlocker.enabled = true;
+        menuCollider.enabled = true;
 
         foreach (UnityEngine.UI.Button button in buttons)
         {
@@ -42,6 +49,9 @@ public class toggle_menu : MonoBehaviour
     public void close()
     {
         menu.alpha = 0;
+        menu.blocksRaycasts = false;
+        menuBlocker.enabled = false;
+        menuCollider.enabled = false;
 
         foreach (UnityEngine.UI.Button button in buttons)
         {
@@ -49,11 +59,24 @@ public class toggle_menu : MonoBehaviour
         }
     }
 
-    public void OnGUI()
+    public void closeWithBlocker()
     {
-        if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
+        menu.alpha = 0;
+        menu.blocksRaycasts = false;
+        menuBlocker.enabled = false;
+
+        foreach (UnityEngine.UI.Button button in buttons)
+        {
+            button.interactable = false;
+        }
+    }
+
+    public void OnMouseDown()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
@@ -61,7 +84,6 @@ public class toggle_menu : MonoBehaviour
             if (hit.collider == this.GetComponent<BoxCollider2D>())
             {
                 open();
-                Event.current.Use();
             }
         }
     }

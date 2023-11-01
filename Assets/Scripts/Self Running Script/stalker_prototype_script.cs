@@ -34,7 +34,7 @@ public class stalker_prototype_script : MonoBehaviour
     GameObject player;
     
     private int randomEvent;
-    public notification_script notification;
+    public notification_manager notification;
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +61,6 @@ public class stalker_prototype_script : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Debug.Log(eventNum);
         int wellness = player.GetComponent<game_state>().getWellness();
         int day = player.GetComponent<game_state>().getDay();
         // Check if it's time to end the event.
