@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
-//using System.Random;
 using UnityEngine.XR;
 using JetBrains.Annotations;
+using UnityEditor;
+using UnityEngine.UI;
 
 class ActionVariables
 {
@@ -44,18 +45,21 @@ class ActionVariables
 
 public class daily_action_storage : MonoBehaviour
 {
-
-    [SerializeField]
-    private string key;
-
     List<ActionVariables> listVariables;
     Dictionary<string, ActionVariables> activities;
+    Dictionary<string, UnityEngine.UI.Image> splashScreens;
 
     ActionVariables action;
 
-    GameObject player;
+    game_state player;
+    UnityEngine.UI.Image splashScreen;
 
     System.Random rand = new System.Random();
+
+    // splash screen timers
+    private bool isSplashShowing;
+    private float displayTime = 3.0f;
+    private float displayStartTime;
 
     int RandomTimeBig()
     {
@@ -78,6 +82,7 @@ public class daily_action_storage : MonoBehaviour
     int RandomWellness()
     {
         int randomNumber;
+
         randomNumber = rand.Next(1, 2);
         if (randomNumber == 1)
         {
@@ -86,43 +91,86 @@ public class daily_action_storage : MonoBehaviour
         if (randomNumber == 2) {
             return 15;
         }
-        else {
-            return 0;
-        }
+        return 0;
     }
+
     void Awake()
     {
         // "Player" is the name of the Game Object with the game_state script
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<game_state>();
+
+        splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
     }
 
-    public void doAction()
+    public void doAction(string key)
     {
         // update each statistic
         ActionVariables activity = activities[key];
-        player.GetComponent<game_state>().updateWellness(activity.getWellness());
-        player.GetComponent<game_state>().updateTime(activity.getTime());
-        player.GetComponent<game_state>().updateMoney(activity.getMoney());
+        player.updateWellness(activity.getWellness());
+        player.updateTime(activity.getTime());
+        player.updateMoney(activity.getMoney());
+
+        // display approprriate splash screen for a set time, then wait for input
+        splashScreen = splashScreens[key];
+        splashScreen.enabled = true;
+
+        // Record start time
+        displayStartTime = Time.timeSinceLevelLoad;
+        isSplashShowing = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         activities = new Dictionary<string, ActionVariables>();
-        activities.Add("Cook food", new ActionVariables(10, 30, 5.00));//hunger
-        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
-        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
-        activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00));//use the equation to adjust the wellness 
-        activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
-        activities.Add("Forced Sleep", new ActionVariables(-5, 480 - 120, 0.00));
-        activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
-        activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
-        activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
+
+        // living room
         activities.Add("Do chores", new ActionVariables(8, 15, 0.00));
         activities.Add("Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
         activities.Add("Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00));
         activities.Add("Go for a walk", new ActionVariables(10, 25, 0));
         activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00));
         activities.Add("Lift weights", new ActionVariables(8, 20, 0.00));
+        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
+        
+        // kitchen
+        activities.Add("Cook food", new ActionVariables(10, 30, 5.00));//hunger
+        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
+
+        // bedroom
+        activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00));//use the equation to adjust the wellness 
+        activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
+
+        // bathroom
+        activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
+        activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
+        activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
+
+        Debug.Log("test");
+
+        splashScreens = new Dictionary<string, UnityEngine.UI.Image>();
+
+        // living room
+        splashScreens.Add("Do chores", splashScreen);
+
+        // kitchen
+
+
+        // bedroom
+
+
+        // bathroom
+    }
+
+    void Update()
+    {
+        if (isSplashShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
+        {
+            // give option to slose splash
+
+            splashScreen.enabled = false;
+
+            isSplashShowing = false;
+        }
     }
 }
