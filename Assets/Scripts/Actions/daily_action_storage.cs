@@ -147,8 +147,7 @@ public class daily_action_storage : MonoBehaviour
             { "Bubble bath", new ActionVariables(12, 45, 0.00) }
         };
 
-        Debug.Log("test");
-
+        // splash screen code
         splashScreens = new Dictionary<string, UnityEngine.UI.Image>();
 
         // living room
