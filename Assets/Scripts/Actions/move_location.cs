@@ -20,14 +20,18 @@ public class move_location : MonoBehaviour
     private GameObject player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
-    //private GameObject blocker;
+    private GameObject gameOver;
+    private GameObject gameOverCanvas;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        gameOver = GameObject.Find("Game Over");
+        gameOverCanvas = GameObject.Find("Game Over Canvas");
     }
+
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
         // move this room away
@@ -47,24 +51,26 @@ public class move_location : MonoBehaviour
             player.GetComponent<game_state>().getLocationCanvas());
     }
 
-    public void OnGUI()
+    public void goToGameOver()
     {
-        if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
+        moveLocation(gameOver, gameOverCanvas, player.GetComponent<game_state>().getLocation(),
+            player.GetComponent<game_state>().getLocationCanvas());
+    }
+
+    public void OnMouseDown()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if(hit.collider == this.GetComponent<BoxCollider2D>())
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-                if (hit.collider == this.GetComponent<BoxCollider2D>())
-                {
-                    moveLocation(other, otherCanvas, thisO, thisCanvas);
-                    Event.current.Use();
-                }
+                moveLocation(other, otherCanvas, thisO, thisCanvas);
             }
-        }
+        } 
     }
 
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class splash_screen_manager : MonoBehaviour
@@ -16,11 +17,16 @@ public class splash_screen_manager : MonoBehaviour
     private float displayTime = 1.5f;
     private float displayStartTime;
 
+    // HUD
+    GameObject HUD;
+
     // Start is called before the first frame update
     void Start()
     {
+        // grab outside objects
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
+        HUD = GameObject.Find("HUD");
 
         // splash screen code
         splashScreens = new Dictionary<string, UnityEngine.UI.Image>()
@@ -45,7 +51,11 @@ public class splash_screen_manager : MonoBehaviour
             // bathroom
             { "Freshen up", splashScreen },
             { "Shower", splashScreen },
-            { "Bubble bath", splashScreen }
+            { "Bubble bath", splashScreen },
+
+            // non actions
+            { "Hospital", splashScreen },
+            { "Game over", splashScreen }
         };
     }
     public void openSplashScreen(string key)
@@ -57,6 +67,15 @@ public class splash_screen_manager : MonoBehaviour
         // Record start time
         displayStartTime = Time.timeSinceLevelLoad;
         isSplashShowing = true;
+
+        // hide hud
+        HUD.SetActive(false);
+
+        // destroy HUD if we die
+        if (key.Equals("Game over"))
+        {
+            Destroy(HUD);
+        }
     }
 
     // Update is called once per frame
@@ -71,6 +90,9 @@ public class splash_screen_manager : MonoBehaviour
                 splashScreen.enabled = false;
                 menuCollider.enabled = false;
                 isSplashShowing = false;
+
+                // enable HUD
+                HUD.SetActive(true);
             }
         }
     }
