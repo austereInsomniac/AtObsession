@@ -34,7 +34,7 @@ public class stalker_prototype_script : MonoBehaviour
     GameObject player;
     
     private int randomEvent;
-    public notification_script notification;
+    public notification_manager notification;
     // Start is called before the first frame update
     void Start()
     {
