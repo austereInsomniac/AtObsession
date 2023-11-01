@@ -655,7 +655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -118798300, guid: 1429561bd0a2ac24d86cbf851f7d6e94, type: 3}
+  m_Sprite: {fileID: -2133780514, guid: 7ff22760f4c183a4b9ab25cff09d127c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1479,8 +1479,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 18337623}
-        m_TargetAssemblyTypeName: AppearOnClick, Assembly-CSharp
-        m_MethodName: close
+        m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2286,7 +2286,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1168949948}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3089,7 +3089,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 107295009}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4689,7 +4689,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 107295009}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5688,7 +5688,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1093640430, guid: 7147f21a6c7a49944af36173977aa338, type: 3}
+  m_Sprite: {fileID: 519433663, guid: d6d2858112e680a488a84acda37e57e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5803,8 +5803,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 520385365}
-        m_TargetAssemblyTypeName: AppearOnClick, Assembly-CSharp
-        m_MethodName: close
+        m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8193,7 +8193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -265406819, guid: 43febde00701e6644a33f9db7dc53ae9, type: 3}
+  m_Sprite: {fileID: 1895820557, guid: 78b0a3d5d4626a244ad6939bb579bde6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8344,7 +8344,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 107295009}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9887,7 +9887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1110860680, guid: d30740080c166ab40b8b3cdbc63a6603, type: 3}
+  m_Sprite: {fileID: -1931013454, guid: 2885c483d03943f43999dddeb10a47a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10276,8 +10276,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 18337623}
-        m_TargetAssemblyTypeName: AppearOnClick, Assembly-CSharp
-        m_MethodName: close
+        m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10422,7 +10422,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1353465944}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11874,7 +11874,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 969185908}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15119,7 +15119,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1168949948}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15264,7 +15264,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 107295009}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17922,7 +17922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 954924756, guid: 52dad83989a1c6e4c92d702e8f079977, type: 3}
+  m_Sprite: {fileID: -1580262504, guid: 3f3789e2214e4d141a2f2fcd682db41b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18174,7 +18174,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1539414939}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20713,7 +20713,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 527392075}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21518,7 +21518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2038404191
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21545,7 +21545,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038404190}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -22242,7 +22242,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 625788965}
         m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

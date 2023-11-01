@@ -59,6 +59,18 @@ public class toggle_menu : MonoBehaviour
         }
     }
 
+    public void closeWithBlocker()
+    {
+        menu.alpha = 0;
+        menu.blocksRaycasts = false;
+        menuBlocker.enabled = false;
+
+        foreach (UnityEngine.UI.Button button in buttons)
+        {
+            button.interactable = false;
+        }
+    }
+
     public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))

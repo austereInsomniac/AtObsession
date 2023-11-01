@@ -51,8 +51,9 @@ public class daily_action_storage : MonoBehaviour
 
     ActionVariables action;
 
-    game_state player;
-    UnityEngine.UI.Image splashScreen;
+    private game_state player;
+    private UnityEngine.UI.Image splashScreen;
+    private BoxCollider2D menuCollider;
 
     System.Random rand = new System.Random();
 
@@ -100,6 +101,7 @@ public class daily_action_storage : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<game_state>();
 
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
+        menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
     }
 
     public void doAction(string key)
@@ -110,7 +112,7 @@ public class daily_action_storage : MonoBehaviour
         player.updateTime(activity.getTime());
         player.updateMoney(activity.getMoney());
 
-        // display approprriate splash screen for a set time, then wait for input
+        // display appropriate splash screen for a set time
         splashScreen = splashScreens[key];
         splashScreen.enabled = true;
 
@@ -148,27 +150,42 @@ public class daily_action_storage : MonoBehaviour
         };
 
         // splash screen code
-        splashScreens = new Dictionary<string, UnityEngine.UI.Image>();
+        splashScreens = new Dictionary<string, UnityEngine.UI.Image>()
+        {
+            // living room
+            { "Do chores", splashScreen },
+            { "Go to the gym", splashScreen },
+            { "Visit friends", splashScreen },
+            { "Go for a walk", splashScreen },
+            { "Watch TV", splashScreen },
+            { "Lift weights", splashScreen },
+            { "Eat at a restaurant", splashScreen },
 
-        // living room
-        splashScreens.Add("Do chores", splashScreen);
+            // kitchen
+            { "Cook food", splashScreen },
+            { "Eat a snack", splashScreen },
 
-        // kitchen
+            // bedroom
+            { "Go to sleep", splashScreen },
+            { "Take a nap", splashScreen },
 
-
-        // bedroom
-
-
-        // bathroom
+            // bathroom
+            { "Freshen up", splashScreen },
+            { "Shower", splashScreen },
+            { "Bubble bath", splashScreen }
+        };
     }
 
     void Update()
     {
         if (isSplashShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
         {
-            // give option to slose splash
+            // give option to close splash
 
+
+            // close splash
             splashScreen.enabled = false;
+            menuCollider.enabled = false;
 
             isSplashShowing = false;
         }
