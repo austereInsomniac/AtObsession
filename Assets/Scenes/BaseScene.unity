@@ -2795,6 +2795,8 @@ GameObject:
   - component: {fileID: 256573115}
   - component: {fileID: 256573116}
   - component: {fileID: 256573117}
+  - component: {fileID: 256573119}
+  - component: {fileID: 256573120}
   m_Layer: 5
   m_Name: sink off
   m_TagString: swappable
@@ -2886,6 +2888,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   other: {fileID: 594563797}
+--- !u!61 &256573119
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256573114}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.026171684, y: -0.20937926}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7692609, y: 1.3779787}
+  m_EdgeRadius: 0
+--- !u!114 &256573120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256573114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eecb31b7d372b94b80e2dee70c10cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  s: {fileID: 256573117}
 --- !u!1 &261162611
 GameObject:
   m_ObjectHideFlags: 0
@@ -7371,9 +7431,10 @@ GameObject:
   m_Component:
   - component: {fileID: 594563798}
   - component: {fileID: 594563799}
+  - component: {fileID: 594563800}
   m_Layer: 5
   m_Name: sink on
-  m_TagString: Untagged
+  m_TagString: highlight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7449,6 +7510,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &594563800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594563797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8d88080b6f43f489965d56e9a334be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight_target: {fileID: 0}
+  highlighted_sprite: {fileID: 0}
 --- !u!1 &615694289
 GameObject:
   m_ObjectHideFlags: 0
@@ -11148,7 +11223,7 @@ Transform:
   m_GameObject: {fileID: 1033170543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20993,6 +21068,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationManager: {fileID: 74030042}
+  isNotificationShowing: 0
+  displayTime: 3
+  displayStartTime: 0
 --- !u!1 &1981046615
 GameObject:
   m_ObjectHideFlags: 0
@@ -22646,6 +22724,7 @@ GameObject:
   - component: {fileID: 2146092711}
   - component: {fileID: 2146092710}
   - component: {fileID: 2146092712}
+  - component: {fileID: 2146092713}
   m_Layer: 0
   m_Name: Computer
   m_TagString: Untagged
@@ -22757,6 +22836,20 @@ MonoBehaviour:
   otherCanvas: {fileID: 1693334876}
   thisO: {fileID: 187794239}
   thisCanvas: {fileID: 440524149}
+--- !u!114 &2146092713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146092708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8d88080b6f43f489965d56e9a334be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight_target: {fileID: 0}
+  highlighted_sprite: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
