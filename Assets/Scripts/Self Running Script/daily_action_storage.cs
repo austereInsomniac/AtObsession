@@ -4,19 +4,25 @@ using System.Collections;
 //using System.Random;
 using UnityEngine.XR;
 using JetBrains.Annotations;
+using TMPro;
+using Unity.VisualScripting;
+using System.Text.RegularExpressions;
 
 class ActionVariables
 {
     int wellness = 0;
     int time = 0;
     double money = 0.00;
+    string combinedActivities = "";
+    int maxTimesPerDay = 0;
 
-    public ActionVariables(int changeWellness, int changeTime, double changeMoney)
+    public ActionVariables(int changeWellness, int changeTime, double changeMoney, string combinedActivities_, int maxTimesPerDay_)
     {
         wellness = changeWellness;
         time = changeTime;
         money = changeMoney;
-
+        combinedActivities = combinedActivities_;
+        maxTimesPerDay = maxTimesPerDay_;
     }
 
     public int getWellness()
@@ -38,7 +44,7 @@ class ActionVariables
 
     public void Time(int oldTime, int newTime)
     {
-
+        time = newTime + oldTime;
     }
 }
 
@@ -48,7 +54,7 @@ public class daily_action_storage : MonoBehaviour
     [SerializeField]
     private string key;
 
-    List<ActionVariables> listVariables;
+    Dictionary<string, int> timesPerDay;
     Dictionary<string, ActionVariables> activities;
 
     ActionVariables action;
@@ -56,6 +62,14 @@ public class daily_action_storage : MonoBehaviour
     GameObject player;
 
     System.Random rand = new System.Random();
+
+
+    //int SkipToMorning(int currentTime)
+    //{
+    //    currentTime = action.getTime();
+
+    //}
+
 
     int RandomTimeBig()
     {
@@ -99,30 +113,42 @@ public class daily_action_storage : MonoBehaviour
     public void doAction()
     {
         // update each statistic
+        // game_state method = player.GetComponent<game_state>();\
         ActionVariables activity = activities[key];
-        player.GetComponent<game_state>().updateWellness(activity.getWellness());
-        player.GetComponent<game_state>().updateTime(activity.getTime());
-        player.GetComponent<game_state>().updateMoney(activity.getMoney());
+        //if (key == "Cook food" || key == "Eat at restaurant || key == "Eat a snack")
+        //{
+        //  call method to reset hunger
+        //}
+            
+            player.GetComponent<game_state>().updateWellness(activity.getWellness());
+            player.GetComponent<game_state>().updateTime(activity.getTime());
+            player.GetComponent<game_state>().updateMoney(activity.getMoney());
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         activities = new Dictionary<string, ActionVariables>();
-        activities.Add("Cook food", new ActionVariables(10, 30, 5.00));//hunger
-        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00));//hunger
-        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00));//hunger
-        activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00));//use the equation to adjust the wellness 
-        activities.Add("Take a nap", new ActionVariables(20, 120, 0.00));
-        activities.Add("Forced Sleep", new ActionVariables(-5, 480 - 120, 0.00));
-        activities.Add("Freshen up", new ActionVariables(3, 5, 0.00));
-        activities.Add("Take a shower", new ActionVariables(8, 20, 0.00));
-        activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00));
-        activities.Add("Do chores", new ActionVariables(8, 15, 0.00));
-        activities.Add("Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00));
-        activities.Add("Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00));
-        activities.Add("Go for a walk", new ActionVariables(10, 25, 0));
-        activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00));
-        activities.Add("Lift weights", new ActionVariables(8, 20, 0.00));
+
+        activities.Add("Cook food", new ActionVariables(10, 30, 5.00, "food", 3));//hunger, do 3 times combined with eat at a restaurant
+        activities.Add("Eat at a restaurant", new ActionVariables(10, 60, 25.00, "food", 3));//hunger, do 3 times combined with cook food
+        activities.Add("Eat a snack", new ActionVariables(10, 5, 0.00, "snack", 3));//hunger, do 3 times a day
+        activities.Add("Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00, "sleep", 1));//use the equation to adjust the wellness, 1 per day 
+        activities.Add("Take a nap", new ActionVariables(20, 120, 0.00, "nap", 2));// 2 times per day
+        activities.Add("Forced sleep", new ActionVariables(-5, 480 - 120, 0.00, "sleep", 1));//1 time per day
+        activities.Add("Freshen up", new ActionVariables(3, 5, 0.00, "freshen", 2)); // 2 times a day
+        activities.Add("Take a shower", new ActionVariables(8, 20, 0.00, "shower", 1));// 1 per day combined with bubble bath
+        activities.Add("Bubble bath", new ActionVariables(12, 45, 0.00, "shower", 1));// 1 per day combined with take a shower
+        activities.Add("Do household chores", new ActionVariables(8, 15, 0.00, "chorse", 3)); // do 3 times a day
+        //activities.Add("Do disnes", new ActionVariables(8, 15, 0.00, false)); may add this
+        activities.Add("Exercise at the gym", new ActionVariables(8, RandomTimeBig(), 15.00, "exercise", 1)); // 1 time per day
+        activities.Add("Hang out with friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00, "friends", 999)); //unlimited but costs money
+        activities.Add("Go for a walk", new ActionVariables(10, 25, 0, "walk", 2)); // 2 times per day
+        activities.Add("Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00, "entertainment", 999)); // unlimited but costs a lot of time
+        activities.Add("Exercise at home", new ActionVariables(8, 20, 0.00, "exercise at home", 2)); // 2 times per day
+
+        timesPerDay = new Dictionary<string, int>();
+
     }
 }
