@@ -8,19 +8,23 @@ public class game_state : MonoBehaviour
     private int reputation;
     private int subscribers;
     private int ending;
+    private double money;
+    private bool hasDied;
 
     // time is in terms of minutes since midnight - 480 is 8am
     private int time;
     private int day;
 
-    private double money;
-
     // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
     private int hunger;
+    private SpriteRenderer hungerHUD;
 
     // current room and its canvas
     private GameObject location;
     private GameObject locationCanvas;
+
+    // notification manager
+    private notification_manager notificationManager;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
@@ -39,14 +43,18 @@ public class game_state : MonoBehaviour
     {
         location = GameObject.Find("Living Room");
         locationCanvas = GameObject.Find("Living Room Canvas");
+        hungerHUD = GameObject.Find("Hunger").GetComponent<SpriteRenderer>();
+        notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
 
-        wellness = 80;
+        wellness = 70;
         day = 1;
         time = 480;
+        hunger = 0;
         reputation = 20;
         subscribers = 1000;
         ending = 0;
         money = 100.00;
+        hasDied = false;
     }
 
     // getters
@@ -77,23 +85,35 @@ public class game_state : MonoBehaviour
         }
         else if (wellness + w <= 0)
         {
-            // die
             wellness = 0;
+
+            if (hasDied)
+            {
+                // die
+            }
+            else
+            {
+                // call hospital scene 
+                hasDied = true;
+            }
         }
         else
         {
             wellness += w;
         }
+
         notifyOnWellnessChanged(wellness - w, wellness);
+        Debug.Log(wellness);
     }
 
     public void updateTime(int t)
     {
+        // update time
         time += t;
 
+        // update day if we hit midnight
         if (time >= 1440)
         {
-            // update day if we hit midnight
             day++;
             time -= 1440;
         }
@@ -109,7 +129,47 @@ public class game_state : MonoBehaviour
             // run sleep method
         }
 
+        // update hunger
+        updateHunger(t);
+
+        // call all delegates
         notifyOnTimeChanged(time - t, time);
+    }
+
+    private void updateHunger(int t)
+    {
+        hunger += t;
+
+        // player is hungry
+        if(hunger >= 4*60)
+        {
+            // display icon
+            hungerHUD.enabled = true;
+
+            // display notification
+            notificationManager.ShowNotifications("You are hungy.");
+        }
+        else
+        {
+            // turn off icon
+            hungerHUD.enabled = false;
+        }
+
+        // for each time jump, lower wellness
+        if(hunger > 4*60)
+        {
+            // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
+            int over = 4*60 - hunger;
+            int loss = Mathf.Max(t, over);
+
+            // for every hour you are hungry after the original notification, lower wellness by 10
+            updateWellness((int)(-loss * .1666 -.5));
+        }
+    }
+
+    public void resetHunger() {
+        // run after the time change
+        hunger = 0;
     }
 
     public void updateReputation(int r)
@@ -134,6 +194,7 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money - m, money);
     }
 
+    // the players current room has changd
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
         location = newLocation;

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class notification_script : MonoBehaviour
+public class notification_manager : MonoBehaviour
 {
     public GameObject notificationManager;
     private bool isNotificationShowing;
@@ -30,6 +30,7 @@ public class notification_script : MonoBehaviour
         displayStartTime = Time.timeSinceLevelLoad;
         isNotificationShowing = true;
     }
+
     void Update()
     {
         if (isNotificationShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
