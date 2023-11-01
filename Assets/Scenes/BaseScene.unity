@@ -1376,6 +1376,7 @@ GameObject:
   - component: {fileID: 94647665}
   - component: {fileID: 94647664}
   - component: {fileID: 94647663}
+  - component: {fileID: 94647662}
   - component: {fileID: 94647661}
   m_Layer: 5
   m_Name: Bubble Bath
@@ -1422,6 +1423,19 @@ LightProbeGroup:
   - {x: -1, y: -1, z: 1}
   - {x: -1, y: -1, z: -1}
   m_Dering: 1
+--- !u!114 &94647662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94647659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Bubble bath
 --- !u!114 &94647663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,16 +1480,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420039}
-        m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
+      - m_Target: {fileID: 94647662}
+        m_TargetAssemblyTypeName: object_for_all_variables, Assembly-CSharp
         m_MethodName: doAction
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Bubble bath
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 18337623}
@@ -2201,6 +2215,7 @@ GameObject:
   - component: {fileID: 157487652}
   - component: {fileID: 157487651}
   - component: {fileID: 157487650}
+  - component: {fileID: 157487649}
   m_Layer: 5
   m_Name: Go to sleep
   m_TagString: Untagged
@@ -2228,6 +2243,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &157487649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157487647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Go to sleep
 --- !u!114 &157487650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2272,16 +2300,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420039}
+      - m_Target: {fileID: 157487649}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Go to sleep
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1168949948}
@@ -3004,6 +3032,7 @@ GameObject:
   - component: {fileID: 274427567}
   - component: {fileID: 274427566}
   - component: {fileID: 274427565}
+  - component: {fileID: 274427564}
   m_Layer: 5
   m_Name: Visit friends
   m_TagString: Untagged
@@ -3031,6 +3060,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0.9, y: -12.000001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &274427564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274427562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Visit friends
 --- !u!114 &274427565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3075,7 +3117,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 274427564}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -3296,6 +3338,7 @@ GameObject:
   - component: {fileID: 295765334}
   - component: {fileID: 295765333}
   - component: {fileID: 295765332}
+  - component: {fileID: 295765336}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3378,7 +3421,6 @@ RectTransform:
   m_LocalScale: {x: 0.9198607, y: 0.9198607, z: 0.9198607}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 691499448}
   - {fileID: 1766642349}
   - {fileID: 1687229107}
   - {fileID: 583359671}
@@ -3394,6 +3436,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1044.6666, y: 585.3333}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &295765336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295765331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 
 --- !u!1 &300941553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,6 +4659,7 @@ GameObject:
   - component: {fileID: 407226968}
   - component: {fileID: 407226967}
   - component: {fileID: 407226966}
+  - component: {fileID: 407226965}
   m_Layer: 5
   m_Name: Eat at a restaurant
   m_TagString: Untagged
@@ -4631,6 +4687,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0.9, y: 73}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &407226965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407226963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Eat at a restaurant
 --- !u!114 &407226966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4675,7 +4744,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 407226965}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -5718,6 +5787,7 @@ GameObject:
   - component: {fileID: 453300907}
   - component: {fileID: 453300906}
   - component: {fileID: 453300905}
+  - component: {fileID: 453300908}
   - component: {fileID: 453300909}
   m_Layer: 5
   m_Name: Freshen Up
@@ -5790,16 +5860,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420039}
-        m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
+      - m_Target: {fileID: 453300908}
+        m_TargetAssemblyTypeName: object_for_all_variables, Assembly-CSharp
         m_MethodName: doAction
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Freshen up
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 520385365}
@@ -5852,6 +5922,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453300903}
   m_CullTransparentMesh: 1
+--- !u!114 &453300908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453300903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Freshen up
 --- !u!220 &453300909
 LightProbeGroup:
   m_ObjectHideFlags: 0
@@ -6668,7 +6751,6 @@ GameObject:
   - component: {fileID: 519420036}
   - component: {fileID: 519420037}
   - component: {fileID: 519420038}
-  - component: {fileID: 519420039}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -6818,18 +6900,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notification: {fileID: 1943289221}
---- !u!114 &519420039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &520385362
 GameObject:
   m_ObjectHideFlags: 0
@@ -8247,81 +8317,6 @@ Transform:
   - {fileID: 1286756907}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &691499447
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 691499448}
-  - component: {fileID: 691499450}
-  - component: {fileID: 691499449}
-  m_Layer: 5
-  m_Name: Splash Screen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &691499448
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691499447}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 295765335}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.082794, y: 31.9287}
-  m_SizeDelta: {x: 647.8284, y: 163.8573}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &691499449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691499447}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.11617411, g: 0.8396226, b: 0.22089458, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &691499450
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691499447}
-  m_CullTransparentMesh: 1
 --- !u!1 &704660580
 GameObject:
   m_ObjectHideFlags: 0
@@ -8334,6 +8329,7 @@ GameObject:
   - component: {fileID: 704660585}
   - component: {fileID: 704660584}
   - component: {fileID: 704660583}
+  - component: {fileID: 704660582}
   m_Layer: 5
   m_Name: Go to the gym
   m_TagString: Untagged
@@ -8361,6 +8357,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0.9, y: 23}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &704660582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704660580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Go to the gym
 --- !u!114 &704660583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8405,7 +8414,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 704660582}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -8879,14 +8888,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78674396a1a56f488ea155df396307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notification: {fileID: 1943289221}
+  notifNum: 1
   changeWellness: 10
   changeTime: 0
   changeRep: 0
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
-  notification: {fileID: 1943289221}
-  notifNum: 1
 --- !u!114 &759900270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10248,6 +10257,7 @@ GameObject:
   - component: {fileID: 888885275}
   - component: {fileID: 888885274}
   - component: {fileID: 888885273}
+  - component: {fileID: 888885272}
   - component: {fileID: 888885271}
   m_Layer: 5
   m_Name: Shower
@@ -10294,6 +10304,19 @@ LightProbeGroup:
   - {x: -1, y: -1, z: 1}
   - {x: -1, y: -1, z: -1}
   m_Dering: 1
+--- !u!114 &888885272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888885269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Take a shower
 --- !u!114 &888885273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10338,16 +10361,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420039}
-        m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
+      - m_Target: {fileID: 888885272}
+        m_TargetAssemblyTypeName: object_for_all_variables, Assembly-CSharp
         m_MethodName: doAction
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Take a shower
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 18337623}
@@ -10412,6 +10435,7 @@ GameObject:
   - component: {fileID: 949077947}
   - component: {fileID: 949077946}
   - component: {fileID: 949077945}
+  - component: {fileID: 949077944}
   m_Layer: 5
   m_Name: Cook food
   m_TagString: Untagged
@@ -10439,6 +10463,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &949077944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949077942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Cook food
 --- !u!114 &949077945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10483,7 +10520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 949077944}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -11864,6 +11901,7 @@ GameObject:
   - component: {fileID: 1107854154}
   - component: {fileID: 1107854153}
   - component: {fileID: 1107854152}
+  - component: {fileID: 1107854151}
   m_Layer: 5
   m_Name: Eat a snack
   m_TagString: Untagged
@@ -11891,6 +11929,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1107854151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107854149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Eat a snack
 --- !u!114 &1107854152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11935,7 +11986,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1107854151}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -15109,6 +15160,7 @@ GameObject:
   - component: {fileID: 1499505817}
   - component: {fileID: 1499505816}
   - component: {fileID: 1499505815}
+  - component: {fileID: 1499505814}
   m_Layer: 5
   m_Name: Take a nap
   m_TagString: Untagged
@@ -15136,6 +15188,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1499505814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499505812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Take a nap
 --- !u!114 &1499505815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15180,7 +15245,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1499505814}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -15254,6 +15319,7 @@ GameObject:
   - component: {fileID: 1500895399}
   - component: {fileID: 1500895398}
   - component: {fileID: 1500895397}
+  - component: {fileID: 1500895396}
   m_Layer: 5
   m_Name: Go for a walk
   m_TagString: Untagged
@@ -15281,6 +15347,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0.9, y: -47}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1500895396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500895394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Go for a walk
 --- !u!114 &1500895397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15325,7 +15404,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1500895396}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -15439,14 +15518,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78674396a1a56f488ea155df396307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notification: {fileID: 0}
+  notifNum: 0
   changeWellness: 0
   changeTime: 60
   changeRep: 0
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
-  notification: {fileID: 0}
-  notifNum: 0
 --- !u!114 &1501118637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18164,6 +18243,7 @@ GameObject:
   - component: {fileID: 1687691362}
   - component: {fileID: 1687691361}
   - component: {fileID: 1687691360}
+  - component: {fileID: 1687691359}
   m_Layer: 5
   m_Name: Lift weights
   m_TagString: Untagged
@@ -18191,6 +18271,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1687691359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687691357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Lift weights
 --- !u!114 &1687691360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18235,7 +18328,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1687691359}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -20703,6 +20796,7 @@ GameObject:
   - component: {fileID: 1926718080}
   - component: {fileID: 1926718079}
   - component: {fileID: 1926718078}
+  - component: {fileID: 1926718077}
   m_Layer: 5
   m_Name: Watch TV
   m_TagString: Untagged
@@ -20730,6 +20824,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1926718077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926718075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Watch TV
 --- !u!114 &1926718078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20774,7 +20881,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1926718077}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
@@ -21867,14 +21974,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78674396a1a56f488ea155df396307a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notification: {fileID: 1943289221}
+  notifNum: 0
   changeWellness: -10
   changeTime: 0
   changeRep: 0
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
-  notification: {fileID: 1943289221}
-  notifNum: 0
 --- !u!1 &2113561458
 GameObject:
   m_ObjectHideFlags: 0
@@ -22157,6 +22264,7 @@ GameObject:
   - component: {fileID: 2120275851}
   - component: {fileID: 2120275850}
   - component: {fileID: 2120275849}
+  - component: {fileID: 2120275848}
   m_Layer: 5
   m_Name: Do chores
   m_TagString: Untagged
@@ -22184,6 +22292,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2120275848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120275846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58002b8a50763684db7339aa39bd6c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: Do chores
 --- !u!114 &2120275849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22228,7 +22349,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2120275848}
         m_TargetAssemblyTypeName: daily_action_storage, Assembly-CSharp
         m_MethodName: doAction
         m_Mode: 1
