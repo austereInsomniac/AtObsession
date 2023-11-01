@@ -20,12 +20,16 @@ public class move_location : MonoBehaviour
     private GameObject player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
+    private GameObject gameOver;
+    private GameObject gameOverCanvas;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        gameOver = GameObject.Find("Game Over");
+        gameOverCanvas = GameObject.Find("Game Over Canvas");
     }
 
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
@@ -44,6 +48,12 @@ public class move_location : MonoBehaviour
 
     public void goToBedroom(){
         moveLocation(bedroom, bedroomCanvas, player.GetComponent<game_state>().getLocation(), 
+            player.GetComponent<game_state>().getLocationCanvas());
+    }
+
+    public void goToGameOver()
+    {
+        moveLocation(gameOver, gameOverCanvas, player.GetComponent<game_state>().getLocation(),
             player.GetComponent<game_state>().getLocationCanvas());
     }
 

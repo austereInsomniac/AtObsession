@@ -45,7 +45,11 @@ public class splash_screen_manager : MonoBehaviour
             // bathroom
             { "Freshen up", splashScreen },
             { "Shower", splashScreen },
-            { "Bubble bath", splashScreen }
+            { "Bubble bath", splashScreen },
+
+            // non actions
+            { "Hospital", splashScreen },
+            { "Game over", splashScreen }
         };
     }
     public void openSplashScreen(string key)

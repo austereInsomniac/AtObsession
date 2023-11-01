@@ -23,8 +23,9 @@ public class game_state : MonoBehaviour
     private GameObject location;
     private GameObject locationCanvas;
 
-    // notification manager
+    // other scripts
     private notification_manager notificationManager;
+    private move_location locationManager;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
@@ -44,7 +45,9 @@ public class game_state : MonoBehaviour
         location = GameObject.Find("Living Room");
         locationCanvas = GameObject.Find("Living Room Canvas");
         hungerHUD = GameObject.Find("Hunger").GetComponent<SpriteRenderer>();
+
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
+        locationManager = GetComponent<move_location>();
 
         wellness = 70;
         day = 1;
@@ -76,7 +79,7 @@ public class game_state : MonoBehaviour
 
     public GameObject getLocationCanvas() { return locationCanvas;}
 
-    // setters
+    // setters + methods
     public void updateWellness(int w)
     {
         if (wellness + w >= 100)
@@ -89,12 +92,11 @@ public class game_state : MonoBehaviour
 
             if (hasDied)
             {
-                // die
+                killPlayer();
             }
             else
             {
-                // call hospital scene 
-                hasDied = true;
+                playHospitalScene();
             }
         }
         else
@@ -103,6 +105,22 @@ public class game_state : MonoBehaviour
         }
 
         notifyOnWellnessChanged(wellness - w, wellness);
+    }
+
+    private void killPlayer()
+    {
+        GetComponent<splash_screen_manager>().openSplashScreen("Game over");
+        locationManager.goToGameOver();
+    }
+
+    private void playHospitalScene()
+    {
+        // call hospital scene 
+        GetComponent<splash_screen_manager>().openSplashScreen("Hospital");
+        locationManager.goToBedroom();
+        hasDied = true;
+
+        // give the hospital text
     }
 
     public void updateTime(int t)
@@ -193,7 +211,7 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money - m, money);
     }
 
-    // the players current room has changd
+    // the players current room has changed
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
         location = newLocation;
