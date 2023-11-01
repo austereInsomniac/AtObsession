@@ -103,6 +103,7 @@ public class game_state : MonoBehaviour
         }
 
         notifyOnWellnessChanged(wellness - w, wellness);
+        Debug.Log(wellness);
     }
 
     public void updateTime(int t)
