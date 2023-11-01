@@ -1,10 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using UnityEngine.XR;
-using JetBrains.Annotations;
-using UnityEditor;
-using UnityEngine.UI;
 
 class ActionVariables
 {
@@ -45,22 +40,14 @@ class ActionVariables
 
 public class daily_action_storage : MonoBehaviour
 {
-    List<ActionVariables> listVariables;
+    // store the activities
     Dictionary<string, ActionVariables> activities;
-    Dictionary<string, UnityEngine.UI.Image> splashScreens;
 
-    ActionVariables action;
+    // outside objects
+    private game_state state;
 
-    private game_state player;
-    private UnityEngine.UI.Image splashScreen;
-    private BoxCollider2D menuCollider;
-
+    // RNG
     System.Random rand = new System.Random();
-
-    // splash screen timers
-    private bool isSplashShowing;
-    private float displayTime = 3.0f;
-    private float displayStartTime;
 
     int RandomTimeBig()
     {
@@ -97,28 +84,20 @@ public class daily_action_storage : MonoBehaviour
 
     void Awake()
     {
-        // "Player" is the name of the Game Object with the game_state script
-        player = GameObject.Find("Player").GetComponent<game_state>();
-
-        splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
-        menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
+        // assign outside objects
+        state = GetComponent<game_state>();
     }
 
     public void doAction(string key)
     {
         // update each statistic
         ActionVariables activity = activities[key];
-        player.updateWellness(activity.getWellness());
-        player.updateTime(activity.getTime());
-        player.updateMoney(activity.getMoney());
+        state.updateWellness(activity.getWellness());
+        state.updateTime(activity.getTime());
+        state.updateMoney(activity.getMoney());
 
-        // display appropriate splash screen for a set time
-        splashScreen = splashScreens[key];
-        splashScreen.enabled = true;
-
-        // Record start time
-        displayStartTime = Time.timeSinceLevelLoad;
-        isSplashShowing = true;
+        // update the splash screen
+        GetComponent<splash_screen_manager>().openSplashScreen(key);
     }
 
     // Start is called before the first frame update
@@ -148,46 +127,5 @@ public class daily_action_storage : MonoBehaviour
             { "Shower", new ActionVariables(8, 20, 0.00) },
             { "Bubble bath", new ActionVariables(12, 45, 0.00) }
         };
-
-        // splash screen code
-        splashScreens = new Dictionary<string, UnityEngine.UI.Image>()
-        {
-            // living room
-            { "Do chores", splashScreen },
-            { "Go to the gym", splashScreen },
-            { "Visit friends", splashScreen },
-            { "Go for a walk", splashScreen },
-            { "Watch TV", splashScreen },
-            { "Lift weights", splashScreen },
-            { "Eat at a restaurant", splashScreen },
-
-            // kitchen
-            { "Cook food", splashScreen },
-            { "Eat a snack", splashScreen },
-
-            // bedroom
-            { "Go to sleep", splashScreen },
-            { "Take a nap", splashScreen },
-
-            // bathroom
-            { "Freshen up", splashScreen },
-            { "Shower", splashScreen },
-            { "Bubble bath", splashScreen }
-        };
-    }
-
-    void Update()
-    {
-        if (isSplashShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
-        {
-            // give option to close splash
-
-
-            // close splash
-            splashScreen.enabled = false;
-            menuCollider.enabled = false;
-
-            isSplashShowing = false;
-        }
     }
 }
