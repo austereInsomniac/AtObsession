@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class do_an_action : MonoBehaviour
 {
-    public notification_script notification;
+    public notification_manager notification;
     public int notifNum;
 
     // increase in each statistic
