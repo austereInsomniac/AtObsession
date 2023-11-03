@@ -27,7 +27,7 @@ public class do_an_action : MonoBehaviour
         // "Player" is the name of the Game Object with the game_state script
         player = GameObject.Find("Player").GetComponent<game_state>();
     }
-
+     
     public void doAnAction()
     {
         // update each statistic
