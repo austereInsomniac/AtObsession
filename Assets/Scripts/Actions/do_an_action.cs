@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class do_an_action : MonoBehaviour
 {
+    public notification_manager notification;
+    public int notifNum;
+
     // increase in each statistic
     [SerializeField]
     private int changeWellness;
@@ -18,25 +21,24 @@ public class do_an_action : MonoBehaviour
     [SerializeField]
     private double changeMoney;
 
-    private game_state player;
-    public notification_manager notification;
-    public int notifNum;
+    GameObject player;
 
     void Awake()
     {
         // "Player" is the name of the Game Object with the game_state script
-        player = GameObject.Find("Player").GetComponent<game_state>();
+        player = GameObject.Find("Player");
     }
 
     public void doAnAction()
     {
         // update each statistic
-        player.updateWellness(changeWellness);
-        player.updateTime(changeTime);
-        player.updateReputation(changeRep);
-        player.updateSubscribers(changeSubs);
-        player.updateMoney(changeMoney);
-        player.updateEnding(changeEnd);
+        player.GetComponent<game_state>().updateWellness(changeWellness);
+        player.GetComponent<game_state>().updateTime(changeTime);
+        player.GetComponent<game_state>().updateReputation(changeRep);
+        player.GetComponent<game_state>().updateSubscribers(changeSubs);
+        player.GetComponent<game_state>().updateMoney(changeMoney);
+        player.GetComponent<game_state>().updateEnding(changeEnd);
+        //player.GetComponent<make_video_get_subscriber>().makeVideoGetSubscriber(1);
     }
 
     public void ShowNotificationOnClick()

@@ -105,6 +105,7 @@ public class game_state : MonoBehaviour
         }
 
         notifyOnWellnessChanged(wellness - w, wellness);
+        Debug.Log(wellness);
     }
 
     private void killPlayer()
