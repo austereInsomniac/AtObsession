@@ -3,9 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - swappable
-  - notifications
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -42,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: hidden menu
-    uniqueID: 2296988017
-    locked: 0
-  - name: visible menu
-    uniqueID: 3589017781
     locked: 0
