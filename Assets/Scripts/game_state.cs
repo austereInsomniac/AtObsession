@@ -124,7 +124,6 @@ public class game_state : MonoBehaviour
         // give the hospital text
 
     }
-
     public void updateTime(int t)
     {
         // update time
