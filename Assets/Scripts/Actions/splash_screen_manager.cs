@@ -92,7 +92,10 @@ public class splash_screen_manager : MonoBehaviour
                 isSplashShowing = false;
 
                 // enable HUD
-                HUD.SetActive(true);
+                if (HUD != null)
+                {
+                    HUD.SetActive(true);
+                }
             }
         }
     }

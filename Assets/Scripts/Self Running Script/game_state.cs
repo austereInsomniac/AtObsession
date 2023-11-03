@@ -116,16 +116,13 @@ public class game_state : MonoBehaviour
     private void playHospitalScene()
     {
         // call hospital scene 
+        hasDied = true;
         GetComponent<splash_screen_manager>().openSplashScreen("Hospital");
         locationManager.goToBedroom();
-        hasDied = true;
-
-        wellness = 50;
+        updateWellness(50);
 
         // give the hospital text
 
-        // turn off the hud
-        GameObject.Find("HUD").SetActive(false);
     }
 
     public void updateTime(int t)
