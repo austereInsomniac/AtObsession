@@ -31,12 +31,17 @@ public class notification_manager : MonoBehaviour
         isNotificationShowing = true;
     }
 
+    public void disableNotification()
+    {
+        notificationManager.SetActive(false);
+        isNotificationShowing = false;
+    }
+
     void Update()
     {
         if (isNotificationShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
         {
-            notificationManager.SetActive(false);
-            isNotificationShowing = false;
+            disableNotification();
         }
     }
 }

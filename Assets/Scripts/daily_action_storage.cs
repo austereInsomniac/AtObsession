@@ -97,7 +97,7 @@ public class daily_action_storage : MonoBehaviour
         state.updateTime(activity.getTime());
         state.updateMoney(activity.getMoney());
 
-        if (key == "Cook food" || key == "Eat at restaurant" || key == "Eat a snack")
+        if (key == "Cook food" || key == "Eat at a restaurant" || key == "Eat a snack")
         {
             state.resetHunger();
         }
