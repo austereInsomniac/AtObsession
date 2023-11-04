@@ -21,17 +21,17 @@ public class change_dying_filter : MonoBehaviour
     // the method updates the alpha of the filter color to be stronger with a lower wellness
     public void changeFilterOpacity(int oldW, int newW)
     {
-            // ceate a color and set to transparent
-            UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
-            color.a = 0;
+        // ceate a color and set to transparent
+        UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
+        color.a = 0;
 
-            if (newW <= 30)
-            {
-                // make the color not transparent when wellness is low
-                color.a = (float)(50 - (newW / 2)) / 100;
-            }
-
-            // chage color every update
-            this.GetComponent<SpriteRenderer>().color = color;
+        if (newW <= 30)
+        {
+            // make the color not transparent when wellness is low
+            color.a = (float)(50 - (newW / 2)) / 100;
         }
+
+        // chage color every update
+        this.GetComponent<SpriteRenderer>().color = color;
+    }
 }
