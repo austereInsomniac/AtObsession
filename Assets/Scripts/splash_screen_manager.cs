@@ -6,11 +6,12 @@ using UnityEngine;
 public class splash_screen_manager : MonoBehaviour
 {
     // store the splash screens
-    Dictionary<string, UnityEngine.UI.Image> splashScreens;
+    Dictionary<string, Sprite> splashScreens;
 
     // outside objects
     private UnityEngine.UI.Image splashScreen;
     private BoxCollider2D menuCollider;
+    private notification_manager notificationManager;
 
     // splash screen timers
     private bool isSplashShowing;
@@ -27,41 +28,45 @@ public class splash_screen_manager : MonoBehaviour
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD");
+        notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
+
+        // grab sprites
+        Sprite hospital = Resources.Load<Sprite>("Hospital_Concepts_V001");
 
         // splash screen code
-        splashScreens = new Dictionary<string, UnityEngine.UI.Image>()
+        splashScreens = new Dictionary<string, Sprite>
         {
             // living room
-            { "Do chores", splashScreen },
-            { "Go to the gym", splashScreen },
-            { "Visit friends", splashScreen },
-            { "Go for a walk", splashScreen },
-            { "Watch TV", splashScreen },
-            { "Lift weights", splashScreen },
-            { "Eat at a restaurant", splashScreen },
+            { "Do chores", splashScreen.sprite },
+            { "Go to the gym", splashScreen.sprite },
+            { "Visit friends", splashScreen.sprite },
+            { "Go for a walk", splashScreen.sprite },
+            { "Watch TV", splashScreen.sprite },
+            { "Lift weights", splashScreen.sprite },
+            { "Eat at a restaurant", splashScreen.sprite },
 
             // kitchen
-            { "Cook food", splashScreen },
-            { "Eat a snack", splashScreen },
+            { "Cook food", splashScreen.sprite },
+            { "Eat a snack", splashScreen.sprite },
 
             // bedroom
-            { "Go to sleep", splashScreen },
-            { "Take a nap", splashScreen },
+            { "Go to sleep", splashScreen.sprite },
+            { "Take a nap", splashScreen.sprite },
 
             // bathroom
-            { "Freshen up", splashScreen },
-            { "Shower", splashScreen },
-            { "Bubble bath", splashScreen },
+            { "Freshen up", splashScreen.sprite },
+            { "Shower", splashScreen.sprite },
+            { "Bubble bath", splashScreen.sprite },
 
             // non actions
-            { "Hospital", splashScreen },
-            { "Game over", splashScreen }
+            { "Hospital", hospital },
+            { "Game over", hospital }
         };
     }
     public void openSplashScreen(string key)
     {
         // display appropriate splash screen for a set time
-        splashScreen = splashScreens[key];
+        splashScreen.sprite = splashScreens[key];
         splashScreen.enabled = true;
 
         // Record start time
@@ -76,6 +81,9 @@ public class splash_screen_manager : MonoBehaviour
         {
             Destroy(HUD);
         }
+
+        // diable any current notifications
+        notificationManager.disableNotification();
     }
 
     // Update is called once per frame

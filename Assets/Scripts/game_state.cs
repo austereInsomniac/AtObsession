@@ -124,7 +124,6 @@ public class game_state : MonoBehaviour
         // give the hospital text
 
     }
-
     public void updateTime(int t)
     {
         // update time
@@ -168,11 +167,6 @@ public class game_state : MonoBehaviour
             // display notification
             notificationManager.ShowNotifications("You are hungry.");
         }
-        else
-        {
-            // turn off icon
-            hungerHUD.enabled = false;
-        }
 
         // for each time jump, lower wellness
         if(hunger > 4*60)
@@ -189,6 +183,9 @@ public class game_state : MonoBehaviour
     public void resetHunger() {
         // run after the time change
         hunger = 0;
+
+        // turn off icon
+        hungerHUD.enabled = false;
     }
 
     public void updateReputation(int r)

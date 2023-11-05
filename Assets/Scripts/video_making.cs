@@ -46,6 +46,14 @@ public class video_making : MonoBehaviour
 
 
 
+        /*
+         * MinimumIncrease
+         * 
+         * 
+         * 
+         * 
+         */
+
         //Debug.Log("Current Hour" + (player.GetComponent<game_state>().getTime()/60));
         //Debug.Log("Subscribers: " + player.GetComponent<game_state>().getSubscribers());
         //Debug.Log("Gained Subscribers: " + (newSubscribers));

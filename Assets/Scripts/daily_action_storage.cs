@@ -42,6 +42,7 @@ public class daily_action_storage : MonoBehaviour
 {
     // store the activities
     Dictionary<string, ActionVariables> activities;
+    Dictionary<string, int> timesPerDay;
 
     // outside objects
     private game_state state;
@@ -96,6 +97,11 @@ public class daily_action_storage : MonoBehaviour
         state.updateTime(activity.getTime());
         state.updateMoney(activity.getMoney());
 
+        if (key == "Cook food" || key == "Eat at a restaurant" || key == "Eat a snack")
+        {
+            state.resetHunger();
+        }
+
         // update the splash screen
         GetComponent<splash_screen_manager>().openSplashScreen(key);
     }
@@ -126,6 +132,24 @@ public class daily_action_storage : MonoBehaviour
             { "Freshen up", new ActionVariables(3, 5, 0.00) },
             { "Shower", new ActionVariables(8, 20, 0.00) },
             { "Bubble bath", new ActionVariables(12, 45, 0.00) }
+
         };
+
+        // set up time limits
+        timesPerDay = new Dictionary<string, int>();
+
+        timesPerDay.Add("food", 0);
+        timesPerDay.Add("snack", 0);
+        timesPerDay.Add("chores", 0);
+        timesPerDay.Add("entertainment", 0);
+        timesPerDay.Add("exercise at home", 0);
+        timesPerDay.Add("nap", 0);
+        timesPerDay.Add("sleep", 0);
+        timesPerDay.Add("freshen", 0);
+        timesPerDay.Add("shower", 0);
+        timesPerDay.Add("exercise", 0);
+        timesPerDay.Add("friends", 0);
+        timesPerDay.Add("walk", 0);
+    
     }
 }
