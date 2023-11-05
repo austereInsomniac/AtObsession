@@ -1322,6 +1322,8 @@ MonoBehaviour:
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
+  notification: {fileID: 0}
+  notifNum: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

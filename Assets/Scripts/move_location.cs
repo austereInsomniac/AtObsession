@@ -17,15 +17,19 @@ public class move_location : MonoBehaviour
     [SerializeField]
     private GameObject thisCanvas;
 
-    private GameObject player;
+    private game_state player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
+    private GameObject gameOver;
+    private GameObject gameOverCanvas;
 
     private void Awake()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<game_state>();
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        gameOver = GameObject.Find("Game Over");
+        gameOverCanvas = GameObject.Find("Game Over Canvas");
     }
 
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
@@ -39,12 +43,16 @@ public class move_location : MonoBehaviour
         otherCanvas_.transform.position = cameraLocation;
 
         // update location in game state
-        player.GetComponent<game_state>().moveLocation(other, otherCanvas);
+        player.moveLocation(other_, otherCanvas_);
     }
 
     public void goToBedroom(){
-        moveLocation(bedroom, bedroomCanvas, player.GetComponent<game_state>().getLocation(), 
-            player.GetComponent<game_state>().getLocationCanvas());
+        moveLocation(bedroom, bedroomCanvas, player.getLocation(), player.getLocationCanvas());
+    }
+
+    public void goToGameOver()
+    {
+        moveLocation(gameOver, gameOverCanvas, player.getLocation(), player.getLocationCanvas());
     }
 
     public void OnMouseDown()
