@@ -9,7 +9,7 @@ public class splash_screen_manager : MonoBehaviour
     Dictionary<string, Sprite> splashScreens;
 
     // outside objects
-    private UnityEngine.UI.Image splashScreen;
+    private SpriteRenderer splashScreen;
     private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
     private notification_manager notificationManager;
@@ -27,7 +27,7 @@ public class splash_screen_manager : MonoBehaviour
     void Start()
     {
         // grab outside objects
-        splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
+        splashScreen = GameObject.Find("Splash Screen").GetComponent<SpriteRenderer>();
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD");
