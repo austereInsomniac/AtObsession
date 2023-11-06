@@ -6,12 +6,14 @@ class ActionVariables
     int wellness = 0;
     int time = 0;
     double money = 0.00;
+    string group;
 
-    public ActionVariables(int changeWellness, int changeTime, double changeMoney)
+    public ActionVariables(int changeWellness, int changeTime, double changeMoney, string group_)
     {
         wellness = changeWellness;
         time = changeTime;
         money = changeMoney;
+        group = group_;
 
     }
 
@@ -27,14 +29,10 @@ class ActionVariables
         return money;
     }
 
-    public void Hunger()
-    {
-
-    }
-
+    public string getGroup() { return group; }
     public void Time(int oldTime, int newTime)
     {
-
+        time = oldTime + newTime;
     }
 }
 
@@ -43,6 +41,7 @@ public class daily_action_storage : MonoBehaviour
     // store the activities
     Dictionary<string, ActionVariables> activities;
     Dictionary<string, int> timesPerDay;
+    Dictionary<string, int> maxTimesPerDay;
 
     // outside objects
     private game_state state;
@@ -83,6 +82,33 @@ public class daily_action_storage : MonoBehaviour
         return 0;
     }
 
+    int getMaxTimesPerDay(string key)
+    {
+        if (maxTimesPerDay.ContainsKey(key))
+        {
+            return maxTimesPerDay[key];
+        }
+        return 999999;
+    }
+
+    int getCurrentTimesPerDay(string key)
+    {
+        if (timesPerDay.ContainsKey(key))
+        {
+            return timesPerDay[key];
+        }
+        timesPerDay.Add(key, 0);
+        return 0;
+    }
+
+   
+    void updateTimesPerDay(string key)
+    {
+        if (getCurrentTimesPerDay(key) < getMaxTimesPerDay(key))
+        {
+            timesPerDay[key] += 1;
+        }
+    }
     void Awake()
     {
         // assign outside objects
@@ -93,13 +119,17 @@ public class daily_action_storage : MonoBehaviour
     {
         // update each statistic
         ActionVariables activity = activities[key];
-        state.updateWellness(activity.getWellness());
-        state.updateTime(activity.getTime());
-        state.updateMoney(activity.getMoney());
 
-        if (key == "Cook food" || key == "Eat at a restaurant" || key == "Eat a snack")
+        if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
-            state.resetHunger();
+            state.updateWellness(activity.getWellness());
+            state.updateTime(activity.getTime());
+            state.updateMoney(activity.getMoney());
+            updateTimesPerDay(activity.getGroup());
+            if (activity.getGroup() == "food" || activity.getGroup() == "snack")
+            {
+                state.resetHunger();
+            }
         }
 
         // update the splash screen
@@ -112,44 +142,45 @@ public class daily_action_storage : MonoBehaviour
         activities = new Dictionary<string, ActionVariables>
         {
             // living room
-            { "Do chores", new ActionVariables(8, 15, 0.00) },
-            { "Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00) },
-            { "Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00) },
-            { "Go for a walk", new ActionVariables(10, 25, 0) },
-            { "Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00) },
-            { "Lift weights", new ActionVariables(8, 20, 0.00) },
-            { "Eat at a restaurant", new ActionVariables(10, 60, 25.00) },//hunger
+            { "Do chores", new ActionVariables(8, 15, 0.00, "chores") },
+            { "Go to the gym", new ActionVariables(8, RandomTimeBig(), 15.00, "exercise") },
+            { "Visit friends", new ActionVariables(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
+            { "Go for a walk", new ActionVariables(10, 25, 0, "walk") },
+            { "Watch TV", new ActionVariables(8, RandomTimeSmall(), 0.00, "entertainment") },
+            { "Lift weights", new ActionVariables(8, 20, 0.00, "exercise at home") },
+            { "Eat at a restaurant", new ActionVariables(10, 60, 25.00, "food") },//hunger
 
             // kitchen
-            { "Cook food", new ActionVariables(10, 30, 5.00) },//hunger
-            { "Eat a snack", new ActionVariables(10, 5, 0.00) },//hunger
+            { "Cook food", new ActionVariables(10, 30, 5.00, "food") },//hunger
+            { "Eat a snack", new ActionVariables(10, 5, 0.00, "snack") },//hunger
 
             // bedroom
-            { "Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00) },//use the equation to adjust the wellness 
-            { "Take a nap", new ActionVariables(20, 120, 0.00) },
+            { "Go to sleep", new ActionVariables(30, 480 /*- action.getTime()*/, 0.00, "sleep") },//use the equation to adjust the wellness 
+            { "Take a nap", new ActionVariables(20, 120, 0.00, "nap") },
 
             // bathroom
-            { "Freshen up", new ActionVariables(3, 5, 0.00) },
-            { "Shower", new ActionVariables(8, 20, 0.00) },
-            { "Bubble bath", new ActionVariables(12, 45, 0.00) }
+            { "Freshen up", new ActionVariables(3, 5, 0.00, "freshen") },
+            { "Shower", new ActionVariables(8, 20, 0.00, "shower") },
+            { "Bubble bath", new ActionVariables(12, 45, 0.00, "shower") }
 
         };
 
         // set up time limits
         timesPerDay = new Dictionary<string, int>();
+        maxTimesPerDay = new Dictionary<string, int>();
 
-        timesPerDay.Add("food", 0);
-        timesPerDay.Add("snack", 0);
-        timesPerDay.Add("chores", 0);
-        timesPerDay.Add("entertainment", 0);
-        timesPerDay.Add("exercise at home", 0);
-        timesPerDay.Add("nap", 0);
-        timesPerDay.Add("sleep", 0);
-        timesPerDay.Add("freshen", 0);
-        timesPerDay.Add("shower", 0);
-        timesPerDay.Add("exercise", 0);
-        timesPerDay.Add("friends", 0);
-        timesPerDay.Add("walk", 0);
+        maxTimesPerDay.Add("food", 3);
+        maxTimesPerDay.Add("snack", 5);
+        maxTimesPerDay.Add("chores", 3);
+        maxTimesPerDay.Add("entertainment", 9999999);
+        maxTimesPerDay.Add("exercise at home", 2);
+        maxTimesPerDay.Add("nap", 1);
+        maxTimesPerDay.Add("sleep", 1);
+        maxTimesPerDay.Add("freshen", 2);
+        maxTimesPerDay.Add("shower", 1);
+        maxTimesPerDay.Add("exercise", 1);
+        maxTimesPerDay.Add("friends", 99999999);
+        maxTimesPerDay.Add("walk", 2);
     
     }
 }
