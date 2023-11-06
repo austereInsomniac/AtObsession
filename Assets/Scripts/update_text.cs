@@ -31,8 +31,6 @@ public class update_text : MonoBehaviour
             wellnessText = GameObject.Find("Wellness Text").GetComponent<TMP_Text>();
             repText = GameObject.Find("Reputation Text").GetComponent<TMP_Text>();
             subText = GameObject.Find("Subscribers Text").GetComponent<TMP_Text>();
-
-            GetComponent<game_state>().addOnWellnessChange(updateWellnessText);
         }
     }
 
@@ -41,11 +39,6 @@ public class update_text : MonoBehaviour
         // run all displays immediately
         updateTimeText(GetComponent<game_state>().getTime(), GetComponent<game_state>().getTime());
         updateMoneyText(GetComponent<game_state>().getMoney(), GetComponent<game_state>().getMoney());
-    }
-
-    void updateWellnessText(int oldW, int newW)
-    {
-
     }
 
     void updateTimeText(int oldTime, int newTime)
@@ -74,10 +67,10 @@ public class update_text : MonoBehaviour
         {
             string updateText = "Rep: " + GetComponent<game_state>().getReputation();
             repText.SetText(updateText);
+
             updateText = "Subs: " + GetComponent<game_state>().getSubscribers();
             subText.SetText(updateText);
 
-            // update the text
             updateText = "Wellness: " + GetComponent<game_state>().getWellness();
             wellnessText.SetText(updateText);
         }
