@@ -10,8 +10,10 @@ public class splash_screen_manager : MonoBehaviour
 
     // outside objects
     private UnityEngine.UI.Image splashScreen;
+    private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
     private notification_manager notificationManager;
+
 
     // splash screen timers
     private bool isSplashShowing;
@@ -26,6 +28,7 @@ public class splash_screen_manager : MonoBehaviour
     {
         // grab outside objects
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
+        menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD");
         notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
@@ -63,6 +66,7 @@ public class splash_screen_manager : MonoBehaviour
             { "Game over", hospital }
         };
     }
+
     public void openSplashScreen(string key)
     {
         // display appropriate splash screen for a set time
@@ -75,6 +79,8 @@ public class splash_screen_manager : MonoBehaviour
 
         // hide hud
         HUD.SetActive(false);
+        menuBlocker.enabled = true;
+        menuCollider.enabled = true;
 
         // destroy HUD if we die
         if (key.Equals("Game over"))
@@ -96,6 +102,7 @@ public class splash_screen_manager : MonoBehaviour
             {
                 // close splash
                 splashScreen.enabled = false;
+                menuBlocker.enabled = false;
                 menuCollider.enabled = false;
                 isSplashShowing = false;
 
