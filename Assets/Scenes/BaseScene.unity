@@ -2894,7 +2894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420034}
+      - m_Target: {fileID: 519420042}
         m_TargetAssemblyTypeName: shop, Assembly-CSharp
         m_MethodName: buyItem
         m_Mode: 3
@@ -6929,6 +6929,7 @@ GameObject:
   - component: {fileID: 519420040}
   - component: {fileID: 519420038}
   - component: {fileID: 519420041}
+  - component: {fileID: 519420042}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -7089,6 +7090,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ebdb2029dbac3e43913196120c88421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519420042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51280ffd73b5b64dadeb9095c56eabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemIndex: 0
 --- !u!1 &520385362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7899,7 +7913,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420034}
+      - m_Target: {fileID: 519420042}
         m_TargetAssemblyTypeName: shop, Assembly-CSharp
         m_MethodName: buyItem
         m_Mode: 3
@@ -9818,7 +9832,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &795864650
@@ -15948,7 +15962,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420034}
+      - m_Target: {fileID: 519420042}
         m_TargetAssemblyTypeName: shop, Assembly-CSharp
         m_MethodName: buyItem
         m_Mode: 3
@@ -17866,7 +17880,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420034}
+      - m_Target: {fileID: 519420042}
         m_TargetAssemblyTypeName: shop, Assembly-CSharp
         m_MethodName: buyItem
         m_Mode: 3
@@ -24500,7 +24514,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420034}
+      - m_Target: {fileID: 519420042}
         m_TargetAssemblyTypeName: shop, Assembly-CSharp
         m_MethodName: buyItem
         m_Mode: 3
