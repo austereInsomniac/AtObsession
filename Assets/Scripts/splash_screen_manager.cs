@@ -39,7 +39,7 @@ public class splash_screen_manager : MonoBehaviour
         // splash screen code
         splashScreens = new Dictionary<string, Sprite>
         {
-            // living room
+           // living room
             { "Do chores", splashScreen.sprite },
             { "Go to the gym", splashScreen.sprite },
             { "Visit friends", splashScreen.sprite },
@@ -47,10 +47,10 @@ public class splash_screen_manager : MonoBehaviour
             { "Watch TV", splashScreen.sprite },
             { "Lift weights", splashScreen.sprite },
             { "Eat at a restaurant", splashScreen.sprite },
-
+            
             // kitchen
-            { "Cook food", splashScreen.sprite },
-            { "Eat a snack", splashScreen.sprite },
+            { "Cook food", Resources.Load<Sprite>("Oven_Zoom_In") },
+            { "Eat a snack", Resources.Load<Sprite>("Fridge_Zoom_In")},
 
             // bedroom
             { "Go to sleep", splashScreen.sprite },
