@@ -9,7 +9,7 @@ public class splash_screen_manager : MonoBehaviour
     Dictionary<string, Sprite> splashScreens;
 
     // outside objects
-    private SpriteRenderer splashScreen;
+    private UnityEngine.UI.Image splashScreen;
     private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
     private notification_manager notificationManager;
@@ -27,7 +27,7 @@ public class splash_screen_manager : MonoBehaviour
     void Start()
     {
         // grab outside objects
-        splashScreen = GameObject.Find("Splash Screen").GetComponent<SpriteRenderer>();
+        splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD");
@@ -62,6 +62,7 @@ public class splash_screen_manager : MonoBehaviour
             { "Bubble bath", splashScreen.sprite },
 
             // non actions
+            { "Black", splashScreen.sprite},
             { "Hospital", hospital },
             { "Game over", hospital }
         };
