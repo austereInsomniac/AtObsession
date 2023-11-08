@@ -176,7 +176,7 @@ public class stalker_prototype_script : MonoBehaviour
             string eventMessage = stalkerEvent.getEventMessage();
             if (notification != null)
             {
-                notification.ShowNotifications(eventMessage);
+                notification.showNotification(eventMessage);
             }
             Debug.Log("Stalker event " + stalkerEvent.getEventNumber() + " is active!");
 
@@ -194,7 +194,7 @@ public class stalker_prototype_script : MonoBehaviour
             string eventMessage = stalkerEvent.getEventMessage();
             if (notification != null)
             {
-                notification.ShowNotifications(eventMessage);
+                notification.showNotification(eventMessage);
             }
             EndingEvent(stalkerEvent);
         }

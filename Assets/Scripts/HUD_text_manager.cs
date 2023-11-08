@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class update_text : MonoBehaviour
+public class HUD_text_manager : MonoBehaviour
 {
     // get text boxes
     GameObject player;
@@ -56,7 +56,7 @@ public class update_text : MonoBehaviour
 
     void updateMoneyText(double oldM, double newM)
     {
-        string updateText = "Money: " + GetComponent<game_state>().getMoney();
+        string updateText = "" + GetComponent<game_state>().getMoney();
         moneyText.SetText(updateText);
     }
 

@@ -40,13 +40,13 @@ public class splash_screen_manager : MonoBehaviour
         splashScreens = new Dictionary<string, Sprite>
         {
            // living room
-            { "Do chores", splashScreen.sprite },
-            { "Go to the gym", splashScreen.sprite },
-            { "Visit friends", splashScreen.sprite },
-            { "Go for a walk", splashScreen.sprite },
-            { "Watch TV", splashScreen.sprite },
-            { "Lift weights", splashScreen.sprite },
-            { "Eat at a restaurant", splashScreen.sprite },
+            { "Do chores", Resources.Load<Sprite>("Clean_Zoom_In") },
+            { "Go to the gym", Resources.Load<Sprite>("Clean_Zoom_In") },
+            { "Visit friends", Resources.Load<Sprite>("Clean_Zoom_In") },
+            { "Go for a walk", Resources.Load<Sprite>("Clean_Zoom_In") },
+            { "Watch TV", Resources.Load<Sprite>("TV_Zoom_In") },
+            { "Lift weights", Resources.Load<Sprite>("Workout_Zoom_In") },
+            { "Eat at a restaurant", Resources.Load<Sprite>("Clean_Zoom_In") },
             
             // kitchen
             { "Cook food", Resources.Load<Sprite>("Oven_Zoom_In") },
@@ -78,6 +78,9 @@ public class splash_screen_manager : MonoBehaviour
         displayStartTime = Time.timeSinceLevelLoad;
         isSplashShowing = true;
 
+        // diable any current notifications
+        notificationManager.disableNotification();
+
         // hide hud
         HUD.SetActive(false);
         menuBlocker.enabled = true;
@@ -88,9 +91,6 @@ public class splash_screen_manager : MonoBehaviour
         {
             Destroy(HUD);
         }
-
-        // diable any current notifications
-        notificationManager.disableNotification();
     }
 
     // Update is called once per frame
@@ -112,6 +112,9 @@ public class splash_screen_manager : MonoBehaviour
                 {
                     HUD.SetActive(true);
                 }
+
+                // run notification
+                notificationManager.repeatNotification();
             }
         }
     }
