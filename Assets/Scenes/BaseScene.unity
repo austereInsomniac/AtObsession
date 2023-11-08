@@ -18867,7 +18867,7 @@ GameObject:
   - component: {fileID: 1492812880}
   - component: {fileID: 1492812881}
   m_Layer: 0
-  m_Name: go bathroom
+  m_Name: Enter Bathroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
