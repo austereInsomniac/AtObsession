@@ -14683,6 +14683,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271170126}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1282772682
 GameObject:
   m_ObjectHideFlags: 0
@@ -14826,6 +14827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedac7c165e2b934da136b9f4bf704ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+>>>>>>> parent of 5279d69 (added dm messages)
 --- !u!1 &1286756905
 GameObject:
   m_ObjectHideFlags: 0
