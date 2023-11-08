@@ -165,9 +165,9 @@ TextureImporter:
       name: Menus_0
       rect:
         serializedVersion: 2
-        x: 563
+        x: 256
         y: 105
-        width: 795
+        width: 1328
         height: 915
       alignment: 0
       pivot: {x: 0, y: 0}
