@@ -123,8 +123,6 @@ public class game_state : MonoBehaviour
         wellness = savedWellness;
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
-
-        
     }
 
     private void playHospitalScene()
@@ -134,13 +132,10 @@ public class game_state : MonoBehaviour
         updateWellness(50);
 
         // call hospital scene 
-        splashScreenManager.openSplashScreen("Black");
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
-        
-        // give the hospital text
-
     }
+
     public void updateTime(int t)
     {
         // update time

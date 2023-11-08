@@ -33,19 +33,16 @@ public class splash_screen_manager : MonoBehaviour
         HUD = GameObject.Find("HUD");
         notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
 
-        // grab sprites
-        Sprite hospital = Resources.Load<Sprite>("Hospital_Concepts_V001");
-
         // splash screen code
         splashScreens = new Dictionary<string, Sprite>
         {
-           // living room
+            // living room
+            { "Watch TV", Resources.Load<Sprite>("TV_Zoom_In") },
+            { "Lift weights", Resources.Load<Sprite>("Workout_Zoom_In") },
             { "Do chores", Resources.Load<Sprite>("Clean_Zoom_In") },
             { "Go to the gym", Resources.Load<Sprite>("Clean_Zoom_In") },
             { "Visit friends", Resources.Load<Sprite>("Clean_Zoom_In") },
             { "Go for a walk", Resources.Load<Sprite>("Clean_Zoom_In") },
-            { "Watch TV", Resources.Load<Sprite>("TV_Zoom_In") },
-            { "Lift weights", Resources.Load<Sprite>("Workout_Zoom_In") },
             { "Eat at a restaurant", Resources.Load<Sprite>("Clean_Zoom_In") },
             
             // kitchen
@@ -53,18 +50,17 @@ public class splash_screen_manager : MonoBehaviour
             { "Eat a snack", Resources.Load<Sprite>("Fridge_Zoom_In")},
 
             // bedroom
-            { "Go to sleep", splashScreen.sprite },
-            { "Take a nap", splashScreen.sprite },
+            { "Go to sleep", Resources.Load<Sprite>("Clean_Zoom_In")  },
+            { "Take a nap", Resources.Load<Sprite>("Clean_Zoom_In")  },
 
             // bathroom
-            { "Freshen up", splashScreen.sprite },
-            { "Shower", splashScreen.sprite },
-            { "Bubble bath", splashScreen.sprite },
+            { "Freshen up", Resources.Load < Sprite >("Clean_Zoom_In") },
+            { "Shower", Resources.Load < Sprite >("Clean_Zoom_In") },
+            { "Bubble bath", Resources.Load < Sprite >("Clean_Zoom_In") },
 
             // non actions
-            { "Black", splashScreen.sprite},
-            { "Hospital", hospital },
-            { "Game over", hospital }
+            { "Hospital", Resources.Load<Sprite>("Hospital_Concepts_V001") },
+            { "Game over", Resources.Load<Sprite>("Hospital_Concepts_V001") }
         };
     }
 
