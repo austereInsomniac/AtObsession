@@ -281,6 +281,14 @@ public class game_state : MonoBehaviour
     private void doNothing(int t, int t2) { }
 
     private void doNothing2(double t, double t2) { }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            locationManager.goToMainMenu();
+        }
+    }
 }
 
 
