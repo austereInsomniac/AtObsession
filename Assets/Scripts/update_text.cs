@@ -56,7 +56,7 @@ public class update_text : MonoBehaviour
 
     void updateMoneyText(double oldM, double newM)
     {
-        string updateText = "Money: " + GetComponent<game_state>().getMoney();
+        string updateText = "" + GetComponent<game_state>().getMoney();
         moneyText.SetText(updateText);
     }
 
