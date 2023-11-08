@@ -78,6 +78,9 @@ public class splash_screen_manager : MonoBehaviour
         displayStartTime = Time.timeSinceLevelLoad;
         isSplashShowing = true;
 
+        // diable any current notifications
+        notificationManager.disableNotification();
+
         // hide hud
         HUD.SetActive(false);
         menuBlocker.enabled = true;
@@ -88,9 +91,6 @@ public class splash_screen_manager : MonoBehaviour
         {
             Destroy(HUD);
         }
-
-        // diable any current notifications
-        notificationManager.disableNotification();
     }
 
     // Update is called once per frame
@@ -112,6 +112,9 @@ public class splash_screen_manager : MonoBehaviour
                 {
                     HUD.SetActive(true);
                 }
+
+                // run notification
+                notificationManager.repeatNotification();
             }
         }
     }

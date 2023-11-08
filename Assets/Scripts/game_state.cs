@@ -92,11 +92,13 @@ public class game_state : MonoBehaviour
     // setters + methods
     public void updateWellness(int w)
     {
-        if (wellness + w >= 100)
+        wellness += w;
+
+        if (wellness >= 100)
         { 
             wellness = 100;
         }
-        else if (wellness + w <= 0)
+        else if (wellness <= 0)
         {
             wellness = 0;
 
@@ -108,10 +110,6 @@ public class game_state : MonoBehaviour
             {
                 playHospitalScene();
             }
-        }
-        else
-        {
-            wellness += w;
         }
 
         notifyOnWellnessChanged(wellness - w, wellness);
@@ -188,7 +186,7 @@ public class game_state : MonoBehaviour
             hungerHUD.enabled = true;
 
             // display notification
-            notificationManager.ShowNotifications("You are hungry.");
+            notificationManager.showNotification("You are hungry.");
         }
 
         // for each time jump, lower wellness

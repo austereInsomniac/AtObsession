@@ -47,7 +47,7 @@ public class do_an_action : MonoBehaviour
         notifications.Add("You feel refreshed");
         if (notification != null)
         {
-            notification.ShowNotifications(notifications[notifNum]);
+            notification.showNotification(notifications[notifNum]);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class update_text : MonoBehaviour
+public class HUD_text_manager : MonoBehaviour
 {
     // get text boxes
     GameObject player;

@@ -130,7 +130,7 @@ public class stalker_prototype_script : MonoBehaviour
         string eventMessage = "Stalker event " + EventNumber + " is active!";
         if (notification != null)
         {
-            notification.ShowNotifications(eventMessage);
+            notification.showNotification(eventMessage);
         }
         Debug.Log(eventMessage);
 
