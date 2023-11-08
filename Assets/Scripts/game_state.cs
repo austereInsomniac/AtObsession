@@ -113,6 +113,7 @@ public class game_state : MonoBehaviour
     {
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
+        hasDied = false;
     }
 
     private void playHospitalScene()
