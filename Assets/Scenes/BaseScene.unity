@@ -12278,7 +12278,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e034345d164914488a87dfe13c51b49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d692ccb6bf5d474ea562d3ccbd4bdfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -18533,6 +18533,7 @@ GameObject:
   - component: {fileID: 1300924445}
   - component: {fileID: 1300924444}
   - component: {fileID: 1300924443}
+  - component: {fileID: 1300924446}
   m_Layer: 5
   m_Name: Reset Day
   m_TagString: Untagged
@@ -18603,7 +18604,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1300924444}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1300924446}
+        m_TargetAssemblyTypeName: move_location, Assembly-CSharp
+        m_MethodName: goToBedroom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300924444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18642,6 +18655,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300924441}
   m_CullTransparentMesh: 1
+--- !u!114 &1300924446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300924441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7897e6bd3861e87419c2e20c73accdaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 2034303693}
+  otherCanvas: {fileID: 416206899}
+  thisO: {fileID: 1959750115}
+  thisCanvas: {fileID: 822762288}
 --- !u!1 &1302717216
 GameObject:
   m_ObjectHideFlags: 0
@@ -23943,7 +23972,7 @@ Transform:
   m_GameObject: {fileID: 1577984769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: -0.1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30866,13 +30895,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959750115}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.017451001, y: -0.008723891, z: -0.000076143064, w: 0.9998097}
   m_LocalPosition: {x: 1000, y: -600, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 677854858}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2, y: -1, z: 0.009}
 --- !u!212 &1959750117
 SpriteRenderer:
   m_ObjectHideFlags: 0
