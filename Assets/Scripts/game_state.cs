@@ -26,6 +26,7 @@ public class game_state : MonoBehaviour
     // other scripts
     private notification_manager notificationManager;
     private move_location locationManager;
+    private splash_screen_manager splashScreenManager;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
@@ -48,6 +49,7 @@ public class game_state : MonoBehaviour
 
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
         locationManager = GetComponent<move_location>();
+        splashScreenManager = GetComponent<splash_screen_manager>();
 
         wellness = 70;
         day = 1;
@@ -109,18 +111,21 @@ public class game_state : MonoBehaviour
 
     private void killPlayer()
     {
-        GetComponent<splash_screen_manager>().openSplashScreen("Game over");
+        splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
 
     private void playHospitalScene()
     {
-        // call hospital scene 
+        // set stats
         hasDied = true;
-        GetComponent<splash_screen_manager>().openSplashScreen("Hospital");
-        locationManager.goToBedroom();
         updateWellness(50);
 
+        // call hospital scene 
+        splashScreenManager.openSplashScreen("Black");
+        splashScreenManager.openSplashScreen("Hospital");
+        locationManager.goToBedroom();
+        
         // give the hospital text
 
     }
@@ -276,6 +281,14 @@ public class game_state : MonoBehaviour
     private void doNothing(int t, int t2) { }
 
     private void doNothing2(double t, double t2) { }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            locationManager.goToMainMenu();
+        }
+    }
 }
 
 
