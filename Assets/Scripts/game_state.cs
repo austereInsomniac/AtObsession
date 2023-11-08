@@ -5,10 +5,14 @@ using UnityEngine;
 public class game_state : MonoBehaviour
 {
     private int wellness;
+    private int savedWellness;
     private int reputation;
+    private int savedReputation;
     private int subscribers;
+    private int savedSubscribers;
     private int ending;
     private double money;
+    private double savedMoney;
     private bool hasDied;
 
     // time is in terms of minutes since midnight - 480 is 8am
@@ -111,8 +115,14 @@ public class game_state : MonoBehaviour
 
     private void killPlayer()
     {
+        money = savedMoney;
+        reputation = savedReputation;
+        subscribers = savedSubscribers;
+        wellness = savedWellness;
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
+
+        
     }
 
     private void playHospitalScene()
@@ -147,6 +157,10 @@ public class game_state : MonoBehaviour
         if ((time > 240 && time < 480))
         {
             time = 480; // set time to 8am
+            savedMoney = money;
+            savedReputation = reputation;
+            savedSubscribers = subscribers;
+            savedWellness = wellness;
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method

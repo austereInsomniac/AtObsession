@@ -1748,7 +1748,7 @@ MonoBehaviour:
   infiniteMoney: 0
   infiniteSubscribers: 0
   infiniteReputation: 0
-  infiniteWellness: 0
+  infiniteWellness: 1
   noWellness: 0
   dayStart: 0
   dayLimit: 0
@@ -9851,7 +9851,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5e034345d164914488a87dfe13c51b49, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d692ccb6bf5d474ea562d3ccbd4bdfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -19202,7 +19202,7 @@ Transform:
   m_GameObject: {fileID: 1577984769}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: -0.1}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24038,13 +24038,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959750115}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.017451001, y: -0.008723891, z: -0.000076143064, w: 0.9998097}
   m_LocalPosition: {x: 1000, y: -600, z: 0}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 677854858}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2, y: -1, z: 0.009}
 --- !u!212 &1959750117
 SpriteRenderer:
   m_ObjectHideFlags: 0
