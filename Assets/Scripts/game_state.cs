@@ -56,13 +56,17 @@ public class game_state : MonoBehaviour
         splashScreenManager = GetComponent<splash_screen_manager>();
 
         wellness = 70;
+        savedWellness = 70;
         day = 1;
         time = 480;
         hunger = 0;
         reputation = 20;
+        savedReputation = 20;
         subscribers = 1000;
+        savedSubscribers = 1000;
         ending = 0;
         money = 100.00;
+        savedMoney = 100.00;
         hasDied = false;
     }
 

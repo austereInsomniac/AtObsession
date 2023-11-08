@@ -1748,7 +1748,7 @@ MonoBehaviour:
   infiniteMoney: 0
   infiniteSubscribers: 0
   infiniteReputation: 0
-  infiniteWellness: 1
+  infiniteWellness: 0
   noWellness: 0
   dayStart: 0
   dayLimit: 0
@@ -15035,6 +15035,7 @@ GameObject:
   - component: {fileID: 1300924445}
   - component: {fileID: 1300924444}
   - component: {fileID: 1300924443}
+  - component: {fileID: 1300924446}
   m_Layer: 5
   m_Name: Reset Day
   m_TagString: Untagged
@@ -15105,7 +15106,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1300924444}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1300924446}
+        m_TargetAssemblyTypeName: move_location, Assembly-CSharp
+        m_MethodName: goToBedroom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300924444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15144,6 +15157,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300924441}
   m_CullTransparentMesh: 1
+--- !u!114 &1300924446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300924441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7897e6bd3861e87419c2e20c73accdaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 2034303693}
+  otherCanvas: {fileID: 416206899}
+  thisO: {fileID: 1959750115}
+  thisCanvas: {fileID: 822762288}
 --- !u!1 &1302717216
 GameObject:
   m_ObjectHideFlags: 0
