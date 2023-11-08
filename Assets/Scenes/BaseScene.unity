@@ -4359,8 +4359,8 @@ RectTransform:
   - {fileID: 1693334877}
   - {fileID: 1170410440}
   - {fileID: 822762289}
-  - {fileID: 1534353898}
   - {fileID: 1672524467}
+  - {fileID: 1534353898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10764,8 +10764,6 @@ MonoBehaviour:
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
-  notification: {fileID: 1943289221}
-  notifNum: 1
 --- !u!114 &759900270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20369,8 +20367,6 @@ MonoBehaviour:
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
-  notification: {fileID: 0}
-  notifNum: 0
 --- !u!114 &1501118637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28673,8 +28669,6 @@ MonoBehaviour:
   changeSubs: 0
   changeEnd: 0
   changeMoney: 0
-  notification: {fileID: 1943289221}
-  notifNum: 0
 --- !u!1 &2103036012
 GameObject:
   m_ObjectHideFlags: 0
