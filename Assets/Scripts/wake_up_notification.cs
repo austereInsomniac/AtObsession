@@ -58,11 +58,11 @@ public class wake_up_notification : MonoBehaviour
         // Display both notifications if there is a change in subscribers
         if (notification != null && subNotifications.Count > 0)
         {
-            notification.ShowNotifications(notifMessage1 + " " + notifMessage2);
+            notification.showNotification(notifMessage1 + " " + notifMessage2);
         }
         else if (notification != null)
         {
-            notification.ShowNotifications(notifMessage1);
+            notification.showNotification(notifMessage1);
         }
         initialSubs = currentSubs;
         currentDay = day;

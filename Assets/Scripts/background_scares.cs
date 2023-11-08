@@ -62,7 +62,7 @@ public class background_scares : MonoBehaviour
             swap.swapObjects();
             if (notification != null)
             {
-                notification.ShowNotifications(scareMessage);
+                notification.showNotification(scareMessage);
             }
         }
 
