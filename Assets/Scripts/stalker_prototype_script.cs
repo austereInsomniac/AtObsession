@@ -67,6 +67,7 @@ public class stalker_prototype_script : MonoBehaviour
 
     private int randomEvent;
     public notification_manager notification;
+    public swap_background_assets swap;
     // Start is called before the first frame update
     void Start()
     {
@@ -268,13 +269,20 @@ public class stalker_prototype_script : MonoBehaviour
     private void EndingEvent(StalkerEvents stalkerEvent)
     {
         move.moveLocation(GameObject.Find("Bathroom"), GameObject.Find("Bathroom Canvas"), player.getLocation(), player.getLocationCanvas());
+        stalkerEventHandler.SetActive(true);
         if (player.getEnding() < 0)
         {
-
+            choiceText.text = stalkerEvent.getEventMessage() + "Bad Ending- The Stalker broke in and found you";
+            Destroy(choice1);
+            Destroy(choice2);
+            Destroy(choice3);
         }
         else if (player.getEnding() >= 0)
         {
-
+            choiceText.text = stalkerEvent.getEventMessage() + "Good Ending- You called 911 and the stalker was arrested";
+            Destroy(choice1);
+            Destroy(choice2);
+            Destroy(choice3);
         }
     }
 }
