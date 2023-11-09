@@ -22,6 +22,7 @@ public class splash_screen_manager : MonoBehaviour
 
     // HUD
     GameObject HUD;
+    private bool shouldHUDShow;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,8 @@ public class splash_screen_manager : MonoBehaviour
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD");
         notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
+
+        shouldHUDShow = true;
 
         // splash screen code
         splashScreens = new Dictionary<string, Sprite>
@@ -85,7 +88,7 @@ public class splash_screen_manager : MonoBehaviour
         // destroy HUD if we die
         if (key.Equals("Game over"))
         {
-            Destroy(HUD);
+            shouldHUDShow = false;
         }
     }
 
@@ -104,7 +107,7 @@ public class splash_screen_manager : MonoBehaviour
                 isSplashShowing = false;
 
                 // enable HUD
-                if (HUD != null)
+                if (shouldHUDShow)
                 {
                     HUD.SetActive(true);
                 }
