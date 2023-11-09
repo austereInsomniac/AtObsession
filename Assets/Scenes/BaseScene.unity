@@ -12851,7 +12851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -39, y: 206.00003}
+  m_AnchoredPosition: {x: 10, y: 206.00003}
   m_SizeDelta: {x: 726.1921, y: 122.5991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837522198
@@ -16419,7 +16419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -39, y: 206.00003}
+  m_AnchoredPosition: {x: 10, y: 206.00003}
   m_SizeDelta: {x: 726.1921, y: 122.5991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085096227
@@ -19671,7 +19671,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1300924444}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519420039}
+        m_TargetAssemblyTypeName: game_state, NewAssembly
+        m_MethodName: resetDay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1300924444
 MonoBehaviour:
   m_ObjectHideFlags: 0

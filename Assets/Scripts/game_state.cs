@@ -6,18 +6,26 @@ public class game_state : MonoBehaviour
 {
     private int wellness;
     private int savedWellness;
+
     private int reputation;
     private int savedReputation;
+
     private int subscribers;
     private int savedSubscribers;
+
     private int ending;
+    private int savedEnding;
+
     private double money;
     private double savedMoney;
+
     private bool hasDied;
+    private bool savedHasDied;
 
     // time is in terms of minutes since midnight - 480 is 8am
     private int time;
     private int day;
+    private int savedDay;
 
     // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
     private int hunger;
@@ -57,17 +65,26 @@ public class game_state : MonoBehaviour
 
         wellness = 70;
         savedWellness = 70;
+
         day = 1;
+        savedDay = 1;
         time = 480;
         hunger = 0;
+
         reputation = 20;
         savedReputation = 20;
+
         subscribers = 1000;
         savedSubscribers = 1000;
+
         ending = 0;
+        savedEnding = 0;
+
         money = 100.00;
         savedMoney = 100.00;
+
         hasDied = false;
+        savedHasDied = false;
     }
 
     // getters
@@ -118,10 +135,12 @@ public class game_state : MonoBehaviour
     private void killPlayer()
     {
         // reset stats
-        money = savedMoney;
-        reputation = savedReputation;
-        subscribers = savedSubscribers;
-        wellness = savedWellness;
+        money = 100;
+        reputation = 20;
+        subscribers = 1000;
+        wellness = 70;
+        ending = 0;
+        day = 1;
 
         // game over
         splashScreenManager.openSplashScreen("Game over");
@@ -139,6 +158,31 @@ public class game_state : MonoBehaviour
         locationManager.goToBedroom();
     }
 
+    public void resetDay()
+    {
+        // reset stats
+        wellness = savedWellness;
+        hasDied = savedHasDied;
+        money = savedMoney;
+        day = savedDay;
+        reputation = savedReputation;
+        subscribers = savedSubscribers;
+        ending = savedEnding;
+        time = 480;
+
+        // move location
+        locationManager.goToBedroom();
+
+        // reset HUD + splash screen
+        splashScreenManager.openSplashScreen("reset");
+
+        // call delegates
+        notifyOnWellnessChanged(wellness, wellness);
+        notifyOnTimeChanged(time, time);
+        notifyOnMoneyChange(money, money);
+        notifyOnSubscribersChange(subscribers, subscribers);
+    }
+
     public void updateTime(int t)
     {
         // update time
@@ -152,20 +196,17 @@ public class game_state : MonoBehaviour
         }
 
         // force sleep 
-        // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        // bug if an action is longer than 6 hours...
         if ((time > 240 && time < 480))
         {
+            // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
+            // bug if an action is longer than 6 hours...
+
             time = 480; // set time to 8am
 
-            //save stats
-            savedMoney = money;
-            savedReputation = reputation;
-            savedSubscribers = subscribers;
-            savedWellness = wellness;
+            
 
             updateWellness(-20); // Lowers your wellness
-            GetComponent<move_location>().goToBedroom();  // Move to the bedroom
+            locationManager.goToBedroom();  // Move to the bedroom
             // run sleep method
         }
         else
@@ -173,6 +214,17 @@ public class game_state : MonoBehaviour
             // don't update hunger is we enter force sleep
             // update hunger
             updateHunger(t);
+        }
+
+        // save stats to reset the day
+        if (time == 480)
+        {
+            savedMoney = money;
+            savedReputation = reputation;
+            savedSubscribers = subscribers;
+            savedWellness = wellness;
+            savedDay = day;
+            savedHasDied = hasDied;
         }
 
         // call all delegates
@@ -221,9 +273,9 @@ public class game_state : MonoBehaviour
     }
 
     public void updateSubscribers(int s)
-    {
-        //notifyOnSubscribersChange(subscribers, subscribers + s);
+    {    
         subscribers = subscribers + s;
+        notifyOnSubscribersChange(subscribers - s, subscribers);
     }
 
     public void updateEnding(int e)
@@ -236,12 +288,21 @@ public class game_state : MonoBehaviour
         money = money + m;
         notifyOnMoneyChange(money - m, money);
     }
-
-    // the players current room has changed
+ 
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
+        // the players current room has changed
         location = newLocation;
         locationCanvas = newCanvas;
+    }
+
+    private void Update()
+    {
+        // move to main menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            locationManager.goToMainMenu();
+        }
     }
 
     // delegate methods
@@ -303,14 +364,6 @@ public class game_state : MonoBehaviour
     private void doNothing(int t, int t2) { }
 
     private void doNothing2(double t, double t2) { }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            locationManager.goToMainMenu();
-        }
-    }
 }
 
 

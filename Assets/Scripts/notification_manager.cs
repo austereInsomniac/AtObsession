@@ -53,7 +53,7 @@ public class notification_manager : MonoBehaviour
         }
         else if(newW - oldW == 0)
         {
-            mText.SetText("You don't feel any different");
+            mText.SetText("");
         }
         else if (newW - oldW <= -20)
         {
