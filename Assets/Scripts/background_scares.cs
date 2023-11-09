@@ -34,7 +34,7 @@ public class background_scares : MonoBehaviour
         {
             EndScare();
         }
-        if (!isScare && Time.time > nextScareTime && wellness <= 60 && day >= 5)
+        if (!isScare && Time.time > nextScareTime && wellness <= 60 && day >= 3)
         {
             if (swappableAssets.Length > 0)
             {
