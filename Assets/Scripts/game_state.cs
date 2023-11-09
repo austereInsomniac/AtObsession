@@ -154,13 +154,16 @@ public class game_state : MonoBehaviour
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
         // bug if an action is longer than 6 hours...
-        if ((time > 240 && time <= 480))
+        if ((time > 240 && time < 480))
         {
             time = 480; // set time to 8am
+
+            //save stats
             savedMoney = money;
             savedReputation = reputation;
             savedSubscribers = subscribers;
             savedWellness = wellness;
+
             updateWellness(-20); // Lowers your wellness
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method
