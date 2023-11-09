@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 
 class StalkerEvents
@@ -8,13 +11,32 @@ class StalkerEvents
     int wellness;
     int eventNumber;
     int ending;
+    int reputation;
+    string eventMessage;
+    string choice1;
+    string choice2;
+    string choice3;
 
-    public StalkerEvents(int changeWellness,  int newEventNumber, int changeEnding)
+    public StalkerEvents(string changeMessage, string option1, string option2, string option3, int changeWellness, int newEventNumber, int changeEnding, int changeRep)
     {
         wellness = changeWellness;
         eventNumber = newEventNumber;
         ending = changeEnding;
+        reputation = changeRep;
+        eventMessage = changeMessage;
+        choice1 = option1;
+        choice2 = option2;
+        choice3 = option3;
     }
+
+    public int getWellness() { return wellness; }
+    public int getEventNumber() { return eventNumber; }
+    public int getEnding() { return ending; }
+    public int getReputation() { return reputation; }
+    public string getEventMessage() { return eventMessage; }
+    public string getChoice1() { return choice1; }
+    public string getChoice2() { return choice2; }
+    public string getChoice3() { return choice3; }
 }
 public class stalker_prototype_script : MonoBehaviour
 {
@@ -25,39 +47,58 @@ public class stalker_prototype_script : MonoBehaviour
     private float eventDuration = 10; // How long it should last
     private float eventEndTime = 0; // Timestamp when event should end
 
-    private float minTimeBetweenEvents = 10; // Minimum time between events
-    private float maxTimeBetweenEvents = 30; // Maximum time between events
+    private float minTimeBetweenEvents = 20; // Minimum time between events
+    private float maxTimeBetweenEvents = 40; // Maximum time between events
     private float nextEventTime = 0; // Timestamp when next event should start
 
     private int eventNum;
 
-    GameObject player;
-    
+    private game_state player;
+    GameObject stalkerEventHandler;
+    TMP_Text choiceText;
+    private Button choice1;
+    private Button choice2;
+    private Button choice3;
+    TMP_Text choice1Text;
+    TMP_Text choice2Text;
+    TMP_Text choice3Text;
+
+    private move_location move;
+
     private int randomEvent;
     public notification_manager notification;
+    private swap_background_assets swap;
     // Start is called before the first frame update
     void Start()
     {
         // "Player" is the name of the Game Object with the game_state script
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<game_state>();
+        move = GetComponent<move_location>();
+        stalkerEventHandler = GameObject.Find("Stalker Event Handler");
+        stalkerEventHandler.SetActive(true);
+        choiceText = GameObject.Find("ChoiceText").GetComponent<TMP_Text>();
+        choice1 = GameObject.Find("Choice1").GetComponent<Button>();
+        choice2 = GameObject.Find("Choice2").GetComponent<Button>();
+        choice3 = GameObject.Find("Choice3").GetComponent<Button>();
+        stalkerEventHandler.SetActive(false);
+
         stalkerEvents = new Dictionary<string, StalkerEvents>();
-        
-        stalkerEvents.Add("Email", new StalkerEvents(0, 1, 1));
-        stalkerEvents.Add("Knock on door", new StalkerEvents(1, 2, 1));
-        stalkerEvents.Add("Gift in the mail", new StalkerEvents(1, 3, 1));
-        stalkerEvents.Add("Suspicious friend", new StalkerEvents(1, 4, 1));
-        stalkerEvents.Add("Window figure", new StalkerEvents(1, 5, 1));
+        stalkerEvents.Add("Email", new StalkerEvents("You got an email!", "Interact", "Ignore", "Report", 0, 1, 1, 5));
+        stalkerEvents.Add("Knocking on window", new StalkerEvents("There's something at the window!", "Look", "Ignore", "Call 911", 10, 2, 1, 0));
+        stalkerEvents.Add("Suspicious gift", new StalkerEvents("You got a weird gift in the mail...", "Open it", "Leave it", "Send back", 10, 3, 1, 0));
+        stalkerEvents.Add("Window figure", new StalkerEvents("Something's outside the window!", "Look out the window", "Ignore it", "Call 911", 10, 5, 1, 0));
+        stalkerEvents.Add("Trapped in bathroom", new StalkerEvents("The Bathroom door is locked!", "", "", "", 0, 0, 0, 0));
 
         eventKeys = new List<string>();
         eventKeys.Add("Email");
-        eventKeys.Add("Knock on door");
-        eventKeys.Add("Gift in the mail");
-        eventKeys.Add("Suspicious friend");
-        eventKeys.Add("Window Figure");
-        randomEvent = Random.Range(1, eventKeys.Count);
-       // TriggerStalkerEvent(randomEvent); // Start with initial event
+        eventKeys.Add("Knocking on window");
+        eventKeys.Add("Suspicious gift");
+        eventKeys.Add("Window figure");
+        eventKeys.Add("Trapped in bathroom");
+        randomEvent = Random.Range(0, eventKeys.Count - 1);
+        // TriggerStalkerEvent(randomEvent); // Start with initial event
     }
-    
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -122,22 +163,101 @@ public class stalker_prototype_script : MonoBehaviour
             isOn = true;
         }
     }
-    private void TriggerStalkerEvent(int EventNumber)
+    private void TriggerStalkerEvent(int eventNum)
     {
-        // Handle stalker event logic here.
-        eventDuration = Random.Range(5, 20); // Set random event duration between 5 and 20 seconds
-        eventEndTime = Time.time + eventDuration; // Calculate when the event should end.
-        string eventMessage = "Stalker event " + EventNumber + " is active!";
-        if (notification != null)
+        if (eventNum != eventKeys.Count)
         {
-            notification.showNotification(eventMessage);
-        }
-        Debug.Log(eventMessage);
+            // Handle stalker event logic here.
+            eventDuration = Random.Range(5, 20); // Set random event duration between 5 and 20 seconds
+            eventEndTime = Time.time + eventDuration; // Calculate when the event should end.
 
-        // Calculate the time for the next stalker event.
-        float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
-        nextEventTime = Time.time + randomTimeBetweenEvents;
-        isStalkerEvent = true;
+            string eventKey = eventKeys[eventNum];
+            StalkerEvents stalkerEvent = stalkerEvents[eventKey];
+            string eventMessage = stalkerEvent.getEventMessage();
+            Debug.Log(eventMessage);
+            if (notification != null)
+            {
+                notification.showNotification(eventMessage);
+            }
+            Debug.Log("Stalker event " + stalkerEvent.getEventNumber() + " is active!");
+
+            DisplayChoices(stalkerEvent);
+
+            // Calculate the time for the next stalker event.
+            float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
+            nextEventTime = Time.time + randomTimeBetweenEvents;
+            isStalkerEvent = true;
+        }
+        else
+        {
+            string eventKey = eventKeys[eventNum];
+            StalkerEvents stalkerEvent = stalkerEvents[eventKey];
+            string eventMessage = stalkerEvent.getEventMessage();
+            if (notification != null)
+            {
+                notification.showNotification(eventMessage);
+            }
+            EndingEvent(stalkerEvent);
+        }
+    }
+
+    private void DisplayChoices(StalkerEvents stalkerEvent)
+    {
+        choiceText.text = stalkerEvent.getEventMessage();
+        choice1Text = choice1.GetComponentInChildren<TMP_Text>();
+        choice2Text = choice2.GetComponentInChildren<TMP_Text>();
+        choice3Text = choice3.GetComponentInChildren<TMP_Text>();
+
+        // Option 1
+        choice1Text.text = stalkerEvent.getChoice1();
+        choice1.onClick.AddListener(() => HandlePlayerChoice(1));
+
+        // Option 2
+        choice2Text.text = stalkerEvent.getChoice2();
+        choice2.onClick.AddListener(() => HandlePlayerChoice(2));
+
+        // Option 3
+        choice3Text.text = stalkerEvent.getChoice3();
+        choice3.onClick.AddListener(() => HandlePlayerChoice(3));
+
+        stalkerEventHandler.SetActive(true);
+    }
+
+    private void HandlePlayerChoice(int choiceNum)
+    {
+        StalkerEvents stalkerEvent = stalkerEvents[eventKeys[randomEvent]];
+
+        int wellnessChange = stalkerEvent.getWellness();
+        int endingChange = stalkerEvent.getEnding();
+        int reputationChange = stalkerEvent.getReputation();
+
+        if (choiceNum == 1)
+        {
+            wellnessChange *= -3;
+            endingChange *= -1;
+        }
+        else if (choiceNum == 2)
+        {
+            wellnessChange *= 1;
+            endingChange *= 1;
+        }
+        else if (choiceNum == 3)
+        {
+            wellnessChange *= 1;
+            endingChange *= 1;
+        }
+        else
+        {
+            Debug.Log("Invalid Choice");
+        }
+
+        // Update player stats
+        player.updateWellness(wellnessChange);
+        player.updateEnding(endingChange);
+        player.updateReputation(reputationChange);
+
+        // Hide the stalker event handler
+        stalkerEventHandler.SetActive(false);
     }
 
     private void EndStalkerEvent()
@@ -145,5 +265,25 @@ public class stalker_prototype_script : MonoBehaviour
         // Clean up and end the stalker event.
         isStalkerEvent = false;
         Debug.Log("Stalker event ended.");
+    }
+
+    private void EndingEvent(StalkerEvents stalkerEvent)
+    {
+        move.moveLocation(GameObject.Find("Bathroom"), GameObject.Find("Bathroom Canvas"), player.getLocation(), player.getLocationCanvas());
+        stalkerEventHandler.SetActive(true);
+        if (player.getEnding() < 0)
+        {
+            choiceText.text = stalkerEvent.getEventMessage() + "Bad Ending- The Stalker broke in and found you";
+            Destroy(choice1);
+            Destroy(choice2);
+            Destroy(choice3);
+        }
+        else if (player.getEnding() >= 0)
+        {
+            choiceText.text = stalkerEvent.getEventMessage() + "Good Ending- You called 911 and the stalker was arrested";
+            Destroy(choice1);
+            Destroy(choice2);
+            Destroy(choice3);
+        }
     }
 }
