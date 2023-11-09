@@ -165,8 +165,8 @@ TextureImporter:
       name: Active_Button_0
       rect:
         serializedVersion: 2
-        x: 638
-        y: 487
+        x: 593
+        y: 547
         width: 645
         height: 105
       alignment: 0
