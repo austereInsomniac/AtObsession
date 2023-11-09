@@ -8633,6 +8633,8 @@ GameObject:
   - component: {fileID: 519420038}
   - component: {fileID: 519420041}
   - component: {fileID: 519420042}
+  - component: {fileID: 519420044}
+  - component: {fileID: 519420043}
   m_Layer: 0
   m_Name: Player
   m_TagString: MainCamera
@@ -8806,6 +8808,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 0
+--- !u!114 &519420043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174fab99c7d73214a98f1df6f4be8e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notification: {fileID: 1943289221}
+--- !u!114 &519420044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5927421e9d1b3448424c438cb250c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notification: {fileID: 1943289221}
+  wakeUpTriggered: 0
 --- !u!1 &520385362
 GameObject:
   m_ObjectHideFlags: 0

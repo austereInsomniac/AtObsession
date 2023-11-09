@@ -15,7 +15,7 @@ public class background_scares : MonoBehaviour
     private GameObject[] swappableAssets;
     private GameObject player;
 
-    public swap_background_assets swap;
+    private swap_background_assets swap;
     public notification_manager notification;
 
     // Start is called before the first frame update
