@@ -62,6 +62,7 @@ public class splash_screen_manager : MonoBehaviour
             { "Bubble bath", Resources.Load < Sprite >("Clean_Zoom_In") },
 
             // non actions
+            { "reset", Resources.Load<Sprite>("Hospital_Concepts_V001") },
             { "Hospital", Resources.Load<Sprite>("Hospital_Concepts_V001") },
             { "Game over", Resources.Load<Sprite>("Hospital_Concepts_V001") }
         };
@@ -89,6 +90,10 @@ public class splash_screen_manager : MonoBehaviour
         if (key.Equals("Game over"))
         {
             shouldHUDShow = false;
+        }
+        else 
+        {
+            shouldHUDShow = true;    
         }
     }
 

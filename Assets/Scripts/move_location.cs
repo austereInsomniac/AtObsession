@@ -78,5 +78,4 @@ public class move_location : MonoBehaviour
             }
         } 
     }
-
 }
