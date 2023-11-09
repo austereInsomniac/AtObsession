@@ -117,10 +117,13 @@ public class game_state : MonoBehaviour
 
     private void killPlayer()
     {
+        // reset stats
         money = savedMoney;
         reputation = savedReputation;
         subscribers = savedSubscribers;
         wellness = savedWellness;
+
+        // game over
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
@@ -150,8 +153,8 @@ public class game_state : MonoBehaviour
 
         // force sleep 
         // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        // bug if an action is longer than 4 hours...
-        if ((time > 240 && time < 480))
+        // bug if an action is longer than 6 hours...
+        if ((time > 240 && time <= 480))
         {
             time = 480; // set time to 8am
             savedMoney = money;
@@ -162,9 +165,12 @@ public class game_state : MonoBehaviour
             GetComponent<move_location>().goToBedroom();  // Move to the bedroom
             // run sleep method
         }
-
-        // update hunger
-        updateHunger(t);
+        else
+        {
+            // don't update hunger is we enter force sleep
+            // update hunger
+            updateHunger(t);
+        }
 
         // call all delegates
         notifyOnTimeChanged(time - t, time);
@@ -185,14 +191,16 @@ public class game_state : MonoBehaviour
         }
 
         // for each time jump, lower wellness
-        if(hunger > 4*60)
+        if(hunger > 6*60)
         {
+            // don't subtract when the player is sleeping
+
             // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
-            int over = 4*60 - hunger;
+            int over = 6*60 - hunger;
             int loss = Mathf.Max(t, over);
 
-            // for every hour you are hungry after the original notification, lower wellness by 10
-            updateWellness((int)(-loss * .1666 -.5));
+            // for every hour you are hungry after the original notification, lower wellness by 5
+            updateWellness((int)(-loss * .0833 -.5));
         }
     }
 
