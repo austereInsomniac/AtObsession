@@ -106,29 +106,34 @@ public class stalker_prototype_script : MonoBehaviour
         int day = player.getDay();
         int time = player.getTime();
         // Check if it's time to end the event.
+        if (isStalkerEvent && Time.time >= eventEndTime)
+        {
+            isOn = true;
+            EndStalkerEvent(eventNum);
+        }
         if (isOn)
         {
-            if (isStalkerEvent && Time.time >= eventEndTime)
-            {
-                EndStalkerEvent(eventNum);
-            }
 
             if (day == 5 && time >= 17 * 60)
             {
+                isOn = false;
                 eventNum = 4;
                 TriggerStalkerEvent(4);
             }
             else if (day == 4 && time >= 17 * 60)
             {
+                isOn = false;
                 TriggerStalkerEvent(1);
             }
             else if (day == 3 && time >= 17 * 60)
             {
+                isOn = false;
                 TriggerStalkerEvent(3);
             }
             // Check if it's time to trigger a new event.
             else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 2 && time >= 17*60)
             {
+                isOn = false;
                 if (eventNum == 0)
                 {
                     TriggerStalkerEvent(randomEvent);
