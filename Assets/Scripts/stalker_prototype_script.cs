@@ -95,7 +95,7 @@ public class stalker_prototype_script : MonoBehaviour
         eventKeys.Add("Suspicious gift");
         eventKeys.Add("Window figure");
         eventKeys.Add("Trapped in bathroom");
-        randomEvent = Random.Range(0, eventKeys.Count - 1);
+        randomEvent = Random.Range(0, eventKeys.Count - 2);
         // TriggerStalkerEvent(randomEvent); // Start with initial event
     }
 
@@ -112,8 +112,20 @@ public class stalker_prototype_script : MonoBehaviour
                 EndStalkerEvent();
             }
             // Check if it's time to trigger a new event.
-            else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
+            else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 2)
             {
+                if (day == 5)
+                {
+                    eventNum = 4;
+                }
+                else if (day == 4)
+                {
+                    eventNum = 1;
+                }
+                else if (day == 3)
+                {
+                    eventNum = 3;
+                }
                 if (eventNum == 0)
                 {
                     TriggerStalkerEvent(randomEvent);
@@ -165,7 +177,7 @@ public class stalker_prototype_script : MonoBehaviour
     }
     private void TriggerStalkerEvent(int eventNum)
     {
-        if (eventNum != eventKeys.Count)
+        if (eventNum != eventKeys.Count - 1)
         {
             // Handle stalker event logic here.
             eventDuration = Random.Range(5, 20); // Set random event duration between 5 and 20 seconds
@@ -193,10 +205,6 @@ public class stalker_prototype_script : MonoBehaviour
             string eventKey = eventKeys[eventNum];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
-            if (notification != null)
-            {
-                notification.showNotification(eventMessage);
-            }
             EndingEvent(stalkerEvent);
         }
     }
