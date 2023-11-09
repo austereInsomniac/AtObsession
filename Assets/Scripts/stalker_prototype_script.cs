@@ -67,7 +67,7 @@ public class stalker_prototype_script : MonoBehaviour
 
     private int randomEvent;
     public notification_manager notification;
-    public swap_background_assets swap;
+    private swap_background_assets swap;
     // Start is called before the first frame update
     void Start()
     {
@@ -92,8 +92,8 @@ public class stalker_prototype_script : MonoBehaviour
         eventKeys = new List<string>();
         eventKeys.Add("Email");
         eventKeys.Add("Knocking on window");
-        eventKeys.Add("Suspicious Gift");
-        eventKeys.Add("Window Figure");
+        eventKeys.Add("Suspicious gift");
+        eventKeys.Add("Window figure");
         eventKeys.Add("Trapped in bathroom");
         randomEvent = Random.Range(0, eventKeys.Count - 1);
         // TriggerStalkerEvent(randomEvent); // Start with initial event
@@ -174,6 +174,7 @@ public class stalker_prototype_script : MonoBehaviour
             string eventKey = eventKeys[eventNum];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
+            Debug.Log(eventMessage);
             if (notification != null)
             {
                 notification.showNotification(eventMessage);
