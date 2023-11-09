@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 class StalkerEvents
 {
     int wellness;
@@ -38,6 +37,7 @@ class StalkerEvents
     public string getChoice2() { return choice2; }
     public string getChoice3() { return choice3; }
 }
+
 public class stalker_prototype_script : MonoBehaviour
 {
     private bool isOn = true;
@@ -68,6 +68,7 @@ public class stalker_prototype_script : MonoBehaviour
     private int randomEvent;
     public notification_manager notification;
     private swap_background_assets swap;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -287,7 +288,7 @@ public class stalker_prototype_script : MonoBehaviour
         Debug.Log("Stalker event ended.");
         if (eventNum == 4 || randomEvent == 4)
         {
-            move.goToGameOver();
+            //move.goToGameOver();
         }
     }
 
@@ -295,9 +296,11 @@ public class stalker_prototype_script : MonoBehaviour
     {
         move.moveLocation(GameObject.Find("Bathroom"), GameObject.Find("Bathroom Canvas"), player.getLocation(), player.getLocationCanvas());
         stalkerEventHandler.SetActive(true);
+
         Destroy(choice1);
         Destroy(choice2);
         Destroy(choice3);
+
         if (player.getEnding() < 0)
         {
             choiceText.text = stalkerEvent.getEventMessage() + "Bad Ending- The Stalker broke in and found you";
