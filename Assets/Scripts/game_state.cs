@@ -55,8 +55,8 @@ public class game_state : MonoBehaviour
 
     private void Awake()
     {
-        location = GameObject.Find("Living Room");
-        locationCanvas = GameObject.Find("Living Room Canvas");
+        location = GameObject.Find("Main Menu");
+        locationCanvas = GameObject.Find("Main Menu Canvas");
         hungerHUD = GameObject.Find("Hunger").GetComponent<SpriteRenderer>();
 
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
