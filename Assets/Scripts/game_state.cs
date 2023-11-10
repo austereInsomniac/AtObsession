@@ -211,12 +211,11 @@ public class game_state : MonoBehaviour
         // update later when we lock sleep to late at night
         if(time != 480)
         {
-            updateHunger(time);
+            updateHunger(t);
         }
-
-        // save stats to reset the day
-        if (time == 480)
+        else
         {
+            // save stats to reset the day
             savedMoney = money;
             savedReputation = reputation;
             savedSubscribers = subscribers;
