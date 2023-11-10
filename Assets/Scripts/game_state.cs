@@ -203,17 +203,15 @@ public class game_state : MonoBehaviour
 
             time = 480; // set time to 8am
 
-            
-
             updateWellness(-20); // Lowers your wellness
             locationManager.goToBedroom();  // Move to the bedroom
             // run sleep method
         }
-        else
+
+        // update later when we lock sleep to late at night
+        if(time != 480)
         {
-            // don't update hunger is we enter force sleep
-            // update hunger
-            updateHunger(t);
+            updateHunger(time);
         }
 
         // save stats to reset the day

@@ -21,7 +21,7 @@ public class splash_screen_manager : MonoBehaviour
     private float displayStartTime;
 
     // HUD
-    GameObject HUD;
+    CanvasGroup HUD;
     private bool shouldHUDShow;
 
     // Start is called before the first frame update
@@ -31,7 +31,7 @@ public class splash_screen_manager : MonoBehaviour
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
-        HUD = GameObject.Find("HUD");
+        HUD = GameObject.Find("HUD").GetComponent<CanvasGroup>();
         notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
 
         shouldHUDShow = true;
@@ -82,7 +82,7 @@ public class splash_screen_manager : MonoBehaviour
         notificationManager.disableNotification();
 
         // hide hud
-        HUD.SetActive(false);
+        HUD.alpha = 0;
         menuBlocker.enabled = true;
         menuCollider.enabled = true;
 
@@ -114,7 +114,7 @@ public class splash_screen_manager : MonoBehaviour
                 // enable HUD
                 if (shouldHUDShow)
                 {
-                    HUD.SetActive(true);
+                    HUD.alpha = 1;
                 }
 
                 // run notification
