@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+// Mackenzie
+
 public class move_location : MonoBehaviour
 {
     private Vector3 storedLocation = new Vector3(2000, 0, 0);
@@ -78,5 +80,4 @@ public class move_location : MonoBehaviour
             }
         } 
     }
-
 }

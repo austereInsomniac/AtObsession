@@ -18,16 +18,12 @@ public class video_making : MonoBehaviour
         player = GameObject.Find("Player"); //Identifies the player object
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        subscribers = player.GetComponent<game_state>().getSubscribers(); //Sets the local subscribers to be the amount in the game state
-        reputation = player.GetComponent<game_state>().getReputation(); //Sets the local reputation to be the amount in the game state
-    }
-
     //Does all the math for making a video using starCount as hours
     public void makeVideo(int starCount)
     {
+        subscribers = player.GetComponent<game_state>().getSubscribers(); //Sets the local subscribers to be the amount in the game state
+        reputation = player.GetComponent<game_state>().getReputation(); //Sets the local reputation to be the amount in the game state
+
         //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%
         int r = Random.Range(0, 10);
         int newSubscribers = (int)(3*starCount) + (reputation +r);

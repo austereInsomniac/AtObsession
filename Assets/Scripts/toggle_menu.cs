@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 public class toggle_menu : MonoBehaviour
 {
     // V1 Riley
-    // V2 Mackenzie 10/16/2023
+    // V2 Mackenzie 10/16/2023+
 
     [SerializeField] 
     private CanvasGroup menu;

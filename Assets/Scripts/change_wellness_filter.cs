@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
+//Mackenzie 
+
 public class change_wellness_filter : MonoBehaviour
 {
     private void Start()
     {
         // add the update method to the wellness delegate
-        GameObject player = GameObject.Find("Player");
-        player.GetComponent<game_state>().addOnWellnessChange(changeFilterOpacity);
+        game_state player = GameObject.Find("Player").GetComponent<game_state>();
+        player.addOnWellnessChange(changeFilterOpacity);
 
         // run the filter when the game starts
-        changeFilterOpacity(player.GetComponent<game_state>().getWellness(), 
-                            player.GetComponent<game_state>().getWellness());
+        changeFilterOpacity(player.getWellness(), 
+                            player.getWellness());
     }
 
     // this method is called every time wellness is updated

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Mackenzie + Joe
+
 public class do_an_action : MonoBehaviour
 {
     // increase in each statistic
@@ -19,8 +21,6 @@ public class do_an_action : MonoBehaviour
     private double changeMoney;
 
     private game_state player;
-    public notification_manager notification;
-    public int notifNum;
 
     void Awake()
     {
@@ -37,17 +37,5 @@ public class do_an_action : MonoBehaviour
         player.updateSubscribers(changeSubs);
         player.updateMoney(changeMoney);
         player.updateEnding(changeEnd);
-    }
-
-    public void ShowNotificationOnClick()
-    {
-        List<string> notifications;
-        notifications = new List<string>();
-        notifications.Add("That didn't make you feel very good");
-        notifications.Add("You feel refreshed");
-        if (notification != null)
-        {
-            notification.ShowNotifications(notifications[notifNum]);
-        }
     }
 }
