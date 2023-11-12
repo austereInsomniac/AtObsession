@@ -32,6 +32,8 @@ class ActionVariable
     }
 
     public string getGroup() { return group; }
+
+    //this updates the time as it adds the time to do something and adds it to the current time
     public void Time(int oldTime, int newTime)
     {
         time = oldTime + newTime;
@@ -59,6 +61,7 @@ public class daily_action_storage : MonoBehaviour
         day = 1;
     }
 
+    //This gets the time between an hour and two hours as an int
     int RandomTimeBig()
     {
         int randomNumber;
@@ -68,6 +71,7 @@ public class daily_action_storage : MonoBehaviour
         return randomNumber;
     }
 
+    //this gets the time between half an hour and an hour as an int
     int RandomTimeSmall()
     {
         int randomNumber;
@@ -77,6 +81,7 @@ public class daily_action_storage : MonoBehaviour
         return randomNumber;
     }
 
+    //this gets a random wellness of either 15 or -15 as an int
     int RandomWellness()
     {
         int randomNumber;
@@ -92,6 +97,7 @@ public class daily_action_storage : MonoBehaviour
         return 0;
     }
 
+    //this gets the max times an activity can be done which is an int
     int getMaxTimesPerDay(string key)
     {
         if (maxTimesPerDay.ContainsKey(key))
@@ -101,6 +107,7 @@ public class daily_action_storage : MonoBehaviour
         return 999999;
     }
 
+    //this gets the amount of times the user has done the activity
     int getCurrentTimesPerDay(string key)
     {
         if (timesPerDay.ContainsKey(key))
