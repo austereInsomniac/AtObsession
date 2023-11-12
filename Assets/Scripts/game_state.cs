@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class game_state : MonoBehaviour
 {
+    // Instance Variables
     private int wellness;
+    private int savedWellness;
+
     private int reputation;
+    private int savedReputation;
+
     private int subscribers;
+    private int savedSubscribers;
+
     private int ending;
+    private int savedEnding;
+
     private double money;
+    private double savedMoney;
+
     private bool hasDied;
+    private bool savedHasDied;
 
     // time is in terms of minutes since midnight - 480 is 8am
     private int time;
     private int day;
+    private int savedDay;
 
-    // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
+    // hours since you last ate. this will update the UI. if it equal to or greater than 6, you are hungry
     private int hunger;
+    private int savedHunger;
     private SpriteRenderer hungerHUD;
 
     // current room and its canvas
@@ -41,10 +55,11 @@ public class game_state : MonoBehaviour
     public delegate void changeMoney(double oldMoney, double newMoney);
     private changeMoney onMoneyChanged;
 
+    // Set Up
     private void Awake()
     {
-        location = GameObject.Find("Living Room");
-        locationCanvas = GameObject.Find("Living Room Canvas");
+        location = GameObject.Find("Main Menu");
+        locationCanvas = GameObject.Find("Main Menu Canvas");
         hungerHUD = GameObject.Find("Hunger").GetComponent<SpriteRenderer>();
 
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
@@ -52,14 +67,30 @@ public class game_state : MonoBehaviour
         splashScreenManager = GetComponent<splash_screen_manager>();
 
         wellness = 70;
+        savedWellness = 70;
+
         day = 1;
+        savedDay = 1;
+
         time = 480;
+
         hunger = 0;
+        savedHunger = 0;
+
         reputation = 20;
+        savedReputation = 20;
+
         subscribers = 1000;
+        savedSubscribers = 1000;
+
         ending = 0;
+        savedEnding = 0;
+
         money = 100.00;
+        savedMoney = 100.00;
+
         hasDied = false;
+        savedHasDied = false;
     }
 
     // getters
@@ -84,11 +115,13 @@ public class game_state : MonoBehaviour
     // setters + methods
     public void updateWellness(int w)
     {
-        if (wellness + w >= 100)
+        wellness += w;
+
+        if (wellness >= 100)
         { 
             wellness = 100;
         }
-        else if (wellness + w <= 0)
+        else if (wellness <= 0)
         {
             wellness = 0;
 
@@ -101,19 +134,24 @@ public class game_state : MonoBehaviour
                 playHospitalScene();
             }
         }
-        else
-        {
-            wellness += w;
-        }
 
         notifyOnWellnessChanged(wellness - w, wellness);
     }
 
     private void killPlayer()
     {
+        // reset stats
+        money = 100;
+        reputation = 20;
+        subscribers = 1000;
+        wellness = 70;
+        ending = 0;
+        day = 1;
+        hunger = 0;
+
+        // game over
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
-        hasDied = false;
     }
 
     private void playHospitalScene()
@@ -123,13 +161,36 @@ public class game_state : MonoBehaviour
         updateWellness(50);
 
         // call hospital scene 
-        splashScreenManager.openSplashScreen("Black");
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
-        
-        // give the hospital text
-
     }
+
+    public void resetDay()
+    {
+        // reset stats
+        wellness = savedWellness;
+        hasDied = savedHasDied;
+        money = savedMoney;
+        day = savedDay;
+        reputation = savedReputation;
+        subscribers = savedSubscribers;
+        ending = savedEnding;
+        time = 480;
+        hunger = savedHunger;
+
+        // move location
+        locationManager.goToBedroom();
+
+        // reset HUD + splash screen
+        splashScreenManager.openSplashScreen("reset");
+
+        // call delegates
+        notifyOnWellnessChanged(wellness, wellness);
+        notifyOnTimeChanged(time, time);
+        notifyOnMoneyChange(money, money);
+        notifyOnSubscribersChange(subscribers, subscribers);
+    }
+
     public void updateTime(int t)
     {
         // update time
@@ -143,18 +204,34 @@ public class game_state : MonoBehaviour
         }
 
         // force sleep 
-        // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
-        // bug if an action is longer than 4 hours...
         if ((time > 240 && time < 480))
         {
+            // If the time when the activity is run is between 4 and 8 am then advance the day to make the sleep
+            // bug if an action is longer than 6 hours...
+
             time = 480; // set time to 8am
+
             updateWellness(-20); // Lowers your wellness
-            GetComponent<move_location>().goToBedroom();  // Move to the bedroom
+            locationManager.goToBedroom();  // Move to the bedroom
             // run sleep method
         }
 
-        // update hunger
-        updateHunger(t);
+        // update later when we lock sleep to late at night
+        if(time != 480)
+        {
+            updateHunger(t);
+        }
+        else
+        {
+            // save stats to reset the day
+            savedMoney = money;
+            savedReputation = reputation;
+            savedSubscribers = subscribers;
+            savedWellness = wellness;
+            savedDay = day;
+            savedHasDied = hasDied;
+            savedHunger = hunger;
+        }
 
         // call all delegates
         notifyOnTimeChanged(time - t, time);
@@ -171,18 +248,20 @@ public class game_state : MonoBehaviour
             hungerHUD.enabled = true;
 
             // display notification
-            notificationManager.ShowNotifications("You are hungry.");
+            notificationManager.showNotification("You are hungry.");
         }
 
         // for each time jump, lower wellness
-        if(hunger > 4*60)
+        if(hunger > 6*60)
         {
+            // don't subtract when the player is sleeping
+
             // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
-            int over = 4*60 - hunger;
+            int over = 6*60 - hunger;
             int loss = Mathf.Max(t, over);
 
-            // for every hour you are hungry after the original notification, lower wellness by 10
-            updateWellness((int)(-loss * .1666 -.5));
+            // for every hour you are hungry after the original notification, lower wellness by 5
+            updateWellness((int)(-loss * .0833 -.5));
         }
     }
 
@@ -200,9 +279,9 @@ public class game_state : MonoBehaviour
     }
 
     public void updateSubscribers(int s)
-    {
-        //notifyOnSubscribersChange(subscribers, subscribers + s);
+    {    
         subscribers = subscribers + s;
+        notifyOnSubscribersChange(subscribers - s, subscribers);
     }
 
     public void updateEnding(int e)
@@ -215,12 +294,21 @@ public class game_state : MonoBehaviour
         money = money + m;
         notifyOnMoneyChange(money - m, money);
     }
-
-    // the players current room has changed
+ 
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
+        // the players current room has changed
         location = newLocation;
         locationCanvas = newCanvas;
+    }
+
+    private void Update()
+    {
+        // move to main menu
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            locationManager.goToMainMenu();
+        }
     }
 
     // delegate methods
@@ -282,14 +370,6 @@ public class game_state : MonoBehaviour
     private void doNothing(int t, int t2) { }
 
     private void doNothing2(double t, double t2) { }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            locationManager.goToMainMenu();
-        }
-    }
 }
 
 
