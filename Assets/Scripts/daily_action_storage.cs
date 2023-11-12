@@ -122,6 +122,7 @@ public class daily_action_storage : MonoBehaviour
 
         if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
+            GetComponent<splash_screen_manager>().openSplashScreen(key);
             state.updateWellness(activity.getWellness());
             state.updateTime(activity.getTime());
             state.updateMoney(activity.getMoney());
@@ -133,7 +134,7 @@ public class daily_action_storage : MonoBehaviour
         }
 
         // update the splash screen
-        GetComponent<splash_screen_manager>().openSplashScreen(key);
+        /GetComponent<splash_screen_manager>().openSplashScreen(key);
     }
 
     // Start is called before the first frame update
