@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+
+// Mackenzie
 
 public class HUD_text_manager : MonoBehaviour
 {
     // get text boxes
-    GameObject player;
     TMP_Text dayText;
     TMP_Text timeText;
-    TMP_Text wellnessText;
     TMP_Text moneyText;
+
+    // Developer Mode only
+    TMP_Text wellnessText;
     TMP_Text repText;
     TMP_Text subText;
 
-    void Awake() 
+    private void Start()
     {
         // grab text objects
         dayText = GameObject.Find("Day Text").GetComponent<TMP_Text>();
@@ -25,17 +29,14 @@ public class HUD_text_manager : MonoBehaviour
         GetComponent<game_state>().addOnTimeChange(updateTimeText);
         GetComponent<game_state>().addOnMoneyChange(updateMoneyText);
 
-        // dev text
+        // dev mode text
         if (GameObject.Find("Wellness Text") != null)
         {
             wellnessText = GameObject.Find("Wellness Text").GetComponent<TMP_Text>();
             repText = GameObject.Find("Reputation Text").GetComponent<TMP_Text>();
             subText = GameObject.Find("Subscribers Text").GetComponent<TMP_Text>();
         }
-    }
 
-    private void Start()
-    {
         // run all displays immediately
         updateTimeText(GetComponent<game_state>().getTime(), GetComponent<game_state>().getTime());
         updateMoneyText(GetComponent<game_state>().getMoney(), GetComponent<game_state>().getMoney());
@@ -44,10 +45,9 @@ public class HUD_text_manager : MonoBehaviour
     void updateTimeText(int oldTime, int newTime)
     {
         // update the time text
-        string updateText = "" + (newTime / 60) + ":" 
-                            + (newTime % 60);
+        DateTime d = new DateTime(1, 1, 1, newTime / 60, newTime % 60, 0);
+        string updateText = d.ToString("hh:mm"); // add tt to the end of the quotes to add AM/PM
         timeText.SetText(updateText);
-        // issue: minute ending in 0 will only display one digit
 
         // update the day text
         updateText = "" + GetComponent<game_state>().getDay();

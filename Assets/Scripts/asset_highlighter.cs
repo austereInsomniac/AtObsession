@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//Mackenzie
+
 public class asset_highlighter : MonoBehaviour
 {
     private SpriteRenderer highlight;

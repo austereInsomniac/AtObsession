@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Mackenzie
+
 public class splash_screen_manager : MonoBehaviour
 {
     // store the splash screens

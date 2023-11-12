@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class game_state : MonoBehaviour
 {
+    // Instance Variables
     private int wellness;
     private int savedWellness;
 
@@ -27,8 +28,9 @@ public class game_state : MonoBehaviour
     private int day;
     private int savedDay;
 
-    // hours since you last ate. this will update the UI if it equal to or greater than 4, you are hungry
+    // hours since you last ate. this will update the UI. if it equal to or greater than 6, you are hungry
     private int hunger;
+    private int savedHunger;
     private SpriteRenderer hungerHUD;
 
     // current room and its canvas
@@ -53,6 +55,7 @@ public class game_state : MonoBehaviour
     public delegate void changeMoney(double oldMoney, double newMoney);
     private changeMoney onMoneyChanged;
 
+    // Set Up
     private void Awake()
     {
         location = GameObject.Find("Main Menu");
@@ -68,8 +71,11 @@ public class game_state : MonoBehaviour
 
         day = 1;
         savedDay = 1;
+
         time = 480;
+
         hunger = 0;
+        savedHunger = 0;
 
         reputation = 20;
         savedReputation = 20;
@@ -141,6 +147,7 @@ public class game_state : MonoBehaviour
         wellness = 70;
         ending = 0;
         day = 1;
+        hunger = 0;
 
         // game over
         splashScreenManager.openSplashScreen("Game over");
@@ -169,6 +176,7 @@ public class game_state : MonoBehaviour
         subscribers = savedSubscribers;
         ending = savedEnding;
         time = 480;
+        hunger = savedHunger;
 
         // move location
         locationManager.goToBedroom();
@@ -222,6 +230,7 @@ public class game_state : MonoBehaviour
             savedWellness = wellness;
             savedDay = day;
             savedHasDied = hasDied;
+            savedHunger = hunger;
         }
 
         // call all delegates

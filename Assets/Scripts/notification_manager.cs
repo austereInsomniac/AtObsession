@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 
+// Joe + Mackenzie
+
 public class notification_manager : MonoBehaviour
 {
     private bool isNotificationShowing;

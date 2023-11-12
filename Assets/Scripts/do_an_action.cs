@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Mackenzie + Joe
+
 public class do_an_action : MonoBehaviour
 {
     // increase in each statistic

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Mackenzie 
+
 // this script needs to be palced on the plyer object to work properly
 
 public class buyableItem

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Connor + Mackenzie
+
 class ActionVariable
 {
     int wellness = 0;
