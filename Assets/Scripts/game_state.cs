@@ -55,6 +55,9 @@ public class game_state : MonoBehaviour
     public delegate void changeMoney(double oldMoney, double newMoney);
     private changeMoney onMoneyChanged;
 
+    public delegate void changeReputation(int oldReputation, int newReputation);
+    private changeReputation onReputationChanged;
+
     // Set Up
     private void Awake()
     {
@@ -357,6 +360,16 @@ public class game_state : MonoBehaviour
         onMoneyChanged(oldMoney, newMoney);
     }
 
+    public void addOnReputationChange(changeReputation changeReputation)
+    {
+        onReputationChanged += changeReputation;
+    }
+
+    private void notifyOnReputationChange(int oldReputation, int newReputation)
+    {
+        onReputationChanged(oldReputation, newReputation);
+    }
+
 
     // remove later
     private void Start()
@@ -365,6 +378,7 @@ public class game_state : MonoBehaviour
         addOnWellnessChange(doNothing);
         addOnSubscribersChange(doNothing);
         addOnMoneyChange(doNothing2);
+        addOnReputationChange(doNothing);
     }
 
     private void doNothing(int t, int t2) { }
