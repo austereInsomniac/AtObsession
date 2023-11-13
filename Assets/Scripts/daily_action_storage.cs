@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Connor + Mackenzie
 
@@ -46,6 +47,8 @@ public class daily_action_storage : MonoBehaviour
     Dictionary<string, ActionVariable> activities;
     Dictionary<string, int> timesPerDay;
     Dictionary<string, int> maxTimesPerDay;
+    Dictionary<string ,Button> buttons;
+    
 
     // outside objects
     private game_state state;
@@ -129,10 +132,12 @@ public class daily_action_storage : MonoBehaviour
     {
         if(day != GetComponent<game_state>().getDay())
         {
-            foreach (KeyValuePair<string, int> action in maxTimesPerDay)
+            timesPerDay.Clear();
+            foreach (KeyValuePair<string, Button> button in buttons)
             {
-                timesPerDay[action.Key] = 0;
+                button.Value.interactable = true;
             }
+            buttons.Clear();
         }
         day = GetComponent<game_state>().getDay();
     }
@@ -143,11 +148,11 @@ public class daily_action_storage : MonoBehaviour
         randomizeStats();
 
         // reset times if needed
-        //resetTimesPerDay();
+        resetTimesPerDay();
 
         // update each statistic
         ActionVariable activity = activities[key];
-
+       
        if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
             updateTimesPerDay(activity.getGroup());
@@ -163,6 +168,14 @@ public class daily_action_storage : MonoBehaviour
 
             // update the splash screen
             GetComponent<splash_screen_manager>().openSplashScreen(key);
+        }
+        else
+        {
+
+            GameObject findButton = GameObject.Find(key);
+            Button button1 = findButton.GetComponent<Button>();
+            button1.interactable = false;
+            buttons.Add(key, button1);
         }
     }
 
@@ -211,6 +224,8 @@ public class daily_action_storage : MonoBehaviour
         maxTimesPerDay.Add("exercise", 1);
         maxTimesPerDay.Add("friends", 99999999);
         maxTimesPerDay.Add("walk", 2);
+
+        buttons = new Dictionary<string, Button>();
     }
 
     private void randomizeStats()
