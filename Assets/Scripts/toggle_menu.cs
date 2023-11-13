@@ -25,25 +25,12 @@ public class toggle_menu : MonoBehaviour
         buttons = menu.GetComponentsInChildren<UnityEngine.UI.Button>(true);
     }
 
-    private void Start()
-    {
-        foreach (UnityEngine.UI.Button button in buttons)
-        {
-            button.interactable = false;
-        }
-    }
-
     public void open()
     {
         menu.alpha = 1;
         menu.blocksRaycasts = true;
         menuBlocker.enabled = true;
         menuCollider.enabled = true;
-
-        foreach (UnityEngine.UI.Button button in buttons)
-        {
-            button.interactable = true;
-        }
     }
 
     public void close()
@@ -52,11 +39,6 @@ public class toggle_menu : MonoBehaviour
         menu.blocksRaycasts = false;
         menuBlocker.enabled = false;
         menuCollider.enabled = false;
-
-        foreach (UnityEngine.UI.Button button in buttons)
-        {
-            button.interactable = false;
-        }
     }
 
     public void closeWithBlocker()
@@ -64,11 +46,6 @@ public class toggle_menu : MonoBehaviour
         menu.alpha = 0;
         menu.blocksRaycasts = false;
         menuBlocker.enabled = false;
-
-        foreach (UnityEngine.UI.Button button in buttons)
-        {
-            button.interactable = false;
-        }
     }
 
     public void OnMouseDown()
