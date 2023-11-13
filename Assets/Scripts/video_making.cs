@@ -26,7 +26,7 @@ public class video_making : MonoBehaviour
 
         //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%
         int r = Random.Range(0, 10);
-        int newSubscribers = (int)(3*starCount) + (reputation +r);
+        int newSubscribers = (3*starCount) + (reputation +r);
         newSubscribers = (int)newSubscribers/5;
 
         subscribers += newSubscribers; //Update to the new number of subscribers
