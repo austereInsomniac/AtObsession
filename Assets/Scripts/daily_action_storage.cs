@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 // Connor + Mackenzie
 
@@ -142,14 +143,26 @@ public class daily_action_storage : MonoBehaviour
         day = GetComponent<game_state>().getDay();
     }
 
+    public void notInteractable(string key)
+    {
+        ActionVariable activity = activities[key];
+        if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
+        {
+            GameObject findButton = GameObject.Find(key);
+            Button button1 = findButton.GetComponent<Button>();
+            button1.interactable = false;
+            buttons.Add(key, button1);
+        }
+    }
     public void doAction(string key)
     {
         // re roll random stats
         randomizeStats();
 
         // reset times if needed
+        
         resetTimesPerDay();
-
+        notInteractable(key);
         // update each statistic
         ActionVariable activity = activities[key];
        
@@ -168,14 +181,6 @@ public class daily_action_storage : MonoBehaviour
 
             // update the splash screen
             GetComponent<splash_screen_manager>().openSplashScreen(key);
-        }
-        else
-        {
-
-            GameObject findButton = GameObject.Find(key);
-            Button button1 = findButton.GetComponent<Button>();
-            button1.interactable = false;
-            buttons.Add(key, button1);
         }
     }
 
