@@ -50,7 +50,6 @@ public class daily_action_storage : MonoBehaviour
     // outside objects
     private game_state state;
     private int day;
-
     // RNG
     System.Random rand = new System.Random();
 
@@ -149,7 +148,7 @@ public class daily_action_storage : MonoBehaviour
         // update each statistic
         ActionVariable activity = activities[key];
 
-        //if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
+       if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
             updateTimesPerDay(activity.getGroup());
 
