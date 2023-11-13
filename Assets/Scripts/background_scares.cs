@@ -52,7 +52,7 @@ public class background_scares : MonoBehaviour
     {
         scareDuration = Random.Range(5, 20);
         scareEndTime = Time.time + scareDuration;
-        string scareMessage = "...Something changed";
+        string scareMessage = "...Something feels off";
         Debug.Log(scareMessage);
 
         swap = swappableAssets[scareNum].GetComponent<swap_background_assets>();

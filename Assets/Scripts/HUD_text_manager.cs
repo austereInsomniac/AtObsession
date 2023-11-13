@@ -46,7 +46,7 @@ public class HUD_text_manager : MonoBehaviour
     {
         // update the time text
         DateTime d = new DateTime(1, 1, 1, newTime / 60, newTime % 60, 0);
-        string updateText = d.ToString("hh:mm"); // add tt to the end of the quotes to add AM/PM
+        string updateText = d.ToString("hh:mm tt"); // add tt to the end of the quotes to add AM/PM
         timeText.SetText(updateText);
 
         // update the day text
