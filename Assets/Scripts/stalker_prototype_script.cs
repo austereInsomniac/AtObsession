@@ -67,7 +67,7 @@ public class stalker_prototype_script : MonoBehaviour
 
     private int randomEvent;
     public notification_manager notification;
-    private swap_background_assets swap;
+    private swap_assets swap;
 
     // Start is called before the first frame update
     void Start()
