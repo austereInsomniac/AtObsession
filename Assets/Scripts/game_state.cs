@@ -164,6 +164,10 @@ public class game_state : MonoBehaviour
         hasDied = true;
         updateWellness(50);
 
+        // half money
+        money /= 2;
+        notifyOnMoneyChange(money * 2, money);
+
         // call hospital scene to ovveride current splash screen
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
@@ -321,6 +325,11 @@ public class game_state : MonoBehaviour
         }
 
         notifyOnReputationChange(reputation - r, reputation);
+    }
+
+    public void makeVideo()
+    {
+        videosMadeToday++;
     }
 
     public void updateSubscribers(int s)
