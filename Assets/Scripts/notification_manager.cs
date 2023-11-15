@@ -1,12 +1,16 @@
 using UnityEngine;
 using TMPro;
+using static Codice.Client.Common.WebApi.WebApiEndpoints;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
+using UnityEditor;
+using UnityEngine.Device;
 
 // Joe + Mackenzie
 
 public class notification_manager : MonoBehaviour
 {
     private bool isNotificationShowing;
-    private float displayTime = 2.0f;
+    private float displayTime = 0.1f;
     private float displayStartTime;
     private TMP_Text mText;
 
@@ -79,7 +83,11 @@ public class notification_manager : MonoBehaviour
     {
         if (isNotificationShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
         {
-            disableNotification();
+            // close the notification after .5 seconds if any key or mouse button is held down
+            if (Input.anyKey)
+            {
+                disableNotification();
+            }
         }
     }
 }

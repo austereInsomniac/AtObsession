@@ -174,6 +174,7 @@ public class game_state : MonoBehaviour
         // call hospital scene to ovveride current splash screen
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
+        notificationManager.showNotification("You haven't been taking care of yourself...");
     }
 
     private void playInfamyScene()
@@ -185,6 +186,7 @@ public class game_state : MonoBehaviour
         // call hospital scene to ovveride current splash screen
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
+        notificationManager.showNotification("You haven't been keeping up with your work...");
     }
 
     public void resetDay()
