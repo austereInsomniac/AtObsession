@@ -30,10 +30,8 @@ public class HUD_text_manager : MonoBehaviour
         GetComponent<game_state>().addOnMoneyChange(updateMoneyText);
 
         // dev mode text
-        if (GameObject.Find("Wellness Text") != null)
+        if (GameObject.Find("subscribers Text") != null)
         {
-            wellnessText = GameObject.Find("Wellness Text").GetComponent<TMP_Text>();
-            repText = GameObject.Find("Reputation Text").GetComponent<TMP_Text>();
             subText = GameObject.Find("Subscribers Text").GetComponent<TMP_Text>();
         }
 
@@ -63,16 +61,10 @@ public class HUD_text_manager : MonoBehaviour
     // temp displays
     private void Update()
     {
-        if (GameObject.Find("Wellness Text") != null)
+        if (GameObject.Find("subscribers Text") != null)
         {
-            string updateText = "Rep: " + GetComponent<game_state>().getReputation();
-            repText.SetText(updateText);
-
-            updateText = "Subs: " + GetComponent<game_state>().getSubscribers();
+            string updateText = "Subs: " + GetComponent<game_state>().getSubscribers();
             subText.SetText(updateText);
-
-            updateText = "Wellness: " + GetComponent<game_state>().getWellness();
-            wellnessText.SetText(updateText);
         }
     }
 }

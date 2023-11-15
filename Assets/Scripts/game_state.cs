@@ -10,6 +10,7 @@ public class game_state : MonoBehaviour
 
     private int reputation;
     private int savedReputation;
+    private int videosMadeToday;
 
     private int subscribers;
     private int savedSubscribers;
@@ -80,8 +81,8 @@ public class game_state : MonoBehaviour
         hunger = 0;
         savedHunger = 0;
 
-        reputation = 20;
-        savedReputation = 20;
+        reputation = 25;
+        savedReputation = 25;
 
         subscribers = 1000;
         savedSubscribers = 1000;
@@ -180,6 +181,7 @@ public class game_state : MonoBehaviour
         ending = savedEnding;
         time = 480;
         hunger = savedHunger;
+        videosMadeToday = 0;
 
         // move location
         locationManager.goToBedroom();
@@ -192,6 +194,7 @@ public class game_state : MonoBehaviour
         notifyOnTimeChanged(time, time);
         notifyOnMoneyChange(money, money);
         notifyOnSubscribersChange(subscribers, subscribers);
+        notifyOnReputationChange(reputation, reputation);
     }
 
     public void updateTime(int t)
@@ -204,6 +207,14 @@ public class game_state : MonoBehaviour
         {
             day++;
             time -= 1440;
+
+            // update reputaiton if needed
+            if(videosMadeToday == 0)
+            {
+                updateReputation(-20);
+            }
+
+            videosMadeToday = 0;
         }
 
         // force sleep 
@@ -236,7 +247,7 @@ public class game_state : MonoBehaviour
             savedHunger = hunger;
         }
 
-        // call all delegates
+        // call delegate
         notifyOnTimeChanged(time - t, time);
     }
 
@@ -278,7 +289,8 @@ public class game_state : MonoBehaviour
 
     public void updateReputation(int r)
     {
-        reputation = reputation + r;
+        reputation += r;
+        notifyOnReputationChange(reputation - r, reputation);
     }
 
     public void updateSubscribers(int s)
@@ -369,7 +381,6 @@ public class game_state : MonoBehaviour
     {
         onReputationChanged(oldReputation, newReputation);
     }
-
 
     // remove later
     private void Start()
