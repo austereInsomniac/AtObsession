@@ -144,6 +144,9 @@ public class daily_action_storage : MonoBehaviour
 
         //if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
+            // update the splash screen FIRST so that death scenes work
+            GetComponent<splash_screen_manager>().openSplashScreen(key);
+
             updateTimesPerDay(activity.getGroup());
 
             state.updateWellness(activity.getWellness());
@@ -154,9 +157,6 @@ public class daily_action_storage : MonoBehaviour
             {
                 state.resetHunger();
             }
-
-            // update the splash screen
-            GetComponent<splash_screen_manager>().openSplashScreen(key);
         }
     }
 

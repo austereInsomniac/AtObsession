@@ -121,7 +121,7 @@ public class game_state : MonoBehaviour
     {
         wellness += w;
 
-        if (wellness >= 100)
+        if (wellness > 100)
         { 
             wellness = 100;
         }
@@ -146,7 +146,7 @@ public class game_state : MonoBehaviour
     {
         // reset stats
         money = 100;
-        reputation = 20;
+        reputation = 25;
         subscribers = 1000;
         wellness = 70;
         ending = 0;
@@ -164,7 +164,18 @@ public class game_state : MonoBehaviour
         hasDied = true;
         updateWellness(50);
 
-        // call hospital scene 
+        // call hospital scene to ovveride current splash screen
+        splashScreenManager.openSplashScreen("Hospital");
+        locationManager.goToBedroom();
+    }
+
+    private void playInfamyScene()
+    {
+        // set stats
+        hasDied = true;
+        updateReputation(20);
+
+        // call hospital scene to ovveride current splash screen
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
     }
@@ -290,6 +301,25 @@ public class game_state : MonoBehaviour
     public void updateReputation(int r)
     {
         reputation += r;
+
+        if (reputation > 100)
+        {
+            reputation = 100;
+        }
+        else if (reputation <= 0)
+        {
+            reputation = 0;
+
+            if (hasDied)
+            {
+                killPlayer();
+            }
+            else
+            {
+                playInfamyScene();
+            }
+        }
+
         notifyOnReputationChange(reputation - r, reputation);
     }
 
