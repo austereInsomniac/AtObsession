@@ -15,7 +15,7 @@ public class background_scares : MonoBehaviour
     private GameObject[] swappableAssets;
     private GameObject player;
 
-    private swap_background_assets swap;
+    private swap_assets swap;
     public notification_manager notification;
 
     // Start is called before the first frame update
@@ -55,7 +55,7 @@ public class background_scares : MonoBehaviour
         string scareMessage = "...Something feels off";
         Debug.Log(scareMessage);
 
-        swap = swappableAssets[scareNum].GetComponent<swap_background_assets>();
+        swap = swappableAssets[scareNum].GetComponent<swap_assets>();
 
         if (swap != null)
         {
