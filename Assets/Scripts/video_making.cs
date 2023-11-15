@@ -9,18 +9,20 @@ public class video_making : MonoBehaviour
     private int subscribers; // Creates a local instance of the subscribers variable
     private int reputation; // Creates a local Instance of the reputation varaible
 
-    GameObject player;
+    game_state player;
 
     void Awake()
     {
-        player = GameObject.Find("Player"); //Identifies the player object
+        player = GameObject.Find("Player").GetComponent<game_state>(); //Identifies the player object
     }
 
     //Does all the math for making a video using starCount as hours
     public void makeVideo(int starCount)
     {
-        subscribers = player.GetComponent<game_state>().getSubscribers(); //Sets the local subscribers to be the amount in the game state
-        reputation = player.GetComponent<game_state>().getReputation(); //Sets the local reputation to be the amount in the game state
+        player.makeVideo();
+
+        subscribers = player.getSubscribers(); //Sets the local subscribers to be the amount in the game state
+        reputation = player.getReputation(); //Sets the local reputation to be the amount in the game state
 
         //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%
         int r = Random.Range(0, 10);

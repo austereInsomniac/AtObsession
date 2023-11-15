@@ -80,9 +80,6 @@ public class splash_screen_manager : MonoBehaviour
         displayStartTime = Time.timeSinceLevelLoad;
         isSplashShowing = true;
 
-        // diable any current notifications
-        notificationManager.disableNotification();
-
         // hide hud
         HUD.alpha = 0;
         menuBlocker.enabled = true;
@@ -120,9 +117,6 @@ public class splash_screen_manager : MonoBehaviour
                 {
                     HUD.alpha = 1;
                 }
-
-                // run notification
-                notificationManager.repeatNotification();
             }
         }
     }
