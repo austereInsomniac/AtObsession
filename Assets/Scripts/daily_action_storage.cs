@@ -129,13 +129,19 @@ public class daily_action_storage : MonoBehaviour
         }
     }
 
+    //clears the current timesPerDay dictionary and makes the buttons in the in the buttons
+    //dictionary interactable, if the day advances
     private void resetTimesPerDay()
     {
+        Debug.Log(day);
+        Debug.Log(GetComponent<game_state>().getDay());
         if(day != GetComponent<game_state>().getDay())
         {
+            Debug.Log("In the if");
             timesPerDay.Clear();
             foreach (KeyValuePair<string, Button> button in buttons)
             {
+                Debug.Log("In foreach loop");
                 button.Value.interactable = true;
             }
             buttons.Clear();
@@ -143,9 +149,9 @@ public class daily_action_storage : MonoBehaviour
         day = GetComponent<game_state>().getDay();
     }
 
+    //Sets the buttons to not interactable when the user has used them up for the current day
     public void notInteractable(string key, string group)
     {
-
         if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
         {
             if(group == "food" && key == "Cook food")
@@ -157,6 +163,7 @@ public class daily_action_storage : MonoBehaviour
                 button1.interactable = false;
                 button2.interactable = false;
                 buttons.Add(group, button1);
+                buttons.Add(key, button2);
             }
             else if (group == "food" && key == "Eat at a restaurant")
             {
@@ -167,6 +174,7 @@ public class daily_action_storage : MonoBehaviour
                 button1.interactable = false;
                 button2.interactable = false;
                 buttons.Add(group, button1);
+                buttons.Add(key, button2);
             }
             else
             {
@@ -182,9 +190,6 @@ public class daily_action_storage : MonoBehaviour
         // re roll random stats
         randomizeStats();
 
-        // reset times if needed
-        
-        resetTimesPerDay();
         // update each statistic
         ActionVariable activity = activities[key];
        
@@ -195,6 +200,9 @@ public class daily_action_storage : MonoBehaviour
             state.updateWellness(activity.getWellness());
             state.updateTime(activity.getTime());
             state.updateMoney(activity.getMoney());
+
+            // reset times if needed
+            resetTimesPerDay();
 
             if (activity.getGroup() == "food" || activity.getGroup() == "snack")
             {
