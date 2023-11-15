@@ -235,7 +235,10 @@ public class VideoMakingTests
         computerCanvas = GameObject.Find("Computer Canvas");
         videoMaking = player.GetComponent<video_making>();
         game_state gameState = player.GetComponent<game_state>();
+        player.GetComponent<stalker_prototype_script>().enabled = false;
+        gameState.testingVideoWellness = true;
         int wellness = gameState.getWellness();
+
 
         Assert.IsNotNull(player);
         Assert.IsNotNull(computerCanvas);
@@ -261,7 +264,7 @@ public class VideoMakingTests
         for (int i = 0; i < 10; i++)
         {
             gameState.updateWellness(100);
-            videoMaking.makeVideo(1);
+            videoMaking.makeVideo(3);
             wellness = gameState.getWellness();
             Assert.That(wellness, Is.EqualTo(100 - (3 * 3)));
         }
@@ -278,6 +281,67 @@ public class VideoMakingTests
             videoMaking.makeVideo(5);
             wellness = gameState.getWellness();
             Assert.That(wellness, Is.EqualTo(100 - (3 * 5)));
+        }
+
+        yield return null;
+    }
+
+    [UnityTest]
+    public IEnumerator VideoMakingTimeTest()
+    {
+        player = GameObject.FindGameObjectWithTag("MainCamera");
+        computerCanvas = GameObject.Find("Computer Canvas");
+        videoMaking = player.GetComponent<video_making>();
+        game_state gameState = player.GetComponent<game_state>();
+        player.GetComponent<stalker_prototype_script>().enabled = false;
+        gameState.testingVideoWellness = true;
+
+        for (int i = 0; i < 3; i++)
+        {
+            gameState.resetDay();
+            gameState.updateWellness(100);
+            int origTime = gameState.getTime();
+            videoMaking.makeVideo(1);
+            int time = gameState.getTime();
+            Assert.That(time, Is.EqualTo(origTime+60));
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            gameState.resetDay();
+            gameState.updateWellness(100);
+            int origTime = gameState.getTime();
+            videoMaking.makeVideo(2);
+            int time = gameState.getTime();
+            Assert.That(time, Is.EqualTo(origTime + (60*2)));
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            gameState.resetDay();
+            gameState.updateWellness(100);
+            int origTime = gameState.getTime();
+            videoMaking.makeVideo(3);
+            int time = gameState.getTime();
+            Assert.That(time, Is.EqualTo(origTime + (60*3)));
+        }
+        
+        for (int i = 0; i < 3; i++)
+        {
+            gameState.resetDay();
+            gameState.updateWellness(100);
+            int origTime = gameState.getTime();
+            videoMaking.makeVideo(4);
+            int time = gameState.getTime();
+            Assert.That(time, Is.EqualTo(origTime + (60*4)));
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            gameState.resetDay();
+            gameState.updateWellness(100);
+            int origTime = gameState.getTime();
+            videoMaking.makeVideo(5);
+            int time = gameState.getTime();
+            Assert.That(time, Is.EqualTo(origTime + (60*5)));
         }
 
         yield return null;
