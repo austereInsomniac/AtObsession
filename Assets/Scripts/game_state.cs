@@ -43,6 +43,7 @@ public class game_state : MonoBehaviour
     private move_location locationManager;
     private splash_screen_manager splashScreenManager;
 
+
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
     private changeWellness onWellnessChanged;
@@ -59,8 +60,7 @@ public class game_state : MonoBehaviour
     public delegate void changeReputation(int oldReputation, int newReputation);
     private changeReputation onReputationChanged;
 
-    public delegate void changeLocation(GameObject oldLocation, GameObject newLocation);
-    private changeLocation onLocationChanged;
+    public bool testingVideoWellness;
 
     // Set Up
     private void Awake()
@@ -245,7 +245,10 @@ public class game_state : MonoBehaviour
 
             time = 480; // set time to 8am
 
-            updateWellness(-20); // Lowers your wellness
+            if (!testingVideoWellness)
+            {
+                updateWellness(-20); // Lowers your wellness
+            }
             locationManager.goToBedroom();  // Move to the bedroom
             // run sleep method
         }
@@ -253,7 +256,10 @@ public class game_state : MonoBehaviour
         // update later when we lock sleep to late at night
         if(time != 480)
         {
-            updateHunger(t);
+            if (!testingVideoWellness)
+            {
+                updateHunger(t);
+            }
         }
         else
         {
@@ -424,16 +430,6 @@ public class game_state : MonoBehaviour
     private void notifyOnReputationChange(int oldReputation, int newReputation)
     {
         onReputationChanged(oldReputation, newReputation);
-    }
-
-    public void addOnLocationChange(changeLocation changeLocation)
-    {
-        onLocationChanged += changeLocation;
-    }
-
-    private void notifyOnLocationChange(GameObject oldLocation, GameObject newLocation)
-    {
-        onLocationChanged(oldLocation, newLocation);
     }
 
     // remove later
