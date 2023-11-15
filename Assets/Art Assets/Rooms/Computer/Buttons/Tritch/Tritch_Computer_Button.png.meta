@@ -165,10 +165,10 @@ TextureImporter:
       name: Tritch_Computer_Button_0
       rect:
         serializedVersion: 2
-        x: 2384
-        y: 193
-        width: 9664
-        height: 7798
+        x: 315
+        y: 15
+        width: 1290
+        height: 1050
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
