@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 
 // Connor + Mackenzie
 
@@ -143,15 +143,38 @@ public class daily_action_storage : MonoBehaviour
         day = GetComponent<game_state>().getDay();
     }
 
-    public void notInteractable(string key)
+    public void notInteractable(string key, string group)
     {
-        ActionVariable activity = activities[key];
-        if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
+
+        if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
         {
-            GameObject findButton = GameObject.Find(key);
-            Button button1 = findButton.GetComponent<Button>();
-            button1.interactable = false;
-            buttons.Add(key, button1);
+            if(group == "food" && key == "Cook food")
+            {
+                GameObject findSecondButton = GameObject.Find("Eat at a restaurant");
+                GameObject findButton = GameObject.Find(key);
+                Button button1 = findButton.GetComponent<Button>();
+                Button button2 = findSecondButton.GetComponent<Button>();
+                button1.interactable = false;
+                button2.interactable = false;
+                buttons.Add(group, button1);
+            }
+            else if (group == "food" && key == "Eat at a restaurant")
+            {
+                GameObject findSecondButton = GameObject.Find("Cook food");
+                GameObject findButton = GameObject.Find(key);
+                Button button1 = findButton.GetComponent<Button>();
+                Button button2 = findSecondButton.GetComponent<Button>();
+                button1.interactable = false;
+                button2.interactable = false;
+                buttons.Add(group, button1);
+            }
+            else
+            {
+                GameObject findButton = GameObject.Find(key);
+                Button button1 = findButton.GetComponent<Button>();
+                button1.interactable = false;
+                buttons.Add(group, button1);
+            }
         }
     }
     public void doAction(string key)
@@ -162,7 +185,6 @@ public class daily_action_storage : MonoBehaviour
         // reset times if needed
         
         resetTimesPerDay();
-        notInteractable(key);
         // update each statistic
         ActionVariable activity = activities[key];
        
@@ -181,6 +203,10 @@ public class daily_action_storage : MonoBehaviour
 
             // update the splash screen
             GetComponent<splash_screen_manager>().openSplashScreen(key);
+            if (getCurrentTimesPerDay(activity.getGroup()) == getMaxTimesPerDay(activity.getGroup()))
+            {
+                notInteractable(key, activity.getGroup());
+            }
         }
     }
 
@@ -231,6 +257,7 @@ public class daily_action_storage : MonoBehaviour
         maxTimesPerDay.Add("walk", 2);
 
         buttons = new Dictionary<string, Button>();
+        this.GetComponent<game_state>();
     }
 
     private void randomizeStats()
