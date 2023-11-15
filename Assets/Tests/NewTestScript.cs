@@ -152,6 +152,75 @@ public class NewTestScript
         yield return null;
     }
 
+
+    [UnityTest]
+    public IEnumerator VideoMakingMoneyGainTest()
+    {
+        player = GameObject.FindGameObjectWithTag("MainCamera");
+        computerCanvas = GameObject.Find("Computer Canvas");
+        videoMaking = player.GetComponent<video_making>();
+
+        Assert.IsNotNull(player);
+        Assert.IsNotNull(computerCanvas);
+        Assert.IsNotNull(videoMaking);
+
+        for(int i =0; i < 10;i++)
+        {
+            player.GetComponent<game_state>().updateWellness(100);
+            double origMoney = player.GetComponent<game_state>().getMoney();
+            videoMaking.makeVideo(1);
+            int subscribers = player.GetComponent<game_state>().getSubscribers();
+            double money = player.GetComponent<game_state>().getMoney();
+            Assert.That(money, Is.AtLeast(((int)(subscribers*0.02)) - 5+origMoney));
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20+origMoney));
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            player.GetComponent<game_state>().updateWellness(100);
+            double origMoney = player.GetComponent<game_state>().getMoney();
+            videoMaking.makeVideo(2);
+            int subscribers = player.GetComponent<game_state>().getSubscribers();
+            double money = player.GetComponent<game_state>().getMoney();
+            Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            player.GetComponent<game_state>().updateWellness(100);
+            double origMoney = player.GetComponent<game_state>().getMoney();
+            videoMaking.makeVideo(3);
+            int subscribers = player.GetComponent<game_state>().getSubscribers();
+            double money = player.GetComponent<game_state>().getMoney();
+            Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            player.GetComponent<game_state>().updateWellness(100);
+            double origMoney = player.GetComponent<game_state>().getMoney();
+            videoMaking.makeVideo(4);
+            int subscribers = player.GetComponent<game_state>().getSubscribers();
+            double money = player.GetComponent<game_state>().getMoney();
+            Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));
+        }
+
+        for (int i = 0; i < 10; i++)
+        {
+            player.GetComponent<game_state>().updateWellness(100);
+            double origMoney = player.GetComponent<game_state>().getMoney();
+            videoMaking.makeVideo(5);
+            int subscribers = player.GetComponent<game_state>().getSubscribers();
+            double money = player.GetComponent<game_state>().getMoney();
+            Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));
+        }
+
+        yield return null;
+    }
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
     // `yield return null;` to skip a frame.
 
