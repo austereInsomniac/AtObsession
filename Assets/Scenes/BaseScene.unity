@@ -7678,7 +7678,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1766642349}
-  - {fileID: 1687229107}
   - {fileID: 416206900}
   - {fileID: 1444107622}
   - {fileID: 440524150}
@@ -7686,6 +7685,7 @@ RectTransform:
   - {fileID: 1170410440}
   - {fileID: 1672524467}
   - {fileID: 822762289}
+  - {fileID: 1687229107}
   - {fileID: 1534353898}
   - {fileID: 1943289220}
   m_Father: {fileID: 0}
@@ -40694,7 +40694,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687229106}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
