@@ -47,7 +47,7 @@ public class developer_options : MonoBehaviour
             player.GetComponent<stalker_prototype_script>().enabled = false;
         }
 
-        player.GetComponent<stalker_prototype_script>().setEventNum(stalkerNum);
+        //player.GetComponent<stalker_prototype_script>().setEventNum(stalkerNum);
 
         if (infiniteMoney)
         {
