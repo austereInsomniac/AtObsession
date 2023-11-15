@@ -23,7 +23,8 @@ public class swap_assets : MonoBehaviour
     public void swapObjects()
     {
         other.enabled = !other.enabled;
-        thisObject.enabled = !thisObject.enabled;   
+        thisObject.enabled = !thisObject.enabled;
+        highlightManager.swapHighlight();
     }
 
     public void OnMouseDown()
@@ -37,7 +38,6 @@ public class swap_assets : MonoBehaviour
             if (hit.collider == this.GetComponent<BoxCollider2D>())
             {
                 swapObjects();
-                highlightManager.swapHighlight();
             }
         }
     }

@@ -7,18 +7,18 @@ using UnityEngine.UI;
 
 public class statistic_slider : MonoBehaviour
 {
-    [SerializeField]
-    bool wellness;
-
     private UnityEngine.UI.Slider slider;
 
     // Start is called before the first frame update
     public void Start()
     {
+        // grab the slider
         slider = GetComponent<Slider>();
         game_state player = GameObject.Find("Player").GetComponent<game_state>();
 
-        if(wellness)
+        // wellness slider vs reputation slider
+        // grab the correct stat
+        if (name.Equals("Wellness Slider"))
         {
             player.addOnWellnessChange(updateSlider);
         }
@@ -30,6 +30,7 @@ public class statistic_slider : MonoBehaviour
 
     public void updateSlider(int oldS, int newS)
     {
-        // move the image left or right
+        // update the slider position
+        slider.value = newS;
     }
 }
