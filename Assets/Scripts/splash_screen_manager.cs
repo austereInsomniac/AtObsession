@@ -109,9 +109,11 @@ public class splash_screen_manager : MonoBehaviour
             {
                 // close splash
                 splashScreen.enabled = false;
-                menuBlocker.enabled = false;
-                menuCollider.enabled = false;
                 isSplashShowing = false;
+
+                // show hud
+                menuBlocker.enabled = false;
+                menuCollider.enabled = false;                
 
                 // enable HUD
                 if (shouldHUDShow)
