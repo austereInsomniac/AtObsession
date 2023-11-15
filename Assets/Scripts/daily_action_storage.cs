@@ -133,15 +133,11 @@ public class daily_action_storage : MonoBehaviour
     //dictionary interactable, if the day advances
     private void resetTimesPerDay()
     {
-        Debug.Log(day);
-        Debug.Log(GetComponent<game_state>().getDay());
         if(day != GetComponent<game_state>().getDay())
         {
-            Debug.Log("In the if");
             timesPerDay.Clear();
             foreach (KeyValuePair<string, Button> button in buttons)
             {
-                Debug.Log("In foreach loop");
                 button.Value.interactable = true;
             }
             buttons.Clear();
