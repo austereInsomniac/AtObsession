@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+<<<<<<< HEAD
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class move_through_door : MonoBehaviour
+=======
+using UnityEngine;
+
+// Mackenzie
+
+public class move_location : MonoBehaviour
+>>>>>>> main
 {
     private Vector3 storedLocation = new Vector3(2000, 0, 0);
     private Vector3 cameraLocation = new Vector3(0, 0, 0);
 
     [SerializeField]
     private GameObject other;
+<<<<<<< HEAD
     [SerializeField]   
     private GameObject otherCanvas;
     [SerializeField]
@@ -27,6 +36,61 @@ public class move_through_door : MonoBehaviour
         otherCanvas.transform.position= cameraLocation;
     }
 
+=======
+    [SerializeField]
+    private GameObject otherCanvas;
+    [SerializeField]
+    private GameObject thisO;
+    [SerializeField]
+    private GameObject thisCanvas;
+
+    private game_state player;
+    private GameObject bedroom;
+    private GameObject bedroomCanvas;
+    private GameObject gameOver;
+    private GameObject gameOverCanvas;
+    private GameObject mainMenu;
+    private GameObject mainMenuCanvas;
+
+    private void Awake()
+    {
+        player = GameObject.Find("Player").GetComponent<game_state>();
+        bedroom = GameObject.Find("Bedroom");
+        bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        gameOver = GameObject.Find("Game Over");
+        gameOverCanvas = GameObject.Find("Game Over Canvas");
+        mainMenu = GameObject.Find("Main Menu");
+        mainMenuCanvas = GameObject.Find("Main Menu Canvas");
+    }
+
+    public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
+    {
+        // move this room away
+        this_.transform.position = storedLocation;
+        thisCanvas_.transform.position = storedLocation;
+
+        // move new room in 
+        other_.transform.position = cameraLocation;
+        otherCanvas_.transform.position = cameraLocation;
+
+        // update location in game state
+        player.moveLocation(other_, otherCanvas_);
+    }
+
+    public void goToBedroom(){
+        moveLocation(bedroom, bedroomCanvas, player.getLocation(), player.getLocationCanvas());
+    }
+
+    public void goToGameOver()
+    {
+        moveLocation(gameOver, gameOverCanvas, player.getLocation(), player.getLocationCanvas());
+    }
+
+    public void goToMainMenu()
+    {
+        moveLocation(mainMenu,mainMenuCanvas, player.getLocation(), player.getLocationCanvas());
+    }
+>>>>>>> main
     public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
@@ -38,7 +102,11 @@ public class move_through_door : MonoBehaviour
 
             if(hit.collider == this.GetComponent<BoxCollider2D>())
             {
+<<<<<<< HEAD
                 moveLocation(other, otherCanvas, thisCanvas);
+=======
+                moveLocation(other, otherCanvas, thisO, thisCanvas);
+>>>>>>> main
             }
         } 
     }

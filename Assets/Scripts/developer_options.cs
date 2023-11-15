@@ -47,7 +47,7 @@ public class developer_options : MonoBehaviour
             player.GetComponent<stalker_prototype_script>().enabled = false;
         }
 
-        player.GetComponent<stalker_prototype_script>().setEventNum(stalkerNum);
+        //player.GetComponent<stalker_prototype_script>().setEventNum(stalkerNum);
 
         if (infiniteMoney)
         {
@@ -69,6 +69,10 @@ public class developer_options : MonoBehaviour
                 player.GetComponent<game_state>().updateTime(1440);
             }
         }
+        if(noWellness)
+        {
+            player.GetComponent<game_state>().updateWellness(-69);
+        }
     }
 
     // Update is called once per frame
@@ -78,9 +82,6 @@ public class developer_options : MonoBehaviour
         {
             player.GetComponent<game_state>().updateWellness(100);
         }
-        else if(noWellness)
-        {
-            player.GetComponent<game_state>().updateWellness(-100);
-        }
+
     }
 }
