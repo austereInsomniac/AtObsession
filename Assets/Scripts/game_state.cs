@@ -59,6 +59,9 @@ public class game_state : MonoBehaviour
     public delegate void changeReputation(int oldReputation, int newReputation);
     private changeReputation onReputationChanged;
 
+    public delegate void changeLocation(GameObject oldLocation, GameObject newLocation);
+    private changeLocation onLocationChanged;
+
     // Set Up
     private void Awake()
     {
@@ -419,6 +422,16 @@ public class game_state : MonoBehaviour
     private void notifyOnReputationChange(int oldReputation, int newReputation)
     {
         onReputationChanged(oldReputation, newReputation);
+    }
+
+    public void addOnLocationChange(changeLocation changeLocation)
+    {
+        onLocationChanged += changeLocation;
+    }
+
+    private void notifyOnLocationChange(GameObject oldLocation, GameObject newLocation)
+    {
+        onLocationChanged(oldLocation, newLocation);
     }
 
     // remove later
