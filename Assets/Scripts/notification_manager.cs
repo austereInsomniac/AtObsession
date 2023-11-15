@@ -12,11 +12,16 @@ public class notification_manager : MonoBehaviour
     private bool isNotificationShowing;
     private float displayTime = 0.1f;
     private float displayStartTime;
+
     private TMP_Text mText;
+    private UnityEngine.UI.Image mImage;
 
     void Start()
     {
         mText = GetComponentInChildren<TextMeshProUGUI>().GetComponent<TMP_Text>();
+        mImage = GetComponent<UnityEngine.UI.Image>();
+        mImage.enabled = false;
+
         GameObject.Find("Player").GetComponent<game_state>().addOnWellnessChange(showWellnessNotification);
     }
 
@@ -25,6 +30,7 @@ public class notification_manager : MonoBehaviour
         // Set the notification message
         isNotificationShowing = true;
         mText.enabled = true;
+        mImage.enabled = true;
 
         // Record start time
         displayStartTime = Time.timeSinceLevelLoad;
@@ -35,7 +41,9 @@ public class notification_manager : MonoBehaviour
         // Set the notification message
         mText.SetText(message);
         isNotificationShowing = true;
+
         mText.enabled = true;
+        mImage.enabled = true;
 
         // Record start time
         displayStartTime = Time.timeSinceLevelLoad;
@@ -68,6 +76,7 @@ public class notification_manager : MonoBehaviour
         // Set the notification message
         isNotificationShowing = true;
         mText.enabled = true;
+        mImage.enabled = true;
 
         // Record start time
         displayStartTime = Time.timeSinceLevelLoad;
@@ -77,6 +86,7 @@ public class notification_manager : MonoBehaviour
     {
         isNotificationShowing = false;
         mText.enabled = false;
+        mImage.enabled = false;
     }
 
     private void Update()
