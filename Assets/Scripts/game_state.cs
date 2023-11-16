@@ -43,6 +43,8 @@ public class game_state : MonoBehaviour
     private move_location locationManager;
     private splash_screen_manager splashScreenManager;
 
+    // testing variables
+    public bool testingVideoWellness;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
@@ -60,7 +62,10 @@ public class game_state : MonoBehaviour
     public delegate void changeReputation(int oldReputation, int newReputation);
     private changeReputation onReputationChanged;
 
-    public bool testingVideoWellness;
+    public delegate void changeLocation(GameObject oldLocation, GameObject newLocation);
+    private changeLocation onLocationChanged;
+
+
 
     // Set Up
     private void Awake()
@@ -432,6 +437,14 @@ public class game_state : MonoBehaviour
     private void notifyOnReputationChange(int oldReputation, int newReputation)
     {
         onReputationChanged(oldReputation, newReputation);
+    }
+    public void addOnLocationChange(changeLocation changeLocation)
+    {
+        onLocationChanged += changeLocation;
+    }
+    private void notifyOnLocationChange(GameObject oldLocation, GameObject newLocation)
+    {
+        onLocationChanged(oldLocation, newLocation);
     }
 
     // remove later
