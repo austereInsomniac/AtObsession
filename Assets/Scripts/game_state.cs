@@ -30,9 +30,19 @@ public class game_state : MonoBehaviour
     private int savedDay;
 
     // hours since you last ate. this will update the UI. if it equal to or greater than 6, you are hungry
-    private int hunger;
-    private int savedHunger;
+    private float hunger;
+    private float savedHunger;
     private SpriteRenderer hungerHUD;
+
+    // level of cleanliness
+    private float shower;
+    private float savedShower;
+    private SpriteRenderer showerHUD;
+
+    // level of tiredness
+    private float sleep;
+    private float savedSleep;
+    private SpriteRenderer sleepHUD;
 
     // current room and its canvas
     private GameObject location;
@@ -70,7 +80,9 @@ public class game_state : MonoBehaviour
     {
         location = GameObject.Find("Main Menu");
         locationCanvas = GameObject.Find("Main Menu Canvas");
-        hungerHUD = GameObject.Find("Hunger").GetComponent<SpriteRenderer>();
+        hungerHUD = GameObject.Find("Hunger HUD").GetComponent<SpriteRenderer>();
+        sleepHUD = GameObject.Find("Sleep HUD").GetComponent<SpriteRenderer>();
+        showerHUD = GameObject.Find("Shower HUD").GetComponent<SpriteRenderer>();
 
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
         locationManager = GetComponent<move_location>();
@@ -202,13 +214,18 @@ public class game_state : MonoBehaviour
             savedDay = day;
             savedHasDied = hasDied;
             savedHunger = hunger;
+            savedShower = shower;
+            savedSleep = sleep;
         }
+
+        updateSleep(t);
+        updateShower(t);
 
         // call delegate
         notifyOnTimeChanged(time - t, time);
     }
 
-    private void updateHunger(int t)
+    public void updateHunger(float t)
     {
         hunger += t;
 
@@ -217,9 +234,11 @@ public class game_state : MonoBehaviour
         {
             // display icon
             hungerHUD.enabled = true;
-
-            // display notification
-            notificationManager.showNotification("You are hungry.");
+        }
+        else
+        {
+            // turn off icon
+            hungerHUD.enabled = false;
         }
 
         // for each time jump, lower wellness
@@ -228,20 +247,71 @@ public class game_state : MonoBehaviour
             // don't subtract when the player is sleeping
 
             // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
-            int over = 6*60 - hunger;
-            int loss = Mathf.Max(t, over);
+            float over = 6*60 - hunger;
+            float loss = Mathf.Max(t, over);
 
             // for every hour you are hungry after the original notification, lower wellness by 5
             updateWellness((int)(-loss * .0833 -.5));
         }
     }
 
-    public void resetHunger() {
-        // run after the time change
-        hunger = 0;
+    public void updateShower(float t)
+    {
+        shower += t;
 
-        // turn off icon
-        hungerHUD.enabled = false;
+        // player is dirty
+        if (shower >= 12 * 60)
+        {
+            // display icon
+            showerHUD.enabled = true;
+        }
+        else
+        {
+            // turn off icon
+            showerHUD.enabled = false;
+        }
+
+        // for each time jump, lower wellness
+        if (shower > 14 * 60)
+        {
+            // don't subtract when the player is sleeping
+
+            // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
+            float over = 14 * 60 - shower;
+            float loss = Mathf.Max(t, over);
+
+            // for every hour you are dirty after the original notification, lower wellness by 5
+            updateWellness((int)(-loss * .0833 - .5));
+        }
+    }
+
+    public void updateSleep(float t)
+    {
+        sleep += t;
+
+        // player is tired
+        if (sleep >= 14 * 60)
+        {
+            // display icon
+            sleepHUD.enabled = true;
+        }
+        else
+        {
+            sleepHUD.enabled = false;
+        }
+
+        // for each time jump, lower wellness
+        if (sleep > 16 * 60)
+        {
+            // don't subtract when the player is sleeping
+
+            // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
+            float over = 16 * 60 - sleep;
+            float loss = Mathf.Max(t, over);
+
+            // for every hour you are hungry after the original notification, lower wellness by 5
+            updateWellness((int)(-loss * .0833 - .5));
+        }
     }
 
     public void updateReputation(int r)
@@ -356,6 +426,8 @@ public class game_state : MonoBehaviour
         ending = savedEnding;
         time = 480;
         hunger = savedHunger;
+        sleep = savedSleep;
+        shower = savedShower;
         videosMadeToday = 0;
 
         // move location
@@ -444,20 +516,6 @@ public class game_state : MonoBehaviour
     {
         onLocationChanged(oldLocation, newLocation);
     }
-
-    // remove later
-    private void Start()
-    {
-        addOnTimeChange(doNothing);
-        addOnWellnessChange(doNothing);
-        addOnSubscribersChange(doNothing);
-        addOnMoneyChange(doNothing2);
-        addOnReputationChange(doNothing);
-    }
-
-    private void doNothing(int t, int t2) { }
-
-    private void doNothing2(double t, double t2) { }
 }
 
 
