@@ -936,6 +936,7 @@ GameObject:
   - component: {fileID: 15330889}
   - component: {fileID: 15330888}
   - component: {fileID: 15330887}
+  - component: {fileID: 15330890}
   m_Layer: 5
   m_Name: YButton_OneStar_Video
   m_TagString: Untagged
@@ -1005,7 +1006,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 15330888}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 15330890}
+        m_TargetAssemblyTypeName: video_making, NewAssembly
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &15330888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,6 +1057,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15330885}
   m_CullTransparentMesh: 1
+--- !u!114 &15330890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15330885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &17022014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,17 +2370,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 80697000}
-        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
-        m_MethodName: makeVideo
-        m_Mode: 3
+      - m_Target: {fileID: 1508732637}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &80696997
 MonoBehaviour:
@@ -2600,6 +2625,7 @@ GameObject:
   - component: {fileID: 84649973}
   - component: {fileID: 84649972}
   - component: {fileID: 84649971}
+  - component: {fileID: 84649974}
   m_Layer: 5
   m_Name: YButton_ThreeStar _Video
   m_TagString: Untagged
@@ -2669,7 +2695,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84649972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 84649974}
+        m_TargetAssemblyTypeName: video_making, NewAssembly
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &84649972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2708,6 +2746,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84649969}
   m_CullTransparentMesh: 1
+--- !u!114 &84649974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84649969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &91907302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +2992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &96466661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2957,11 +3007,11 @@ RectTransform:
   m_Children:
   - {fileID: 1565779601}
   - {fileID: 680782693}
-  m_Father: {fileID: 943598038}
+  m_Father: {fileID: 1693334877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000059127808, y: 0}
+  m_AnchoredPosition: {x: 15.6711, y: 2}
   m_SizeDelta: {x: 901.5024, y: 429.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96466662
@@ -14937,14 +14987,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420042}
-        m_TargetAssemblyTypeName: shop, Assembly-CSharp
-        m_MethodName: buyItem
-        m_Mode: 3
+      - m_Target: {fileID: 1508732637}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -17137,7 +17187,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 680782695}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 96466660}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &680782695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19021,7 +19083,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 781940174}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1508732637}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &781940174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21660,7 +21734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 924252939}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1112342446}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &924252939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22120,46 +22206,6 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -528}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &943598037
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 943598038}
-  m_Layer: 5
-  m_Name: Video_BGS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &943598038
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 943598037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1112342447}
-  - {fileID: 96466661}
-  - {fileID: 1508732638}
-  - {fileID: 1757620614}
-  - {fileID: 1377998730}
-  m_Father: {fileID: 1693334877}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.671112, y: 2}
-  m_SizeDelta: {x: 901.5024, y: 429.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &949077942
 GameObject:
@@ -26033,7 +26079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1112342447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26048,11 +26094,11 @@ RectTransform:
   m_Children:
   - {fileID: 15330886}
   - {fileID: 924252937}
-  m_Father: {fileID: 943598038}
+  m_Father: {fileID: 1693334877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000059127808, y: 0}
+  m_AnchoredPosition: {x: 15.6711, y: 2}
   m_SizeDelta: {x: 901.5024, y: 429.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1112342448
@@ -31968,6 +32014,7 @@ GameObject:
   - component: {fileID: 1352766322}
   - component: {fileID: 1352766321}
   - component: {fileID: 1352766320}
+  - component: {fileID: 1352766323}
   m_Layer: 5
   m_Name: YButton_FourStar _Video
   m_TagString: Untagged
@@ -32037,7 +32084,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1352766321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1352766323}
+        m_TargetAssemblyTypeName: video_making, NewAssembly
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1352766321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32076,6 +32135,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352766318}
   m_CullTransparentMesh: 1
+--- !u!114 &1352766323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352766318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1353465942
 GameObject:
   m_ObjectHideFlags: 0
@@ -32602,14 +32673,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420042}
-        m_TargetAssemblyTypeName: shop, Assembly-CSharp
-        m_MethodName: buyItem
-        m_Mode: 3
+      - m_Target: {fileID: 1377998729}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -32837,7 +32908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377998730
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32852,11 +32923,11 @@ RectTransform:
   m_Children:
   - {fileID: 1858785798}
   - {fileID: 2091595407}
-  m_Father: {fileID: 943598038}
+  m_Father: {fileID: 1693334877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000059127808, y: 0}
+  m_AnchoredPosition: {x: 15.6711, y: 2}
   m_SizeDelta: {x: 901.5024, y: 429.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1377998731
@@ -34188,17 +34259,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1443477988}
-        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
-        m_MethodName: makeVideo
-        m_Mode: 3
+      - m_Target: {fileID: 96466660}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1443477986
 MonoBehaviour:
@@ -35394,7 +35465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1508732638
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35409,11 +35480,11 @@ RectTransform:
   m_Children:
   - {fileID: 84649970}
   - {fileID: 781940172}
-  m_Father: {fileID: 943598038}
+  m_Father: {fileID: 1693334877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000059127808, y: 0}
+  m_AnchoredPosition: {x: 15.6711, y: 2}
   m_SizeDelta: {x: 901.5024, y: 429.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1508732639
@@ -36222,14 +36293,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420042}
-        m_TargetAssemblyTypeName: shop, Assembly-CSharp
-        m_MethodName: buyItem
-        m_Mode: 3
+      - m_Target: {fileID: 1757620613}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -37280,6 +37351,7 @@ GameObject:
   - component: {fileID: 1565779604}
   - component: {fileID: 1565779603}
   - component: {fileID: 1565779602}
+  - component: {fileID: 1565779605}
   m_Layer: 5
   m_Name: YButton_TwoStar _Video
   m_TagString: Untagged
@@ -37349,7 +37421,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1565779603}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1565779605}
+        m_TargetAssemblyTypeName: video_making, NewAssembly
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1565779603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37388,6 +37472,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565779600}
   m_CullTransparentMesh: 1
+--- !u!114 &1565779605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565779600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1573332918
 GameObject:
   m_ObjectHideFlags: 0
@@ -41112,7 +41208,11 @@ RectTransform:
   - {fileID: 80696999}
   - {fileID: 1443477984}
   - {fileID: 1855336879}
-  - {fileID: 943598038}
+  - {fileID: 1112342447}
+  - {fileID: 96466661}
+  - {fileID: 1508732638}
+  - {fileID: 1757620614}
+  - {fileID: 1377998730}
   - {fileID: 862333630}
   - {fileID: 450437427}
   - {fileID: 1760063079}
@@ -42590,7 +42690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1757620614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -42605,11 +42705,11 @@ RectTransform:
   m_Children:
   - {fileID: 1352766319}
   - {fileID: 1964753926}
-  m_Father: {fileID: 943598038}
+  m_Father: {fileID: 1693334877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000059127808, y: 0}
+  m_AnchoredPosition: {x: 15.6711, y: 2}
   m_SizeDelta: {x: 901.5024, y: 429.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1757620615
@@ -45121,17 +45221,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1855336880}
-        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
-        m_MethodName: makeVideo
-        m_Mode: 3
+      - m_Target: {fileID: 1112342446}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1855336877
 MonoBehaviour:
@@ -45419,6 +45519,7 @@ GameObject:
   - component: {fileID: 1858785801}
   - component: {fileID: 1858785800}
   - component: {fileID: 1858785799}
+  - component: {fileID: 1858785802}
   m_Layer: 5
   m_Name: YButton_FiveStar _Video
   m_TagString: Untagged
@@ -45488,7 +45589,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1858785800}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1858785802}
+        m_TargetAssemblyTypeName: video_making, NewAssembly
+        m_MethodName: makeVideo
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1858785800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45527,6 +45640,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858785797}
   m_CullTransparentMesh: 1
+--- !u!114 &1858785802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858785797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e7bc498f4ed2c4680a6e3e850f2aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1870791286
 GameObject:
   m_ObjectHideFlags: 0
@@ -47532,7 +47657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1964753928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1757620613}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1964753928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50077,7 +50214,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2091595409}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1377998729}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2091595409
 MonoBehaviour:
   m_ObjectHideFlags: 0
