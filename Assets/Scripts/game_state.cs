@@ -65,8 +65,6 @@ public class game_state : MonoBehaviour
     public delegate void changeLocation(GameObject oldLocation, GameObject newLocation);
     private changeLocation onLocationChanged;
 
-
-
     // Set Up
     private void Awake()
     {
@@ -301,7 +299,6 @@ public class game_state : MonoBehaviour
     }
 
     // methods
-
     private void killPlayer()
     {
         // reset stats
@@ -314,6 +311,7 @@ public class game_state : MonoBehaviour
         hunger = 0;
 
         // game over
+        notificationManager.showNotification("You made some mistakes...");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
