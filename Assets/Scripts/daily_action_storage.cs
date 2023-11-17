@@ -144,7 +144,13 @@ public class daily_action_storage : MonoBehaviour
 
         //if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
-            // update the splash screen FIRST so that death scenes work
+            // must be before splash screen so notifications work
+            if (activity.getGroup() == "food" || activity.getGroup() == "snack")
+            {
+                state.resetHunger();
+            }
+
+            // update the splash screen before updating stats so that death scenes work
             GetComponent<splash_screen_manager>().openSplashScreen(key);
 
             updateTimesPerDay(activity.getGroup());
@@ -152,11 +158,6 @@ public class daily_action_storage : MonoBehaviour
             state.updateWellness(activity.getWellness());
             state.updateTime(activity.getTime());
             state.updateMoney(activity.getMoney());
-
-            if (activity.getGroup() == "food" || activity.getGroup() == "snack")
-            {
-                state.resetHunger();
-            }
         }
     }
 
@@ -165,17 +166,19 @@ public class daily_action_storage : MonoBehaviour
     {
         activities = new Dictionary<string, ActionVariable>
         {
+            // wellness, time, money
+
             // living room
             { "Do chores", new ActionVariable(8, 15, 0.00, "chores") },
-            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), 15.00, "exercise") },
+            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise") },
             { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk") },
             { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment") },
             { "Lift weights", new ActionVariable(8, 20, 0.00, "exercise at home") },
-            { "Eat at a restaurant", new ActionVariable(10, 60, 25.00, "food") },//hunger
+            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food") },//hunger
 
             // kitchen
-            { "Cook food", new ActionVariable(10, 30, 5.00, "food") },//hunger
+            { "Cook food", new ActionVariable(10, 30, -5.00, "food") },//hunger
             { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack") },//hunger
 
             // bedroom
