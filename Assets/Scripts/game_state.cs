@@ -140,6 +140,8 @@ public class game_state : MonoBehaviour
 
     public float getSleep() { return sleep; }
 
+    public bool getHasDied() {  return hasDied; }
+
     // setters 
     public void updateWellness(int w)
     {
