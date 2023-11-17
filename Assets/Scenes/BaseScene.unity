@@ -1338,7 +1338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26, y: -80}
+  m_AnchoredPosition: {x: 15, y: -84}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &29765439
@@ -1753,7 +1753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.999878, y: -127.999985}
+  m_AnchoredPosition: {x: 0, y: -127.999985}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &53120549
@@ -10495,7 +10495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.999878, y: 129}
+  m_AnchoredPosition: {x: 0, y: 129}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450437428
@@ -13465,7 +13465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &539859362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16467,7 +16467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -279.00012, y: -128}
+  m_AnchoredPosition: {x: -315.0001, y: -128}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670545742
@@ -20491,7 +20491,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -279.00012, y: 129}
+  m_AnchoredPosition: {x: -315.0001, y: 129}
   m_SizeDelta: {x: 194.2324, y: 160.0818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &862333631
@@ -29823,17 +29823,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1261345391}
-        m_TargetAssemblyTypeName: video_making, Assembly-CSharp
-        m_MethodName: makeVideo
-        m_Mode: 3
+      - m_Target: {fileID: 1377998729}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1261345388
 MonoBehaviour:
@@ -29939,7 +29939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.1339, y: -12.560501}
+  m_AnchoredPosition: {x: -1.1339035, y: -12.560501}
   m_SizeDelta: {x: 56.6604, y: 65.7847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262632623
