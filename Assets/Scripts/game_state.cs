@@ -63,9 +63,6 @@ public class game_state : MonoBehaviour
     public delegate void changeTime(int oldTime, int newTime);
     private changeTime onTimeChanged;
 
-    public delegate void changeSubscribers(int oldSubscribers, int newSubscribers);
-    private changeSubscribers onSubscribersChanged;
-
     public delegate void changeMoney(double oldMoney, double newMoney);
     private changeMoney onMoneyChanged;
 
@@ -99,8 +96,8 @@ public class game_state : MonoBehaviour
         hunger = 0;
         savedHunger = 0;
 
-        reputation = 25;
-        savedReputation = 25;
+        reputation = 50;
+        savedReputation = 50;
 
         subscribers = 1000;
         savedSubscribers = 1000;
@@ -210,6 +207,8 @@ public class game_state : MonoBehaviour
             if (!testingVideoWellness)
             {
                 updateHunger(t);
+                updateSleep(t);
+                updateShower(t);
             }
         }
         else
@@ -225,9 +224,6 @@ public class game_state : MonoBehaviour
             savedShower = shower;
             savedSleep = sleep;
         }
-
-        updateSleep(t);
-        updateShower(t);
 
         // call delegate
         notifyOnTimeChanged(time - t, time);
@@ -355,7 +351,6 @@ public class game_state : MonoBehaviour
     public void updateSubscribers(int s)
     {    
         subscribers = subscribers + s;
-        notifyOnSubscribersChange(subscribers - s, subscribers);
     }
 
     public void updateEnding(int e)
@@ -383,7 +378,7 @@ public class game_state : MonoBehaviour
     {
         // reset stats
         money = 100;
-        reputation = 25;
+        reputation = 50;
         subscribers = 1000;
         wellness = 70;
         ending = 0;
@@ -416,7 +411,7 @@ public class game_state : MonoBehaviour
     {
         // set stats
         hasDied = true;
-        updateReputation(20);
+        updateReputation(50);
 
         // call hospital scene to ovveride current splash screen
         notificationManager.showNotification("You haven't been keeping up with your work...");
@@ -450,8 +445,8 @@ public class game_state : MonoBehaviour
         notifyOnWellnessChanged(wellness, wellness);
         notifyOnTimeChanged(time, time);
         notifyOnMoneyChange(money, money);
-        notifyOnSubscribersChange(subscribers, subscribers);
         notifyOnReputationChange(reputation, reputation);
+        notifyOnLocationChange(location.gameObject, location);
     }
 
     private void Update()
@@ -487,16 +482,6 @@ public class game_state : MonoBehaviour
     private void notifyOnTimeChanged(int oldTime, int newTime)
     {
         onTimeChanged(oldTime, newTime);
-    }
-
-    public void addOnSubscribersChange(changeSubscribers changeSubscribers)
-    {
-        onSubscribersChanged += changeSubscribers;
-    }
-
-    private void notifyOnSubscribersChange(int oldSubscribers, int newSubscribers)
-    {
-        onSubscribersChanged(oldSubscribers, newSubscribers);
     }
 
     public void addOnMoneyChange(changeMoney changeMoney)
