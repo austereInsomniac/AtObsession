@@ -15,8 +15,9 @@ class StalkerEvents
     string choice1;
     string choice2;
     string choice3;
+    string eventLocation;
 
-    public StalkerEvents(string changeMessage, string option1, string option2, string option3, int changeWellness, int newEventNumber, int changeEnding, int changeRep)
+    public StalkerEvents(string changeMessage, string option1, string option2, string option3, string location, int changeWellness, int newEventNumber, int changeEnding, int changeRep)
     {
         wellness = changeWellness;
         eventNumber = newEventNumber;
@@ -26,6 +27,7 @@ class StalkerEvents
         choice1 = option1;
         choice2 = option2;
         choice3 = option3;
+        eventLocation = location;
     }
 
     public int getWellness() { return wellness; }
@@ -36,6 +38,7 @@ class StalkerEvents
     public string getChoice1() { return choice1; }
     public string getChoice2() { return choice2; }
     public string getChoice3() { return choice3; }
+    public string getEventLocation() {  return eventLocation; }
 }
 
 public class stalker_prototype_script : MonoBehaviour
@@ -52,6 +55,7 @@ public class stalker_prototype_script : MonoBehaviour
     private float nextEventTime = 0; // Timestamp when next event should start
 
     private int eventNum;
+    private int pendingEvent = -1; // Set to -1 to indicate no pending event
 
     private game_state player;
     GameObject stalkerEventHandler;
@@ -84,20 +88,51 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEventHandler.SetActive(false);
 
         stalkerEvents = new Dictionary<string, StalkerEvents>();
-        stalkerEvents.Add("Email", new StalkerEvents("You got an email!", "Interact", "Ignore", "Report", 0, 1, 1, 5));
-        stalkerEvents.Add("Knocking on window", new StalkerEvents("There's something at the window!", "Look", "Ignore", "Call 911", 10, 2, 1, 0));
-        stalkerEvents.Add("Suspicious gift", new StalkerEvents("You got a weird gift in the mail...", "Open it", "Leave it", "Send back", 10, 3, 1, 0));
-        stalkerEvents.Add("Window figure", new StalkerEvents("Something's outside the window!", "Look out the window", "Ignore it", "Call 911", 10, 5, 1, 0));
-        stalkerEvents.Add("Trapped in bathroom", new StalkerEvents("The Bathroom door is locked!", "", "", "", 0, 0, 0, 0));
+        stalkerEvents.Add("Email", new StalkerEvents("I got a weird email...", "Interact", "Ignore", "Report", "Bedroom", 0, 1, 1, 5));
+        stalkerEvents.Add("Knocking on window", new StalkerEvents("There's something at the window!", "Look", "Ignore", "Call 911", "Bedroom", 10, 2, 1, 0));
+        stalkerEvents.Add("Suspicious gift", new StalkerEvents("I got a weird gift in the mail...", "Open it", "Leave it", "Send back", "Living room", 10, 3, 1, 0));
+        stalkerEvents.Add("Window figure", new StalkerEvents("Something's outside the window!", "Look out the window", "Ignore it", "Call 911", "Kitchen", 10, 4, 1, 0));
+        stalkerEvents.Add("Fan game", new StalkerEvents("A fan asked me to play a game they sent!", "Play the game", "Ignore them", "Decline", "Bedroom", 10, 5, 1, 5));
+        stalkerEvents.Add("Unknown call", new StalkerEvents("The phone is ringing! it's an unknown number...", "Answer the call", "Ignore", "Decline", "Any", 10, 6, 1, 0));
+        stalkerEvents.Add("Uncomfortable comment", new StalkerEvents("Someone left a comment that mentioned a private conversation I had.", "Delete the comment", "Ignore", "Install cameras", "Any", 10, 7, 1, 0));
+        stalkerEvents.Add("Banging on door", new StalkerEvents("There's banging on the door!", "Call the cops", "Try to ignore", "Check outside", "Living room", 10, 8, 5, 0));
+        stalkerEvents.Add("Trapped in bathroom", new StalkerEvents("The Bathroom door is locked!", "", "", "", "Any", 0, 9, 0, 0));
 
         eventKeys = new List<string>();
         eventKeys.Add("Email");
         eventKeys.Add("Knocking on window");
         eventKeys.Add("Suspicious gift");
         eventKeys.Add("Window figure");
+        eventKeys.Add("Fan game");
+        eventKeys.Add("Unknown call");
+        eventKeys.Add("Uncomfortable comment");
+        eventKeys.Add("Banging on door");
         eventKeys.Add("Trapped in bathroom");
-        randomEvent = Random.Range(0, eventKeys.Count - 2);
+
+        // Subscribe to the location change event from game_state
+        player.addOnLocationChange(OnLocationChanged);
+        //randomEvent = Random.Range(0, eventKeys.Count - 2);
         // TriggerStalkerEvent(randomEvent); // Start with initial event
+    }
+
+    private void OnLocationChanged(GameObject newLocation, GameObject newLocationCanvas)
+    {
+        // Check if there is a pending event
+        if (pendingEvent != -1)
+        {
+            string location = stalkerEvents[eventKeys[pendingEvent]].getEventLocation();
+            if (newLocation.name == location)
+            {
+                // Player reached the correct location, proceed with displaying choices
+                DisplayChoices(stalkerEvents[eventKeys[pendingEvent]]);
+                isStalkerEvent = true;
+                pendingEvent = -1; // Clear the pending event
+
+                // Calculate the time for the next stalker event.
+                float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
+                nextEventTime = Time.time + randomTimeBetweenEvents;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -115,11 +150,10 @@ public class stalker_prototype_script : MonoBehaviour
         if (isOn)
         {
 
-            if (day == 5 && time >= 17 * 60)
+            if (day == 14 && time >= 17 * 60)
             {
                 isOn = false;
-                eventNum = 4;
-                TriggerStalkerEvent(4);
+                TriggerStalkerEvent(8);
             }
             else if (day == 4 && time >= 17 * 60)
             {
@@ -184,6 +218,7 @@ public class stalker_prototype_script : MonoBehaviour
             isOn = true;
         }
     }
+
     private void TriggerStalkerEvent(int numEvent)
     {
         if (numEvent != eventKeys.Count - 1)
@@ -196,19 +231,29 @@ public class stalker_prototype_script : MonoBehaviour
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
             Debug.Log(eventMessage);
-            if (notification != null)
+
+            string location = stalkerEvent.getEventLocation();
+            string playerLocation = player.getLocation().name;
+
+            // Check if the player is in the required location
+            if (IsPlayerInRequiredLocation(location) || location == "Any")
             {
-                notification.showNotification(eventMessage);
+                DisplayChoices(stalkerEvent);
+                isStalkerEvent = true;
+
+                // Calculate the time for the next stalker event.
+                float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
+                nextEventTime = Time.time + randomTimeBetweenEvents;
             }
-            Debug.Log("Stalker event " + stalkerEvent.getEventNumber() + " is active!");
-
-            DisplayChoices(stalkerEvent);
-
-            // Calculate the time for the next stalker event.
-            float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
-            nextEventTime = Time.time + randomTimeBetweenEvents;
-            isStalkerEvent = true;
-            eventNum = numEvent;
+            else
+            {
+                eventMessage = "There's something happening in the " + location + "...";
+                if (notification != null)
+                {
+                    notification.showNotification(eventMessage);
+                }
+                pendingEvent = numEvent;
+            }
         }
         else
         {
@@ -218,8 +263,15 @@ public class stalker_prototype_script : MonoBehaviour
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
             eventNum = numEvent;
+
             EndingEvent(stalkerEvent);
         }
+    }
+
+    private bool IsPlayerInRequiredLocation(string requiredLocation)
+    {
+        string playerLocation = player.getLocation().name;
+        return playerLocation == requiredLocation;
     }
 
     private void DisplayChoices(StalkerEvents stalkerEvent)
@@ -259,12 +311,12 @@ public class stalker_prototype_script : MonoBehaviour
         }
         else if (choiceNum == 2)
         {
-            wellnessChange *= 1;
-            endingChange *= 1;
+            wellnessChange *= -1;
+            endingChange *= 0;
         }
         else if (choiceNum == 3)
         {
-            wellnessChange *= 1;
+            wellnessChange *= -1;
             endingChange *= 1;
         }
         else
@@ -286,9 +338,9 @@ public class stalker_prototype_script : MonoBehaviour
         // Clean up and end the stalker event.
         isStalkerEvent = false;
         Debug.Log("Stalker event ended.");
-        if (eventNum == 4 || randomEvent == 4)
+        if (eventNum == 8 || randomEvent == 8)
         {
-            //move.goToGameOver();
+            //move.moveLocation(GameObject.Find("Game Over"), GameObject.Find("Game Over Canvas"), player.getLocation(), player.getLocationCanvas());
         }
     }
 
