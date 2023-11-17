@@ -132,7 +132,13 @@ public class game_state : MonoBehaviour
 
     public GameObject getLocation() { return location; }
 
-    public GameObject getLocationCanvas() { return locationCanvas;}
+    public GameObject getLocationCanvas() { return locationCanvas; }
+
+    public float getHunger() { return hunger; }
+
+    public float getShower() { return shower; }
+
+    public float getSleep() { return sleep; }
 
     // setters 
     public void updateWellness(int w)
@@ -517,5 +523,3 @@ public class game_state : MonoBehaviour
         onLocationChanged(oldLocation, newLocation);
     }
 }
-
-
