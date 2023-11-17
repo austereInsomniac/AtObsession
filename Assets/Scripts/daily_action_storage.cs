@@ -144,10 +144,30 @@ public class daily_action_storage : MonoBehaviour
 
         //if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
-            // must be before splash screen so notifications work
-            if (activity.getGroup() == "food" || activity.getGroup() == "snack")
+            // must be before splash screen so notifications work, and before time jump
+            if (activity.getGroup() == "food")
             {
-                state.resetHunger();
+                state.updateHunger(-4*60);  
+            }
+            else if(activity.getGroup() == "snack")
+            {
+                state.updateHunger(-1.5f * 60);
+            }
+            else if(activity.getGroup() == "freshen")
+            {
+                state.updateShower(-4 * 60);
+            }
+            else if (activity.getGroup() == "shower")
+            {
+                state.updateShower(-12 * 60);
+            }
+            else if (activity.getGroup() == "sleep")
+            {
+                state.updateSleep(-14 * 60);
+            }
+            else if (activity.getGroup() == "nap")
+            {
+                state.updateSleep(-6 * 60);
             }
 
             // update the splash screen before updating stats so that death scenes work
