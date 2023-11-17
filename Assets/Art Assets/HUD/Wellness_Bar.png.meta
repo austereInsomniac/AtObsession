@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b2eaed141b1863148a30b8e6ece0ed6c
+guid: 623abc602d39cc84fbd21452b2f73dc0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tritch_Computer_Button_0
+      name: Wellness_Bar_0
       rect:
         serializedVersion: 2
-        x: 315
-        y: 15
-        width: 1290
-        height: 1050
+        x: 720
+        y: 930
+        width: 1185
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91f7960af4e23f94db4bff72dee2d736
-      internalID: -2133780514
+      spriteID: c4c172e204f8da94a8e66b6d08e0b7e6
+      internalID: 746519982
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tritch_Computer_Button_0: -2133780514
+      Wellness_Bar_0: 746519982
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

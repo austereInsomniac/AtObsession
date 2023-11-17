@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b2eaed141b1863148a30b8e6ece0ed6c
+guid: 20cf934bfb8b7d8409f86acd4759fc42
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,7 +162,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tritch_Computer_Button_0
+      name: Depressed_PC_Bttn_0
       rect:
         serializedVersion: 2
         x: 315
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91f7960af4e23f94db4bff72dee2d736
-      internalID: -2133780514
+      spriteID: 48e2a947e6dbba24986042eb613023a5
+      internalID: 692253769
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tritch_Computer_Button_0: -2133780514
+      Depressed_PC_Bttn_0: 692253769
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

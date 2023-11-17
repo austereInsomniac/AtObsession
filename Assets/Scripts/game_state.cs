@@ -43,6 +43,9 @@ public class game_state : MonoBehaviour
     private move_location locationManager;
     private splash_screen_manager splashScreenManager;
 
+    // testing variables
+    public bool testingVideoWellness;
+
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
     private changeWellness onWellnessChanged;
@@ -58,6 +61,11 @@ public class game_state : MonoBehaviour
 
     public delegate void changeReputation(int oldReputation, int newReputation);
     private changeReputation onReputationChanged;
+
+    public delegate void changeLocation(GameObject oldLocation, GameObject newLocation);
+    private changeLocation onLocationChanged;
+
+
 
     // Set Up
     private void Awake()
@@ -116,7 +124,7 @@ public class game_state : MonoBehaviour
 
     public GameObject getLocationCanvas() { return locationCanvas;}
 
-    // setters + methods
+    // setters 
     public void updateWellness(int w)
     {
         wellness += w;
@@ -140,76 +148,6 @@ public class game_state : MonoBehaviour
         }
 
         notifyOnWellnessChanged(wellness - w, wellness);
-    }
-
-    private void killPlayer()
-    {
-        // reset stats
-        money = 100;
-        reputation = 25;
-        subscribers = 1000;
-        wellness = 70;
-        ending = 0;
-        day = 1;
-        hunger = 0;
-
-        // game over
-        splashScreenManager.openSplashScreen("Game over");
-        locationManager.goToGameOver();
-    }
-
-    private void playHospitalScene()
-    {
-        // set stats
-        hasDied = true;
-        updateWellness(50);
-
-        // half money
-        money /= 2;
-        notifyOnMoneyChange(money * 2, money);
-
-        // call hospital scene to ovveride current splash screen
-        splashScreenManager.openSplashScreen("Hospital");
-        locationManager.goToBedroom();
-    }
-
-    private void playInfamyScene()
-    {
-        // set stats
-        hasDied = true;
-        updateReputation(20);
-
-        // call hospital scene to ovveride current splash screen
-        splashScreenManager.openSplashScreen("Hospital");
-        locationManager.goToBedroom();
-    }
-
-    public void resetDay()
-    {
-        // reset stats
-        wellness = savedWellness;
-        hasDied = savedHasDied;
-        money = savedMoney;
-        day = savedDay;
-        reputation = savedReputation;
-        subscribers = savedSubscribers;
-        ending = savedEnding;
-        time = 480;
-        hunger = savedHunger;
-        videosMadeToday = 0;
-
-        // move location
-        locationManager.goToBedroom();
-
-        // reset HUD + splash screen
-        splashScreenManager.openSplashScreen("reset");
-
-        // call delegates
-        notifyOnWellnessChanged(wellness, wellness);
-        notifyOnTimeChanged(time, time);
-        notifyOnMoneyChange(money, money);
-        notifyOnSubscribersChange(subscribers, subscribers);
-        notifyOnReputationChange(reputation, reputation);
     }
 
     public void updateTime(int t)
@@ -240,7 +178,10 @@ public class game_state : MonoBehaviour
 
             time = 480; // set time to 8am
 
-            updateWellness(-20); // Lowers your wellness
+            if (!testingVideoWellness)
+            {
+                updateWellness(-20); // Lowers your wellness
+            }
             locationManager.goToBedroom();  // Move to the bedroom
             // run sleep method
         }
@@ -248,7 +189,10 @@ public class game_state : MonoBehaviour
         // update later when we lock sleep to late at night
         if(time != 480)
         {
-            updateHunger(t);
+            if (!testingVideoWellness)
+            {
+                updateHunger(t);
+            }
         }
         else
         {
@@ -356,6 +300,80 @@ public class game_state : MonoBehaviour
         locationCanvas = newCanvas;
     }
 
+    // methods
+
+    private void killPlayer()
+    {
+        // reset stats
+        money = 100;
+        reputation = 25;
+        subscribers = 1000;
+        wellness = 70;
+        ending = 0;
+        day = 1;
+        hunger = 0;
+
+        // game over
+        splashScreenManager.openSplashScreen("Game over");
+        locationManager.goToGameOver();
+    }
+
+    private void playHospitalScene()
+    {
+        // set stats
+        hasDied = true;
+        updateWellness(50);
+
+        // half money
+        money /= 2;
+        notifyOnMoneyChange(money * 2, money);
+
+        // call hospital scene to ovveride current splash screen
+        notificationManager.showNotification("You haven't been taking care of yourself...");
+        splashScreenManager.openSplashScreen("Hospital");
+        locationManager.goToBedroom();
+    }
+
+    private void playInfamyScene()
+    {
+        // set stats
+        hasDied = true;
+        updateReputation(20);
+
+        // call hospital scene to ovveride current splash screen
+        notificationManager.showNotification("You haven't been keeping up with your work...");
+        splashScreenManager.openSplashScreen("Hospital");
+        locationManager.goToBedroom();      
+    }
+
+    public void resetDay()
+    {
+        // reset stats
+        wellness = savedWellness;
+        hasDied = savedHasDied;
+        money = savedMoney;
+        day = savedDay;
+        reputation = savedReputation;
+        subscribers = savedSubscribers;
+        ending = savedEnding;
+        time = 480;
+        hunger = savedHunger;
+        videosMadeToday = 0;
+
+        // move location
+        locationManager.goToBedroom();
+
+        // reset HUD + splash screen
+        splashScreenManager.openSplashScreen("reset");
+
+        // call delegates
+        notifyOnWellnessChanged(wellness, wellness);
+        notifyOnTimeChanged(time, time);
+        notifyOnMoneyChange(money, money);
+        notifyOnSubscribersChange(subscribers, subscribers);
+        notifyOnReputationChange(reputation, reputation);
+    }
+
     private void Update()
     {
         // move to main menu
@@ -419,6 +437,14 @@ public class game_state : MonoBehaviour
     private void notifyOnReputationChange(int oldReputation, int newReputation)
     {
         onReputationChanged(oldReputation, newReputation);
+    }
+    public void addOnLocationChange(changeLocation changeLocation)
+    {
+        onLocationChanged += changeLocation;
+    }
+    private void notifyOnLocationChange(GameObject oldLocation, GameObject newLocation)
+    {
+        onLocationChanged(oldLocation, newLocation);
     }
 
     // remove later
