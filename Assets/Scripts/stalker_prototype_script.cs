@@ -115,7 +115,7 @@ public class stalker_prototype_script : MonoBehaviour
         // TriggerStalkerEvent(randomEvent); // Start with initial event
     }
 
-    private void OnLocationChanged(GameObject newLocation, GameObject newLocationCanvas)
+    private void OnLocationChanged(GameObject oldLocation, GameObject newLocation)
     {
         // Check if there is a pending event
         if (pendingEvent != -1)
