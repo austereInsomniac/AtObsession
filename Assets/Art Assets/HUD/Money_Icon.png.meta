@@ -165,10 +165,10 @@ TextureImporter:
       name: Money_Icon_0
       rect:
         serializedVersion: 2
-        x: 1322
-        y: 539
-        width: 443
-        height: 443
+        x: 1313
+        y: 525
+        width: 465
+        height: 465
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -369,6 +369,8 @@ public class game_state : MonoBehaviour
  
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
+        notifyOnLocationChange(location, newLocation);
+
         // the players current room has changed
         location = newLocation;
         locationCanvas = newCanvas;
