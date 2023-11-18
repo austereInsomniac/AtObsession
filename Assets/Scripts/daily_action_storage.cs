@@ -194,7 +194,9 @@ public class daily_action_storage : MonoBehaviour
             { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk") },
             { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment") },
-            { "Lift weights", new ActionVariable(8, 20, 0.00, "exercise at home") },
+            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise at home") },
+            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise at home") },
+            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise at home") },
             { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food") },//hunger
 
             // kitchen
@@ -217,16 +219,16 @@ public class daily_action_storage : MonoBehaviour
         maxTimesPerDay = new Dictionary<string, int>();
 
         maxTimesPerDay.Add("food", 3);
-        maxTimesPerDay.Add("snack", 5);
-        maxTimesPerDay.Add("chores", 3);
-        maxTimesPerDay.Add("entertainment", 9999999);
-        maxTimesPerDay.Add("exercise at home", 2);
+        maxTimesPerDay.Add("snack", 3);
+        maxTimesPerDay.Add("chores", 1);
+        maxTimesPerDay.Add("entertainment", 999);
+        maxTimesPerDay.Add("exercise at home", 1);
         maxTimesPerDay.Add("nap", 1);
         maxTimesPerDay.Add("sleep", 999);
         maxTimesPerDay.Add("freshen", 2);
         maxTimesPerDay.Add("shower", 1);
         maxTimesPerDay.Add("exercise", 1);
-        maxTimesPerDay.Add("friends", 99999999);
+        maxTimesPerDay.Add("friends", 999);
         maxTimesPerDay.Add("walk", 2);
     }
 
