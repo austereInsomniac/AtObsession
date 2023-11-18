@@ -73,6 +73,7 @@ public class move_location : MonoBehaviour
     {
         moveLocation(mainMenu,mainMenuCanvas, player.getLocation(), player.getLocationCanvas());
     }
+
     public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))

@@ -161,6 +161,10 @@ public class daily_action_storage : MonoBehaviour
             {
                 state.updateShower(-12 * 60);
             }
+            else if (activity.getGroup() == "bath")
+            {
+                state.updateShower(-16 * 60);
+            }
             else if (activity.getGroup() == "sleep")
             {
                 state.updateSleep(-14 * 60);
@@ -194,9 +198,9 @@ public class daily_action_storage : MonoBehaviour
             { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk") },
             { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment") },
-            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise at home") },
-            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise at home") },
-            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise at home") },
+            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise") },
+            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise") },
+            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise") },
             { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food") },//hunger
 
             // kitchen
@@ -210,26 +214,33 @@ public class daily_action_storage : MonoBehaviour
             // bathroom
             { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen") },
             { "Shower", new ActionVariable(8, 20, 0.00, "shower") },
-            { "Bubble bath", new ActionVariable(12, 45, 0.00, "shower") }
+            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath") }
 
         };
 
         // set up time limits
         timesPerDay = new Dictionary<string, int>();
-        maxTimesPerDay = new Dictionary<string, int>();
 
-        maxTimesPerDay.Add("food", 3);
-        maxTimesPerDay.Add("snack", 3);
-        maxTimesPerDay.Add("chores", 1);
-        maxTimesPerDay.Add("entertainment", 999);
-        maxTimesPerDay.Add("exercise at home", 1);
-        maxTimesPerDay.Add("nap", 1);
-        maxTimesPerDay.Add("sleep", 999);
-        maxTimesPerDay.Add("freshen", 2);
-        maxTimesPerDay.Add("shower", 1);
-        maxTimesPerDay.Add("exercise", 1);
-        maxTimesPerDay.Add("friends", 999);
-        maxTimesPerDay.Add("walk", 2);
+        maxTimesPerDay = new Dictionary<string, int>() 
+        {
+            // other limits
+            { "food", 3 },
+            { "snack", 3},
+            { "nap", 1},
+
+            // normal
+            { "chores", 1 },
+            { "walk", 2},
+            { "freshen", 2},
+            { "shower", 1},
+            { "bath", 1 },
+            { "exercise", 1},
+
+            // no limits
+            { "sleep", 999},
+            { "entertainment", 999 },
+            { "friends", 999} 
+        };
     }
 
     private void randomizeStats()
@@ -238,7 +249,7 @@ public class daily_action_storage : MonoBehaviour
         activities["Go to sleep"] = new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep");
 
         // random
-        activities["Go to the gyms"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise");
+        activities["Go to the gym"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise");
         activities["Visit friends"] = new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends");
         activities["Watch TVs"] = new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment");
     }
