@@ -34,45 +34,46 @@ public class VideoMakingTests
         Assert.IsNotNull(videoMaking);
 
 
-        Assert.That(gameState.getReputation() == 20);
-        for (int i = 1; i < 10; i++)
+        Assert.That(gameState.getReputation() == 25);
+        for (int i = 1; i < 6; i++)
         {
             gameState.updateWellness(100);
             videoMaking.makeVideo(1);
-            Assert.That(gameState.getReputation(), Is.EqualTo(20 + (i * 3)));
+            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i* 1 * 3)));
         }
 
-        gameState.updateReputation(-27);
+        gameState.updateReputation(-15);
 
-        for (int i = 1; i < 10; i++)
+        for (int i = 1; i < 6; i++)
         {
             gameState.updateWellness(100);
             videoMaking.makeVideo(2);
-            Assert.That(gameState.getReputation(), Is.EqualTo(20 + (i * 3)));
+            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i* 2 * 3)));
         }
 
-        gameState.updateReputation(-27);
-        for (int i = 1; i < 10; i++)
+        gameState.updateReputation(-30);
+        for (int i = 1; i < 6; i++)
         {
             gameState.updateWellness(100);
             videoMaking.makeVideo(3);
-            Assert.That(gameState.getReputation(), Is.EqualTo(20 + (i * 3)));
+            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i* 3 * 3)));
         }
 
-        gameState.updateReputation(-27);
-        for (int i = 1; i < 10; i++)
+        gameState.updateReputation(-45);
+        for (int i = 1; i < 6; i++)
         {
             gameState.updateWellness(100);
             videoMaking.makeVideo(4);
-            Assert.That(gameState.getReputation(), Is.EqualTo(20 + (i * 3)));
+            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i * 4 * 3)));
         }
 
-        gameState.updateReputation(-27);
-        for (int i = 1; i < 10; i++)
+        gameState.updateReputation(-60);
+        for (int i = 1; i < 6; i++)
         {
             gameState.updateWellness(100);
             videoMaking.makeVideo(5);
-            Assert.That(gameState.getReputation(), Is.EqualTo(20 + (i * 3)));
+
+            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i * 5 * 3)));
         }
         yield return null;
     }
@@ -305,6 +306,7 @@ public class VideoMakingTests
             int time = gameState.getTime();
             Assert.That(time, Is.EqualTo(origTime+60));
         }
+
         for (int i = 0; i < 3; i++)
         {
             gameState.resetDay();
@@ -334,6 +336,7 @@ public class VideoMakingTests
             int time = gameState.getTime();
             Assert.That(time, Is.EqualTo(origTime + (60*4)));
         }
+
         for (int i = 0; i < 3; i++)
         {
             gameState.resetDay();
