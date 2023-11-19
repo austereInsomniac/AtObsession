@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Connor + Mackenzie
 
@@ -59,6 +60,66 @@ public class daily_action_storage : MonoBehaviour
         day = 1;
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        activities = new Dictionary<string, ActionVariable>
+        {
+            // wellness, time, money
+
+            // living room
+            { "Do chores", new ActionVariable(8, 15, 0.00, "chores") },
+            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise") },
+            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
+            { "Go for a walk", new ActionVariable(10, 25, 0, "walk") },
+            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment") },
+            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise") },
+            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise") },
+            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise") },
+            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food") },//hunger
+
+            // kitchen
+            { "Cook food", new ActionVariable(10, 30, -5.00, "food") },//hunger
+            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack") },//hunger
+
+            // bedroom
+            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep") },
+            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap") },
+
+            // bathroom
+            { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen") },
+            { "Shower", new ActionVariable(8, 20, 0.00, "shower") },
+            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath") }
+
+        };
+
+        // set up time limits
+        timesPerDay = new Dictionary<string, int>();
+
+        maxTimesPerDay = new Dictionary<string, int>()
+        {
+            // other limits
+            { "food", 3 },
+            { "snack", 3},
+            { "nap", 1},
+
+            // normal
+            { "chores", 1 },
+            { "walk", 2},
+            { "freshen", 2},
+            { "shower", 1},
+            { "bath", 1 },
+            { "exercise", 1},
+
+            // no limits
+            { "sleep", 999},
+            { "entertainment", 999 },
+            { "friends", 999}
+        };
+
+        buttons = new Dictionary<string, Button>();
+    }
+
     int RandomTimeBig()
     {
         int randomNumber;
@@ -98,9 +159,10 @@ public class daily_action_storage : MonoBehaviour
         {
             return maxTimesPerDay[key];
         }
-        return 999999;
+        return 999;
     }
 
+    //this gets the amount of times the user has done the activity
     int getCurrentTimesPerDay(string key)
     {
         if (timesPerDay.ContainsKey(key))
@@ -119,16 +181,57 @@ public class daily_action_storage : MonoBehaviour
         }
     }
 
+    //clears the current timesPerDay dictionary and makes the buttons in the in the buttons
+    //dictionary interactable, if the day advances
     private void resetTimesPerDay()
     {
-        if(day != GetComponent<game_state>().getDay())
+        if (day != GetComponent<game_state>().getDay())
         {
-            foreach (KeyValuePair<string, int> action in maxTimesPerDay)
+            timesPerDay.Clear();
+            foreach (KeyValuePair<string, Button> button in buttons)
             {
-                timesPerDay[action.Key] = 0;
+                button.Value.interactable = true;
             }
+            buttons.Clear();
         }
         day = GetComponent<game_state>().getDay();
+    }
+
+    //Sets the buttons to not interactable when the user has used them up for the current day
+    public void notInteractable(string key, string group)
+    {
+        if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
+        {
+            if (group == "food" && key == "Cook food")
+            {
+                GameObject findSecondButton = GameObject.Find("Eat at a restaurant");
+                GameObject findButton = GameObject.Find(key);
+                Button button1 = findButton.GetComponent<Button>();
+                Button button2 = findSecondButton.GetComponent<Button>();
+                button1.interactable = false;
+                button2.interactable = false;
+                buttons.Add(group, button1);
+                buttons.Add(key, button2);
+            }
+            else if (group == "food" && key == "Eat at a restaurant")
+            {
+                GameObject findSecondButton = GameObject.Find("Cook food");
+                GameObject findButton = GameObject.Find(key);
+                Button button1 = findButton.GetComponent<Button>();
+                Button button2 = findSecondButton.GetComponent<Button>();
+                button1.interactable = false;
+                button2.interactable = false;
+                buttons.Add(group, button1);
+                buttons.Add(key, button2);
+            }
+            else
+            {
+                GameObject findButton = GameObject.Find(key);
+                Button button1 = findButton.GetComponent<Button>();
+                button1.interactable = false;
+                buttons.Add(group, button1);
+            }
+        }
     }
 
     public void doAction(string key)
@@ -136,24 +239,26 @@ public class daily_action_storage : MonoBehaviour
         // re roll random stats
         randomizeStats();
 
-        // reset times if needed
-        //resetTimesPerDay();
-
         // update each statistic
         ActionVariable activity = activities[key];
 
-        //if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
+        if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
         {
+            updateTimesPerDay(activity.getGroup());
+
+            // reset times if needed
+            resetTimesPerDay();
+
             // must be before splash screen so notifications work, and before time jump
             if (activity.getGroup() == "food")
             {
-                state.updateHunger(-4*60);  
+                state.updateHunger(-4 * 60);
             }
-            else if(activity.getGroup() == "snack")
+            else if (activity.getGroup() == "snack")
             {
                 state.updateHunger(-1.5f * 60);
             }
-            else if(activity.getGroup() == "freshen")
+            else if (activity.getGroup() == "freshen")
             {
                 state.updateShower(-4 * 60);
             }
@@ -176,71 +281,15 @@ public class daily_action_storage : MonoBehaviour
 
             // update the splash screen before updating stats so that death scenes work
             GetComponent<splash_screen_manager>().openSplashScreen(key);
-
-            updateTimesPerDay(activity.getGroup());
+            if (getCurrentTimesPerDay(activity.getGroup()) == getMaxTimesPerDay(activity.getGroup()))
+            {
+                notInteractable(key, activity.getGroup());
+            }
 
             state.updateWellness(activity.getWellness());
             state.updateTime(activity.getTime());
             state.updateMoney(activity.getMoney());
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        activities = new Dictionary<string, ActionVariable>
-        {
-            // wellness, time, money
-
-            // living room
-            { "Do chores", new ActionVariable(8, 15, 0.00, "chores") },
-            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise") },
-            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
-            { "Go for a walk", new ActionVariable(10, 25, 0, "walk") },
-            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment") },
-            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise") },
-            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise") },
-            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise") },
-            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food") },//hunger
-
-            // kitchen
-            { "Cook food", new ActionVariable(10, 30, -5.00, "food") },//hunger
-            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack") },//hunger
-
-            // bedroom
-            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep") },
-            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap") },
-
-            // bathroom
-            { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen") },
-            { "Shower", new ActionVariable(8, 20, 0.00, "shower") },
-            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath") }
-
-        };
-
-        // set up time limits
-        timesPerDay = new Dictionary<string, int>();
-
-        maxTimesPerDay = new Dictionary<string, int>() 
-        {
-            // other limits
-            { "food", 3 },
-            { "snack", 3},
-            { "nap", 1},
-
-            // normal
-            { "chores", 1 },
-            { "walk", 2},
-            { "freshen", 2},
-            { "shower", 1},
-            { "bath", 1 },
-            { "exercise", 1},
-
-            // no limits
-            { "sleep", 999},
-            { "entertainment", 999 },
-            { "friends", 999} 
-        };
     }
 
     private void randomizeStats()
