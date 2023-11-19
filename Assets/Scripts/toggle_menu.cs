@@ -11,13 +11,13 @@ public class toggle_menu : MonoBehaviour
     // V1 Riley
     // V2 Mackenzie 10/16/2023+
 
-    [SerializeField] 
+    [SerializeField]
     private CanvasGroup menu;
 
     private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
     private Component[] buttons;
-    
+
     private void Awake()
     {
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
@@ -63,7 +63,6 @@ public class toggle_menu : MonoBehaviour
                 open();
             }
 
-            //GetComponent<Tutorial>().checkForTutorial(hit.collider.gameObject);
         }
     }
 }
