@@ -22,6 +22,8 @@ public class move_location : MonoBehaviour
     private game_state player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
+    private GameObject livingRoom;
+    private GameObject livingRoomCanvas;
     private GameObject gameOver;
     private GameObject gameOverCanvas;
     private GameObject mainMenu;
@@ -32,6 +34,8 @@ public class move_location : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<game_state>();
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        livingRoom = GameObject.Find("Living Room");
+        livingRoomCanvas = GameObject.Find("Living Room Canvas");
         gameOver = GameObject.Find("Game Over");
         gameOverCanvas = GameObject.Find("Game Over Canvas");
         mainMenu = GameObject.Find("Main Menu");
@@ -56,6 +60,10 @@ public class move_location : MonoBehaviour
         moveLocation(bedroom, bedroomCanvas, player.getLocation(), player.getLocationCanvas());
     }
 
+    public void goToLivingRoom()
+    {
+        moveLocation(livingRoom, livingRoomCanvas, player.getLocation(), player.getLocationCanvas());
+    }
     public void goToGameOver()
     {
         moveLocation(gameOver, gameOverCanvas, player.getLocation(), player.getLocationCanvas());
@@ -65,6 +73,7 @@ public class move_location : MonoBehaviour
     {
         moveLocation(mainMenu,mainMenuCanvas, player.getLocation(), player.getLocationCanvas());
     }
+
     public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
