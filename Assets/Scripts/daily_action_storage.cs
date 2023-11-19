@@ -45,6 +45,7 @@ public class daily_action_storage : MonoBehaviour
     Dictionary<string, ActionVariable> activities;
     Dictionary<string, int> timesPerDay;
     Dictionary<string, int> maxTimesPerDay;
+    Dictionary<string, Button> buttons;
 
     // outside objects
     private game_state state;
@@ -246,9 +247,6 @@ public class daily_action_storage : MonoBehaviour
         {
             updateTimesPerDay(activity.getGroup());
 
-            // reset times if needed
-            resetTimesPerDay();
-
             // must be before splash screen so notifications work, and before time jump
             if (activity.getGroup() == "food")
             {
@@ -289,6 +287,9 @@ public class daily_action_storage : MonoBehaviour
             state.updateWellness(activity.getWellness());
             state.updateTime(activity.getTime());
             state.updateMoney(activity.getMoney());
+
+            // reset times if needed
+            resetTimesPerDay();
         }
     }
 
