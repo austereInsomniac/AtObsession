@@ -42,6 +42,23 @@ public class move_location : MonoBehaviour
         mainMenuCanvas = GameObject.Find("Main Menu Canvas");
     }
 
+    public GameObject getBedroom() {  return bedroom; }
+    public GameObject getBedroomCanvas() {  return bedroomCanvas; }
+
+    public GameObject getLivingRoom() {  return livingRoom; }
+    public GameObject getLivingRoomCanvas() {  return livingRoomCanvas; }
+    public GameObject getGameOver() { return gameOver; }
+    public GameObject getGameOverCanvas() {  return gameOverCanvas; }
+    public GameObject getMainMenu() {  return mainMenu; }
+    public GameObject getMainMenuCanvas() {  return mainMenuCanvas; }
+    public GameObject getOther() { return other; }
+    public GameObject getOtherCanvas() {  return otherCanvas; }
+
+    public GameObject getThisO() {  return thisO; }
+    public GameObject getThisCanvas() { return thisCanvas; }
+
+
+
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
         // move this room away
