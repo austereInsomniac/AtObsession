@@ -139,6 +139,12 @@ public class game_state : MonoBehaviour
 
     public bool getHasDied() {  return hasDied; }
 
+    public SpriteRenderer getHungerHUD() { return hungerHUD; }
+
+    public SpriteRenderer getShowerHUD() {  return showerHUD; }
+
+    public SpriteRenderer getSleepHUD() {  return sleepHUD; }
+
     // setters 
     public void updateWellness(int w)
     {
