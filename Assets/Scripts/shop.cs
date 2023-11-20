@@ -49,6 +49,8 @@ public class shop : MonoBehaviour
     [SerializeField]
     private int itemIndex;
 
+    private bool wasBought = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,12 @@ public class shop : MonoBehaviour
 
             // block future purchse
             item.purchaseItem();
+            wasBought = true;
         }
+    }
+
+    public buyableItem getItem(int index)
+    {
+        return buyableItems[index];
     }
 }
