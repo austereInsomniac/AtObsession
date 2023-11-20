@@ -5,29 +5,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-class StalkerEvents
+public class StalkerChoice
+{
+    public string choiceText;
+    public string choiceNotification;
+    public int wellnessChange;
+    public int endingChange;
+    public int reputationChange;
+
+    public StalkerChoice(string text, string notification, int wellness, int ending, int reputation)
+    {
+        choiceText = text;
+        choiceNotification = notification;
+        wellnessChange = wellness;
+        endingChange = ending;
+        reputationChange = reputation;
+    }
+}
+
+public class StalkerEvents
 {
     int wellness;
     int eventNumber;
     int ending;
     int reputation;
     string eventMessage;
-    string choice1;
-    string choice2;
-    string choice3;
     string eventLocation;
+    List<StalkerChoice> choices;
 
-    public StalkerEvents(string changeMessage, string option1, string option2, string option3, string location, int changeWellness, int newEventNumber, int changeEnding, int changeRep)
+    public StalkerEvents(string changeMessage, string location, int changeWellness, int newEventNumber, int changeEnding, int changeRep)
     {
         wellness = changeWellness;
         eventNumber = newEventNumber;
         ending = changeEnding;
         reputation = changeRep;
         eventMessage = changeMessage;
-        choice1 = option1;
-        choice2 = option2;
-        choice3 = option3;
         eventLocation = location;
+        choices = new List<StalkerChoice>();
     }
 
     public int getWellness() { return wellness; }
@@ -35,10 +49,17 @@ class StalkerEvents
     public int getEnding() { return ending; }
     public int getReputation() { return reputation; }
     public string getEventMessage() { return eventMessage; }
-    public string getChoice1() { return choice1; }
-    public string getChoice2() { return choice2; }
-    public string getChoice3() { return choice3; }
     public string getEventLocation() {  return eventLocation; }
+
+    public void AddChoice(string text, string notification, int wellness, int ending, int reputation)
+    {
+        choices.Add(new StalkerChoice(text, notification, wellness, ending, reputation));
+    }
+
+    public List<StalkerChoice> GetChoices()
+    {
+        return choices;
+    }
 }
 
 public class stalker_prototype_script : MonoBehaviour
@@ -46,16 +67,10 @@ public class stalker_prototype_script : MonoBehaviour
     private bool isOn = true;
     List<string> eventKeys;
     Dictionary<string, StalkerEvents> stalkerEvents;
-    private bool isStalkerEvent = false; // Tracks if event is happening
-    private float eventDuration = 10; // How long it should last
-    private float eventEndTime = 0; // Timestamp when event should end
-
-    private float minTimeBetweenEvents = 20; // Minimum time between events
-    private float maxTimeBetweenEvents = 40; // Maximum time between events
-    private float nextEventTime = 0; // Timestamp when next event should start
 
     private int eventNum;
     private int pendingEvent = -1; // Set to -1 to indicate no pending event
+    private int eventCount = 0;
 
     private game_state player;
     GameObject stalkerEventHandler;
@@ -88,31 +103,70 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEventHandler.SetActive(false);
 
         stalkerEvents = new Dictionary<string, StalkerEvents>();
-        stalkerEvents.Add("Email", new StalkerEvents("I got a weird email...", "Interact", "Ignore", "Report", "Bedroom", 0, 1, 1, 5));
-        stalkerEvents.Add("Knocking on window", new StalkerEvents("There's something at the window!", "Look", "Ignore", "Call 911", "Bedroom", 10, 2, 1, 0));
-        stalkerEvents.Add("Suspicious gift", new StalkerEvents("I got a weird gift in the mail...", "Open it", "Leave it", "Send back", "Living room", 10, 3, 1, 0));
-        stalkerEvents.Add("Window figure", new StalkerEvents("Something's outside the window!", "Look out the window", "Ignore it", "Call 911", "Kitchen", 10, 4, 1, 0));
-        stalkerEvents.Add("Fan game", new StalkerEvents("A fan asked me to play a game they sent!", "Play the game", "Ignore them", "Decline", "Bedroom", 10, 5, 1, 5));
-        stalkerEvents.Add("Unknown call", new StalkerEvents("The phone is ringing! it's an unknown number...", "Answer the call", "Ignore", "Decline", "Any", 10, 6, 1, 0));
-        stalkerEvents.Add("Uncomfortable comment", new StalkerEvents("Someone left a comment that mentioned a private conversation I had.", "Delete the comment", "Ignore", "Install cameras", "Any", 10, 7, 1, 0));
-        stalkerEvents.Add("Banging on door", new StalkerEvents("There's banging on the door!", "Call the cops", "Try to ignore", "Check outside", "Living room", 10, 8, 5, 0));
-        stalkerEvents.Add("Trapped in bathroom", new StalkerEvents("The Bathroom door is locked!", "", "", "", "Any", 0, 9, 0, 0));
 
-        eventKeys = new List<string>();
-        eventKeys.Add("Email");
-        eventKeys.Add("Knocking on window");
-        eventKeys.Add("Suspicious gift");
-        eventKeys.Add("Window figure");
-        eventKeys.Add("Fan game");
-        eventKeys.Add("Unknown call");
-        eventKeys.Add("Uncomfortable comment");
-        eventKeys.Add("Banging on door");
-        eventKeys.Add("Trapped in bathroom");
+        StalkerEvents emailEvent = new StalkerEvents("I got a weird email...", "Bedroom", 0, 1, 1, 5);
+        emailEvent.AddChoice("Interact", "I clicked on the email and clicked a weird link", -3, -1, 0);
+        emailEvent.AddChoice("Ignore", "I ignored the email", -1, 0, 0);
+        emailEvent.AddChoice("Report", "I reported the email as it seemed suspicious", -1, 1, 5);
+        stalkerEvents.Add("Email", emailEvent);
+
+        // Knocking on window event
+        StalkerEvents knockingEvent = new StalkerEvents("There's something at the window!", "Bedroom", 10, 2, 1, 0);
+        knockingEvent.AddChoice("Look", "I didn't see anything but some rustling bushes", -3, -1, 0);
+        knockingEvent.AddChoice("Scream", "Whatever it was it's gone", -1, 0, 0);
+        knockingEvent.AddChoice("Ignore", "It's probably nothing", -1, 1, 0);
+        stalkerEvents.Add("Knocking on window", knockingEvent);
+
+        // Suspicious gift event
+        StalkerEvents giftEvent = new StalkerEvents("I got a weird gift in the mail...", "Living room", 10, 3, 1, 0);
+        giftEvent.AddChoice("Open it", "I opened the gift and found something weird", -3, -1, 0);
+        giftEvent.AddChoice("Leave it", "I left the gift untouched", -1, 0, 0);
+        giftEvent.AddChoice("Send back", "I sent the gift back", -1, 1, 0);
+        stalkerEvents.Add("Suspicious gift", giftEvent);
+
+        // Window figure event
+        StalkerEvents windowEvent = new StalkerEvents("Something's outside the window!", "Kitchen", 10, 4, 1, 0);
+        windowEvent.AddChoice("Look out the window", "I looked outside", -3, -1, 0);
+        windowEvent.AddChoice("Scream", "I screamed and they ran away", -1, 0, 0);
+        windowEvent.AddChoice("Avoid", "I looked away", -1, 1, 0);
+        stalkerEvents.Add("Window figure", windowEvent);
+
+        // Fan game event
+        StalkerEvents fanGameEvent = new StalkerEvents("A fan asked me to play a game they sent!", "Bedroom", 10, 5, 1, 5);
+        fanGameEvent.AddChoice("Play the game", "I played the fan's game and ended up getting a virus on my computer", -3, -1, 0);
+        fanGameEvent.AddChoice("Ignore them", "I ignored the fan's request and kept with my regular schedule", -1, 0, 0);
+        fanGameEvent.AddChoice("Decline", "I declined to play", -1, 1, 5);
+        stalkerEvents.Add("Fan game", fanGameEvent);
+
+        // Unknown call event
+        StalkerEvents unknownCallEvent = new StalkerEvents("The phone is ringing! It's an unknown number...", "Any", 10, 6, 1, 0);
+        unknownCallEvent.AddChoice("Answer the call", "I answered the unknown call and heard someone breathing heavily", -3, -1, 0);
+        unknownCallEvent.AddChoice("Ignore", "I ignored the call and nothing happened", -1, 0, 0);
+        unknownCallEvent.AddChoice("Decline", "I declined the call", -1, 1, 0);
+        stalkerEvents.Add("Unknown call", unknownCallEvent);
+
+        // Uncomfortable comment event
+        StalkerEvents commentEvent = new StalkerEvents("Someone left a comment that mentioned a private conversation I had.", "Any", 10, 7, 1, 0);
+        commentEvent.AddChoice("Delete the comment", "I deleted the uncomfortable comment", -3, -1, 0);
+        commentEvent.AddChoice("Ignore", "I ignored the comment", -1, 0, 0);
+        commentEvent.AddChoice("Install cameras", "I installed security cameras to make sure I'm not being watched", -1, 1, 0);
+        stalkerEvents.Add("Uncomfortable comment", commentEvent);
+
+        // Banging on door event
+        StalkerEvents bangingEvent = new StalkerEvents("There's banging on the door!", "Living room", 10, 8, 5, 0);
+        bangingEvent.AddChoice("Call the cops", "I called the police", -3, -1, 0);
+        bangingEvent.AddChoice("Try to ignore", "I tried to ignore the banging", -1, 0, 0);
+        bangingEvent.AddChoice("Check outside", "I checked outside and I heard some noises coming from the bushes", -1, 1, 0);
+        stalkerEvents.Add("Banging on door", bangingEvent);
+
+        // Trapped in bathroom event
+        StalkerEvents bathroomEvent = new StalkerEvents("The bathroom door is locked!", "Any", 0, 9, 0, 0);
+        stalkerEvents.Add("Trapped in bathroom", bathroomEvent);
+
+        eventKeys = new List<string>(stalkerEvents.Keys);
 
         // Subscribe to the location change event from game_state
         player.addOnLocationChange(OnLocationChanged);
-        //randomEvent = Random.Range(0, eventKeys.Count - 2);
-        // TriggerStalkerEvent(randomEvent); // Start with initial event
     }
 
     private void OnLocationChanged(GameObject oldLocation, GameObject newLocation)
@@ -125,12 +179,7 @@ public class stalker_prototype_script : MonoBehaviour
             {
                 // Player reached the correct location, proceed with displaying choices
                 DisplayChoices(stalkerEvents[eventKeys[pendingEvent]]);
-                isStalkerEvent = true;
                 pendingEvent = -1; // Clear the pending event
-
-                // Calculate the time for the next stalker event.
-                float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
-                nextEventTime = Time.time + randomTimeBetweenEvents;
             }
         }
     }
@@ -141,12 +190,7 @@ public class stalker_prototype_script : MonoBehaviour
         int wellness = player.getWellness();
         int day = player.getDay();
         int time = player.getTime();
-        // Check if it's time to end the event.
-        if (isStalkerEvent && Time.time >= eventEndTime)
-        {
-            isOn = true;
-            EndStalkerEvent(eventNum);
-        }
+
         if (isOn)
         {
 
@@ -155,28 +199,17 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(8);
             }
-            else if (day == 4 && time >= 17 * 60)
+            else if (day == 4 && time >= 17 * 60 && eventCount == 1)
             {
+                eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(1);
             }
-            else if (day == 3 && time >= 17 * 60)
+            else if (day == 3 && time >= 17 * 60 && eventCount == 0)
             {
+                eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(3);
-            }
-            // Check if it's time to trigger a new event.
-            else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 2 && time >= 17*60)
-            {
-                isOn = false;
-                if (eventNum == 0)
-                {
-                    TriggerStalkerEvent(randomEvent);
-                }
-                else
-                {
-                    TriggerStalkerEvent(eventNum);
-                }
             }
         }
     }
@@ -224,9 +257,6 @@ public class stalker_prototype_script : MonoBehaviour
         if (numEvent != eventKeys.Count - 1)
         {
             // Handle stalker event logic here.
-            eventDuration = Random.Range(5, 20); // Set random event duration between 5 and 20 seconds
-            eventEndTime = Time.time + eventDuration; // Calculate when the event should end.
-
             string eventKey = eventKeys[numEvent];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
@@ -239,11 +269,6 @@ public class stalker_prototype_script : MonoBehaviour
             if (IsPlayerInRequiredLocation(location) || location == "Any")
             {
                 DisplayChoices(stalkerEvent);
-                isStalkerEvent = true;
-
-                // Calculate the time for the next stalker event.
-                float randomTimeBetweenEvents = Random.Range(minTimeBetweenEvents, maxTimeBetweenEvents);
-                nextEventTime = Time.time + randomTimeBetweenEvents;
             }
             else
             {
@@ -257,8 +282,6 @@ public class stalker_prototype_script : MonoBehaviour
         }
         else
         {
-            eventDuration = Random.Range(5, 20); // Set random event duration between 5 and 20 seconds
-            eventEndTime = Time.time + eventDuration; // Calculate when the event should end.
             string eventKey = eventKeys[eventNum];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
@@ -281,62 +304,50 @@ public class stalker_prototype_script : MonoBehaviour
         choice2Text = choice2.GetComponentInChildren<TMP_Text>();
         choice3Text = choice3.GetComponentInChildren<TMP_Text>();
 
+        // Get choices from the event
+        List<StalkerChoice> choices = stalkerEvent.GetChoices();
+
         // Option 1
-        choice1Text.text = stalkerEvent.getChoice1();
-        choice1.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(1));
+        choice1Text.text = choices.Count > 0 ? choices[0].choiceText : "";
+        choice1.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 0 ? choices[0] : null));
 
         // Option 2
-        choice2Text.text = stalkerEvent.getChoice2();
-        choice2.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(2));
+        choice2Text.text = choices.Count > 1 ? choices[1].choiceText : "";
+        choice2.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 1 ? choices[1] : null));
 
         // Option 3
-        choice3Text.text = stalkerEvent.getChoice3();
-        choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(3));
+        choice3Text.text = choices.Count > 2 ? choices[2].choiceText : "";
+        choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 2 ? choices[2] : null));
 
         stalkerEventHandler.SetActive(true);
     }
 
-    private void HandlePlayerChoice(int choiceNum)
+    private void HandlePlayerChoice(StalkerChoice choice)
     {
-        StalkerEvents stalkerEvent = stalkerEvents[eventKeys[randomEvent]];
+        if (choice != null)
+        {
+            // Update player stats
+            player.updateWellness(choice.wellnessChange);
+            player.updateEnding(choice.endingChange);
+            player.updateReputation(choice.reputationChange);
 
-        int wellnessChange = stalkerEvent.getWellness();
-        int endingChange = stalkerEvent.getEnding();
-        int reputationChange = stalkerEvent.getReputation();
+            // Hide the stalker event handler
+            stalkerEventHandler.SetActive(false);
 
-        if (choiceNum == 1)
-        {
-            wellnessChange *= -3;
-            endingChange *= -1;
-        }
-        else if (choiceNum == 2)
-        {
-            wellnessChange *= -1;
-            endingChange *= 0;
-        }
-        else if (choiceNum == 3)
-        {
-            wellnessChange *= -1;
-            endingChange *= 1;
+            // Show notification
+            if (notification != null)
+            {
+                notification.showNotification(choice.choiceNotification);
+            }
         }
         else
         {
             Debug.Log("Invalid Choice");
         }
-
-        // Update player stats
-        player.updateWellness(wellnessChange);
-        player.updateEnding(endingChange);
-        player.updateReputation(reputationChange);
-
-        // Hide the stalker event handler
-        stalkerEventHandler.SetActive(false);
     }
 
     private void EndStalkerEvent(int eventNum)
     {
-        // Clean up and end the stalker event.
-        isStalkerEvent = false;
         Debug.Log("Stalker event ended.");
         if (eventNum == 8 || randomEvent == 8)
         {
@@ -361,6 +372,5 @@ public class stalker_prototype_script : MonoBehaviour
         {
             choiceText.text = stalkerEvent.getEventMessage() + "Good Ending- You called 911 and the stalker was arrested";
         }
-        isStalkerEvent = true;
     }
 }

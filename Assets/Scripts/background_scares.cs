@@ -4,37 +4,30 @@ using UnityEngine;
 
 public class background_scares : MonoBehaviour
 {
-    private bool isScare = false; // Tracks if scare is happening
-    private float scareDuration = 10; // How long it should last
-    private float scareEndTime = 0; // Timestamp when event should end
-
-    private float minTimeBetweenScares = 10; // Minimum time between scares
-    private float maxTimeBetweenScares = 30; // Maximum time between scares
-    private float nextScareTime = 0; // Timestamp when next event should start
-
     private GameObject[] swappableAssets;
-    private GameObject player;
+    private game_state player;
 
     private swap_assets swap;
     public notification_manager notification;
+    int scare = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<game_state>();
         swappableAssets = GameObject.FindGameObjectsWithTag("swappable");
+
+        player.addOnTimeChange(OnTimeChanged);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTimeChanged(int oldTime, int newTime)
     {
-        int wellness = player.GetComponent<game_state>().getWellness();
-        int day = player.GetComponent<game_state>().getDay();
-        if (isScare && Time.time >= scareEndTime)
-        {
-            EndScare();
-        }
-        if (!isScare && Time.time > nextScareTime && wellness <= 60 && day >= 3)
+        int timeChange = newTime - oldTime;
+        scare = timeChange + scare;
+        int wellness = player.getWellness();
+        int day = player.getDay();
+
+        if (scare >= 4*60 && day >= 3 && wellness <= 60)
         {
             if (swappableAssets.Length > 0)
             {
@@ -45,15 +38,32 @@ public class background_scares : MonoBehaviour
             {
                 Debug.Log("No swappable assets");
             }
+            scare -= scare;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
     private void TriggerScare(int scareNum)
     {
-        scareDuration = Random.Range(5, 20);
-        scareEndTime = Time.time + scareDuration;
-        string scareMessage = "...Something feels off";
-        Debug.Log(scareMessage);
+        string scareMessage = "I hear something...";
+        Transform greatGrandParentObj = swappableAssets[scareNum].transform.parent.parent.parent;
+        if (greatGrandParentObj.name == player.getLocation().name)
+        {
+            int originalScareNum = scareNum;
+            // Randomly select a new scareNum within the valid range
+            scareNum = Random.Range(0, swappableAssets.Length);
+
+            // Make sure the new scareNum is not equal to the original scareNum
+            while (scareNum == originalScareNum)
+            {
+                scareNum = Random.Range(0, swappableAssets.Length);
+            }
+        }
 
         swap = swappableAssets[scareNum].GetComponent<swap_assets>();
 
@@ -65,15 +75,5 @@ public class background_scares : MonoBehaviour
                 notification.showNotification(scareMessage);
             }
         }
-
-        float randomTimeBetweenScares = Random.Range(minTimeBetweenScares, maxTimeBetweenScares);
-        nextScareTime = Time.time + randomTimeBetweenScares;
-        isScare = true;
-    }
-
-    private void EndScare()
-    {
-        isScare = false;
-        Debug.Log("Scare ended");
     }
 }
