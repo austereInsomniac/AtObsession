@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,11 +55,31 @@ public class daily_action_storage : MonoBehaviour
     // RNG
     System.Random rand = new System.Random();
 
+    // buttons
+    Button cook;
+    Button restaurant;
+    Button sleep;
+    Button nap;
+    Button shower;
+    Button bath;
+
     void Awake()
     {
         // assign outside objects
         state = GetComponent<game_state>();
         day = 1;
+        state.addOnTimeChange(toggleButtons);
+
+        // create
+        buttons = new Dictionary<string, Button>();
+
+        // find buttons
+        cook = GameObject.Find("Cook food").GetComponent<Button>();
+        restaurant = GameObject.Find("Eat at a restaurant").GetComponent<Button>();
+        sleep = GameObject.Find("Go to sleep").GetComponent<Button>();
+        nap = GameObject.Find("Take a nap").GetComponent<Button>();
+        shower = GameObject.Find("Shower").GetComponent<Button>();
+        bath = GameObject.Find("Bubble Bath").GetComponent<Button>();
     }
 
     // Start is called before the first frame update
@@ -91,7 +112,6 @@ public class daily_action_storage : MonoBehaviour
             { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen") },
             { "Shower", new ActionVariable(8, 20, 0.00, "shower") },
             { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath") }
-
         };
 
         // set up time limits
@@ -118,7 +138,8 @@ public class daily_action_storage : MonoBehaviour
             { "friends", 999}
         };
 
-        buttons = new Dictionary<string, Button>();
+        // toggle any buttons at the start
+        toggleButtons(0, 0);
     }
 
     int RandomTimeBig()
@@ -235,6 +256,59 @@ public class daily_action_storage : MonoBehaviour
         }
     }
 
+    private void toggleButtons(int oldT, int newT) 
+    {
+        if (state.hungry())
+        {
+            cook.interactable = true;
+            restaurant.interactable = true;
+            
+        }
+        else
+        {
+            cook.interactable = false;
+            restaurant.interactable = false;
+
+            buttons.Add("Cook food", cook);
+            buttons.Add("Eat at a restaurant", restaurant);
+        }
+
+        if (state.needsShower())
+        {
+            shower.interactable = true;
+            bath.interactable = true;
+        }
+        else
+        {
+            shower.interactable = false;
+            bath.interactable = false;
+
+            buttons.Add("Shower", shower);
+            buttons.Add("Bubble bath", bath);
+        }
+
+        if (state.tired() && state.getTime() > 12*60)
+        {
+            nap.interactable = true;
+        }
+        else
+        {    
+            nap.interactable = false;
+            buttons.Add("Take a nap", nap);
+        }
+
+        if(state.tired() && state.getTime() > 22 * 60)
+        {
+            sleep.interactable = true;
+        }
+        else
+        {
+            sleep.interactable = false;
+            buttons.Add("Go to sleep", sleep);
+        }
+
+    }
+
     public void doAction(string key)
     {
         // re roll random stats
@@ -248,6 +322,7 @@ public class daily_action_storage : MonoBehaviour
             updateTimesPerDay(activity.getGroup());
 
             // must be before splash screen so notifications work, and before time jump
+            // updating alternate stats
             if (activity.getGroup() == "food")
             {
                 state.updateHunger(-4 * 60);
