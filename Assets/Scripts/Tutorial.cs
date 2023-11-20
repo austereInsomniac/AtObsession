@@ -33,7 +33,7 @@ public class Tutorial : MonoBehaviour
     GameObject player = GameObject.Find("Player");
     GameObject livingRoom = GameObject.Find("Living Room");
     Vector3 livingRoomLocation = new Vector3(-1000, 0, 0);
-
+    Dictionary<string, TutorialPopUps> activitiesIncreaseWellness;
 
     //Gets current day
     public int getCurrentDay()
@@ -64,7 +64,17 @@ public class Tutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        activitiesIncreaseWellness = new Dictionary<string, TutorialPopUps>
+        {
+            {"Broom", new TutorialPopUps(true,"") },
+            {"Front Door", new TutorialPopUps(true, "This is the front door where you'll find the many activities, for the ones that increase your wellness, are")},
+            {"Bed", new TutorialPopUps(true, " Go to sleep or take a nap")},
+            {"Oven", new TutorialPopUps(true, "Make food") },
+            {"Fridge", new TutorialPopUps(true, "Eat a snack") },
+            {"TV", new TutorialPopUps(true, "Chill") },
+        };
+
+
     }
 
     // Update is called once per frame
