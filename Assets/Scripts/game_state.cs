@@ -268,6 +268,11 @@ public class game_state : MonoBehaviour
     public void updateSubscribers(int s)
     {    
         subscribers = subscribers + s;
+
+        if(subscribers < 0)
+        {
+            subscribers = 0;
+        }
     }
 
     public void updateEnding(int e)
