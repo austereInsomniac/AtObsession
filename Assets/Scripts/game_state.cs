@@ -139,6 +139,12 @@ public class game_state : MonoBehaviour
 
     public bool getHasDied() {  return hasDied; }
 
+    public SpriteRenderer getHungerHUD() { return hungerHUD; }
+
+    public SpriteRenderer getShowerHUD() {  return showerHUD; }
+
+    public SpriteRenderer getSleepHUD() {  return sleepHUD; }
+
     // setters 
     public void updateWellness(int w)
     {
@@ -229,33 +235,92 @@ public class game_state : MonoBehaviour
         notifyOnTimeChanged(time - t, time);
     }
 
+    public void updateReputation(int r)
+    {
+        reputation += r;
+
+        if (reputation > 100)
+        {
+            reputation = 100;
+        }
+        else if (reputation <= 0)
+        {
+            reputation = 0;
+
+            if (hasDied)
+            {
+                killPlayer();
+            }
+            else
+            {
+                playInfamyScene();
+            }
+        }
+
+        notifyOnReputationChange(reputation - r, reputation);
+    }
+
+    public void makeVideo()
+    {
+        videosMadeToday++;
+    }
+
+    public void updateSubscribers(int s)
+    {    
+        subscribers = subscribers + s;
+    }
+
+    public void updateEnding(int e)
+    {
+        ending = ending + e;
+    }
+
+    public void updateMoney(double m)
+    {
+        money = money + m;
+        notifyOnMoneyChange(money - m, money);
+    }
+ 
+    public void moveLocation(GameObject newLocation, GameObject newCanvas)
+    {
+        notifyOnLocationChange(location, newLocation);
+
+        // the players current room has changed
+        location = newLocation;
+        locationCanvas = newCanvas;
+    }
+
     public void updateHunger(float t)
     {
         hunger += t;
 
         // player is hungry
-        if(hunger >= 4*60)
+        if (hunger >= 4 * 60)
         {
             // display icon
             hungerHUD.enabled = true;
+
+            // enable buttons
         }
         else
         {
             // turn off icon
             hungerHUD.enabled = false;
+
+            // disable buttons
         }
 
         // for each time jump, lower wellness
-        if(hunger > 6*60)
+        if (hunger > 6 * 60)
         {
             // don't subtract when the player is sleeping
 
             // catches when you do half of an action before being hungry and half after so you dont loos extra/no wellness
-            float over = 6*60 - hunger;
+            float over = 6 * 60 - hunger;
             float loss = Mathf.Max(t, over);
 
             // for every hour you are hungry after the original notification, lower wellness by 5
-            updateWellness((int)(-loss * .0833 -.5));
+            updateWellness((int)(-loss * .0833 - .5));
         }
     }
 
@@ -316,61 +381,6 @@ public class game_state : MonoBehaviour
             // for every hour you are hungry after the original notification, lower wellness by 5
             updateWellness((int)(-loss * .0833 - .5));
         }
-    }
-
-    public void updateReputation(int r)
-    {
-        reputation += r;
-
-        if (reputation > 100)
-        {
-            reputation = 100;
-        }
-        else if (reputation <= 0)
-        {
-            reputation = 0;
-
-            if (hasDied)
-            {
-                killPlayer();
-            }
-            else
-            {
-                playInfamyScene();
-            }
-        }
-
-        notifyOnReputationChange(reputation - r, reputation);
-    }
-
-    public void makeVideo()
-    {
-        videosMadeToday++;
-    }
-
-    public void updateSubscribers(int s)
-    {    
-        subscribers = subscribers + s;
-    }
-
-    public void updateEnding(int e)
-    {
-        ending = ending + e;
-    }
-
-    public void updateMoney(double m)
-    {
-        money = money + m;
-        notifyOnMoneyChange(money - m, money);
-    }
- 
-    public void moveLocation(GameObject newLocation, GameObject newCanvas)
-    {
-        notifyOnLocationChange(location, newLocation);
-
-        // the players current room has changed
-        location = newLocation;
-        locationCanvas = newCanvas;
     }
 
     // methods

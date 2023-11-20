@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class change_dying_filter : MonoBehaviour
 {
+    private int newWellness;
+
     private void Start()
     {
         // add the update method to the wellness delegate
@@ -23,6 +25,7 @@ public class change_dying_filter : MonoBehaviour
     // the method updates the alpha of the filter color to be stronger with a lower wellness
     public void changeFilterOpacity(int oldW, int newW)
     {
+        newWellness = newW;
         // ceate a color and set to transparent
         UnityEngine.Color color = this.GetComponent<SpriteRenderer>().color;
         color.a = 0;
@@ -35,5 +38,10 @@ public class change_dying_filter : MonoBehaviour
 
         // chage color every update
         this.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public int getNewWellness()
+    {
+        return newWellness;
     }
 }
