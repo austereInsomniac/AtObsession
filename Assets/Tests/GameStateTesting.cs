@@ -112,25 +112,24 @@ public class GameStateTesting
         Assert.That(gameState.getReputation(), Is.EqualTo(75));
 
 
-        ////BROKEN AT THE MOMENT
-        ////Testing Subscribers
-        //gameState.updateSubscribers(0);
-        //Assert.That(gameState.getSubscribers(), Is.EqualTo(1000));
+        //Testing Subscribers
+        gameState.updateSubscribers(0);
+        Assert.That(gameState.getSubscribers(), Is.EqualTo(1000));
 
-        //gameState.updateSubscribers(-1);
-        //Assert.That(gameState.getSubscribers(), Is.EqualTo(999));
+        gameState.updateSubscribers(-1);
+        Assert.That(gameState.getSubscribers(), Is.EqualTo(999));
 
-        //gameState.updateSubscribers(25);
-        //Assert.That(gameState.getSubscribers(), Is.EqualTo(1024));
+        gameState.updateSubscribers(25);
+        Assert.That(gameState.getSubscribers(), Is.EqualTo(1024));
 
-        //gameState.updateSubscribers(-1025);
-        //Assert.That(gameState.getSubscribers(), Is.EqualTo(0));
+        gameState.updateSubscribers(-1025);
+        Assert.That(gameState.getSubscribers(), Is.EqualTo(0));
 
-        //gameState.updateSubscribers(1000);
-        //Assert.That(gameState.getSubscribers(), Is.EqualTo(1000));
+        gameState.updateSubscribers(1000);
+        Assert.That(gameState.getSubscribers(), Is.EqualTo(1000));
 
-        //gameState.updateSubscribers(9999);
-        //Assert.That(gameState.getSubscribers(), Is.EqualTo(10999));
+        gameState.updateSubscribers(9999);
+        Assert.That(gameState.getSubscribers(), Is.EqualTo(10999));
 
 
 

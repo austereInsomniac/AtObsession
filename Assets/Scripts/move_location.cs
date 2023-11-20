@@ -22,6 +22,10 @@ public class move_location : MonoBehaviour
     private game_state player;
     private GameObject bedroom;
     private GameObject bedroomCanvas;
+    private GameObject bathroom;
+    private GameObject bathroomCanvas;
+    private GameObject kitchen;
+    private GameObject kitchenCanvas;
     private GameObject livingRoom;
     private GameObject livingRoomCanvas;
     private GameObject gameOver;
@@ -34,6 +38,10 @@ public class move_location : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<game_state>();
         bedroom = GameObject.Find("Bedroom");
         bedroomCanvas = GameObject.Find("Bedroom Canvas");
+        bathroom = GameObject.Find("Bathroom");
+        bathroomCanvas = GameObject.Find("Bathroom Canvas");
+        kitchen = GameObject.Find("Kitchen");
+        kitchenCanvas = GameObject.Find("Kitchen canvas");
         livingRoom = GameObject.Find("Living Room");
         livingRoomCanvas = GameObject.Find("Living Room Canvas");
         gameOver = GameObject.Find("Game Over");
@@ -44,7 +52,10 @@ public class move_location : MonoBehaviour
 
     public GameObject getBedroom() {  return bedroom; }
     public GameObject getBedroomCanvas() {  return bedroomCanvas; }
-
+    public GameObject getBathroom() { return bathroom; }
+    public GameObject getBathroomCanvas() { return bathroomCanvas; }
+    public GameObject getKitchen() { return kitchen; }
+    public GameObject getKitchenCanvas() {  return kitchenCanvas; }
     public GameObject getLivingRoom() {  return livingRoom; }
     public GameObject getLivingRoomCanvas() {  return livingRoomCanvas; }
     public GameObject getGameOver() { return gameOver; }
@@ -76,7 +87,15 @@ public class move_location : MonoBehaviour
     public void goToBedroom(){
         moveLocation(bedroom, bedroomCanvas, player.getLocation(), player.getLocationCanvas());
     }
+    public void goToBathroom()
+    {
+        moveLocation(bathroom, bathroomCanvas, player.getLocation(), player.getLocationCanvas());
+    }
 
+    public void goToKitchen()
+    {
+        moveLocation(kitchen,kitchenCanvas, player.getLocation(), player.getLocationCanvas());
+    }
     public void goToLivingRoom()
     {
         moveLocation(livingRoom, livingRoomCanvas, player.getLocation(), player.getLocationCanvas());
