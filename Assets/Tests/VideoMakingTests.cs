@@ -34,7 +34,8 @@ public class VideoMakingTests
         Assert.IsNotNull(videoMaking);
 
 
-        Assert.That(gameState.getReputation() == 25);
+        Assert.That(gameState.getReputation() == 50);
+        gameState.updateReputation(-25);
         for (int i = 1; i < 6; i++)
         {
             gameState.updateWellness(100);

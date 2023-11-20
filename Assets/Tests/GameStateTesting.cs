@@ -34,7 +34,7 @@ public class GameStateTesting
         Assert.AreEqual(gameState.getWellness(), 70);
         Assert.AreEqual(gameState.getDay(), 1);
         Assert.AreEqual(gameState.getHunger(), (float)0 );
-        Assert.AreEqual(gameState.getReputation() ,25);
+        Assert.AreEqual(gameState.getReputation() ,50);
         Assert.AreEqual(gameState.getSubscribers() , 1000);
         Assert.AreEqual(gameState.getEnding() , 0);
         Assert.AreEqual(gameState.getMoney() , 100.00);
@@ -94,7 +94,7 @@ public class GameStateTesting
 
         //Testing Reputation
         gameState.updateReputation(0);
-        Assert.That(gameState.getReputation(), Is.EqualTo(25));
+        Assert.That(gameState.getReputation(), Is.EqualTo(50));
 
         gameState.updateReputation(100);
         Assert.That(gameState.getReputation(), Is.EqualTo(100));
