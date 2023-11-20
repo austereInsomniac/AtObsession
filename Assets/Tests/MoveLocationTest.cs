@@ -12,7 +12,7 @@ public class MoveLocationTest
     public move_location loc;
 
     [SetUp]
-    public void setUp()
+    public void setUp() //Loads the Scene
     {
         SceneManager.LoadScene("Scenes/BaseScene");
     }
@@ -22,6 +22,7 @@ public class MoveLocationTest
     [UnityTest]
     public IEnumerator MoveLocationTesting()
     {
+        //Assign nescesary scripts and verify that they are assigned
         player = GameObject.FindGameObjectWithTag("MainCamera");
         gameState = player.GetComponent<game_state>();
         loc = player.GetComponent<move_location>();
