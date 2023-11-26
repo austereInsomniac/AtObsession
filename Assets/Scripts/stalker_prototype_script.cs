@@ -193,11 +193,11 @@ public class stalker_prototype_script : MonoBehaviour
 
         if (isOn)
         {
-
-            if (day == 14 && time >= 17 * 60)
+            if (day == 3 && time >= 17 * 60 && eventCount == 0)
             {
+                eventCount++;
                 isOn = false;
-                TriggerStalkerEvent(8);
+                TriggerStalkerEvent(3);
             }
             else if (day == 4 && time >= 17 * 60 && eventCount == 1)
             {
@@ -205,11 +205,10 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(1);
             }
-            else if (day == 3 && time >= 17 * 60 && eventCount == 0)
+            else if (day == 14 && time >= 17 * 60)
             {
-                eventCount++;
                 isOn = false;
-                TriggerStalkerEvent(3);
+                TriggerStalkerEvent(8);
             }
         }
     }
