@@ -173,16 +173,6 @@ public class stalker_prototype_script : MonoBehaviour
 
         eventKeys = new List<string>(stalkerEvents.Keys);
         eventHappening = stalkerEvents["Email"];
-        eventKeys = new List<string>();
-        eventKeys.Add("Email");
-        eventKeys.Add("Knocking on window");
-        eventKeys.Add("Suspicious gift");
-        eventKeys.Add("Window figure");
-        eventKeys.Add("Fan game");
-        eventKeys.Add("Unknown call");
-        eventKeys.Add("Uncomfortable comment");
-        eventKeys.Add("Banging on door");
-        eventKeys.Add("Trapped in bathroom");
 
         // Subscribe to the location change event from game_state
         player.addOnLocationChange(OnLocationChanged);
@@ -223,6 +213,42 @@ public class stalker_prototype_script : MonoBehaviour
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(1);
+            }
+            else if (day == 5 && time >= 17 * 60 && eventCount == 2)
+            {
+                eventCount++;
+                isOn = false;
+                TriggerStalkerEvent(2);
+            }
+            else if (day == 6 && time >= 17 * 60 && eventCount == 3)
+            {
+                eventCount++;
+                isOn = false;
+                TriggerStalkerEvent(0);
+            }
+            else if (day == 7 && time >= 17 * 60 && eventCount == 4)
+            {
+                eventCount++;
+                isOn = false;
+                TriggerStalkerEvent(4);
+            }
+            else if (day == 8 && time >= 17 * 60 && eventCount == 5)
+            {
+                eventCount++;
+                isOn = false;
+                TriggerStalkerEvent(5);
+            }
+            else if (day == 9 && time >= 17 * 60 && eventCount == 6)
+            {
+                eventCount++;
+                isOn = false;
+                TriggerStalkerEvent(6);
+            }
+            else if (day == 10 && time >= 17 * 60 && eventCount == 7)
+            {
+                eventCount++;
+                isOn = false;
+                TriggerStalkerEvent(7);
             }
             else if (day == 14 && time >= 17 * 60)
             {
