@@ -54,11 +54,39 @@ public class daily_action_storage : MonoBehaviour
     // RNG
     System.Random rand = new System.Random();
 
+    // buttons
+    Button cook;
+    Button restaurant;
+    Button sleep;
+    Button nap;
+    Button shower;
+    Button bath;
+
+    Button warmup;
+    Button light;
+    Button intense;
+
     void Awake()
     {
         // assign outside objects
         state = GetComponent<game_state>();
         day = 1;
+        state.addOnTimeChange(toggleButtons);
+
+        // create
+        buttons = new Dictionary<string, Button>();
+
+        // find buttons
+        cook = GameObject.Find("Cook food").GetComponent<Button>();
+        restaurant = GameObject.Find("Eat at a restaurant").GetComponent<Button>();
+        sleep = GameObject.Find("Go to sleep").GetComponent<Button>();
+        nap = GameObject.Find("Take a nap").GetComponent<Button>();
+        shower = GameObject.Find("Shower").GetComponent<Button>();
+        bath = GameObject.Find("Bubble Bath").GetComponent<Button>();
+
+        warmup = GameObject.Find("Warm up").GetComponent<Button>();
+        light = GameObject.Find("Light workout").GetComponent<Button>();
+        intense = GameObject.Find("Intense workout").GetComponent<Button>();
     }
 
     // Start is called before the first frame update
@@ -91,7 +119,6 @@ public class daily_action_storage : MonoBehaviour
             { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen") },
             { "Shower", new ActionVariable(8, 20, 0.00, "shower") },
             { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath") }
-
         };
 
         // set up time limits
@@ -118,7 +145,8 @@ public class daily_action_storage : MonoBehaviour
             { "friends", 999}
         };
 
-        buttons = new Dictionary<string, Button>();
+        // toggle any buttons at the start
+        toggleButtons(0, 0);
     }
 
     int RandomTimeBig()
@@ -170,6 +198,7 @@ public class daily_action_storage : MonoBehaviour
         {
             return timesPerDay[key];
         }
+
         timesPerDay.Add(key, 0);
         return 0;
     }
@@ -201,38 +230,75 @@ public class daily_action_storage : MonoBehaviour
     //Sets the buttons to not interactable when the user has used them up for the current day
     public void notInteractable(string key, string group)
     {
-        if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
+        if (group.Equals("food"))
         {
-            if (group == "food" && key == "Cook food")
-            {
-                GameObject findSecondButton = GameObject.Find("Eat at a restaurant");
-                GameObject findButton = GameObject.Find(key);
-                Button button1 = findButton.GetComponent<Button>();
-                Button button2 = findSecondButton.GetComponent<Button>();
-                button1.interactable = false;
-                button2.interactable = false;
-                buttons.Add(group, button1);
-                buttons.Add(key, button2);
-            }
-            else if (group == "food" && key == "Eat at a restaurant")
-            {
-                GameObject findSecondButton = GameObject.Find("Cook food");
-                GameObject findButton = GameObject.Find(key);
-                Button button1 = findButton.GetComponent<Button>();
-                Button button2 = findSecondButton.GetComponent<Button>();
-                button1.interactable = false;
-                button2.interactable = false;
-                buttons.Add(group, button1);
-                buttons.Add(key, button2);
-            }
-            else
-            {
-                GameObject findButton = GameObject.Find(key);
-                Button button1 = findButton.GetComponent<Button>();
-                button1.interactable = false;
-                buttons.Add(group, button1);
-            }
+            cook.interactable = false;
+            restaurant.interactable = false;
+
+            buttons.Add("Cook food", cook);
+            buttons.Add("Eat at a restaurant", restaurant);
         }
+        else if (group.Equals("exercise"))
+        {
+            warmup.interactable = false;
+            light.interactable = false;
+            intense.interactable = false;
+
+            buttons.Add("Warm up", warmup);
+            buttons.Add("Light workout", light);
+            buttons.Add("Intense workout", intense);
+        }
+        else
+        {
+            Button button = GameObject.Find(key).GetComponent<Button>();
+            button.interactable = false;
+            buttons.Add(key, button);
+        }
+    }
+
+    private void toggleButtons(int oldT, int newT) 
+    {
+        if (state.hungry())
+        {
+            cook.interactable = true;
+            restaurant.interactable = true;
+            
+        }
+        else
+        {
+            cook.interactable = false;
+            restaurant.interactable = false;
+        }
+
+        if (state.needsShower())
+        {
+            shower.interactable = true;
+            bath.interactable = true;
+        }
+        else
+        {
+            shower.interactable = false;
+            bath.interactable = false;
+        }
+
+        if (state.tired() && state.getTime() > 12*60)
+        {
+            nap.interactable = true;
+        }
+        else
+        {    
+            nap.interactable = false;
+        }
+
+        if(state.tired() && state.getTime() > 22 * 60)
+        {
+            sleep.interactable = true;
+        }
+        else
+        {
+            sleep.interactable = false;
+        }
+
     }
 
     public void doAction(string key)
@@ -240,14 +306,15 @@ public class daily_action_storage : MonoBehaviour
         // re roll random stats
         randomizeStats();
 
-        // update each statistic
         ActionVariable activity = activities[key];
+        string group = activity.getGroup();
 
-        if (getCurrentTimesPerDay(activity.getGroup()) < getMaxTimesPerDay(activity.getGroup()))
+        if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group))
         {
-            updateTimesPerDay(activity.getGroup());
+            updateTimesPerDay(group);
 
             // must be before splash screen so notifications work, and before time jump
+            // updating alternate stats
             if (activity.getGroup() == "food")
             {
                 state.updateHunger(-4 * 60);
@@ -279,9 +346,11 @@ public class daily_action_storage : MonoBehaviour
 
             // update the splash screen before updating stats so that death scenes work
             GetComponent<splash_screen_manager>().openSplashScreen(key);
-            if (getCurrentTimesPerDay(activity.getGroup()) == getMaxTimesPerDay(activity.getGroup()))
+
+            // set the rest of the buttons in the group as off
+            if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
             {
-                notInteractable(key, activity.getGroup());
+                notInteractable(key, group);
             }
 
             state.updateWellness(activity.getWellness());

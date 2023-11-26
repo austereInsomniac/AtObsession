@@ -133,9 +133,11 @@ public class game_state : MonoBehaviour
 
     public float getHunger() { return hunger; }
 
-    public float getShower() { return shower; }
+    public bool hungry() { return hunger > 4 *60; }
 
-    public float getSleep() { return sleep; }
+    public bool needsShower() { return shower > 12 * 60; }
+
+    public bool tired() { return sleep > 14 * 60; }
 
     public bool getHasDied() {  return hasDied; }
 
@@ -300,7 +302,7 @@ public class game_state : MonoBehaviour
         hunger += t;
 
         // player is hungry
-        if (hunger >= 4 * 60)
+        if (hungry())
         {
             // display icon
             hungerHUD.enabled = true;
@@ -334,7 +336,7 @@ public class game_state : MonoBehaviour
         shower += t;
 
         // player is dirty
-        if (shower >= 12 * 60)
+        if (needsShower())
         {
             // display icon
             showerHUD.enabled = true;
@@ -364,7 +366,7 @@ public class game_state : MonoBehaviour
         sleep += t;
 
         // player is tired
-        if (sleep >= 14 * 60)
+        if (tired())
         {
             // display icon
             sleepHUD.enabled = true;
