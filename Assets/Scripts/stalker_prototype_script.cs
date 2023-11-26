@@ -67,6 +67,14 @@ public class stalker_prototype_script : MonoBehaviour
     private bool isOn = true;
     List<string> eventKeys;
     Dictionary<string, StalkerEvents> stalkerEvents;
+    private StalkerEvents eventHappening;
+    private bool isStalkerEvent = false; // Tracks if event is happening
+    private float eventDuration = 10; // How long it should last
+    private float eventEndTime = 0; // Timestamp when event should end
+
+    private float minTimeBetweenEvents = 20; // Minimum time between events
+    private float maxTimeBetweenEvents = 40; // Maximum time between events
+    private float nextEventTime = 0; // Timestamp when next event should start
 
     private int eventNum;
     private int pendingEvent = -1; // Set to -1 to indicate no pending event
@@ -164,6 +172,17 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEvents.Add("Trapped in bathroom", bathroomEvent);
 
         eventKeys = new List<string>(stalkerEvents.Keys);
+        eventHappening = stalkerEvents["Email"];
+        eventKeys = new List<string>();
+        eventKeys.Add("Email");
+        eventKeys.Add("Knocking on window");
+        eventKeys.Add("Suspicious gift");
+        eventKeys.Add("Window figure");
+        eventKeys.Add("Fan game");
+        eventKeys.Add("Unknown call");
+        eventKeys.Add("Uncomfortable comment");
+        eventKeys.Add("Banging on door");
+        eventKeys.Add("Trapped in bathroom");
 
         // Subscribe to the location change event from game_state
         player.addOnLocationChange(OnLocationChanged);
@@ -251,13 +270,14 @@ public class stalker_prototype_script : MonoBehaviour
         }
     }
 
-    private void TriggerStalkerEvent(int numEvent)
+    public void TriggerStalkerEvent(int numEvent)
     {
         if (numEvent != eventKeys.Count - 1)
         {
             // Handle stalker event logic here.
             string eventKey = eventKeys[numEvent];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
+            eventHappening = stalkerEvent;
             string eventMessage = stalkerEvent.getEventMessage();
             Debug.Log(eventMessage);
 
@@ -288,6 +308,11 @@ public class stalker_prototype_script : MonoBehaviour
 
             EndingEvent(stalkerEvent);
         }
+    }
+
+    public StalkerEvents getStalkerEvent()
+    {
+        return eventHappening;
     }
 
     private bool IsPlayerInRequiredLocation(string requiredLocation)
