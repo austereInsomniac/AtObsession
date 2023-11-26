@@ -18,7 +18,6 @@ public class GameStateTesting
         SceneManager.LoadScene("Scenes/BaseScene");
     }
 
-
     [UnityTest]
     public IEnumerator GameStateInitializeTesting()
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-class StalkerEvents
+public class StalkerEvents
 {
     int wellness;
     int eventNumber;
@@ -46,6 +46,7 @@ public class stalker_prototype_script : MonoBehaviour
     private bool isOn = true;
     List<string> eventKeys;
     Dictionary<string, StalkerEvents> stalkerEvents;
+    private StalkerEvents eventHappening;
     private bool isStalkerEvent = false; // Tracks if event is happening
     private float eventDuration = 10; // How long it should last
     private float eventEndTime = 0; // Timestamp when event should end
@@ -98,6 +99,7 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEvents.Add("Banging on door", new StalkerEvents("There's banging on the door!", "Call the cops", "Try to ignore", "Check outside", "Living room", 10, 8, 5, 0));
         stalkerEvents.Add("Trapped in bathroom", new StalkerEvents("The Bathroom door is locked!", "", "", "", "Any", 0, 9, 0, 0));
 
+        eventHappening = stalkerEvents["Email"];
         eventKeys = new List<string>();
         eventKeys.Add("Email");
         eventKeys.Add("Knocking on window");
@@ -219,7 +221,7 @@ public class stalker_prototype_script : MonoBehaviour
         }
     }
 
-    private void TriggerStalkerEvent(int numEvent)
+    public void TriggerStalkerEvent(int numEvent)
     {
         if (numEvent != eventKeys.Count - 1)
         {
@@ -229,6 +231,7 @@ public class stalker_prototype_script : MonoBehaviour
 
             string eventKey = eventKeys[numEvent];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
+            eventHappening = stalkerEvent;
             string eventMessage = stalkerEvent.getEventMessage();
             Debug.Log(eventMessage);
 
@@ -266,6 +269,11 @@ public class stalker_prototype_script : MonoBehaviour
 
             EndingEvent(stalkerEvent);
         }
+    }
+
+    public StalkerEvents getStalkerEvent()
+    {
+        return eventHappening;
     }
 
     private bool IsPlayerInRequiredLocation(string requiredLocation)
