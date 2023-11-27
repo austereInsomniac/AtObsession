@@ -69,6 +69,34 @@ public class StalkerEvents
     {
         return choices;
     }
+
+    // New methods for testing
+    public StalkerChoice getChoice1()
+    {
+        if (choices.Count > 0)
+        {
+            return choices[0];
+        }
+        return null;
+    }
+
+    public StalkerChoice getChoice2()
+    {
+        if (choices.Count > 1)
+        {
+            return choices[1];
+        }
+        return null;
+    }
+
+    public StalkerChoice getChoice3()
+    {
+        if (choices.Count > 2)
+        {
+            return choices[2];
+        }
+        return null;
+    }
 }
 
 public class stalker_prototype_script : MonoBehaviour
