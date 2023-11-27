@@ -28,14 +28,11 @@ public class day_night_manager : MonoBehaviour
 
         if (newT >= 19 * 60 || newT < 8 * 60)
         {
-            
             color.a = 50f/255;
-            Debug.Log(color.a);
         }
         else if(newT > 17 * 60)
         {
             color.a = (float)((newT - (17*60)) / 612f);
-            Debug.Log(color.a);
         }
         else
         {
