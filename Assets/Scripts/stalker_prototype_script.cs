@@ -21,6 +21,15 @@ public class StalkerChoice
         endingChange = ending;
         reputationChange = reputation;
     }
+
+    public string getText()
+    {
+        return choiceText;
+    }
+    public string getNotification() { return choiceNotification; }
+    public int getWellnessChange() {  return wellnessChange; }
+    public int getEndingChange() {  return endingChange; }
+    public int getReputationChange() {  return reputationChange; }
 }
 
 public class StalkerEvents

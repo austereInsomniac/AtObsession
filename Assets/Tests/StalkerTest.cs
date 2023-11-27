@@ -33,28 +33,74 @@ public class StalkerTest
 
 
         //Test Initialization to "Email" Stalker event
-        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(1));
-        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("I got a weird email..."));
-        Assert.That(stalker.getStalkerEvent().getChoice1(),Is.EqualTo("Interact"));
-        Assert.That(stalker.getStalkerEvent().getChoice2(), Is.EqualTo("Ignore"));
-        Assert.That(stalker.getStalkerEvent().getChoice3(), Is.EqualTo("Report"));
-        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Bedroom"));
-        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(0));
-        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
-        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(5));
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(1)); //Event number
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("I got a weird email..."));//Event text
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Bedroom"));//Event location
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(0));//Wellness change
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1)); // Ending change
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(5));//Rep change
 
         //stalker.setEventNum(1);
         stalker.TriggerStalkerEvent(1);
-        //Test Initialization to "Email" Stalker event
         Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(2));
         Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("There's something at the window!"));
-        Assert.That(stalker.getStalkerEvent().getChoice1(), Is.EqualTo("Look"));
-        Assert.That(stalker.getStalkerEvent().getChoice2(), Is.EqualTo("Ignore"));
-        Assert.That(stalker.getStalkerEvent().getChoice3(), Is.EqualTo("Call 911"));
         Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Bedroom"));
         Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
         Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
         Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(0));
+
+        //stalker.setEventNum(1);
+        stalker.TriggerStalkerEvent(2);
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(3));
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("I got a weird gift in the mail..."));
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Living room"));
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(0));
+
+        //stalker.setEventNum(1);
+        stalker.TriggerStalkerEvent(3);
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(4));
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("Something's outside the window!"));
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Kitchen"));
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(0));
+
+        //stalker.setEventNum(1);
+        stalker.TriggerStalkerEvent(4);
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(5));
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("A fan asked me to play a game they sent!"));
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Bedroom"));
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(5));
+
+        //stalker.setEventNum(1);
+        stalker.TriggerStalkerEvent(5);
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(6));
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("The phone is ringing! It's an unknown number..."));
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Any"));
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(0));
+
+        stalker.TriggerStalkerEvent(6);
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(7));
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("Someone left a comment that mentioned a private conversation I had."));
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Any"));
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1));
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(0));
+
+        stalker.TriggerStalkerEvent(7);
+        Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(8));
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("There's banging on the door!"));
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Living room"));
+        Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(10));
+        Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(5));
+        Assert.That(stalker.getStalkerEvent().getReputation(), Is.EqualTo(0));
+
 
         yield return null;
     }
