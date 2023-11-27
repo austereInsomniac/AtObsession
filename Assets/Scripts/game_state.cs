@@ -155,22 +155,34 @@ public class game_state : MonoBehaviour
         if (wellness > 100)
         { 
             wellness = 100;
+            notifyOnWellnessChanged(wellness - w, wellness);
         }
-        else if (wellness <= 0)
+        else if(wellness <= 20)
         {
-            wellness = 0;
-
-            if (hasDied)
+            if (!hasDied)
             {
-                killPlayer();
+                notifyOnWellnessChanged(wellness - w, wellness);
+                playHospitalScene();
+            }
+            else if (wellness <= 0)
+            {
+                wellness = 0;
+                notifyOnWellnessChanged(wellness - w, wellness);
+
+                if (hasDied)
+                {
+                    killPlayerWellness();
+                }
             }
             else
             {
-                playHospitalScene();
+                notifyOnWellnessChanged(wellness - w, wellness);
             }
         }
-
-        notifyOnWellnessChanged(wellness - w, wellness);
+        else
+        { 
+            notifyOnWellnessChanged(wellness - w, wellness);
+        }
     }
 
     public void updateTime(int t)
@@ -244,22 +256,34 @@ public class game_state : MonoBehaviour
         if (reputation > 100)
         {
             reputation = 100;
+            notifyOnReputationChange(reputation - r, reputation);
         }
-        else if (reputation <= 0)
+        else if ( reputation <= 20)
         {
-            reputation = 0;
-
-            if (hasDied)
+            if(!hasDied)
             {
-                killPlayer();
+                notifyOnReputationChange(reputation - r, reputation);
+                playInfamyScene();
+            }
+            else if (reputation <= 0)
+            {
+                reputation = 0;
+                notifyOnReputationChange(reputation - r, reputation);
+
+                if (hasDied)
+                {
+                    killPlayerReputation();
+                }
             }
             else
             {
-                playInfamyScene();
+                notifyOnReputationChange(reputation - r, reputation);
             }
         }
-
-        notifyOnReputationChange(reputation - r, reputation);
+        else
+        {
+            notifyOnReputationChange(reputation - r, reputation);
+        }
     }
 
     public void makeVideo()
@@ -391,16 +415,27 @@ public class game_state : MonoBehaviour
     }
 
     // methods
-    private void killPlayer()
+    private void killPlayerWellness()
     {
         // reset stats
         money = 100;
+        updateMoney(0);
         reputation = 50;
+        updateReputation(0);
         subscribers = 1000;
+        updateSubscribers(0);
         wellness = 70;
+        updateWellness(0);
         ending = 0;
         day = 1;
+        hasDied = false;
+
         hunger = 0;
+        updateHunger(0);
+        shower = 0;
+        updateShower(0);
+        sleep = 0;
+        updateSleep(0);
 
         // game over
         notificationManager.showNotification("You made some mistakes...");
@@ -408,11 +443,39 @@ public class game_state : MonoBehaviour
         locationManager.goToGameOver();
     }
 
+    private void killPlayerReputation()
+    {
+        // reset stats
+        money = 100;
+        updateMoney(0);
+        reputation = 50;
+        updateReputation(0);
+        subscribers = 1000;
+        updateSubscribers(0);
+        wellness = 70;
+        updateWellness(0);
+        ending = 0;
+        day = 1;
+        hasDied = false;
+
+        hunger = 0;
+        updateHunger(0);
+        shower = 0;
+        updateShower(0);
+        sleep = 0;
+        updateSleep(0);
+
+        // game over
+        notificationManager.showNotification("You made some mistakes...");
+        splashScreenManager.openSplashScreen("Game over");
+        locationManager.goToGameOver();
+    }
     private void playHospitalScene()
     {
         // set stats
         hasDied = true;
-        updateWellness(50);
+        wellness = 50;
+        updateWellness(0);
 
         // half money
         money /= 2;
