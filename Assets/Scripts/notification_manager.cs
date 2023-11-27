@@ -49,23 +49,23 @@ public class notification_manager : MonoBehaviour
         // Set the notification message
         if (newW <= 20)
         {
-            text += "\n You feel really dizzy...";
+            text += "\nYou feel really dizzy...";
         }
         else if(newW <= 40)
         {
-            text += "\n You don't feel very good";
+            text += "\nYou don't feel very good";
         }
         else if(newW <= 60)
         {
-            text += "\n You feel normal";
+            text += "\nYou feel normal";
         }
         else if (newW <= 80)
         {
-            text += "\n You feel excited.";
+            text += "\nYou feel excited.";
         }
         else
         {
-            text += "\n You feel amazing!";
+            text += "\nYou feel amazing!";
         }
 
         showNotification(text);

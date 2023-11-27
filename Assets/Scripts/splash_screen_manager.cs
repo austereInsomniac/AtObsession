@@ -16,10 +16,9 @@ public class splash_screen_manager : MonoBehaviour
     private BoxCollider2D menuCollider;
     private notification_manager notificationManager;
 
-
     // splash screen timers
     private bool isSplashShowing;
-    private float displayTime = 0.5f;
+    private float displayTime = 0.35f;
     private float displayStartTime;
 
     // HUD
@@ -103,22 +102,18 @@ public class splash_screen_manager : MonoBehaviour
     {
         if (isSplashShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
         {
-            // close the splash screeen after 1.5 seconds if any key or mouse button is held down
-            if (Input.anyKey)
+            // close splash
+            splashScreen.enabled = false;
+            isSplashShowing = false;
+
+            // show hud
+            menuBlocker.enabled = false;
+            menuCollider.enabled = false;                
+
+            // enable HUD
+            if (shouldHUDShow)
             {
-                // close splash
-                splashScreen.enabled = false;
-                isSplashShowing = false;
-
-                // show hud
-                menuBlocker.enabled = false;
-                menuCollider.enabled = false;                
-
-                // enable HUD
-                if (shouldHUDShow)
-                {
-                    HUD.alpha = 1;
-                }
+                HUD.alpha = 1;
             }
         }
     }
