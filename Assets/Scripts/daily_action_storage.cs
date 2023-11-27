@@ -10,29 +10,27 @@ class ActionVariable
     int time = 0;
     double money = 0.00;
     string group;
+    string actionText;
 
-    public ActionVariable(int changeWellness, int changeTime, double changeMoney, string group_)
+    public ActionVariable(int changeWellness, int changeTime, double changeMoney, string group_, string actionText_)
     {
         wellness = changeWellness;
         time = changeTime;
         money = changeMoney;
         group = group_;
-
+        actionText = actionText_;
     }
 
-    public int getWellness()
-    {
-        return wellness;
-    }
+    public int getWellness() { return wellness; }
 
     public int getTime() { return time; }
 
-    public double getMoney()
-    {
-        return money;
-    }
+    public double getMoney() { return money; }
 
     public string getGroup() { return group; }
+
+    public string getText() { return actionText; }
+
     public void Time(int oldTime, int newTime)
     {
         time = oldTime + newTime;
@@ -49,6 +47,7 @@ public class daily_action_storage : MonoBehaviour
 
     // outside objects
     private game_state state;
+    private notification_manager notificationManager;
     private int day;
 
     // RNG
@@ -70,8 +69,9 @@ public class daily_action_storage : MonoBehaviour
     {
         // assign outside objects
         state = GetComponent<game_state>();
-        day = 1;
         state.addOnTimeChange(toggleButtons);
+        notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
+        day = 1;
 
         // create
         buttons = new Dictionary<string, Button>();
@@ -99,28 +99,28 @@ public class daily_action_storage : MonoBehaviour
             // wellness, time, money
 
             // living room
-            { "Do chores", new ActionVariable(8, 15, 0.00, "chores") },
-            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise") },
-            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends") },
-            { "Go for a walk", new ActionVariable(10, 25, 0, "walk") },
-            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment") },
-            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise") },
-            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise") },
-            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise") },
-            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food") },//hunger
+            { "Do chores", new ActionVariable(8, 15, 0.00, "chores", "chores") },
+            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "") },
+            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", "") },
+            { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "") },
+            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "") },
+            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "") },
+            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "") },
+            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "") },
+            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food", "") },//hunger
 
             // kitchen
-            { "Cook food", new ActionVariable(10, 30, -5.00, "food") },//hunger
-            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack") },//hunger
+            { "Cook food", new ActionVariable(10, 30, -5.00, "food", "") },//hunger
+            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack", "") },//hunger
 
             // bedroom
-            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep") },
-            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap") },
+            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "") },
+            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap", "") },
 
             // bathroom
-            { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen") },
-            { "Shower", new ActionVariable(8, 20, 0.00, "shower") },
-            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath") }
+            { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen", "") },
+            { "Shower", new ActionVariable(8, 20, 0.00, "shower", "") },
+            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath", "") }
         };
 
         // set up time limits
@@ -355,9 +355,13 @@ public class daily_action_storage : MonoBehaviour
                 notInteractable(key, group);
             }
 
+            // update stats
             state.updateWellness(activity.getWellness());
             state.updateTime(activity.getTime());
             state.updateMoney(activity.getMoney());
+
+            // notifications
+            notificationManager.showWellnessNotification(activity.getText(), state.getWellness());
 
             // reset times if needed
             resetTimesPerDay();
@@ -367,11 +371,11 @@ public class daily_action_storage : MonoBehaviour
     private void randomizeStats()
     {
         // time based
-        activities["Go to sleep"] = new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep");
+        activities["Go to sleep"] = new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "");
 
         // random
-        activities["Go to the gym"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise");
-        activities["Visit friends"] = new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends");
-        activities["Watch TVs"] = new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment");
+        activities["Go to the gym"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise", "");
+        activities["Visit friends"] = new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", "");
+        activities["Watch TVs"] = new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "");
     }
 }
