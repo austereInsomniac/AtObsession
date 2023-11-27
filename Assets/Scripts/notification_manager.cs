@@ -21,8 +21,6 @@ public class notification_manager : MonoBehaviour
         mText = GetComponentInChildren<TextMeshProUGUI>().GetComponent<TMP_Text>();
         mImage = GetComponent<UnityEngine.UI.Image>();
         mImage.enabled = false;
-
-        GameObject.Find("Player").GetComponent<game_state>().addOnWellnessChange(showWellnessNotification);
     }
 
     public void repeatNotification()
@@ -44,30 +42,30 @@ public class notification_manager : MonoBehaviour
         repeatNotification();
     }
 
-    public void showWellnessNotification(int oldW, int newW)
+    public void showWellnessNotification(string action, int newW)
     {
-        string text;
+        string text = action;
 
         // Set the notification message
-        if (newW - oldW >= 20)
+        if (newW <= 20)
         {
-            text = "You feel a lot better than before!";
+            text += "\nYou feel really dizzy...";
         }
-        else if(newW - oldW >= 0)
+        else if(newW <= 40)
         {
-            text = "You feel better than before!";
+            text += "\nYou don't feel very good";
         }
-        else if(newW - oldW == 0)
+        else if(newW <= 60)
         {
-            text = "";
+            text += "\nYou feel normal";
         }
-        else if (newW - oldW <= -20)
+        else if (newW <= 80)
         {
-            text = "You feel terrible after that";
+            text += "\nYou feel excited.";
         }
         else
         {
-            text = "You feel worse than before";
+            text += "\nYou feel amazing!";
         }
 
         showNotification(text);
