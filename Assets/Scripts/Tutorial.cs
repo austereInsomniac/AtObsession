@@ -30,6 +30,7 @@ public class Tutorial : MonoBehaviour
 {
     int count = 0;
     private game_state player;
+    notification_manager notification;
 
     //Gets current day
     public int getCurrentDay()
@@ -40,21 +41,21 @@ public class Tutorial : MonoBehaviour
     //turns the box collider on the computer off
     public void computerNotInteractable()
     {
-        GameObject computer = GameObject.Find("Computer");//rename computer object
-        computer.GetComponent<BoxCollider2D>().enabled = false;
+        GameObject computer = GameObject.Find("Computer_Asset");//rename computer object
+        computer.GetComponent<BoxCollider>().enabled = false;
     }
 
     //turns the box collider on the computer on
     public void computerInteractable()
     {
-        GameObject computer = GameObject.Find("Computer");
-        computer.GetComponent<BoxCollider2D>().enabled = true;
+        GameObject computer = GameObject.Find("Computer_Asset");
+        computer.GetComponent<BoxCollider>().enabled = true;
     }
 
     //Gets the showNotification method so the notifaction will pop up
     public void notificationPopUp(string message)
     {
-        GetComponent<notification_manager>().showNotification(message);
+        notification.GetComponent<notification_manager>().showNotification(message);
     }
 
     // Start is called before the first frame update
