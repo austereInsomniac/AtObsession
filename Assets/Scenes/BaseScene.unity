@@ -35249,6 +35249,7 @@ GameObject:
   - component: {fileID: 1534353898}
   - component: {fileID: 1534353900}
   - component: {fileID: 1534353899}
+  - component: {fileID: 1534353901}
   m_Layer: 5
   m_Name: Splash Screen
   m_TagString: Untagged
@@ -35273,7 +35274,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1044.7, y: 585.33}
+  m_SizeDelta: {x: 393.99997, y: 168.99998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1534353899
 MonoBehaviour:
@@ -35295,7 +35296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1580262504, guid: 3f3789e2214e4d141a2f2fcd682db41b, type: 3}
+  m_Sprite: {fileID: 1820967870, guid: 214465284c5d25147a529d7952d358ce, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35313,6 +35314,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534353897}
   m_CullTransparentMesh: 1
+--- !u!95 &1534353901
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534353897}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce1b902a5bff2004e9c794c58fe8b989, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1535184435
 GameObject:
   m_ObjectHideFlags: 0
