@@ -12464,6 +12464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fada01e6e92fd143aacef8198d230bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notification: {fileID: 1943289221}
 --- !u!1 &520385362
 GameObject:
   m_ObjectHideFlags: 0
@@ -52217,7 +52218,7 @@ GameObject:
   - component: {fileID: 2146092712}
   - component: {fileID: 2146092713}
   m_Layer: 0
-  m_Name: Computer
+  m_Name: Computer_Asset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
