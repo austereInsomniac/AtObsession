@@ -43,7 +43,9 @@ public class splash_screen_manager : MonoBehaviour
         {
             // living room
             { "Watch TV", Resources.Load<Sprite>("TV_Zoom_In") },
-            { "Lift weights", Resources.Load<Sprite>("Workout_Zoom_In") },
+            { "Warm up", Resources.Load<Sprite>("Workout_Zoom_In") },
+            { "Light workout", Resources.Load<Sprite>("Workout_Zoom_In") },
+            { "Intense workout", Resources.Load<Sprite>("Workout_Zoom_In") },
             { "Do chores", Resources.Load<Sprite>("Clean_Zoom_In") },
             { "Go to the gym", Resources.Load<Sprite>("Clean_Zoom_In") },
             { "Visit friends", Resources.Load<Sprite>("Clean_Zoom_In") },

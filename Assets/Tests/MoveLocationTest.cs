@@ -12,7 +12,7 @@ public class MoveLocationTest
     public move_location loc;
 
     [SetUp]
-    public void setUp()
+    public void setUp() //Loads the Scene
     {
         SceneManager.LoadScene("Scenes/BaseScene");
     }
@@ -22,6 +22,7 @@ public class MoveLocationTest
     [UnityTest]
     public IEnumerator MoveLocationTesting()
     {
+        //Assign nescesary scripts and verify that they are assigned
         player = GameObject.FindGameObjectWithTag("MainCamera");
         gameState = player.GetComponent<game_state>();
         loc = player.GetComponent<move_location>();
@@ -29,9 +30,40 @@ public class MoveLocationTest
         Assert.IsNotNull(gameState);
         Assert.IsNotNull(loc);
 
-        //Assert.That(loc.getMainMenu().GetInstanceID, Is.EqualTo(loc.getThisO().GetInstanceID()));
+        //Verify that the game starts on the main menu
+        Assert.That(loc.getMainMenu().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getMainMenuCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
 
-        Assert.AreSame(gameState.getLocation(), loc.getThisO());
+        //Move to Bedroom and verify
+        loc.goToBedroom();
+        Assert.That(loc.getBedroom().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getBedroomCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
+        //Verify that you stay in the bedroom and nothing changes
+        loc.goToBedroom();
+        Assert.That(loc.getBedroom().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getBedroomCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
+
+        //Move to Bathroom and Verify
+        loc.goToBathroom();
+        Assert.That(loc.getBathroom().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getBathroomCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
+
+        //Move to Livingroom and Verify
+        loc.goToLivingRoom();
+        Assert.That(loc.getLivingRoom().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getLivingRoomCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
+        
+        //Move to kitchen and verify
+        loc.goToKitchen();
+        Assert.That(loc.getKitchen().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getKitchenCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
+
+        //Move to game over screen and verify
+        loc.goToGameOver();
+        Assert.That(loc.getGameOver().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getGameOverCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
+
+
 
         yield return null;
     }
