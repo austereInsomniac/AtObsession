@@ -87,6 +87,8 @@ public class daily_action_storage : MonoBehaviour
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
         light = GameObject.Find("Light workout").GetComponent<Button>();
         intense = GameObject.Find("Intense workout").GetComponent<Button>();
+
+
     }
 
     // Start is called before the first frame update

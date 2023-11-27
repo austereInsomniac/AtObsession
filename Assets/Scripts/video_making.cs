@@ -46,13 +46,4 @@ public class video_making : MonoBehaviour
         //Debug.Log("Reputation: " + player.GetComponent<game_state>().getReputation());
 
     }
-    public int getSubscribers()
-    {
-        return subscribers;
-    }
-
-    public int getReputation()
-    {
-        return reputation;
-    }
 }

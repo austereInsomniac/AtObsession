@@ -1,0 +1,54 @@
+{
+  "summary": {
+    "generatedon": "2023-11-27T16:35:53Z",
+    "parser": "MultiReportParser (3x OpenCoverParser)",
+    "assemblies": 2,
+    "classes": 30,
+    "files": 26,
+    "coveredlines": 1385,
+    "uncoveredlines": 523,
+    "coverablelines": 1908,
+    "totallines": 3426,
+    "linecoverage": 72.5,
+    "coveredbranches": 0,
+    "totalbranches": 0,
+    "coveredmethods": 154,
+    "totalmethods": 206,
+    "methodcoverage": 74.7
+ },
+  "coverage": {
+    "assemblies": [
+      { "name": "NewAssembly", "classes": 25, "coverage": 63.1, "coveredlines": 849, "coverablelines": 1344, "totallines": 3961, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 72.6, "coveredmethods": 138, "totalmethods": 190, "classesinassembly": [
+        { "name": "ActionVariable", "coverage": 47.6, "coveredlines": 10, "coverablelines": 21, "totallines": 377, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 16.6, "coveredmethods": 1, "totalmethods": 6 },
+        { "name": "asset_highlighter", "coverage": 78.5, "coveredlines": 22, "coverablelines": 28, "totallines": 50, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 60, "coveredmethods": 3, "totalmethods": 5 },
+        { "name": "background_scares", "coverage": 77, "coveredlines": 37, "coverablelines": 48, "totallines": 79, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 5, "totalmethods": 5 },
+        { "name": "buyableItem", "coverage": 100, "coveredlines": 21, "coverablelines": 21, "totallines": 95, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 8, "totalmethods": 8 },
+        { "name": "change_dying_filter", "coverage": 83.3, "coveredlines": 15, "coverablelines": 18, "totallines": 47, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 66.6, "coveredmethods": 2, "totalmethods": 3 },
+        { "name": "change_wellness_filter", "coverage": 100, "coveredlines": 10, "coverablelines": 10, "totallines": 30, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "daily_action_storage", "coverage": 39.7, "coveredlines": 72, "coverablelines": 181, "totallines": 377, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 50, "coveredmethods": 7, "totalmethods": 14 },
+        { "name": "day_night_manager", "coverage": 100, "coveredlines": 22, "coverablelines": 22, "totallines": 40, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "developer_options", "coverage": 0, "coveredlines": 0, "coverablelines": 36, "totallines": 87, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 0, "coveredmethods": 0, "totalmethods": 3 },
+        { "name": "do_an_action", "coverage": 27.2, "coveredlines": 3, "coverablelines": 11, "totallines": 41, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 50, "coveredmethods": 1, "totalmethods": 2 },
+        { "name": "exit_game", "coverage": 44.4, "coveredlines": 4, "coverablelines": 9, "totallines": 27, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 66.6, "coveredmethods": 2, "totalmethods": 3 },
+        { "name": "game_state", "coverage": 90.7, "coveredlines": 254, "coverablelines": 280, "totallines": 531, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 88.6, "coveredmethods": 39, "totalmethods": 44 },
+        { "name": "HUD_text_manager", "coverage": 77.4, "coveredlines": 24, "coverablelines": 31, "totallines": 70, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 },
+        { "name": "move_location", "coverage": 72.8, "coveredlines": 51, "coverablelines": 70, "totallines": 128, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 76.9, "coveredmethods": 20, "totalmethods": 26 },
+        { "name": "notification_manager", "coverage": 73.5, "coveredlines": 39, "coverablelines": 53, "totallines": 95, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 85.7, "coveredmethods": 6, "totalmethods": 7 },
+        { "name": "shop", "coverage": 100, "coveredlines": 18, "coverablelines": 18, "totallines": 95, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 },
+        { "name": "splash_screen_manager", "coverage": 69, "coveredlines": 29, "coverablelines": 42, "totallines": 125, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 },
+        { "name": "stalker_prototype_script", "coverage": 53.4, "coveredlines": 131, "coverablelines": 245, "totallines": 463, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 57.1, "coveredmethods": 8, "totalmethods": 14 },
+        { "name": "StalkerChoice", "coverage": 53.3, "coveredlines": 8, "coverablelines": 15, "totallines": 463, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 16.6, "coveredmethods": 1, "totalmethods": 6 },
+        { "name": "StalkerEvents", "coverage": 55, "coveredlines": 22, "coverablelines": 40, "totallines": 463, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 75, "coveredmethods": 9, "totalmethods": 12 },
+        { "name": "statistic_slider", "coverage": 100, "coveredlines": 14, "coverablelines": 14, "totallines": 36, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "swap_assets", "coverage": 45.4, "coveredlines": 10, "coverablelines": 22, "totallines": 44, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 66.6, "coveredmethods": 2, "totalmethods": 3 },
+        { "name": "toggle_menu", "coverage": 14.7, "coveredlines": 5, "coverablelines": 34, "totallines": 67, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 20, "coveredmethods": 1, "totalmethods": 5 },
+        { "name": "video_making", "coverage": 100, "coveredlines": 17, "coverablelines": 17, "totallines": 49, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "wake_up_notification", "coverage": 18.9, "coveredlines": 11, "coverablelines": 58, "totallines": 82, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 75, "coveredmethods": 3, "totalmethods": 4 } ] },
+      { "name": "Tests", "classes": 5, "coverage": 95, "coveredlines": 536, "coverablelines": 564, "totallines": 863, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 16, "totalmethods": 16, "classesinassembly": [
+        { "name": "GameStateTesting", "coverage": 73.5, "coveredlines": 78, "coverablelines": 106, "totallines": 156, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 },
+        { "name": "MoveLocationTest", "coverage": 100, "coveredlines": 32, "coverablelines": 32, "totallines": 70, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "ShopTesting", "coverage": 100, "coveredlines": 83, "coverablelines": 83, "totallines": 135, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "StalkerTest", "coverage": 100, "coveredlines": 67, "coverablelines": 67, "totallines": 107, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 2, "totalmethods": 2 },
+        { "name": "VideoMakingTests", "coverage": 100, "coveredlines": 276, "coverablelines": 276, "totallines": 395, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 6, "totalmethods": 6 } ] } ]
+  }
+}

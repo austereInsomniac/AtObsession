@@ -63,7 +63,10 @@ public class MoveLocationTest
         Assert.That(loc.getGameOver().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
         Assert.That(loc.getGameOverCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
 
-
+        //Move to main menu screen and verify
+        loc.goToMainMenu();
+        Assert.That(loc.getMainMenu().GetInstanceID(), Is.EqualTo(gameState.getLocation().GetInstanceID()));
+        Assert.That(loc.getMainMenuCanvas().GetInstanceID(), Is.EqualTo(gameState.getLocationCanvas().GetInstanceID()));
 
         yield return null;
     }
