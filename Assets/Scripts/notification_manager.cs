@@ -24,6 +24,7 @@ public class notification_manager : MonoBehaviour
         mText = GetComponentInChildren<TextMeshProUGUI>().GetComponent<TMP_Text>();
         mImage = GetComponent<UnityEngine.UI.Image>();
         mImage.enabled = false;
+        notificationQueue = new Queue<string>();
     }
 
     public void repeatNotification()
@@ -90,8 +91,8 @@ public class notification_manager : MonoBehaviour
     {
         if (isNotificationShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
         {
-            // close the notification after .5 seconds if any key or mouse button is held down
-            if (Input.anyKey)
+            // close the notification after .5 seconds if any key or mouse button is pressed
+            if (Input.anyKeyDown)
             {
                 disableNotification();
 
