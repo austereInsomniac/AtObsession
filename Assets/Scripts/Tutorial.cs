@@ -125,18 +125,19 @@ public class Tutorial : MonoBehaviour
 
         else if (getCurrentDay() == 2)
         {
+            count = 0;
             computerInteractable();
             GameObject computerRoom = GameObject.Find("Computer");
 
-            if (count == 2)
-            { 
+            if (count == 0)
+            {
 
                 notificationPopUp("For this day you'll be introduced to content creation\n."
                     + "Hover over and click on the computer");
                 count++;
             }
 
-            else if (player.transform.position == computerRoom.transform.position && count == 3)
+            else if (player.transform.position == computerRoom.transform.position && count == 1)
             {
                 notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up which you'll get introduced to in the next day.\n" +
                     "Hover over and click on the play button in the top left, this is your content creation.");
@@ -145,20 +146,26 @@ public class Tutorial : MonoBehaviour
 
             else if (buttonClickedOn == true)
             {
-
+                notificationPopUp("This is the video creation app, where you can create videos varying in quality." +
+                    "The higher the stars the more money and subscribers you'll get but it'll cost more time and wellness. " +
+                    "This is vise versa for lower stars.");
                 setButtonClickedToFalse();
+                count++;
             }
-            
+            //else if (count == 2 && Input.GetMouseButtonDown(0))
+            //{
+            //    notificationPopUp()
+            //}
         }
 
         else if (getCurrentDay() == 3)
         {
-
+            count = 0;
         }
 
         else if (getCurrentDay() == 4)
         {
-
+            count = 0;
         }
     }
 }
