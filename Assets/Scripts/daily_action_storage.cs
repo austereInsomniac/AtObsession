@@ -64,6 +64,7 @@ public class daily_action_storage : MonoBehaviour
     Button warmup;
     Button light;
     Button intense;
+    Button gym;
 
     void Awake()
     {
@@ -87,6 +88,7 @@ public class daily_action_storage : MonoBehaviour
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
         light = GameObject.Find("Light workout").GetComponent<Button>();
         intense = GameObject.Find("Intense workout").GetComponent<Button>();
+        gym = GameObject.Find("Go to the gym").GetComponent<Button>();
     }
 
     // Start is called before the first frame update
@@ -243,10 +245,12 @@ public class daily_action_storage : MonoBehaviour
             warmup.interactable = false;
             light.interactable = false;
             intense.interactable = false;
+            gym.interactable = false;
 
             buttons.Add("Warm up", warmup);
             buttons.Add("Light workout", light);
             buttons.Add("Intense workout", intense);
+            buttons.Add("Go to the gym", gym);
         }
         else
         {

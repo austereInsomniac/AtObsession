@@ -12,7 +12,8 @@ public class splash_screen_manager : MonoBehaviour
 
     // outside objects
     private UnityEngine.UI.Image splashScreen;
-    private UnityEngine.Animation splashScreenAnimated;
+    private UnityEngine.UI.Image splashScreenAnimated;
+    private UnityEngine.Animator splashScreenAnimator;
     private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
     private notification_manager notificationManager;
@@ -31,6 +32,8 @@ public class splash_screen_manager : MonoBehaviour
     {
         // grab outside objects
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
+        splashScreenAnimated = GameObject.Find("Splash Screen Animated").GetComponent<UnityEngine.UI.Image>();
+        splashScreenAnimator = GameObject.Find("Splash Screen Animated").GetComponent<UnityEngine.Animator>();
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD").GetComponent<CanvasGroup>();
@@ -55,21 +58,20 @@ public class splash_screen_manager : MonoBehaviour
 
     public void openSplashScreen(string key)
     {
-        if (splashScreens[key] != null)
+        if (splashScreens.ContainsKey(key))
         {
             // display appropriate splash screen for a set time
             splashScreen.sprite = splashScreens[key];
             splashScreen.enabled = true;
-
-            // Record start time
-            displayStartTime = Time.timeSinceLevelLoad;
-            isSplashShowing = true;
         }
         else
         {
-            splashScreenAnimated.Play();
-            splashScreen.enabled = true;
+            splashScreenAnimated.enabled = true;  
         }
+
+        // Record start time
+        displayStartTime = Time.timeSinceLevelLoad;
+        isSplashShowing = true;
 
         // hide hud
         HUD.alpha = 0;
@@ -94,6 +96,7 @@ public class splash_screen_manager : MonoBehaviour
         {
             // close splash
             splashScreen.enabled = false;
+            splashScreenAnimated.enabled = false;
             isSplashShowing = false;
 
             // show hud
