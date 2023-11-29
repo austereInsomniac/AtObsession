@@ -4,6 +4,7 @@ using static Codice.Client.Common.WebApi.WebApiEndpoints;
 using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEditor;
 using UnityEngine.Device;
+using System.Collections.Generic;
 
 // Joe + Mackenzie
 
@@ -16,11 +17,14 @@ public class notification_manager : MonoBehaviour
     private TMP_Text mText;
     private UnityEngine.UI.Image mImage;
 
+    private Queue<string> notificationQueue;
+
     void Start()
     {
         mText = GetComponentInChildren<TextMeshProUGUI>().GetComponent<TMP_Text>();
         mImage = GetComponent<UnityEngine.UI.Image>();
         mImage.enabled = false;
+        notificationQueue = new Queue<string>();
     }
 
     public void repeatNotification()
@@ -40,6 +44,11 @@ public class notification_manager : MonoBehaviour
         mText.SetText(message);
 
         repeatNotification();
+    }
+
+    public void queNotification(string message)
+    {
+        notificationQueue.Enqueue(message);
     }
 
     public void showWellnessNotification(string action, int newW)
@@ -82,10 +91,15 @@ public class notification_manager : MonoBehaviour
     {
         if (isNotificationShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
         {
-            // close the notification after .5 seconds if any key or mouse button is held down
-            if (Input.anyKey)
+            // close the notification after .5 seconds if any key or mouse button is pressed
+            if (Input.anyKeyDown)
             {
                 disableNotification();
+
+                if(notificationQueue.Count > 0)
+                {
+                    showNotification(notificationQueue.Dequeue());
+                }
             }
         }
     }
