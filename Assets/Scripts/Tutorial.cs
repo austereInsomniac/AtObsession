@@ -6,6 +6,9 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
+using Codice.Client.BaseCommands;
+using UnityEditor;
+
 class TutorialPopUps
 {
     string text;
@@ -35,6 +38,9 @@ public class Tutorial : MonoBehaviour
     public notification_manager notification;
     GameObject startGame;
     GameObject videoCreation;
+    GameObject streaming;
+    GameObject chores;
+    GameObject sleep;
 
     //Gets current day
     public int getCurrentDay()
@@ -59,7 +65,7 @@ public class Tutorial : MonoBehaviour
     //Gets the showNotification method so the notifaction will pop up
     public void notificationPopUp(string message)
     {
-        notification.GetComponent<notification_manager>().showNotification(message);
+        notification.GetComponent<notification_manager>().queNotification(message);
     }
 
 
@@ -73,6 +79,53 @@ public class Tutorial : MonoBehaviour
         buttonClickedOn = false;
     }
 
+    public void shoppingNotInteractable()
+    {
+        GameObject shoppingButton = GameObject.Find("Go_Shopping");
+        shoppingButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
+    }
+
+    public void shoppingInteractable()
+    {
+        GameObject shoppingButton = GameObject.Find("Go_Shopping");
+        shoppingButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+    }
+
+    public void emailNotInteractable()
+    {
+        GameObject emailButton = GameObject.Find("Check_Email");
+        emailButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
+    }
+
+    public void emailInteractable()
+    {
+        GameObject emailButton = GameObject.Find("Check_Email");
+        emailButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+    }
+
+    public void chitterNotInteractable()
+    {
+        GameObject chitterButton = GameObject.Find("Check_Chitter");
+        chitterButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
+    }
+
+    public void chitterInteractable()
+    {
+        GameObject chitterButton = GameObject.Find("Check_Email");
+        chitterButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+    }
+
+    public void videoInteractable()
+    {
+        GameObject videoButton = GameObject.Find("Make_Video");
+        videoButton.GetComponent<UnityEngine.UI.Button>().enabled = false; 
+    }
+
+    public void videoNotInteractable()
+    {
+        GameObject emailButton = GameObject.Find("Check_Email");
+        emailButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +138,15 @@ public class Tutorial : MonoBehaviour
         videoCreation = GameObject.Find("Make_Video");
         videoCreation.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 
+        streaming = GameObject.Find("Check_Tritch");
+        streaming.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
+        chores = GameObject.Find("Do chores");
+        chores.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
+        sleep = GameObject.Find("Go to sleep");
+        sleep.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
     }
 
     // Update is called once per frame
@@ -96,9 +158,8 @@ public class Tutorial : MonoBehaviour
             computerNotInteractable();
             if (buttonClickedOn == true)
             {
-                Debug.Log("In the first if");
                 //introduce player to wellness, add the arrow asset
-                notificationPopUp("This is your wellness which will rasie and lower based your time and the activities you do");
+                notification.GetComponent<notification_manager>().showNotification("This is your wellness which will rasie and lower based your time and the activities you do");
                 setButtonClickedToFalse();
                 count++;
             }
@@ -107,20 +168,18 @@ public class Tutorial : MonoBehaviour
             else if (count == 1 && Input.GetMouseButtonDown(0))
             {
                 notificationPopUp("If you hover over the a door or an object and it has a yellow highlight around it, it is clickable." +
-                        "These highlights tell you what can and can't be clicked on." +
-                        "Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task. Notice you feel better afterwards which means your wellness goes up.\n"
-                        + "Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness." +
-                        "Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
-                count++;
-            }
+                        "These highlights tell you what can and can't be clicked on.");
 
-            else if (count == 2 && Input.GetMouseButtonUp(0)) // fix this if statement so it doesn't go instantly into this
-            {
-                notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness. " +
-                    "Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
+                notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task. Notice you feel better afterwards which means your wellness goes up.\n");
+
                 count++;
             }
-           
+            else if (buttonClickedOn == true)
+            {
+                notificationPopUp("Notice you feel better afterwards which means your wellness goes up. Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness. " +
+                    "Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
+                setButtonClickedToFalse();
+            }
          }
  
 
@@ -128,24 +187,28 @@ public class Tutorial : MonoBehaviour
         {
             count = 0;
             computerInteractable();
+            shoppingNotInteractable();
+            emailNotInteractable();
+            chitterNotInteractable();
             GameObject computerRoom = GameObject.Find("Computer");
 
-            if (count == 0)
+            if (buttonClickedOn == true)
             {
 
                 notificationPopUp("For this day you'll be introduced to content creation\n."
                     + "Hover over and click on the computer");
+                setButtonClickedToFalse();
                 count++;
             }
 
-            else if (player.transform.position == computerRoom.transform.position && count == 1)
+            else if (player.getLocation().name == "Computer" && count == 1)
             {
                 notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up which you'll get introduced to in the next day.\n" +
                     "Hover over and click on the play button in the top left, this is your content creation.");
                 count++;
             }
 
-            else if (buttonClickedOn == true)
+            else if (buttonClickedOn == true && count == 2)
             {
                 notificationPopUp("This is the video creation app, where you can create videos varying in quality." +
                     "The higher the stars the more money and subscribers you'll get but it'll cost more time and wellness. " +
@@ -153,15 +216,45 @@ public class Tutorial : MonoBehaviour
                 setButtonClickedToFalse();
                 count++;
             }
-            //else if (count == 2 && Input.GetMouseButtonDown(0))
-            //{
-            //    notificationPopUp()
-            //}
+
+            else if (player.transform.position == computerRoom.transform.position && count == 3)
+            {
+                notificationPopUp("The streaming app allows you to stream videos");
+            }
+
+            else if (player.transform.position == streaming.transform.position && count == 4)
+            {
+                notificationPopUp("This is the streaming service");
+                count++;
+            }
+
+            else if (count == 5)
+            {
+                notificationPopUp("Now explore making videos and streaming, and click on the bed and then click on go to sleep");
+            }
         }
 
         else if (getCurrentDay() == 3)
         {
             count = 0;
+            shoppingInteractable();
+            emailInteractable();
+            chitterInteractable();
+            GameObject computerRoom = GameObject.Find("Computer");
+
+            if (count == 0)
+            {
+                notificationPopUp("This day you'll learn about the social media and email within the computer.");
+                count++;
+            }
+
+            else if ((player.transform.position == computerRoom.transform.position && count == 1))
+            {
+                notificationPopUp("The email and social media apps is the way you can communicate and find out whats going on.");
+            }
+
+   
+
         }
 
         else if (getCurrentDay() == 4)
