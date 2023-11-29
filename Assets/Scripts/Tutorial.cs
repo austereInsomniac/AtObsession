@@ -62,6 +62,7 @@ public class Tutorial : MonoBehaviour
         notification.GetComponent<notification_manager>().showNotification(message);
     }
 
+
     public void buttonClicked()
     {
          buttonClickedOn = true;
@@ -113,7 +114,7 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if (count == 2 && Input.GetMouseButtonUp(0))
+            else if (count == 2 && Input.GetMouseButtonUp(0)) // fix this if statement so it doesn't go instantly into this
             {
                 notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness. " +
                     "Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
