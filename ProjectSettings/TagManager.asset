@@ -8,6 +8,8 @@ TagManager:
   - notifications
   - location canvas
   - location
+  - nightTime
+  - dayTime
   layers:
   - Default
   - TransparentFX

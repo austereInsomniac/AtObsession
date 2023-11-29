@@ -64,6 +64,7 @@ public class daily_action_storage : MonoBehaviour
     Button warmup;
     Button light;
     Button intense;
+    Button gym;
 
     void Awake()
     {
@@ -87,8 +88,7 @@ public class daily_action_storage : MonoBehaviour
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
         light = GameObject.Find("Light workout").GetComponent<Button>();
         intense = GameObject.Find("Intense workout").GetComponent<Button>();
-
-
+        gym = GameObject.Find("Go to the gym").GetComponent<Button>();
     }
 
     // Start is called before the first frame update
@@ -99,28 +99,28 @@ public class daily_action_storage : MonoBehaviour
             // wellness, time, money
 
             // living room
-            { "Do chores", new ActionVariable(8, 15, 0.00, "chores", "chores") },
-            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "") },
-            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", "") },
-            { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "") },
-            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "") },
-            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "") },
-            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "") },
-            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "") },
-            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food", "") },//hunger
+            { "Do chores", new ActionVariable(8, 15, 0.00, "chores", "You spent some time doing some chores around the house.") },
+            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "You spent $15 to work out at your local gym.") },
+            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.") },
+            { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "You went for a short walk at your local park.") },
+            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.\r\n") },
+            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "You decided to do a light warm up.") },
+            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "You chose to do a light workout.") },
+            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "You committed to an intense workout.") },
+            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food", "You spent $25 to eat out.") },//hunger
 
             // kitchen
-            { "Cook food", new ActionVariable(10, 30, -5.00, "food", "") },//hunger
-            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack", "") },//hunger
+            { "Cook food", new ActionVariable(10, 30, -5.00, "food", "You spent $5 on groceries to cook food at home.") },//hunger
+            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack", "You ate a small snack.") },//hunger
 
             // bedroom
-            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "") },
-            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap", "") },
+            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "You had a night of restful sleep.") },
+            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap", "You took a short power nap.") },
 
             // bathroom
-            { "Freshen up", new ActionVariable(3, 5, 0.00, "freshen", "") },
-            { "Shower", new ActionVariable(8, 20, 0.00, "shower", "") },
-            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath", "") }
+            { "Freshen up", new ActionVariable(3, 5, 0.00, "Freshen up", "You quickly freshened up.") },
+            { "Shower", new ActionVariable(8, 20, 0.00, "shower", "You took a quick shower.") },
+            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath", "You took a long relaxing bubble bath.") }
         };
 
         // set up time limits
@@ -245,10 +245,12 @@ public class daily_action_storage : MonoBehaviour
             warmup.interactable = false;
             light.interactable = false;
             intense.interactable = false;
+            gym.interactable = false;
 
             buttons.Add("Warm up", warmup);
             buttons.Add("Light workout", light);
             buttons.Add("Intense workout", intense);
+            buttons.Add("Go to the gym", gym);
         }
         else
         {
@@ -371,11 +373,11 @@ public class daily_action_storage : MonoBehaviour
     private void randomizeStats()
     {
         // time based
-        activities["Go to sleep"] = new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "");
+        activities["Go to sleep"] = new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", " You had a night of restful sleep.");
 
         // random
-        activities["Go to the gym"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise", "");
-        activities["Visit friends"] = new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", "");
-        activities["Watch TVs"] = new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "");
+        activities["Go to the gym"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise", "You spent $15 to work out at your local gym.");
+        activities["Visit friends"] = new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.");
+        activities["Watch TVs"] = new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.");
     }
 }

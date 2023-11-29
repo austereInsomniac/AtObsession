@@ -12,6 +12,8 @@ public class splash_screen_manager : MonoBehaviour
 
     // outside objects
     private UnityEngine.UI.Image splashScreen;
+    private UnityEngine.UI.Image splashScreenAnimated;
+    private UnityEngine.Animator splashScreenAnimator;
     private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
     private notification_manager notificationManager;
@@ -30,6 +32,8 @@ public class splash_screen_manager : MonoBehaviour
     {
         // grab outside objects
         splashScreen = GameObject.Find("Splash Screen").GetComponent<UnityEngine.UI.Image>();
+        splashScreenAnimated = GameObject.Find("Splash Screen Animated").GetComponent<UnityEngine.UI.Image>();
+        splashScreenAnimator = GameObject.Find("Splash Screen Animated").GetComponent<UnityEngine.Animator>();
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
         HUD = GameObject.Find("HUD").GetComponent<CanvasGroup>();
@@ -41,28 +45,9 @@ public class splash_screen_manager : MonoBehaviour
         splashScreens = new Dictionary<string, Sprite>
         {
             // living room
-            { "Watch TV", Resources.Load<Sprite>("TV_Zoom_In") },
-            { "Warm up", Resources.Load<Sprite>("Workout_Zoom_In") },
-            { "Light workout", Resources.Load<Sprite>("Workout_Zoom_In") },
-            { "Intense workout", Resources.Load<Sprite>("Workout_Zoom_In") },
-            { "Do chores", Resources.Load<Sprite>("Clean_Zoom_In") },
-            { "Go to the gym", Resources.Load<Sprite>("Clean_Zoom_In") },
-            { "Visit friends", Resources.Load<Sprite>("Clean_Zoom_In") },
-            { "Go for a walk", Resources.Load<Sprite>("Clean_Zoom_In") },
-            { "Eat at a restaurant", Resources.Load<Sprite>("Clean_Zoom_In") },
-            
-            // kitchen
-            { "Cook food", Resources.Load<Sprite>("Oven_Zoom_In") },
-            { "Eat a snack", Resources.Load<Sprite>("Fridge_Zoom_In")},
-
-            // bedroom
-            { "Go to sleep", Resources.Load<Sprite>("Clean_Zoom_In")  },
-            { "Take a nap", Resources.Load<Sprite>("Clean_Zoom_In")  },
-
-            // bathroom
-            { "Freshen up", Resources.Load < Sprite >("Clean_Zoom_In") },
-            { "Shower", Resources.Load < Sprite >("Clean_Zoom_In") },
-            { "Bubble bath", Resources.Load < Sprite >("Clean_Zoom_In") },
+            { "Go to the gym", Resources.Load<Sprite>("Gym") },
+            { "Visit friends", Resources.Load<Sprite>("Park-Recovered") },
+            { "Go for a walk", Resources.Load<Sprite>("Park-Recovered") },
 
             // non actions
             { "reset", Resources.Load<Sprite>("Hospital_Concepts_V001") },
@@ -73,9 +58,16 @@ public class splash_screen_manager : MonoBehaviour
 
     public void openSplashScreen(string key)
     {
-        // display appropriate splash screen for a set time
-        splashScreen.sprite = splashScreens[key];
-        splashScreen.enabled = true;
+        if (splashScreens.ContainsKey(key))
+        {
+            // display appropriate splash screen for a set time
+            splashScreen.sprite = splashScreens[key];
+            splashScreen.enabled = true;
+        }
+        else
+        {
+            splashScreenAnimated.enabled = true;  
+        }
 
         // Record start time
         displayStartTime = Time.timeSinceLevelLoad;
@@ -104,6 +96,7 @@ public class splash_screen_manager : MonoBehaviour
         {
             // close splash
             splashScreen.enabled = false;
+            splashScreenAnimated.enabled = false;
             isSplashShowing = false;
 
             // show hud
