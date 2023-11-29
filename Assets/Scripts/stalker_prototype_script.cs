@@ -134,7 +134,7 @@ public class stalker_prototype_script : MonoBehaviour
 
         stalkerEvents = new Dictionary<string, StalkerEvents>();
 
-        StalkerEvents emailEvent = new StalkerEvents("I got a weird email...", "Bedroom", 0, 1, 1, 5);
+        StalkerEvents emailEvent = new StalkerEvents("I got a weird email...", "Bedroom", 0, 1, 1, -1);
         emailEvent.AddChoice("Interact", "I clicked on the email and clicked a weird link", -3, -1, 0);
         emailEvent.AddChoice("Ignore", "I ignored the email", -1, 0, 0);
         emailEvent.AddChoice("Report", "I reported the email as it seemed suspicious", -1, 1, 5);
@@ -162,7 +162,7 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEvents.Add("Window figure", windowEvent);
 
         // Fan game event
-        StalkerEvents fanGameEvent = new StalkerEvents("A fan asked me to play a game they sent!", "Bedroom", 10, 5, 1, 5);
+        StalkerEvents fanGameEvent = new StalkerEvents("A fan asked me to play a game they sent!", "Bedroom", 10, 5, 1, -1);
         fanGameEvent.AddChoice("Play the game", "I played the fan's game and ended up getting a virus on my computer", -3, -1, 0);
         fanGameEvent.AddChoice("Ignore them", "I ignored the fan's request and kept with my regular schedule", -1, 0, 0);
         fanGameEvent.AddChoice("Decline", "I declined to play", -1, 1, 5);
@@ -230,49 +230,49 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(3);
             }
-            else if (day == 4 && time >= 17 * 60 && eventCount == 1)
+            else if (day == 5 && time >= 15 * 60 && eventCount == 1)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(1);
             }
-            else if (day == 5 && time >= 17 * 60 && eventCount == 2)
+            else if (day == 7 && time >= 13 * 60 && eventCount == 2)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(2);
             }
-            else if (day == 6 && time >= 17 * 60 && eventCount == 3)
+            else if (day == 9 && time >= 16 * 60 && eventCount == 3)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(0);
             }
-            else if (day == 7 && time >= 17 * 60 && eventCount == 4)
+            else if (day == 10 && time >= 18 * 60 && eventCount == 4)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(4);
             }
-            else if (day == 8 && time >= 17 * 60 && eventCount == 5)
+            else if (day == 11 && time >= 12 * 60 && eventCount == 5)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(5);
             }
-            else if (day == 9 && time >= 17 * 60 && eventCount == 6)
+            else if (day == 12 && time >= 17 * 60 && eventCount == 6)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(6);
             }
-            else if (day == 10 && time >= 17 * 60 && eventCount == 7)
+            else if (day == 13 && time >= 17.5 * 60 && eventCount == 7)
             {
                 eventCount++;
                 isOn = false;
                 TriggerStalkerEvent(7);
             }
-            else if (day == 14 && time >= 17 * 60)
+            else if (day == 14 && time >= 14 * 60)
             {
                 isOn = false;
                 TriggerStalkerEvent(8);
@@ -370,23 +370,26 @@ public class stalker_prototype_script : MonoBehaviour
 
         // Option 1
         choice1Text.text = choices.Count > 0 ? choices[0].choiceText : "";
-        choice1.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 0 ? choices[0] : null));
+        choice1.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 0 ? choices[0] : null, stalkerEvent));
 
         // Option 2
         choice2Text.text = choices.Count > 1 ? choices[1].choiceText : "";
-        choice2.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 1 ? choices[1] : null));
+        choice2.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 1 ? choices[1] : null, stalkerEvent));
 
         // Option 3
         choice3Text.text = choices.Count > 2 ? choices[2].choiceText : "";
-        choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 2 ? choices[2] : null));
+        choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 2 ? choices[2] : null, stalkerEvent));
 
         stalkerEventHandler.SetActive(true);
     }
 
-    private void HandlePlayerChoice(StalkerChoice choice)
+    public void HandlePlayerChoice(StalkerChoice choice, StalkerEvents stalkerEvent)
     {
         if (choice != null)
         {
+            choice.wellnessChange *= stalkerEvent.getWellness();
+            choice.endingChange *= stalkerEvent.getEnding();
+            choice.reputationChange *= stalkerEvent.getReputation();
             // Update player stats
             player.updateWellness(choice.wellnessChange);
             player.updateEnding(choice.endingChange);
