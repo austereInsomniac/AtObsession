@@ -190,6 +190,9 @@ public class game_state : MonoBehaviour
         // update time
         time += t;
 
+        // lower reputation
+        updateReputation((int)(-t/30.0));
+
         // update day if we hit midnight
         if (time >= 1440)
         {
@@ -199,7 +202,7 @@ public class game_state : MonoBehaviour
             // update reputaiton if needed
             if(videosMadeToday == 0)
             {
-                updateReputation(-20);
+                updateReputation(-50);
             }
 
             videosMadeToday = 0;
@@ -497,7 +500,8 @@ public class game_state : MonoBehaviour
     {
         // set stats
         hasDied = true;
-        updateReputation(50);
+        reputation = 50;
+        updateReputation(0);
 
         // call hospital scene to ovveride current splash screen
         notificationManager.showNotification("You haven't been keeping up with your work...");

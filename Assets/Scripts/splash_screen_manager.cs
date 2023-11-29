@@ -20,7 +20,8 @@ public class splash_screen_manager : MonoBehaviour
 
     // splash screen timers
     private bool isSplashShowing;
-    private float displayTime = 0.4f;
+    private float displayTimeAnimated = 0.4f;
+    private float displayTimeStatic = 1.25f;
     private float displayStartTime;
 
     // HUD
@@ -58,15 +59,16 @@ public class splash_screen_manager : MonoBehaviour
 
     public void openSplashScreen(string key)
     {
+        // display appropriate splash screen for a set time
         if (splashScreens.ContainsKey(key))
         {
-            // display appropriate splash screen for a set time
             splashScreen.sprite = splashScreens[key];
             splashScreen.enabled = true;
         }
         else
         {
-            splashScreenAnimated.enabled = true;  
+            // play animation
+            splashScreenAnimator.SetTrigger("Start Animation");  
         }
 
         // Record start time
@@ -89,14 +91,31 @@ public class splash_screen_manager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Update turns off the splash after a set time
     void Update()
     {
-        if (isSplashShowing && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
+        // static splash
+        if (splashScreen.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && Input.anyKeyDown)
         {
             // close splash
             splashScreen.enabled = false;
-            splashScreenAnimated.enabled = false;
+            isSplashShowing = false;
+
+            // show hud
+            menuBlocker.enabled = false;
+            menuCollider.enabled = false;
+
+            // enable HUD
+            if (shouldHUDShow)
+            {
+                HUD.alpha = 1;
+            }
+        }
+
+        if (splashScreenAnimated.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeAnimated + displayStartTime)
+        {
+            // close splash
+            splashScreenAnimator.SetTrigger("No Animation");
             isSplashShowing = false;
 
             // show hud
