@@ -68,7 +68,7 @@ public class splash_screen_manager : MonoBehaviour
         else
         {
             // play animation
-            splashScreenAnimated.enabled = true;  
+            splashScreenAnimator.SetTrigger("Start Animation");  
         }
 
         // Record start time
@@ -95,7 +95,7 @@ public class splash_screen_manager : MonoBehaviour
     void Update()
     {
         // static splash
-        if (splashScreen.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime)
+        if (splashScreen.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && Input.anyKeyDown)
         {
             // close splash
             splashScreen.enabled = false;
@@ -115,7 +115,7 @@ public class splash_screen_manager : MonoBehaviour
         if (splashScreenAnimated.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeAnimated + displayStartTime)
         {
             // close splash
-            splashScreenAnimated.enabled = false;
+            splashScreenAnimator.SetTrigger("No Animation");
             isSplashShowing = false;
 
             // show hud
