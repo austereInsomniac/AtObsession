@@ -20,7 +20,7 @@ public class splash_screen_manager : MonoBehaviour
 
     // splash screen timers
     private bool isSplashShowing;
-    private float displayTimeAnimated = 0.4f;
+    private float displayTimeAnimated = .9f;
     private float displayTimeStatic = 1.25f;
     private float displayStartTime;
 
@@ -68,6 +68,8 @@ public class splash_screen_manager : MonoBehaviour
         else
         {
             // play animation
+            splashScreenAnimated.enabled = true;
+            splashScreenAnimator.ResetTrigger("End Animation");
             splashScreenAnimator.SetTrigger("Start Animation");  
         }
 
@@ -115,7 +117,9 @@ public class splash_screen_manager : MonoBehaviour
         if (splashScreenAnimated.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeAnimated + displayStartTime)
         {
             // close splash
-            splashScreenAnimator.SetTrigger("No Animation");
+            splashScreenAnimator.ResetTrigger("Start Animation");
+            splashScreenAnimator.SetTrigger("End Animation");
+            splashScreenAnimated.enabled = false;
             isSplashShowing = false;
 
             // show hud
