@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>11/27/2023 - 10:35:53 AM</Generatedon>
-    <Parser>MultiReportParser (3x OpenCoverParser)</Parser>
+    <Generatedon>11/29/2023 - 11:27:45 AM</Generatedon>
+    <Parser>MultiReportParser (4x OpenCoverParser)</Parser>
     <Assemblies>2</Assemblies>
-    <Classes>30</Classes>
-    <Files>26</Files>
-    <Coveredlines>1385</Coveredlines>
-    <Uncoveredlines>523</Uncoveredlines>
-    <Coverablelines>1908</Coverablelines>
-    <Totallines>3426</Totallines>
-    <Linecoverage>72.5</Linecoverage>
+    <Classes>31</Classes>
+    <Files>27</Files>
+    <Coveredlines>1090</Coveredlines>
+    <Uncoveredlines>1282</Uncoveredlines>
+    <Coverablelines>2372</Coverablelines>
+    <Totallines>4004</Totallines>
+    <Linecoverage>45.9</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
-    <Coveredmethods>154</Coveredmethods>
-    <Totalmethods>206</Totalmethods>
-    <Methodcoverage>74.7</Methodcoverage>
+    <Coveredmethods>153</Coveredmethods>
+    <Totalmethods>235</Totalmethods>
+    <Methodcoverage>65.1</Methodcoverage>
   </Summary>
   <Coverage>
-    <Assembly name="NewAssembly" classes="25" coverage="63.1" coveredlines="849" coverablelines="1344" totallines="3961" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="138" totalmethods="190" methodcoverage="72.6">
-      <Class name="ActionVariable" coverage="47.6" coveredlines="10" coverablelines="21" totallines="377" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
-      <Class name="asset_highlighter" coverage="78.5" coveredlines="22" coverablelines="28" totallines="50" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="5" methodcoverage="60" />
-      <Class name="background_scares" coverage="77" coveredlines="37" coverablelines="48" totallines="79" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="5" methodcoverage="100" />
-      <Class name="buyableItem" coverage="100" coveredlines="21" coverablelines="21" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="8" methodcoverage="100" />
+    <Assembly name="NewAssembly" classes="25" coverage="71.3" coveredlines="1077" coverablelines="1510" totallines="4080" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="151" totalmethods="216" methodcoverage="69.9">
+      <Class name="ActionVariable" coverage="66.6" coveredlines="18" coverablelines="27" totallines="389" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="14" methodcoverage="50" />
+      <Class name="asset_highlighter" coverage="100" coveredlines="28" coverablelines="28" totallines="50" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="5" methodcoverage="100" />
+      <Class name="background_scares" coverage="31.2" coveredlines="15" coverablelines="48" totallines="79" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="5" methodcoverage="80" />
+      <Class name="buyableItem" coverage="90.4" coveredlines="19" coverablelines="21" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="8" methodcoverage="75" />
       <Class name="change_dying_filter" coverage="83.3" coveredlines="15" coverablelines="18" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="3" methodcoverage="66.6" />
       <Class name="change_wellness_filter" coverage="100" coveredlines="10" coverablelines="10" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="daily_action_storage" coverage="39.7" coveredlines="72" coverablelines="181" totallines="377" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="14" methodcoverage="50" />
-      <Class name="day_night_manager" coverage="100" coveredlines="22" coverablelines="22" totallines="40" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="developer_options" coverage="0" coveredlines="0" coverablelines="36" totallines="87" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
-      <Class name="do_an_action" coverage="27.2" coveredlines="3" coverablelines="11" totallines="41" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="2" methodcoverage="50" />
+      <Class name="daily_action_storage" coverage="80" coveredlines="196" coverablelines="245" totallines="389" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="29" totalmethods="29" methodcoverage="100" />
+      <Class name="day_night_manager" coverage="100" coveredlines="47" coverablelines="47" totallines="70" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="3" methodcoverage="100" />
+      <Class name="developer_options" coverage="38.8" coveredlines="14" coverablelines="36" totallines="87" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="3" methodcoverage="100" />
+      <Class name="do_an_action" coverage="100" coveredlines="11" coverablelines="11" totallines="41" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
       <Class name="exit_game" coverage="44.4" coveredlines="4" coverablelines="9" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="3" methodcoverage="66.6" />
-      <Class name="game_state" coverage="90.7" coveredlines="254" coverablelines="280" totallines="531" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="39" totalmethods="44" methodcoverage="88.6" />
+      <Class name="game_state" coverage="79.8" coveredlines="269" coverablelines="337" totallines="596" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="37" totalmethods="45" methodcoverage="82.2" />
       <Class name="HUD_text_manager" coverage="77.4" coveredlines="24" coverablelines="31" totallines="70" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
-      <Class name="move_location" coverage="72.8" coveredlines="51" coverablelines="70" totallines="128" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="20" totalmethods="26" methodcoverage="76.9" />
-      <Class name="notification_manager" coverage="73.5" coveredlines="39" coverablelines="53" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="7" methodcoverage="85.7" />
-      <Class name="shop" coverage="100" coveredlines="18" coverablelines="18" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
-      <Class name="splash_screen_manager" coverage="69" coveredlines="29" coverablelines="42" totallines="125" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
-      <Class name="stalker_prototype_script" coverage="53.4" coveredlines="131" coverablelines="245" totallines="463" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="14" methodcoverage="57.1" />
+      <Class name="move_location" coverage="68.5" coveredlines="48" coverablelines="70" totallines="128" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="8" totalmethods="26" methodcoverage="30.7" />
+      <Class name="notification_manager" coverage="90.1" coveredlines="55" coverablelines="61" totallines="107" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="7" totalmethods="8" methodcoverage="87.5" />
+      <Class name="shop" coverage="83.3" coveredlines="15" coverablelines="18" totallines="95" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="4" methodcoverage="75" />
+      <Class name="splash_screen_manager" coverage="100" coveredlines="48" coverablelines="48" totallines="113" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
+      <Class name="stalker_prototype_script" coverage="35.1" coveredlines="86" coverablelines="245" totallines="463" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="14" methodcoverage="28.5" />
       <Class name="StalkerChoice" coverage="53.3" coveredlines="8" coverablelines="15" totallines="463" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="6" methodcoverage="16.6" />
-      <Class name="StalkerEvents" coverage="55" coveredlines="22" coverablelines="40" totallines="463" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="9" totalmethods="12" methodcoverage="75" />
+      <Class name="StalkerEvents" coverage="32.5" coveredlines="13" coverablelines="40" totallines="463" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="12" methodcoverage="16.6" />
       <Class name="statistic_slider" coverage="100" coveredlines="14" coverablelines="14" totallines="36" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="swap_assets" coverage="45.4" coveredlines="10" coverablelines="22" totallines="44" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="3" methodcoverage="66.6" />
-      <Class name="toggle_menu" coverage="14.7" coveredlines="5" coverablelines="34" totallines="67" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="1" totalmethods="5" methodcoverage="20" />
+      <Class name="swap_assets" coverage="100" coveredlines="22" coverablelines="22" totallines="44" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="3" methodcoverage="100" />
+      <Class name="toggle_menu" coverage="100" coveredlines="34" coverablelines="34" totallines="67" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="5" methodcoverage="100" />
       <Class name="video_making" coverage="100" coveredlines="17" coverablelines="17" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="wake_up_notification" coverage="18.9" coveredlines="11" coverablelines="58" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="3" totalmethods="4" methodcoverage="75" />
+      <Class name="wake_up_notification" coverage="81" coveredlines="47" coverablelines="58" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
     </Assembly>
-    <Assembly name="Tests" classes="5" coverage="95" coveredlines="536" coverablelines="564" totallines="863" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="16" totalmethods="16" methodcoverage="100">
-      <Class name="GameStateTesting" coverage="73.5" coveredlines="78" coverablelines="106" totallines="156" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="4" totalmethods="4" methodcoverage="100" />
-      <Class name="MoveLocationTest" coverage="100" coveredlines="32" coverablelines="32" totallines="70" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="ShopTesting" coverage="100" coveredlines="83" coverablelines="83" totallines="135" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="StalkerTest" coverage="100" coveredlines="67" coverablelines="67" totallines="107" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
-      <Class name="VideoMakingTests" coverage="100" coveredlines="276" coverablelines="276" totallines="395" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="6" methodcoverage="100" />
+    <Assembly name="Tests" classes="6" coverage="1.5" coveredlines="13" coverablelines="862" totallines="1334" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="19" methodcoverage="10.5">
+      <Class name="DailyActionTesting" coverage="86.6" coveredlines="13" coverablelines="15" totallines="43" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="2" totalmethods="2" methodcoverage="100" />
+      <Class name="GameStateTesting" coverage="0" coveredlines="0" coverablelines="116" totallines="214" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="4" methodcoverage="0" />
+      <Class name="MoveLocationTest" coverage="0" coveredlines="0" coverablelines="35" totallines="73" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="ShopTesting" coverage="0" coveredlines="0" coverablelines="83" totallines="135" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="2" methodcoverage="0" />
+      <Class name="StalkerTest" coverage="0" coveredlines="0" coverablelines="335" totallines="472" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="3" methodcoverage="0" />
+      <Class name="VideoMakingTests" coverage="0" coveredlines="0" coverablelines="278" totallines="397" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="0" totalmethods="6" methodcoverage="0" />
     </Assembly>
   </Coverage>
 </CoverageReport>

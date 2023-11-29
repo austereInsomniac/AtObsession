@@ -241,7 +241,9 @@ public class VideoMakingTests
             videoMaking.makeVideo(5);
 
             int subscribers = gameState.getSubscribers();
+            Debug.Log(origMoney);
             double money = gameState.getMoney();
+            Debug.Log(money);
             Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));//Same Formula
             Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));//Same Formula
         }

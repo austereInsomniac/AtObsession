@@ -409,7 +409,7 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEventHandler.SetActive(true);
     }
 
-    private void HandlePlayerChoice(StalkerChoice choice)
+    public void HandlePlayerChoice(StalkerChoice choice)
     {
         if (choice != null)
         {
