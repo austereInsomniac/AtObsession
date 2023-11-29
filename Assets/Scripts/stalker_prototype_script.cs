@@ -93,16 +93,10 @@ public class StalkerEvents
 public class stalker_prototype_script : MonoBehaviour
 {
     private bool isOn = true;
+    private bool isEndingEvent = false;
     List<string> eventKeys;
     Dictionary<string, StalkerEvents> stalkerEvents;
     private StalkerEvents eventHappening;
-    private bool isStalkerEvent = false; // Tracks if event is happening
-    private float eventDuration = 10; // How long it should last
-    private float eventEndTime = 0; // Timestamp when event should end
-
-    private float minTimeBetweenEvents = 20; // Minimum time between events
-    private float maxTimeBetweenEvents = 40; // Maximum time between events
-    private float nextEventTime = 0; // Timestamp when next event should start
 
     private int eventNum;
     private int pendingEvent = -1; // Set to -1 to indicate no pending event
@@ -119,10 +113,9 @@ public class stalker_prototype_script : MonoBehaviour
     TMP_Text choice3Text;
 
     private move_location move;
-
-    private int randomEvent;
     public notification_manager notification;
     private swap_assets swap;
+    private splash_screen_manager splashScreenManager;
 
     // Start is called before the first frame update
     void Start()
@@ -137,6 +130,7 @@ public class stalker_prototype_script : MonoBehaviour
         choice2 = GameObject.Find("Choice2");
         choice3 = GameObject.Find("Choice3");
         stalkerEventHandler.SetActive(false);
+        splashScreenManager = GetComponent<splash_screen_manager>();
 
         stalkerEvents = new Dictionary<string, StalkerEvents>();
 
@@ -222,7 +216,7 @@ public class stalker_prototype_script : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         int wellness = player.getWellness();
         int day = player.getDay();
@@ -284,22 +278,11 @@ public class stalker_prototype_script : MonoBehaviour
                 TriggerStalkerEvent(8);
             }
         }
+        if (isEndingEvent && Input.anyKeyDown)
+        {
+            EndGameEvent(8);
+        }
     }
-    //public void SpecificStalkerEvent(int EventNum)
-    //{
-    //    int wellness = player.GetComponent<game_state>().getWellness();
-    //    int day = player.GetComponent<game_state>().getDay();
-    //    // Check if it's time to end the event.
-    //        if (isStalkerEvent && Time.time >= eventEndTime)
-    //        {
-    //            EndStalkerEvent();
-    //        }
-    //        // Check if it's time to trigger a new event.
-    //        else if (!isStalkerEvent && Time.time >= nextEventTime && wellness <= 60 && day >= 5)
-    //        {
-    //            TriggerStalkerEvent(EventNum);
-    //        }
-    //}
 
     public void setEventNum(int eventNum)
     {
@@ -345,7 +328,7 @@ public class stalker_prototype_script : MonoBehaviour
             }
             else
             {
-                eventMessage = "There's something happening in the " + location + "...";
+                eventMessage = "You hear something happening in the " + location + "...";
                 if (notification != null)
                 {
                     notification.showNotification(eventMessage);
@@ -355,7 +338,7 @@ public class stalker_prototype_script : MonoBehaviour
         }
         else
         {
-            string eventKey = eventKeys[eventNum];
+            string eventKey = eventKeys[numEvent];
             StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             string eventMessage = stalkerEvent.getEventMessage();
             eventNum = numEvent;
@@ -424,12 +407,13 @@ public class stalker_prototype_script : MonoBehaviour
         }
     }
 
-    private void EndStalkerEvent(int eventNum)
+    private void EndGameEvent(int eventNum)
     {
-        Debug.Log("Stalker event ended.");
-        if (eventNum == 8 || randomEvent == 8)
+        if (eventNum == 8)
         {
-            //move.moveLocation(GameObject.Find("Game Over"), GameObject.Find("Game Over Canvas"), player.getLocation(), player.getLocationCanvas());
+            splashScreenManager.openSplashScreen("Game over");
+            move.goToGameOver();
+            stalkerEventHandler.SetActive(false);
         }
     }
 
@@ -444,11 +428,13 @@ public class stalker_prototype_script : MonoBehaviour
 
         if (player.getEnding() < 0)
         {
-            choiceText.text = stalkerEvent.getEventMessage() + "Bad Ending- The Stalker broke in and found you";
+            choiceText.text = stalkerEvent.getEventMessage() + "\nBad Ending- The Stalker broke in and found you";
+            isEndingEvent = true;
         }
         else if (player.getEnding() >= 0)
         {
-            choiceText.text = stalkerEvent.getEventMessage() + "Good Ending- You called 911 and the stalker was arrested";
+            choiceText.text = stalkerEvent.getEventMessage() + "\nGood Ending- You called 911 and the stalker was arrested";
+            isEndingEvent = true;
         }
     }
 }
