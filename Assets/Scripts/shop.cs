@@ -12,17 +12,17 @@ public class buyableItem
     private int reputationChange;
     private double moneyChange;
     private string name;
-    private string description;
+    private bool sprite;
     private bool purchased;
     private bool multiple;
 
-    public buyableItem(int w, int r, double m, string n, string d, bool mm)
+    public buyableItem(int w, int r, double m, string n, bool s, bool mm)
     {
         wellnessChange = w;
         reputationChange = r;
         moneyChange = m;
         name = n;
-        description = d;
+        sprite = s;
         purchased = false;
         multiple = mm;
     }
@@ -39,7 +39,7 @@ public class buyableItem
     public int getReputation() { return reputationChange; }
     public double getMoney() {  return moneyChange; }
     public string getName() { return name; }
-    public string getDescription() { return description; }
+    public bool hasSprite() { return sprite; }
     public bool isPurchased() {  return purchased; }
 }
 
@@ -59,13 +59,13 @@ public class shop : MonoBehaviour
         // propogate the list of purchaseble items
         buyableItems = new List<buyableItem>
         {
-            new buyableItem(10, 5, -50, "Microphone", "Increase the sound quality of your videos", false),
-            new buyableItem(25, 10, -100, "PC Upgrade", "Increase the preformance of your pc to record better gameplay", false),
-            new buyableItem(15, 7, -75, "Monitor", "Upgrade your monitor to ive you more space to work on", false),
-            new buyableItem(20, 5, -80, "Gamer Chair", "Buy a new chair to make working mor comfortable", false),
-            new buyableItem(10, 5, -25, "Headphones", "Upgrade the sound quality of the games you play", false),
-            new buyableItem(10, 5, -30, "New Outfit", "Update your wardrobe to impress your followers", true),
-            new buyableItem(10, 5, -40, "New Game", "Buy a new game to play on stream", true)
+            new buyableItem(10, 5, -50, "Microphone", true, false),
+            new buyableItem(25, 10, -100, "PC Upgrade", false, false),
+            new buyableItem(15, 7, -75, "Monitor", true, false),
+            new buyableItem(20, 5, -80, "Gamer Chair", true, false),
+            new buyableItem(10, 5, -25, "Headphones", true, false),
+            new buyableItem(10, 5, -30, "New Outfit", false, true),
+            new buyableItem(10, 5, -40, "New Game", false, true)
         };
     }
     
@@ -87,6 +87,13 @@ public class shop : MonoBehaviour
             // block future purchse
             item.purchaseItem();
             wasBought = true;
+        }
+
+        if (item.hasSprite())
+        {
+/*            string search = item.getName() + "2";
+            GameObject.Find(item.getName()).SetActive(false);
+            GameObject.Find(search).GetComponent<SpriteRenderer>().enabled = true;*/
         }
     }
 
