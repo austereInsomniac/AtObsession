@@ -170,7 +170,7 @@ public class DailyActionTesting
 
         //--------------Got to the gym------------------------------
         Assert.That(daily.getActionVariable("Go to the gym").getWellness(), Is.EqualTo(8));
-        Assert.That(daily.getActionVariable("Go to the gym").getTime(), Is.AtLeast((60/5)*5));
+        Assert.That(daily.getActionVariable("Go to the gym").getTime(), Is.AtLeast((60 / 5) * 5));
         Assert.That(daily.getActionVariable("Go to the gym").getTime(), Is.AtMost((120 / 5) * 5));
         Assert.That(daily.getActionVariable("Go to the gym").getMoney(), Is.EqualTo(-15.00));
         Assert.That(daily.getActionVariable("Go to the gym").getGroup(), Is.EqualTo("exercise"));
@@ -178,14 +178,14 @@ public class DailyActionTesting
         //--------------Visit Friends------------------------------
         Assert.That(daily.getActionVariable("Visit friends").getWellness(), Is.AtLeast(-15));
         Assert.That(daily.getActionVariable("Visit friends").getWellness(), Is.AtMost(15));
-        Assert.That(daily.getActionVariable("Visit friends").getTime(), Is.AtLeast((60/5)*5));
+        Assert.That(daily.getActionVariable("Visit friends").getTime(), Is.AtLeast((60 / 5) * 5));
         Assert.That(daily.getActionVariable("Visit friends").getTime(), Is.AtMost((120 / 5) * 5));
         Assert.That(daily.getActionVariable("Visit friends").getMoney(), Is.EqualTo(0.00));
         Assert.That(daily.getActionVariable("Visit friends").getGroup(), Is.EqualTo("friends"));
         Assert.That(daily.getActionVariable("Visit friends").getText(), Is.EqualTo(" You went out and spent some time with your friend."));
         //--------------Watch Tv------------------------------
         Assert.That(daily.getActionVariable("Watch TV").getWellness(), Is.EqualTo(8));
-        Assert.That(daily.getActionVariable("Watch TV").getTime(), Is.AtLeast((30/5)*5));
+        Assert.That(daily.getActionVariable("Watch TV").getTime(), Is.AtLeast((30 / 5) * 5));
         Assert.That(daily.getActionVariable("Watch TV").getTime(), Is.AtMost((60 / 5) * 5));
         Assert.That(daily.getActionVariable("Watch TV").getMoney(), Is.EqualTo(0.00));
         Assert.That(daily.getActionVariable("Watch TV").getGroup(), Is.EqualTo("entertainment"));
@@ -195,6 +195,49 @@ public class DailyActionTesting
 
 
 
+        yield return null;
+    }
+
+
+    [UnityTest]
+    public IEnumerator doActionTest()
+    {
+        //Assign Scripts and objects that are important
+        player = GameObject.FindGameObjectWithTag("MainCamera");
+        computerCanvas = GameObject.Find("Computer Canvas");
+        daily = player.GetComponent<daily_action_storage>();
+        gameState = player.GetComponent<game_state>();
+        //Verify that all are assigned properly
+        Assert.IsNotNull(player);
+        Assert.IsNotNull(computerCanvas);
+        Assert.IsNotNull(daily);
+        Assert.IsNotNull(gameState);
+
+        daily.doAction("Do chores");
+        Assert.That(gameState.getWellness(), Is.EqualTo(78));//From 70
+        Assert.That(gameState.getTime(), Is.EqualTo(855));//From 840
+        Assert.That(gameState.getMoney(), Is.EqualTo(100));//From 100
+
+        daily.doAction("Go for a walk");
+        Assert.That(gameState.getWellness(), Is.EqualTo(88));//From 78
+        Assert.That(gameState.getTime(), Is.EqualTo(880));//From 855
+        Assert.That(gameState.getMoney(), Is.EqualTo(100));//From 100
+
+        daily.doAction("Warm up");
+        Assert.That(gameState.getWellness(), Is.EqualTo(96));//From 88
+        Assert.That(gameState.getTime(), Is.EqualTo(910));//From 880
+        Assert.That(gameState.getMoney(), Is.EqualTo(100));//From 100
+
+        daily.doAction("Light workout");
+        Assert.That(gameState.getWellness(), Is.EqualTo(110));//From 96
+        Assert.That(gameState.getTime(), Is.EqualTo(985));//From 910
+        Assert.That(gameState.getMoney(), Is.EqualTo(100));//From 100
+
+
+        //daily.doAction("Intense workout");
+        //Assert.That(gameState.getWellness(), Is.EqualTo(121));//From 110
+        //Assert.That(gameState.getTime(), Is.EqualTo(1110));//From 985
+        //Assert.That(gameState.getMoney(), Is.EqualTo(100));//From 100
         yield return null;
     }
 }

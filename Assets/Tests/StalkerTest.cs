@@ -270,17 +270,17 @@ public class StalkerTest
 
         stalker.TriggerStalkerEvent(0);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(55));
@@ -295,17 +295,17 @@ public class StalkerTest
         //EVENT 2
         stalker.TriggerStalkerEvent(1);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
@@ -320,17 +320,17 @@ public class StalkerTest
         //EVENT 3
         stalker.TriggerStalkerEvent(2);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
@@ -345,17 +345,17 @@ public class StalkerTest
         //EVENT 4
         stalker.TriggerStalkerEvent(3);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
@@ -370,17 +370,17 @@ public class StalkerTest
         //EVENT 5
         stalker.TriggerStalkerEvent(4);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(55));
@@ -395,17 +395,17 @@ public class StalkerTest
         //EVENT 6
         stalker.TriggerStalkerEvent(5);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
@@ -420,17 +420,17 @@ public class StalkerTest
         //EVENT 7
         stalker.TriggerStalkerEvent(6);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
@@ -445,17 +445,17 @@ public class StalkerTest
         //EVENT 8
         stalker.TriggerStalkerEvent(7);
         //---------------------------------Choice 1---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice1(),stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(67));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 2---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice2(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(66));
         Assert.That(gameState.getEnding(), Is.EqualTo(-1));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
         //---------------------------------Choice 3---------------------------
-        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3());
+        stalker.HandlePlayerChoice(stalker.getStalkerEvent().getChoice3(), stalker.getStalkerEvent());
         Assert.That(gameState.getWellness(), Is.EqualTo(65));
         Assert.That(gameState.getEnding(), Is.EqualTo(0));
         Assert.That(gameState.getReputation(), Is.EqualTo(50));
