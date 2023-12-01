@@ -224,18 +224,24 @@ public class game_state : MonoBehaviour
             // run sleep method
         }
 
-        // update later when we lock sleep to late at night
         if(time != 480)
         {
             if (!testingVideoWellness)
             {
+                // stat updates for not sleeping
                 updateHunger(t);
-                updateSleep(t);
                 updateShower(t);
+                updateSleep(t);
             }
         }
         else
         {
+            if (!testingVideoWellness)
+            {
+                // stat updates for sleeping
+                updateHunger(t / 3);
+            }
+
             // save stats to reset the day
             savedMoney = money;
             savedReputation = reputation;
