@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 using UnityEngine.UI;
 using Codice.Client.BaseCommands;
 using UnityEditor;
+using UnityEditor.UI;
 
 class TutorialPopUps
 {
@@ -191,6 +192,7 @@ public class Tutorial : MonoBehaviour
             emailNotInteractable();
             chitterNotInteractable();
             GameObject computerRoom = GameObject.Find("Computer");
+            Vector3 computerLocation = new Vector3(-1000, 0, 0);
 
             if (buttonClickedOn == true)
             {
@@ -201,7 +203,7 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if (player.getLocation().name == "Computer" && count == 1)
+            else if (computerRoom.transform.position == computerLocation && count == 1)
             {
                 notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up which you'll get introduced to in the next day.\n" +
                     "Hover over and click on the play button in the top left, this is your content creation.");
@@ -217,12 +219,13 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if (player.transform.position == computerRoom.transform.position && count == 3)
+            else if (player.getLocation().name == "Computer" && count == 3)
             {
                 notificationPopUp("The streaming app allows you to stream videos");
+                count++;
             }
 
-            else if (player.transform.position == streaming.transform.position && count == 4)
+            else if (buttonClickedOn == true && count == 4) //fix this 
             {
                 notificationPopUp("This is the streaming service");
                 count++;
@@ -248,11 +251,16 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if ((player.transform.position == computerRoom.transform.position && count == 1))
+            else if ((player.getLocation().name == "Computer" && count == 1))
             {
                 notificationPopUp("The email and social media apps is the way you can communicate and find out whats going on.");
+                count++;
             }
 
+            else if (buttonClickedOn == true && count == 2) // fix this
+            {
+                notificationPopUp("This is the shopping app where you can buy things.");
+            }
    
 
         }
