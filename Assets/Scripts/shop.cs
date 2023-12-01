@@ -59,10 +59,10 @@ public class shop : MonoBehaviour
         // propogate the list of purchaseble items
         buyableItems = new List<buyableItem>
         {
-            new buyableItem(10, 5, -50, "Microphone", true, false),
             new buyableItem(25, 10, -100, "PC Upgrade", false, false),
+            new buyableItem(20, 5, -80, "Chair", true, false),
+            new buyableItem(10, 5, -50, "Microphone", true, false),
             new buyableItem(15, 7, -75, "Monitor", true, false),
-            new buyableItem(20, 5, -80, "Gamer Chair", true, false),
             new buyableItem(10, 5, -25, "Headphones", true, false),
             new buyableItem(10, 5, -30, "New Outfit", false, true),
             new buyableItem(10, 5, -40, "New Game", false, true)
@@ -91,9 +91,10 @@ public class shop : MonoBehaviour
 
         if (item.hasSprite())
         {
-/*            string search = item.getName() + "2";
-            GameObject.Find(item.getName()).SetActive(false);
-            GameObject.Find(search).GetComponent<SpriteRenderer>().enabled = true;*/
+            Debug.Log(item.getName());
+            string search = item.getName() + "2";
+            GameObject.Find(item.getName()).GetComponent<SpriteRenderer>().enabled = true;
+            GameObject.Find(search).GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
