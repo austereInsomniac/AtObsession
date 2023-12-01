@@ -8,6 +8,14 @@ using UnityEngine.TestTools;
 
 public class GameStateTesting
 {
+    /*
+     * 
+     *  START TIME IS NOW 1440
+     * 
+     * 
+     * 
+     */
+
 
     public GameObject player;
     public game_state gameState;

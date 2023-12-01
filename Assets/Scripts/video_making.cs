@@ -19,9 +19,11 @@ public class video_making : MonoBehaviour
     //Does all the math for making a video using starCount as hours
     public void makeVideo(int starCount)
     {
+
         player.makeVideo();
 
         subscribers = player.getSubscribers(); //Sets the local subscribers to be the amount in the game state
+
         reputation = player.getReputation(); //Sets the local reputation to be the amount in the game state
 
         //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%

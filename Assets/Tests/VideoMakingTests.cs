@@ -181,7 +181,7 @@ public class VideoMakingTests
         Assert.IsNotNull(computerCanvas);
         Assert.IsNotNull(videoMaking);
 
-        for(int i =0; i < 10;i++)
+        for (int i = 0; i < 10; i++)
         {
             gameState.updateWellness(100);//1*
             double origMoney = gameState.getMoney(); //Assign previous money count
@@ -190,8 +190,8 @@ public class VideoMakingTests
 
             int subscribers = gameState.getSubscribers();
             double money = gameState.getMoney();
-            Assert.That(money, Is.AtLeast(((int)(subscribers*0.02)) - 5+origMoney));//At least (new subscribers total*0.02) - (5 + prevous money total)
-            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20+origMoney));//At most (new subscribers total*0.02) -(20+ previous money total)
+            Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));//At least (new subscribers total*0.02) - (5 + prevous money total)
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));//At most (new subscribers total*0.02) -(20+ previous money total)
         }
 
         for (int i = 0; i < 10; i++)
@@ -235,15 +235,16 @@ public class VideoMakingTests
 
         for (int i = 0; i < 10; i++)
         {
+            gameState.testingVideoWellness = true;
             gameState.updateWellness(100);//1*
             double origMoney = gameState.getMoney();//Assign previous money count
-
+            int subscribers = gameState.getSubscribers();
             videoMaking.makeVideo(5);
 
-            int subscribers = gameState.getSubscribers();
-            Debug.Log(origMoney);
+            subscribers = gameState.getSubscribers();
+
             double money = gameState.getMoney();
-            Debug.Log(money);
+
             Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));//Same Formula
             Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));//Same Formula
         }
