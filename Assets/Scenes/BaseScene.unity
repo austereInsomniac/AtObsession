@@ -1902,7 +1902,7 @@ PrefabInstance:
     - target: {fileID: 286541765081759109, guid: 52a465fe056d7134e8f29dc42f6490ec, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 51a4b764a49ef7445896207440b9ab6b, type: 3}
+      objectReference: {fileID: 21300000, guid: e799209eaaed6964a85ebf78cb4d67c4, type: 3}
     - target: {fileID: 286541765081759109, guid: 52a465fe056d7134e8f29dc42f6490ec, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -11042,7 +11042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 537.7001, y: 261.1}
+  m_AnchoredPosition: {x: 537.69995, y: 261.1}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &461581663
@@ -24723,7 +24723,7 @@ Transform:
   m_GameObject: {fileID: 1002625056}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0.1}
   m_LocalScale: {x: 1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
