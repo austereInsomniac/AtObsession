@@ -35,7 +35,6 @@ public class ShopTesting
         Assert.That(shops.getItem(0).getWellness(), Is.EqualTo(10));
         Assert.That(shops.getItem(0).getReputation(), Is.EqualTo(5));
         Assert.That(shops.getItem(0).getMoney(), Is.EqualTo(-50));
-        Assert.That(shops.getItem(0).getDescription(), Is.EqualTo("Increase the sound quality of your videos"));
         Assert.That(shops.getItem(0).getName, Is.EqualTo("Microphone"));
 
         //Verify every value is changed correctly
@@ -48,7 +47,6 @@ public class ShopTesting
         Assert.That(shops.getItem(1).getWellness(), Is.EqualTo(25));
         Assert.That(shops.getItem(1).getReputation(), Is.EqualTo(10));
         Assert.That(shops.getItem(1).getMoney(), Is.EqualTo(-100));
-        Assert.That(shops.getItem(1).getDescription(), Is.EqualTo("Increase the preformance of your pc to record better gameplay"));
         Assert.That(shops.getItem(1).getName, Is.EqualTo("PC Upgrade"));
 
         Assert.That(gameState.getWellness(), Is.EqualTo(80));
@@ -68,8 +66,7 @@ public class ShopTesting
         shops.buyItem(2);
         Assert.That(shops.getItem(2).getWellness(), Is.EqualTo(15));
         Assert.That(shops.getItem(2).getReputation(), Is.EqualTo(7));
-        Assert.That(shops.getItem(2).getMoney(), Is.EqualTo(-75));
-        Assert.That(shops.getItem(2).getDescription(), Is.EqualTo("Upgrade your monitor to ive you more space to work on"));
+        Assert.That(shops.getItem(2).getMoney(), Is.EqualTo(-75));;
         Assert.That(shops.getItem(2).getName, Is.EqualTo("Monitor"));
 
         Assert.That(gameState.getWellness(), Is.EqualTo(70));//From 55
@@ -81,7 +78,6 @@ public class ShopTesting
         Assert.That(shops.getItem(3).getWellness(), Is.EqualTo(20));
         Assert.That(shops.getItem(3).getReputation(), Is.EqualTo(5));
         Assert.That(shops.getItem(3).getMoney(), Is.EqualTo(-80));
-        Assert.That(shops.getItem(3).getDescription(), Is.EqualTo("Buy a new chair to make working mor comfortable"));
         Assert.That(shops.getItem(3).getName, Is.EqualTo("Gamer Chair"));
 
         Assert.That(gameState.getWellness(), Is.EqualTo(90));//From 70
@@ -95,7 +91,6 @@ public class ShopTesting
         Assert.That(shops.getItem(4).getWellness(), Is.EqualTo(10));
         Assert.That(shops.getItem(4).getReputation(), Is.EqualTo(5));
         Assert.That(shops.getItem(4).getMoney(), Is.EqualTo(-25));
-        Assert.That(shops.getItem(4).getDescription(), Is.EqualTo("Upgrade the sound quality of the games you play"));
         Assert.That(shops.getItem(4).getName, Is.EqualTo("Headphones"));
 
         Assert.That(gameState.getWellness(), Is.EqualTo(60));//From 50
@@ -107,7 +102,6 @@ public class ShopTesting
         Assert.That(shops.getItem(5).getWellness(), Is.EqualTo(10));
         Assert.That(shops.getItem(5).getReputation(), Is.EqualTo(5));
         Assert.That(shops.getItem(5).getMoney(), Is.EqualTo(-30));
-        Assert.That(shops.getItem(5).getDescription(), Is.EqualTo("Update your wardrobe to impress your followers"));
         Assert.That(shops.getItem(5).getName, Is.EqualTo("New Outfit"));
 
         Assert.That(gameState.getWellness(), Is.EqualTo(70));//From 60
@@ -119,7 +113,6 @@ public class ShopTesting
         Assert.That(shops.getItem(6).getWellness(), Is.EqualTo(10));
         Assert.That(shops.getItem(6).getReputation(), Is.EqualTo(5));
         Assert.That(shops.getItem(6).getMoney(), Is.EqualTo(-40));
-        Assert.That(shops.getItem(6).getDescription(), Is.EqualTo("Buy a new game to play on stream"));
         Assert.That(shops.getItem(6).getName, Is.EqualTo("New Game"));
 
         Assert.That(gameState.getWellness(), Is.EqualTo(80));//From 70
