@@ -149,4 +149,52 @@ public class DailyActionTesting
 
         yield return null;
     }
+
+    [UnityTest]
+    public IEnumerator DailyActionTestingRandomized()
+    {
+        //Assign Scripts and objects that are important
+        player = GameObject.FindGameObjectWithTag("MainCamera");
+        computerCanvas = GameObject.Find("Computer Canvas");
+        daily = player.GetComponent<daily_action_storage>();
+        gameState = player.GetComponent<game_state>();
+        //Verify that all are assigned properly
+        Assert.IsNotNull(player);
+        Assert.IsNotNull(computerCanvas);
+        Assert.IsNotNull(daily);
+        Assert.IsNotNull(gameState);
+
+        //-15 low and 15 high for wellness
+        //Random time big is between (60/5)*5 and (120/5) *5
+        //Random time small is between (30/5)*5 and (60/5)*5
+
+        //--------------Got to the gym------------------------------
+        Assert.That(daily.getActionVariable("Go to the gym").getWellness(), Is.EqualTo(8));
+        Assert.That(daily.getActionVariable("Go to the gym").getTime(), Is.AtLeast((60/5)*5));
+        Assert.That(daily.getActionVariable("Go to the gym").getTime(), Is.AtMost((120 / 5) * 5));
+        Assert.That(daily.getActionVariable("Go to the gym").getMoney(), Is.EqualTo(-15.00));
+        Assert.That(daily.getActionVariable("Go to the gym").getGroup(), Is.EqualTo("exercise"));
+        Assert.That(daily.getActionVariable("Go to the gym").getText(), Is.EqualTo("You spent $15 to work out at your local gym."));
+        //--------------Visit Friends------------------------------
+        Assert.That(daily.getActionVariable("Visit friends").getWellness(), Is.AtLeast(-15));
+        Assert.That(daily.getActionVariable("Visit friends").getWellness(), Is.AtMost(15));
+        Assert.That(daily.getActionVariable("Visit friends").getTime(), Is.AtLeast((60/5)*5));
+        Assert.That(daily.getActionVariable("Visit friends").getTime(), Is.AtMost((120 / 5) * 5));
+        Assert.That(daily.getActionVariable("Visit friends").getMoney(), Is.EqualTo(0.00));
+        Assert.That(daily.getActionVariable("Visit friends").getGroup(), Is.EqualTo("friends"));
+        Assert.That(daily.getActionVariable("Visit friends").getText(), Is.EqualTo(" You went out and spent some time with your friend."));
+        //--------------Watch Tv------------------------------
+        Assert.That(daily.getActionVariable("Watch TV").getWellness(), Is.EqualTo(8));
+        Assert.That(daily.getActionVariable("Watch TV").getTime(), Is.AtLeast((30/5)*5));
+        Assert.That(daily.getActionVariable("Watch TV").getTime(), Is.AtMost((60 / 5) * 5));
+        Assert.That(daily.getActionVariable("Watch TV").getMoney(), Is.EqualTo(0.00));
+        Assert.That(daily.getActionVariable("Watch TV").getGroup(), Is.EqualTo("entertainment"));
+        Assert.That(daily.getActionVariable("Watch TV").getText(), Is.EqualTo("You’ve watched an episode of your favorite show.\r\n"));
+
+
+
+
+
+        yield return null;
+    }
 }
