@@ -31,6 +31,7 @@ public class StalkerEvents
     int reputation;
     string eventMessage;
     string eventLocation;
+    public const int finalEventNumber = 8;
     List<StalkerChoice> choices;
 
     public StalkerEvents(string changeMessage, string location, int changeWellness, int newEventNumber, int changeEnding, int changeRep)
@@ -98,9 +99,10 @@ public class stalker_prototype_script : MonoBehaviour
     Dictionary<string, StalkerEvents> stalkerEvents;
     private StalkerEvents eventHappening;
 
+    private int initialEventCount = 0;
     private int eventNum;
     private int pendingEvent = -1; // Set to -1 to indicate no pending event
-    private int eventCount = 0;
+    private int eventCount;
 
     private game_state player;
     GameObject stalkerEventHandler;
@@ -224,7 +226,7 @@ public class stalker_prototype_script : MonoBehaviour
 
         if (isOn)
         {
-            if (day == 3 && time >= 17 * 60 && eventCount == 0)
+            if (day == 3 && time >= 17 * 60 && eventCount == initialEventCount)
             {
                 eventCount++;
                 isOn = false;
@@ -280,7 +282,7 @@ public class stalker_prototype_script : MonoBehaviour
         }
         if (isEndingEvent && Input.anyKeyDown)
         {
-            EndGameEvent(8);
+            EndGameEvent(StalkerEvents.finalEventNumber);
         }
     }
 
@@ -412,7 +414,7 @@ public class stalker_prototype_script : MonoBehaviour
 
     private void EndGameEvent(int eventNum)
     {
-        if (eventNum == 8)
+        if (eventNum == StalkerEvents.finalEventNumber)
         {
             splashScreenManager.openSplashScreen("Game over");
             move.goToGameOver();
@@ -425,9 +427,9 @@ public class stalker_prototype_script : MonoBehaviour
         move.moveLocation(GameObject.Find("Bathroom"), GameObject.Find("Bathroom Canvas"), player.getLocation(), player.getLocationCanvas());
         stalkerEventHandler.SetActive(true);
 
-        Destroy(choice1);
-        Destroy(choice2);
-        Destroy(choice3);
+        if (choice1 != null) Destroy(choice1);
+        if (choice2 != null) Destroy(choice2);
+        if (choice3 != null) Destroy(choice3);
 
         if (player.getEnding() < 0)
         {
