@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using Codice.Client.BaseCommands;
 using UnityEditor;
 using UnityEditor.UI;
+using UnityEditor.Graphs;
 
 class TutorialPopUps
 {
@@ -72,6 +73,7 @@ public class Tutorial : MonoBehaviour
 
     public void buttonClicked()
     {
+         
          buttonClickedOn = true;
     }
 
@@ -119,14 +121,58 @@ public class Tutorial : MonoBehaviour
     public void videoInteractable()
     {
         GameObject videoButton = GameObject.Find("Make_Video");
-        videoButton.GetComponent<UnityEngine.UI.Button>().enabled = false; 
+        videoButton.GetComponent<UnityEngine.UI.Button>().enabled = true; 
     }
 
     public void videoNotInteractable()
     {
         GameObject emailButton = GameObject.Find("Check_Email");
-        emailButton.GetComponent<UnityEngine.UI.Button>().enabled = true;
+        emailButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
     }
+
+    public void doorsNotInteractable()
+    {
+        GameObject kitchenDoorDay = GameObject.Find("Kitchen Door");
+        GameObject kitchenDoorNight = GameObject.Find("Kitchen Door (1)");
+        GameObject bedroomDoor = GameObject.Find("Bedroom Door");
+        GameObject bathroomDoor = GameObject.Find("Bathroom Door");
+        GameObject bedroomArrow = GameObject.Find("Exit Bedroom");
+        GameObject kitchenArrow = GameObject.Find("Kitchen Arrow");
+        GameObject frontDoor = GameObject.Find("Front Door");
+        GameObject bathroomArrow = GameObject.Find("Exit Arrow");
+
+        kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = false;
+        //kitchenDoorNight.GetComponent<BoxCollider2D>().enabled = false;
+        bedroomDoor.GetComponent<BoxCollider2D>().enabled = false;
+        bathroomDoor.GetComponent<BoxCollider2D>().enabled = false;
+        bedroomArrow.GetComponent<BoxCollider2D>().enabled = false;
+        kitchenArrow.GetComponent<BoxCollider2D>().enabled = false;
+        frontDoor.GetComponent<BoxCollider2D>().enabled = false;
+        bathroomArrow.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void doorsInteractable()
+    {
+        GameObject kitchenDoorDay = GameObject.Find("Kitchen Door");
+        GameObject kitchenDoorNight = GameObject.Find("Kitchen Door (1)");
+        GameObject bedroomDoor = GameObject.Find("Bedroom Door");
+        GameObject bathroomDoor = GameObject.Find("Bathroom Door");
+        GameObject bedroomArrow = GameObject.Find("Exit Bedroom");
+        GameObject kitchenArrow = GameObject.Find("Kitchen Arrow");
+        GameObject frontDoor = GameObject.Find("Front Door");
+        GameObject bathroomArrow = GameObject.Find("Exit Arrow");
+
+        kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = true;
+        //kitchenDoorNight.GetComponent<BoxCollider2D>().enabled = true;
+        bedroomDoor.GetComponent<BoxCollider2D>().enabled = true;
+        bathroomDoor.GetComponent<BoxCollider2D>().enabled = true;
+        bedroomArrow.GetComponent<BoxCollider2D>().enabled = true;
+        kitchenArrow.GetComponent<BoxCollider2D>().enabled = true;
+        frontDoor.GetComponent<BoxCollider2D>().enabled = true;
+        bathroomArrow.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -153,14 +199,16 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (getCurrentDay() == 1)
         {
+            count = 0;
             computerNotInteractable();
-            if (buttonClickedOn == true)
+            if (buttonClickedOn == true && count == 0)
             {
                 //introduce player to wellness, add the arrow asset
-                notification.GetComponent<notification_manager>().showNotification("This is your wellness which will rasie and lower based your time and the activities you do");
+                doorsNotInteractable();
+                notification.GetComponent<notification_manager>().showNotification("Welcome there streamer.");
+                doorsInteractable();
                 setButtonClickedToFalse();
                 count++;
             }
@@ -168,17 +216,25 @@ public class Tutorial : MonoBehaviour
             //need pop up telling the player to go to the living room and introducing them to the clickable objects
             else if (count == 1 && Input.GetMouseButtonDown(0))
             {
-                notificationPopUp("If you hover over the a door or an object and it has a yellow highlight around it, it is clickable." +
-                        "These highlights tell you what can and can't be clicked on.");
+                notificationPopUp("If you hover over the a door or an object and it has a yellow highlight around it, it is clickable."); 
+                    
+                 notificationPopUp("These highlights tell you what can and can't be clicked on.");
 
-                notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task. Notice you feel better afterwards which means your wellness goes up.\n");
+                notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task. Notice you feel better afterwards which means your wellness goes up.");
 
                 count++;
             }
-            else if (buttonClickedOn == true)
+            else if (buttonClickedOn == true && count == 3)
             {
-                notificationPopUp("Notice you feel better afterwards which means your wellness goes up. Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness. " +
-                    "Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
+                notificationPopUp("Notice you feel better afterwards which means your wellness goes up. Now explore your apartment " +
+                    "and find the activities you can do and which ones will raise or lower your wellness. ");
+
+                notificationPopUp("This is your wellness which will rasie and lower based your time and the activities you do.");
+
+                notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness. ");
+                
+                notificationPopUp("Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
+
                 setButtonClickedToFalse();
             }
          }
@@ -219,7 +275,7 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if (player.getLocation().name == "Computer" && count == 3)
+            else if (computerRoom.transform.position == computerLocation && count == 3)
             {
                 notificationPopUp("The streaming app allows you to stream videos");
                 count++;
@@ -228,6 +284,7 @@ public class Tutorial : MonoBehaviour
             else if (buttonClickedOn == true && count == 4) //fix this 
             {
                 notificationPopUp("This is the streaming service");
+                setButtonClickedToFalse();
                 count++;
             }
 
@@ -244,14 +301,15 @@ public class Tutorial : MonoBehaviour
             emailInteractable();
             chitterInteractable();
             GameObject computerRoom = GameObject.Find("Computer");
+            Vector3 computerLocation = new Vector3(-1000, 0, 0);
 
-            if (count == 0)
+            if (buttonClickedOn == true)
             {
                 notificationPopUp("This day you'll learn about the social media and email within the computer.");
                 count++;
             }
 
-            else if ((player.getLocation().name == "Computer" && count == 1))
+            else if ((computerRoom.transform.position == computerLocation && count == 1))
             {
                 notificationPopUp("The email and social media apps is the way you can communicate and find out whats going on.");
                 count++;
@@ -260,6 +318,26 @@ public class Tutorial : MonoBehaviour
             else if (buttonClickedOn == true && count == 2) // fix this
             {
                 notificationPopUp("This is the shopping app where you can buy things.");
+                notificationPopUp("Now go back to the main menu of the computer and click on the mail icon.");
+                count++;
+            }
+
+            else if (buttonClickedOn == true && count == 3)
+            {
+                notificationPopUp("This is the email app where you can see the emails you have.");
+                notificationPopUp("Now go back to the main menu of the computer and click on the bird house icon.");
+                setButtonClickedToFalse();
+            }
+
+            else if (buttonClickedOn == true && count == 4)
+            {
+                notificationPopUp("This is chitter which you can check social media.");
+                setButtonClickedToFalse();
+            }
+
+            else if (count == 5)
+            {
+                notificationPopUp("Now explore these new feartures and get use to them");
             }
    
 
