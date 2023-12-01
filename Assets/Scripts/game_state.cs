@@ -91,7 +91,7 @@ public class game_state : MonoBehaviour
         day = 1;
         savedDay = 1;
 
-        time = 480;
+        time = 14*60;
 
         hunger = 0;
         savedHunger = 0;
@@ -318,6 +318,11 @@ public class game_state : MonoBehaviour
     public void updateMoney(double m)
     {
         money = money + m;
+
+        if(money >= 9999)
+        {
+            money = 9999;
+        }
         notifyOnMoneyChange(money - m, money);
     }
  
@@ -438,6 +443,7 @@ public class game_state : MonoBehaviour
         ending = 0;
         day = 1;
         hasDied = false;
+        time = 14 * 60;
 
         hunger = 0;
         updateHunger(0);
@@ -466,6 +472,7 @@ public class game_state : MonoBehaviour
         ending = 0;
         day = 1;
         hasDied = false;
+        time = 14 * 60;
 
         hunger = 0;
         updateHunger(0);
@@ -479,6 +486,7 @@ public class game_state : MonoBehaviour
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
+
     private void playHospitalScene()
     {
         // set stats
@@ -503,6 +511,10 @@ public class game_state : MonoBehaviour
         reputation = 50;
         updateReputation(0);
 
+        // half money
+        money /= 2;
+        notifyOnMoneyChange(money * 2, money);
+
         // call hospital scene to ovveride current splash screen
         notificationManager.showNotification("You haven't been keeping up with your work...");
         splashScreenManager.openSplashScreen("Hospital");
@@ -520,6 +532,10 @@ public class game_state : MonoBehaviour
         subscribers = savedSubscribers;
         ending = savedEnding;
         time = 480;
+        if(day == 1)
+        {
+            time = 14 * 60;
+        }
         hunger = savedHunger;
         sleep = savedSleep;
         shower = savedShower;
