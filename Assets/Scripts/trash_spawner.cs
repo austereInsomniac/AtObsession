@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class trash_spawner : MonoBehaviour
 {
-    List<UnityEngine.UI.Image> trash;
-    List<UnityEngine.UI.Image> trashOpen;
+    List<SpriteRenderer> trash;
+    List<SpriteRenderer> trashOpen;
     game_state state;
     private int lastHour;
 
@@ -13,14 +13,17 @@ public class trash_spawner : MonoBehaviour
     {
         // grab all the trash
         GameObject[] trashItems = GameObject.FindGameObjectsWithTag("trash");
+        trash = new List<SpriteRenderer>();
 
         for (int i = 0; i < trashItems.Length; i++)
         {
-            trash.Add(trashItems[i].GetComponent<UnityEngine.UI.Image>());
+            trash.Add(trashItems[i].GetComponent<SpriteRenderer>());
         }
+
+        // set available trash
         trashOpen = trash;
 
-        state = GameObject.Find("Player").GetComponent<game_state>();
+        state = GetComponent<game_state>();
         state.addOnTimeChange(addTrash);
 
         lastHour = 14;
@@ -28,21 +31,28 @@ public class trash_spawner : MonoBehaviour
 
     private void addTrash(int timeO, int timeN) 
     {
-        int currentHour = timeN % 60;
-        if(currentHour > lastHour) { 
-            for(int i = 0; i <currentHour/ lastHour; i++)
+        int currentHour = timeN / 60;
+        if(currentHour > lastHour) 
+        {
+            for (int i = 0; i < currentHour % lastHour; i++)
                 {
-                    selectTrash().enabled = true;
+                    if(trashOpen.Count > 0) 
+                    {
+                        selectTrash().enabled = true;
+                    }  
                 }
         }
-
+        lastHour = currentHour;
     }
 
     // select a random available trash
-    private UnityEngine.UI.Image selectTrash()
+    private SpriteRenderer selectTrash()
     {
-        int rand = (int)(Random.value * trashOpen.Count);
+        int rand = (int)(Random.value * (trashOpen.Count - 1));
+        Debug.Log(trashOpen.Count + " " + rand + " " + trashOpen[rand].name);
+        SpriteRenderer temp = trashOpen[rand];
         trashOpen.Remove(trashOpen[rand]);
-        return trashOpen[rand];
+        return temp;
+
     }
 }
