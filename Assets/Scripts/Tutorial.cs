@@ -53,14 +53,14 @@ public class Tutorial : MonoBehaviour
     //turns the box collider on the computer off
     public void computerNotInteractable()
     {
-        GameObject computer = GameObject.Find("Computer_Asset");//rename computer object
+        GameObject computer = GameObject.Find("Monitor");//rename computer object
         computer.GetComponent<BoxCollider>().enabled = false;
     }
 
     //turns the box collider on the computer on
     public void computerInteractable()
     {
-        GameObject computer = GameObject.Find("Computer_Asset");
+        GameObject computer = GameObject.Find("Monitor");
         computer.GetComponent<BoxCollider>().enabled = true;
     }
 
@@ -130,47 +130,79 @@ public class Tutorial : MonoBehaviour
         emailButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
     }
 
-    public void doorsNotInteractable()
+    public void toggleBoxCollider(string item, bool key)
     {
-        GameObject kitchenDoorDay = GameObject.Find("Kitchen Door");
-        GameObject kitchenDoorNight = GameObject.Find("Kitchen Door (1)");
-        GameObject bedroomDoor = GameObject.Find("Bedroom Door");
-        GameObject bathroomDoor = GameObject.Find("Bathroom Door");
-        GameObject bedroomArrow = GameObject.Find("Exit Bedroom");
-        GameObject kitchenArrow = GameObject.Find("Kitchen Arrow");
-        GameObject frontDoor = GameObject.Find("Front Door");
-        GameObject bathroomArrow = GameObject.Find("Exit Arrow");
 
-        kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = false;
-        //kitchenDoorNight.GetComponent<BoxCollider2D>().enabled = false;
-        bedroomDoor.GetComponent<BoxCollider2D>().enabled = false;
-        bathroomDoor.GetComponent<BoxCollider2D>().enabled = false;
-        bedroomArrow.GetComponent<BoxCollider2D>().enabled = false;
-        kitchenArrow.GetComponent<BoxCollider2D>().enabled = false;
-        frontDoor.GetComponent<BoxCollider2D>().enabled = false;
-        bathroomArrow.GetComponent<BoxCollider2D>().enabled = false;
+        GameObject gameObject = GameObject.Find(item);
+        if (gameObject != null)
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled = key;
+        }
+
     }
 
-    public void doorsInteractable()
+    public void toggleButton(string item, bool key)
     {
-        GameObject kitchenDoorDay = GameObject.Find("Kitchen Door");
-        GameObject kitchenDoorNight = GameObject.Find("Kitchen Door (1)");
-        GameObject bedroomDoor = GameObject.Find("Bedroom Door");
-        GameObject bathroomDoor = GameObject.Find("Bathroom Door");
-        GameObject bedroomArrow = GameObject.Find("Exit Bedroom");
-        GameObject kitchenArrow = GameObject.Find("Kitchen Arrow");
-        GameObject frontDoor = GameObject.Find("Front Door");
-        GameObject bathroomArrow = GameObject.Find("Exit Arrow");
-
-        kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = true;
-        //kitchenDoorNight.GetComponent<BoxCollider2D>().enabled = true;
-        bedroomDoor.GetComponent<BoxCollider2D>().enabled = true;
-        bathroomDoor.GetComponent<BoxCollider2D>().enabled = true;
-        bedroomArrow.GetComponent<BoxCollider2D>().enabled = true;
-        kitchenArrow.GetComponent<BoxCollider2D>().enabled = true;
-        frontDoor.GetComponent<BoxCollider2D>().enabled = true;
-        bathroomArrow.GetComponent<BoxCollider2D>().enabled = true;
+        GameObject gameObject = GameObject.Find(item);
+        if (gameObject != null)
+        {
+            gameObject.GetComponent<UnityEngine.UI.Button>().enabled = key;
+        }
     }
+
+    public void doorsInteractable(bool key)
+    {
+        toggleBoxCollider("Kitchen Door", key);
+        toggleBoxCollider("Kitchen Door (1)", key);
+        toggleBoxCollider("Bedroom Door", key);
+        toggleBoxCollider("Bathroom Door", key);
+        toggleBoxCollider("Exit Bedroom", key);
+        toggleBoxCollider("Kitchen Arrow", key);
+        toggleBoxCollider("Front Door", key);
+        toggleBoxCollider("Exit Arrow", key);
+        toggleBoxCollider("TV", key);
+        toggleBoxCollider("Front Door", key);
+        toggleBoxCollider("Broom", key);
+        toggleBoxCollider("Workout", key);
+        toggleBoxCollider("Bed", key);
+        toggleBoxCollider("Lamp", key);
+        toggleBoxCollider("Fridge", key);
+        toggleBoxCollider("Oven", key);
+
+
+
+        //kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = false;
+        ////kitchenDoorNight.GetComponent<BoxCollider2D>().enabled = false;
+        //bedroomDoor.GetComponent<BoxCollider2D>().enabled = false;
+        //bathroomDoor.GetComponent<BoxCollider2D>().enabled = false;
+        //bedroomArrow.GetComponent<BoxCollider2D>().enabled = false;
+        //kitchenArrow.GetComponent<BoxCollider2D>().enabled = false;
+        //frontDoor.GetComponent<BoxCollider2D>().enabled = false;
+        //bathroomArrow.GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+ 
+
+    //public void doorsInteractable()
+    //{
+    //toggleBoxCollider("Kitchen Door", true);
+    //toggleBoxCollider("Kitchen Door (1)", true);
+    //toggleBoxCollider("Bedroom Door", true);
+    //toggleBoxCollider("Bathroom Door", true);
+    //toggleBoxCollider("Exit Bedroom", true);
+    //toggleBoxCollider("Kitchen Arrow", true);
+    //toggleBoxCollider("Front Door", true);
+    //toggleBoxCollider("Exit Arrow", true);
+
+    //// kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = true;
+    //    //kitchenDoorNight.GetComponent<BoxCollider2D>().enabled = true;
+    //    bedroomDoor.GetComponent<BoxCollider2D>().enabled = true;
+    //    bathroomDoor.GetComponent<BoxCollider2D>().enabled = true;
+    //    bedroomArrow.GetComponent<BoxCollider2D>().enabled = true;
+    //    kitchenArrow.GetComponent<BoxCollider2D>().enabled = true;
+    //    frontDoor.GetComponent<BoxCollider2D>().enabled = true;
+    //    bathroomArrow.GetComponent<BoxCollider2D>().enabled = true;
+    //}
 
 
     // Start is called before the first frame update
@@ -199,43 +231,91 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
         if (getCurrentDay() == 1)
         {
-            count = 0;
             computerNotInteractable();
             if (buttonClickedOn == true && count == 0)
             {
                 //introduce player to wellness, add the arrow asset
-                doorsNotInteractable();
-                notification.GetComponent<notification_manager>().showNotification("Welcome there streamer.");
-                doorsInteractable();
+                doorsInteractable(false);
+                notification.GetComponent<notification_manager>().showNotification("Welcome streamer.");
                 setButtonClickedToFalse();
                 count++;
+
             }
 
-            //need pop up telling the player to go to the living room and introducing them to the clickable objects
-            else if (count == 1 && Input.GetMouseButtonDown(0))
+            else if (count == 1)
             {
-                notificationPopUp("If you hover over the a door or an object and it has a yellow highlight around it, it is clickable."); 
-                    
-                 notificationPopUp("These highlights tell you what can and can't be clicked on.");
+                
+                notificationPopUp("If you hover over the a door or an object and it has a yellow highlight around it, it is clickable.");
 
-                notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task. Notice you feel better afterwards which means your wellness goes up.");
+                notificationPopUp("These highlights tell you what can and can't be clicked on.");
 
                 count++;
+
             }
+
+            else if (count == 2)
+            {
+                notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task.");
+                doorsInteractable(true);
+                count++;
+            }
+
             else if (buttonClickedOn == true && count == 3)
             {
-                notificationPopUp("Notice you feel better afterwards which means your wellness goes up. Now explore your apartment " +
-                    "and find the activities you can do and which ones will raise or lower your wellness. ");
+                doorsInteractable(false);
+
+                notificationPopUp("Notice you feel better afterwards which means your wellness goes up.");
 
                 notificationPopUp("This is your wellness which will rasie and lower based your time and the activities you do.");
 
-                notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness. ");
-                
-                notificationPopUp("Once you're done exploring go to the bed room and click on the bed and choose the go to sleep task.");
+                notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness.");
+
+                doorsInteractable(true);
 
                 setButtonClickedToFalse();
+                
+                count++;
+       
+            }
+
+            else if (player.hungry() == true)
+            {
+                doorsInteractable(false);
+
+                notificationPopUp("This symbol means that you are hungry and need to eat something.");
+
+                notificationPopUp("You can find things to eat in the kitchen with the oven and fridge");
+
+                notificationPopUp("You can also find a place to eat at the front door by going out to eat.");
+
+                doorsInteractable(true);
+
+            }
+
+            else if (player.needsShower() == true)
+            {
+                doorsInteractable(false);
+
+                notificationPopUp("This symbol means you need to shower which you can find in the bathroom.");
+
+                notificationPopUp("You can either do the bubble bath or take a shower which are both for the bathtub.");
+
+                doorsInteractable (true);
+
+            }
+
+            else if (player.tired() == true)
+            {
+                doorsInteractable(false);
+
+                notificationPopUp("This symbol means you're tired and need to go to sleep.");
+
+                notificationPopUp("You can go to bed by going into the bedroom and clicking the task go to sleep whichis on the bed.");
+
+                doorsInteractable(true);
             }
          }
  
