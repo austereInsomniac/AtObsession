@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Mackenzie
 
@@ -32,6 +33,11 @@ public class move_location : MonoBehaviour
     private GameObject gameOverCanvas;
     private GameObject mainMenu;
     private GameObject mainMenuCanvas;
+    private Button[] buttons;
+
+    private bool isBlocked = false;
+    private float displayTimeStatic = 1.25f;
+    private float displayStartTime;
 
     private void Awake()
     {
@@ -48,6 +54,7 @@ public class move_location : MonoBehaviour
         gameOverCanvas = GameObject.Find("Game Over Canvas");
         mainMenu = GameObject.Find("Main Menu");
         mainMenuCanvas = GameObject.Find("Main Menu Canvas");
+        buttons = GameObject.FindObjectsOfType<Button>();
     }
 
     public GameObject getBedroom() {  return bedroom; }
@@ -68,7 +75,17 @@ public class move_location : MonoBehaviour
     public GameObject getThisO() {  return thisO; }
     public GameObject getThisCanvas() { return thisCanvas; }
 
-
+    void Update()
+    {
+        if (Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && isBlocked == true)
+        {
+            foreach(Button button in buttons)
+            {
+                button.interactable = true;
+            }
+            isBlocked = false;
+        }
+    }
 
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
@@ -123,6 +140,18 @@ public class move_location : MonoBehaviour
             {
                 moveLocation(other, otherCanvas, thisO, thisCanvas);
             }
+            displayStartTime = Time.timeSinceLevelLoad;
+            StartCoroutine(OnButtonClicked());
         } 
+    }
+
+    IEnumerator OnButtonClicked()
+    {
+        foreach (Button button in buttons)
+        {
+            button.interactable = false;
+        }
+        isBlocked = true;
+        yield return new WaitForSeconds(1);
     }
 }
