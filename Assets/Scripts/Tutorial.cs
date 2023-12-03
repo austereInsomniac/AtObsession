@@ -232,6 +232,8 @@ public class Tutorial : MonoBehaviour
     void Update()
     {
         //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
+        //Fix the hunry, tired, and need to shower if statements as the notification doesn't pop up at the right time
+        //Add asset highlights for the UI
         if (getCurrentDay() == 1)
         {
             computerNotInteractable();
@@ -259,8 +261,10 @@ public class Tutorial : MonoBehaviour
             else if (count == 2)
             {
                 notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task.");
+
                 doorsInteractable(true);
                 count++;
+                
             }
 
             else if (buttonClickedOn == true && count == 3)
@@ -281,7 +285,7 @@ public class Tutorial : MonoBehaviour
        
             }
 
-            else if (player.hungry() == true)
+            else if (player.hungry() == true & count == 4)
             {
                 doorsInteractable(false);
 
@@ -293,9 +297,10 @@ public class Tutorial : MonoBehaviour
 
                 doorsInteractable(true);
 
+                count++;
             }
 
-            else if (player.needsShower() == true)
+            else if (player.needsShower() == true && count == 5)
             {
                 doorsInteractable(false);
 
@@ -305,9 +310,11 @@ public class Tutorial : MonoBehaviour
 
                 doorsInteractable (true);
 
+                count++;
+
             }
 
-            else if (player.tired() == true)
+            else if (player.tired() == true && count == 6)
             {
                 doorsInteractable(false);
 
@@ -316,6 +323,7 @@ public class Tutorial : MonoBehaviour
                 notificationPopUp("You can go to bed by going into the bedroom and clicking the task go to sleep whichis on the bed.");
 
                 doorsInteractable(true);
+                count++;
             }
          }
  
@@ -421,11 +429,6 @@ public class Tutorial : MonoBehaviour
             }
    
 
-        }
-
-        else if (getCurrentDay() == 4)
-        {
-            count = 0;
         }
     }
 }
