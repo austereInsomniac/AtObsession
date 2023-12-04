@@ -209,7 +209,7 @@ public class stalker_prototype_script : MonoBehaviour
         doorEvent.AddChoice("Open the door", "I open the door but there is no one there. I shrug and close the door.", -3, -1, 0);
         doorEvent.AddChoice("Hesitate but open the door slightly", "I hesitate to open the door. Someone knocks again so I decide to open the door slightly and look outside. NO ONE is there! I slam the door closed and lock it!", -1, 0, 0);
         doorEvent.AddChoice("Look through the peephole", "I decide to look through the peep hole of the door. No one is there. It concerns me a little bit so I make sure that my door is locked.", -1, 1, 0);
-        stalkerEvents.Add("Knocking on window", doorEvent);
+        stalkerEvents.Add("Knocking on door", doorEvent);
 
         // Suspicious gift event 3/4
         StalkerEvents giftEvent = new StalkerEvents("I got a package with no return address but on the package it says “From your biggest fan - ?????”", "Living room", 10, 4, 1, 0, 2, 0);
