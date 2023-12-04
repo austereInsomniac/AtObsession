@@ -257,7 +257,7 @@ public class Tutorial : MonoBehaviour
             if (buttonClickedOn == true && count == 0)
             {
                 //introduce player to wellness, add the arrow asset
-                doorsInteractable(false);
+                //doorsInteractable(false);
                 notificationShow("Welcome streamer.");
                 setButtonClickedToFalse();
                 //wellnessAndRepHighlightDisabled(wellnessAndRep);
@@ -276,7 +276,7 @@ public class Tutorial : MonoBehaviour
 
             }
 
-            else if (count == 2)
+            else if (count == 2 )
             {
                 notificationPopUp("Hover over and click on the TV. Doing so will pop up a menu where you can do a task, do that task.");
                 
@@ -287,7 +287,7 @@ public class Tutorial : MonoBehaviour
 
             else if (buttonClickedOn == true && count == 3)
             {
-                doorsInteractable(false);
+                //doorsInteractable(false);
 
                 notificationPopUp("Notice you feel better afterwards which means your wellness goes up.");
 
@@ -297,7 +297,7 @@ public class Tutorial : MonoBehaviour
 
                 notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness.");
 
-                doorsInteractable(true);
+                //doorsInteractable(true);
 
                 setButtonClickedToFalse();
                 
@@ -311,7 +311,7 @@ public class Tutorial : MonoBehaviour
             {
                 Debug.Log(player.hungry() + " hunger icon");
                 Debug.Log(player.getHunger() + " hunger number");
-                doorsInteractable(false);
+                //doorsInteractable(false);
 
                 notificationShow("This symbol in the bottom right means that you are hungry and need to eat something.");
 
@@ -319,20 +319,20 @@ public class Tutorial : MonoBehaviour
 
                 notificationPopUp("You can also find a place to eat at the front door by going out to eat.");
 
-                doorsInteractable(true);
+                //doorsInteractable(true);
 
                 count++;
             }
 
             else if (player.needsShower() && count == 5)
             {
-                doorsInteractable(false);
+                //doorsInteractable(false);
 
                 notificationPopUp("This symbol in the bottom right means you need to shower which you can find in the bathroom.");
 
                 notificationPopUp("You can either do the bubble bath or take a shower which are both for the bathtub.");
 
-                doorsInteractable (true);
+                //doorsInteractable (true);
 
                 count++;
 
@@ -340,13 +340,13 @@ public class Tutorial : MonoBehaviour
 
             else if (player.tired() && count == 6)
             {
-                doorsInteractable(false);
+                //doorsInteractable(false);
 
                 notificationPopUp("This symbol in the bottom right means you're tired and need to go to sleep.");
 
                 notificationPopUp("You can go to bed by going into the bedroom and clicking the task go to sleep whichis on the bed.");
 
-                doorsInteractable(true);
+                //doorsInteractable(true);
                 count++;
             }
          }
