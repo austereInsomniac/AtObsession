@@ -11373,8 +11373,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hey there,\r\n\rYou don\u2019t know who I am but you can call me Michael.
-    I have been a long-time viewer of your channel and I love your content. \r                                  
+  m_text: "Hey there,\r\n\rYou don\u2019t know who I am but you will soon. I have
+    been a long-time viewer of your channel and I love your content. \r                                  
     \nI really enjoyed your last playythrough session you did last night. I made
     the $20 dollars donation in chat, remember?\r                                   
     Anyways I am emailing you cuz I just want to let you know that youre really attractive.
@@ -11383,7 +11383,7 @@ MonoBehaviour:
     to you. And then you wouldnt have to worry about being busy.\r                                                                                 
     I think your house is really cute too. I like what you did with the kitchen.
     Maybe I could come over and cook you something while you stream. Just leave your
-    door unlocked some time lol ;)\r\n\rSee you soon,\r\n\rMike XOXO"
+    door unlocked some time lol ;)\r\n\rSee you soon."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
