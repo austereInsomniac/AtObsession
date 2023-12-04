@@ -11374,16 +11374,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Hey there,\r\n\rYou don\u2019t know who I am but you can call me Michael.
-    I have been a long-time viewer of your channel and I love your content. \r                                       
-    I really enjoyed your last playythrough session you did last night. I made the
-    $20 dollars donation in chat, remember?\r                                   
+    I have been a long-time viewer of your channel and I love your content. \r                                  
+    \nI really enjoyed your last playythrough session you did last night. I made
+    the $20 dollars donation in chat, remember?\r                                   
     Anyways I am emailing you cuz I just want to let you know that youre really attractive.
     But you probably already know that lol. I really wish I could meet you but I
     know you are too busy with streaming. That\u2019s why I thought I could come
     to you. And then you wouldnt have to worry about being busy.\r                                                                                 
     I think your house is really cute too. I like what you did with the kitchen.
     Maybe I could come over and cook you something while you stream. Just leave your
-    door unlocked some time lol ;)\r\n\r\n\rSee you soon,\r\n\rMike XOXO"
+    door unlocked some time lol ;)\r\n\rSee you soon,\r\n\rMike XOXO"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -11446,7 +11446,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -43.15332, y: 0, z: -29.95819, w: 0}
+  m_margin: {x: -43.15332, y: 0.0000076186893, z: -34.714355, w: -1.5853653}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -30884,11 +30884,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Good Afternoon,\r\n\r\n\rI\u2019m long time follower of your channel.
-    You\u2019ve might\u2019ve recognize me from your comments section. If not that\u2019s
-    alright. Anyways, I\u2019m also an artist and I made some fanart for you. Is
-    there a PO Box or address that I can send it to? It would mean a lot to me if
-    you could check it out.\r\n\r\n\r\nThanks,\r\n\rYour #1 Fan"
+  m_text: "Good Afternoon,\r\n\rI\u2019m long time follower of your channel. You\u2019ve
+    might\u2019ve recognize me from your comments section. If not that\u2019s alright.
+    Anyways, I\u2019m also an artist and I made some fanart for you. Is there a PO
+    Box or address that I can send it to? It would mean a lot to me if you could
+    check it out.\r\n\r\nThanks,\r\n\rYour #1 Fan"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
