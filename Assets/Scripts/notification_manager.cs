@@ -22,6 +22,8 @@ public class notification_manager : MonoBehaviour
     private UnityEngine.UI.Image menuBlocker;
     private BoxCollider2D menuCollider;
 
+    private CanvasGroup hudCanvas;
+
     void Start()
     {
         mText = GetComponentInChildren<TextMeshProUGUI>().GetComponent<TMP_Text>();
@@ -31,6 +33,7 @@ public class notification_manager : MonoBehaviour
 
         menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
         menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
+        hudCanvas = GameObject.Find("Menu Click Blocker").GetComponent<CanvasGroup>();
     }
 
     public void repeatNotification()
@@ -46,6 +49,7 @@ public class notification_manager : MonoBehaviour
         // block menus
         menuBlocker.enabled = true;
         menuCollider.enabled = true;
+        hudCanvas.blocksRaycasts = true;
     }
 
     public void showNotification(string message)
@@ -98,6 +102,7 @@ public class notification_manager : MonoBehaviour
 
         menuBlocker.enabled = false;
         menuCollider.enabled = false;
+        hudCanvas.blocksRaycasts = false;
     }
 
     private void Update()

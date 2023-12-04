@@ -45390,7 +45390,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &1690831653
 PrefabInstance:
@@ -47777,6 +47777,7 @@ GameObject:
   - component: {fileID: 1766642351}
   - component: {fileID: 1766642350}
   - component: {fileID: 1766642352}
+  - component: {fileID: 1766642353}
   m_Layer: 5
   m_Name: Menu Click Blocker
   m_TagString: Untagged
@@ -47886,6 +47887,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1183.6667, y: 658.5338}
   m_EdgeRadius: 0
+--- !u!225 &1766642353
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766642348}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1767889361
 GameObject:
   m_ObjectHideFlags: 0
