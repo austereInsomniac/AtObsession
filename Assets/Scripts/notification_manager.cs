@@ -19,12 +19,18 @@ public class notification_manager : MonoBehaviour
 
     private Queue<string> notificationQueue;
 
+    private UnityEngine.UI.Image menuBlocker;
+    private BoxCollider2D menuCollider;
+
     void Start()
     {
         mText = GetComponentInChildren<TextMeshProUGUI>().GetComponent<TMP_Text>();
         mImage = GetComponent<UnityEngine.UI.Image>();
         mImage.enabled = false;
         notificationQueue = new Queue<string>();
+
+        menuBlocker = GameObject.Find("Menu Click Blocker").GetComponent<UnityEngine.UI.Image>();
+        menuCollider = GameObject.Find("Menu Click Blocker").GetComponent<BoxCollider2D>();
     }
 
     public void repeatNotification()
@@ -36,6 +42,10 @@ public class notification_manager : MonoBehaviour
 
         // Record start time
         displayStartTime = Time.timeSinceLevelLoad;
+
+        // block menus
+        menuBlocker.enabled = true;
+        menuCollider.enabled = true;
     }
 
     public void showNotification(string message)
@@ -85,6 +95,9 @@ public class notification_manager : MonoBehaviour
         isNotificationShowing = false;
         mText.enabled = false;
         mImage.enabled = false;
+
+        menuBlocker.enabled = false;
+        menuCollider.enabled = false;
     }
 
     private void Update()
