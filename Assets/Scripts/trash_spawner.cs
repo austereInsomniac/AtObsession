@@ -34,7 +34,7 @@ public class trash_spawner : MonoBehaviour
     private void addTrash(int timeO, int timeN) 
     {
         int currentHour = timeN / 60;
-        if(currentHour > lastHour) 
+        if(currentHour > lastHour && lastHour != 0) 
         {
             for (int i = 0; i < currentHour % lastHour; i++)
                 {
