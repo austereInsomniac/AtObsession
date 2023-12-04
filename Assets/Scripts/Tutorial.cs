@@ -305,7 +305,7 @@ public class Tutorial : MonoBehaviour
             {
                 doorsInteractable(false);
 
-                notificationPopUp("This symbol means that you are hungry and need to eat something.");
+                notificationPopUp("This symbol in the bottom right means that you are hungry and need to eat something.");
 
                 notificationPopUp("You can find things to eat in the kitchen with the oven and fridge");
 
@@ -320,7 +320,7 @@ public class Tutorial : MonoBehaviour
             {
                 doorsInteractable(false);
 
-                notificationPopUp("This symbol means you need to shower which you can find in the bathroom.");
+                notificationPopUp("This symbol in the bottom right means you need to shower which you can find in the bathroom.");
 
                 notificationPopUp("You can either do the bubble bath or take a shower which are both for the bathtub.");
 
@@ -334,7 +334,7 @@ public class Tutorial : MonoBehaviour
             {
                 doorsInteractable(false);
 
-                notificationPopUp("This symbol means you're tired and need to go to sleep.");
+                notificationPopUp("This symbol in the bottom right means you're tired and need to go to sleep.");
 
                 notificationPopUp("You can go to bed by going into the bedroom and clicking the task go to sleep whichis on the bed.");
 
