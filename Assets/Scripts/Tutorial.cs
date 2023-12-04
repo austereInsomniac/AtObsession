@@ -41,7 +41,7 @@ public class Tutorial : MonoBehaviour
     GameObject startGame;
     GameObject videoCreation;
     GameObject streaming;
-    GameObject chores;
+    GameObject tv;
     GameObject sleep;
     GameObject wellnessAndRep;
 
@@ -71,6 +71,10 @@ public class Tutorial : MonoBehaviour
         notification.GetComponent<notification_manager>().queNotification(message);
     }
 
+    public void notificationShow(string message)
+    {
+        notification.GetComponent<notification_manager>().showNotification(message);
+    }
 
     public void buttonClicked()
     {
@@ -231,8 +235,8 @@ public class Tutorial : MonoBehaviour
         streaming = GameObject.Find("Check_Tritch");
         streaming.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 
-        chores = GameObject.Find("Do chores");
-        chores.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+        tv = GameObject.Find("Watch TV");
+        tv.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 
         sleep = GameObject.Find("Go to sleep");
         sleep.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
@@ -254,7 +258,7 @@ public class Tutorial : MonoBehaviour
             {
                 //introduce player to wellness, add the arrow asset
                 doorsInteractable(false);
-                notification.GetComponent<notification_manager>().showNotification("Welcome streamer.");
+                notificationShow("Welcome streamer.");
                 setButtonClickedToFalse();
                 //wellnessAndRepHighlightDisabled(wellnessAndRep);
                 count++;
@@ -274,9 +278,9 @@ public class Tutorial : MonoBehaviour
 
             else if (count == 2)
             {
-                notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task.");
+                notificationPopUp("Hover over and click on the TV. Doing so will pop up a menu where you can do a task, do that task.");
                 
-                doorsInteractable(true);
+                //doorsInteractable(true);
                 count++;
                 
             }
@@ -298,14 +302,18 @@ public class Tutorial : MonoBehaviour
                 setButtonClickedToFalse();
                 
                 count++;
+                Debug.Log(player.hungry());
+                Debug.Log(player.getHunger());
        
             }
 
-            else if (player.hungry() == true & count == 4)
+            else if (player.hungry() && count == 4)
             {
+                Debug.Log(player.hungry() + " hunger icon");
+                Debug.Log(player.getHunger() + " hunger number");
                 doorsInteractable(false);
 
-                notificationPopUp("This symbol in the bottom right means that you are hungry and need to eat something.");
+                notificationShow("This symbol in the bottom right means that you are hungry and need to eat something.");
 
                 notificationPopUp("You can find things to eat in the kitchen with the oven and fridge");
 
@@ -316,7 +324,7 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if (player.needsShower() == true && count == 5)
+            else if (player.needsShower() && count == 5)
             {
                 doorsInteractable(false);
 
@@ -330,7 +338,7 @@ public class Tutorial : MonoBehaviour
 
             }
 
-            else if (player.tired() == true && count == 6)
+            else if (player.tired() && count == 6)
             {
                 doorsInteractable(false);
 
