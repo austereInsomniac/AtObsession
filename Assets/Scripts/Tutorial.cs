@@ -43,6 +43,7 @@ public class Tutorial : MonoBehaviour
     GameObject streaming;
     GameObject chores;
     GameObject sleep;
+    GameObject wellnessAndRep;
 
     //Gets current day
     public int getCurrentDay()
@@ -181,7 +182,17 @@ public class Tutorial : MonoBehaviour
         //bathroomArrow.GetComponent<BoxCollider2D>().enabled = false;
     }
 
- 
+    public void wellnessAndRepHighlightEnabled(GameObject key)
+    {
+        key.SetActive(true);
+    }
+
+    public void wellnessAndRepHighlightDisabled(GameObject key)
+    {
+        key.SetActive(false);
+    }
+
+
 
     //public void doorsInteractable()
     //{
@@ -226,6 +237,8 @@ public class Tutorial : MonoBehaviour
         sleep = GameObject.Find("Go to sleep");
         sleep.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 
+        //wellnessAndRep = GameObject.Find("");
+
     }
 
     // Update is called once per frame
@@ -243,6 +256,7 @@ public class Tutorial : MonoBehaviour
                 doorsInteractable(false);
                 notification.GetComponent<notification_manager>().showNotification("Welcome streamer.");
                 setButtonClickedToFalse();
+                //wellnessAndRepHighlightDisabled(wellnessAndRep);
                 count++;
 
             }
@@ -261,7 +275,7 @@ public class Tutorial : MonoBehaviour
             else if (count == 2)
             {
                 notificationPopUp("Hover over and click on the broom. Doing so will pop up a menu where you can do a task, do that task.");
-
+                
                 doorsInteractable(true);
                 count++;
                 
@@ -272,6 +286,8 @@ public class Tutorial : MonoBehaviour
                 doorsInteractable(false);
 
                 notificationPopUp("Notice you feel better afterwards which means your wellness goes up.");
+
+                //wellnessAndRepHighlightEnabled(wellnessAndRep);
 
                 notificationPopUp("This is your wellness which will rasie and lower based your time and the activities you do.");
 
@@ -327,7 +343,7 @@ public class Tutorial : MonoBehaviour
             }
          }
  
-
+        //test and fix this day
         else if (getCurrentDay() == 2)
         {
             count = 0;
@@ -382,6 +398,7 @@ public class Tutorial : MonoBehaviour
             }
         }
 
+        //test and fix this day
         else if (getCurrentDay() == 3)
         {
             count = 0;
