@@ -50,6 +50,7 @@ public class daily_action_storage : MonoBehaviour
     private game_state state;
     private notification_manager notificationManager;
     private int day;
+    private trash_spawner trash;
 
     // RNG
     System.Random rand = new System.Random();
@@ -63,9 +64,14 @@ public class daily_action_storage : MonoBehaviour
     Button bath;
 
     Button warmup;
-    Button light;
+    Button lightW;
     Button intense;
     Button gym;
+
+    Button cleanL;
+    Button cleanK;
+    Button cleanBe;
+    Button cleanBa;
 
     void Awake()
     {
@@ -73,6 +79,7 @@ public class daily_action_storage : MonoBehaviour
         state = GetComponent<game_state>();
         state.addOnTimeChange(toggleButtons);
         notificationManager = GameObject.Find("Notification Panel").GetComponent<notification_manager>();
+        trash = GetComponent<trash_spawner>(); 
         day = 1;
 
         // create
@@ -87,9 +94,14 @@ public class daily_action_storage : MonoBehaviour
         bath = GameObject.Find("Bubble Bath").GetComponent<Button>();
 
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
-        light = GameObject.Find("Light workout").GetComponent<Button>();
+        lightW = GameObject.Find("Light workout").GetComponent<Button>();
         intense = GameObject.Find("Intense workout").GetComponent<Button>();
         gym = GameObject.Find("Go to the gym").GetComponent<Button>();
+
+        cleanL = GameObject.Find("Do chores").GetComponent<Button>();
+        cleanK = GameObject.Find("Do chores (1)").GetComponent<Button>();
+        cleanBe = GameObject.Find("Do chores (2)").GetComponent<Button>();
+        cleanBa = GameObject.Find("Do chores (3)").GetComponent<Button>();
     }
 
     // Start is called before the first frame update
@@ -100,7 +112,11 @@ public class daily_action_storage : MonoBehaviour
             // wellness, time, money
 
             // living room
-            { "Do chores", new ActionVariable(8, 15, 0.00, "chores", "You spent some time doing some chores around the house.") },
+            { "Do chores living room", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores kitchen", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores bedroom", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores bathroom", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+
             { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "You spent $15 to work out at your local gym.") },
             { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "You went for a short walk at your local park.") },
@@ -135,7 +151,7 @@ public class daily_action_storage : MonoBehaviour
             { "nap", 1},
 
             // normal
-            { "chores", 1 },
+            { "chores", 999 },
             { "walk", 2},
             { "freshen", 2},
             { "shower", 1},
@@ -249,12 +265,12 @@ public class daily_action_storage : MonoBehaviour
         else if (group.Equals("exercise"))
         {
             warmup.interactable = false;
-            light.interactable = false;
+            lightW.interactable = false;
             intense.interactable = false;
             gym.interactable = false;
 
             buttons.Add("Warm up", warmup);
-            buttons.Add("Light workout", light);
+            buttons.Add("Light workout", lightW);
             buttons.Add("Intense workout", intense);
             buttons.Add("Go to the gym", gym);
         }
@@ -309,6 +325,43 @@ public class daily_action_storage : MonoBehaviour
             sleep.interactable = false;
         }
 
+        // cleaning
+        if (trash.isDirty("LivingRoom"))
+        {
+            cleanL.interactable = true;
+        }
+        else
+        {
+            cleanL.interactable = false;
+        }
+
+        if (trash.isDirty("KitchenT"))
+        {
+            cleanK.interactable = true;
+        }
+        else
+        {
+            cleanK.interactable = false;
+        }
+
+        if (trash.isDirty("BedroomT"))
+        {
+            cleanBe.interactable = true;
+        }
+        else
+        {
+            cleanBe.interactable = false;
+        }
+
+        if (trash.isDirty("BathroomT"))
+        {
+            cleanBa.interactable = true;
+        }
+        else
+        {
+            cleanBa.interactable = false;
+        }
+
     }
 
     public void doAction(string key)
@@ -352,6 +405,25 @@ public class daily_action_storage : MonoBehaviour
             else if (activity.getGroup() == "nap")
             {
                 state.updateSleep(-6 * 60);
+            }
+            else if(activity.getGroup() == "chores")
+            {
+                if (key.Equals("Do chores living room"))
+                {
+                    trash.cleanTrash("LivingRoom");
+                }
+                else if (key.Equals("Do chores kitchen"))
+                {
+                    trash.cleanTrash("KitchenT");
+                }
+                else if (key.Equals("Do chores bedroom"))
+                {
+                    trash.cleanTrash("BedroomT");
+                }
+                else 
+                {
+                    trash.cleanTrash("BathroomT");
+                }
             }
 
             // update the splash screen before updating stats so that death scenes work

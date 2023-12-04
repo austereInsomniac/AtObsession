@@ -27,11 +27,16 @@ public class buyableItem
         multiple = mm;
     }
 
-    public void purchaseItem()
+    public void purchaseItem(game_state state)
     {
         if (multiple || !purchased)
         {
             purchased = true;
+
+            // adjust the game state data
+            state.updateWellness(getWellness());
+            state.updateMoney(getMoney());
+            state.updateReputation(getReputation());
         }
     }
 
@@ -46,16 +51,17 @@ public class buyableItem
 public class shop : MonoBehaviour
 {
     List<buyableItem> buyableItems;
+    game_state state;
 
     // which item to buy
     [SerializeField]
     private int itemIndex;
 
-    private bool wasBought = false;
-
     // Start is called before the first frame update
     void Start()
     {
+        state = GetComponent<game_state>();
+
         // propogate the list of purchaseble items
         buyableItems = new List<buyableItem>
         {
@@ -74,17 +80,10 @@ public class shop : MonoBehaviour
         // get buyableItem
         buyableItem item = buyableItems[index];
 
-        //check if the item had been purchased
+        // check for money
         if (GetComponent<game_state>().getMoney() >= (-1 * item.getMoney()))
         {
-            // adjust the game state data
-            GetComponent<game_state>().updateWellness(item.getWellness());
-            GetComponent<game_state>().updateMoney(item.getMoney());
-            GetComponent<game_state>().updateReputation(item.getReputation());
-
-            // block future purchse
-            item.purchaseItem();
-            wasBought = true;
+            item.purchaseItem(state);
         }
 
         if (item.hasSprite())

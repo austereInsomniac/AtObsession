@@ -47,13 +47,14 @@ public class splash_screen_manager : MonoBehaviour
         {
             // living room
             { "Go to the gym", Resources.Load<Sprite>("Gym") },
-            { "Visit friends", Resources.Load<Sprite>("Park-Recovered") },
-            { "Go for a walk", Resources.Load<Sprite>("Park-Recovered") },
+            { "Visit friends", Resources.Load<Sprite>("Park_02") },
+            { "Go for a walk", Resources.Load<Sprite>("Park_02") },
+            { "Eat at a restaurant", Resources.Load<Sprite>("Restaurant") },
 
             // non actions
-            { "reset", Resources.Load<Sprite>("Hospital_Concepts_V001") },
-            { "Hospital", Resources.Load<Sprite>("Hospital_Concepts_V001") },
-            { "Game over", Resources.Load<Sprite>("Hospital_Concepts_V001") }
+            { "reset", Resources.Load<Sprite>("Hospital_Concepts_V001 1") },
+            { "Hospital", Resources.Load<Sprite>("Hospital_Concepts_V001 1") },
+            { "Game over", Resources.Load<Sprite>("Hospital_Concepts_V001 1") }
         };
     }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f62599934c13044cbf70e270122fc9e
+guid: fcb927c45d8c6a74080fdb7f23fd4ec5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -162,85 +162,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sink_On_Animation_0
+      name: Bar_HL_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 540
-        width: 960
-        height: 540
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15175}
+        x: 705
+        y: 810
+        width: 1215
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2e3074e2b56c854c8ceea3555f6a658
-      internalID: -1972266969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sink_On_Animation_1
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 540
-        width: 960
-        height: 540
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15175}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b29a1bc553f141f4c8d833a33d8528aa
-      internalID: 238037013
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sink_On_Animation_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2
-        width: 960
-        height: 540
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15175}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bffa66e5164f4e4489d5e70188c60b6
-      internalID: 286367761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sink_On_Animation_3
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 0
-        width: 960
-        height: 540
-      alignment: 9
-      pivot: {x: 0.5, y: 0.15175}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8b60a81ec95bbc44b4bacf31e7c6ad6
-      internalID: 1793561641
+      spriteID: c0b830f85a916514a87a821c5a35dddf
+      internalID: 2022919686
       vertices: []
       indices: 
       edges: []
@@ -256,10 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sink_On_Animation_0: -1972266969
-      Sink_On_Animation_1: 238037013
-      Sink_On_Animation_2: 286367761
-      Sink_On_Animation_3: 1793561641
+      Bar_HL_0: 2022919686
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
