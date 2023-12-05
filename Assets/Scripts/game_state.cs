@@ -261,37 +261,39 @@ public class game_state : MonoBehaviour
     public void updateReputation(int r)
     {
         reputation += r;
-
-        if (reputation > 100)
+        if (getDay() != 1 && getDay() == 2 && getTime() == 4 * 60)
         {
-            reputation = 100;
-            notifyOnReputationChange(reputation - r, reputation);
-        }
-        else if ( reputation <= 20)
-        {
-            if(!hasDied)
+            if (reputation > 100)
             {
+                reputation = 100;
                 notifyOnReputationChange(reputation - r, reputation);
-                playInfamyScene();
             }
-            else if (reputation <= 0)
+            else if (reputation <= 20)
             {
-                reputation = 0;
-                notifyOnReputationChange(reputation - r, reputation);
-
-                if (hasDied)
+                if (!hasDied)
                 {
-                    killPlayerReputation();
+                    notifyOnReputationChange(reputation - r, reputation);
+                    playInfamyScene();
+                }
+                else if (reputation <= 0)
+                {
+                    reputation = 0;
+                    notifyOnReputationChange(reputation - r, reputation);
+
+                    if (hasDied)
+                    {
+                        killPlayerReputation();
+                    }
+                }
+                else
+                {
+                    notifyOnReputationChange(reputation - r, reputation);
                 }
             }
             else
             {
                 notifyOnReputationChange(reputation - r, reputation);
             }
-        }
-        else
-        {
-            notifyOnReputationChange(reputation - r, reputation);
         }
     }
 

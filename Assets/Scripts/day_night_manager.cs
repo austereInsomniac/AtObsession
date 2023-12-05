@@ -44,7 +44,7 @@ public class day_night_manager : MonoBehaviour
 
     private void updateBackground(int oldT, int newT)
     {
-        if (newT > 17 * 60)
+        if (newT > 17 * 60 || newT < 8 * 60)
         {
             foreach (GameObject obj in nightObjects)
             {

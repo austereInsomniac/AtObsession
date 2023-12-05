@@ -280,6 +280,27 @@ public class daily_action_storage : MonoBehaviour
             button.interactable = false;
             buttons.Add(key, button);
         }
+
+        if(key.Equals("Do chores living room"))
+        {
+            cleanL.interactable = false;
+            buttons.Add("Do chores", cleanL);
+        }
+        else if (key.Equals("Do chores kitchen"))
+        {
+            cleanK.interactable = false;
+            buttons.Add("Do chores (1)", cleanK);
+        }
+        else if (key.Equals("Do chores bedroom"))
+        {
+            cleanBe.interactable = false;
+            buttons.Add("Do chores (2)", cleanBe);
+        }
+        else if (key.Equals("Do chores bathroom"))
+        {
+            cleanBa.interactable = false;
+            buttons.Add("Do chores (3)", cleanBa);
+        }
     }
 
     private void toggleButtons(int oldT, int newT) 

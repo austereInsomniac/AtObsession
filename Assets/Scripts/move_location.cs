@@ -33,7 +33,8 @@ public class move_location : MonoBehaviour
     private GameObject gameOverCanvas;
     private GameObject mainMenu;
     private GameObject mainMenuCanvas;
-    private Button[] buttons;
+    private List<Button> buttons;
+    private List<Button> buttons2;
 
     private bool isBlocked = false;
     private float displayTimeStatic = 1.25f;
@@ -54,7 +55,18 @@ public class move_location : MonoBehaviour
         gameOverCanvas = GameObject.Find("Game Over Canvas");
         mainMenu = GameObject.Find("Main Menu");
         mainMenuCanvas = GameObject.Find("Main Menu Canvas");
-        buttons = GameObject.FindObjectsOfType<Button>();
+
+        buttons = new List<Button>();
+        buttons2 = new List<Button>();
+        Button[] buttons0 = GameObject.FindObjectsOfType<Button>();
+        for (int i = 0; i < buttons0.Length; i++) {
+            if (buttons0[i] != null)
+            {
+                buttons.Add(buttons0[i]);
+                buttons2.Add(buttons0[i]);
+            }
+        }
+
     }
 
     public GameObject getBedroom() {  return bedroom; }
@@ -79,11 +91,12 @@ public class move_location : MonoBehaviour
     {
         if (Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && isBlocked == true)
         {
-            foreach(Button button in buttons)
+            foreach(Button button in buttons2)
             {
                 button.interactable = true;
             }
             isBlocked = false;
+            buttons2.Clear();
         }
     }
 
@@ -149,9 +162,14 @@ public class move_location : MonoBehaviour
     {
         foreach (Button button in buttons)
         {
-            button.interactable = false;
+            if(button.interactable == true)
+            { 
+                buttons2.Add(button);
+                button.interactable = false;
+            }
+            
         }
         isBlocked = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.2f);
     }
 }
