@@ -251,7 +251,7 @@ public class Tutorial : MonoBehaviour
         //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
         //Fix the hunry, tired, and need to shower if statements as the notification doesn't pop up at the right time
         //Add asset highlights for the UI
-        if (getCurrentDay() == 1)
+        if (getCurrentDay() == 1 || (getCurrentDay() ==2 && player.getTime() < 8 * 60) )
         {
             computerNotInteractable();
             if (buttonClickedOn == true && count == 0)
@@ -302,15 +302,11 @@ public class Tutorial : MonoBehaviour
                 setButtonClickedToFalse();
                 
                 count++;
-                Debug.Log(player.hungry());
-                Debug.Log(player.getHunger());
        
             }
 
             else if (player.hungry() && count == 4)
             {
-                Debug.Log(player.hungry() + " hunger icon");
-                Debug.Log(player.getHunger() + " hunger number");
                 //doorsInteractable(false);
 
                 notificationShow("This symbol in the bottom right means that you are hungry and need to eat something.");
@@ -327,8 +323,8 @@ public class Tutorial : MonoBehaviour
             else if (player.needsShower() && count == 5)
             {
                 //doorsInteractable(false);
-
-                notificationPopUp("This symbol in the bottom right means you need to shower which you can find in the bathroom.");
+                
+                notificationShow("This symbol in the bottom right means you need to shower which you can find in the bathroom.");
 
                 notificationPopUp("You can either do the bubble bath or take a shower which are both for the bathtub.");
 
@@ -342,7 +338,7 @@ public class Tutorial : MonoBehaviour
             {
                 //doorsInteractable(false);
 
-                notificationPopUp("This symbol in the bottom right means you're tired and need to go to sleep.");
+                notificationShow("This symbol in the bottom right means you're tired and need to go to sleep.");
 
                 notificationPopUp("You can go to bed by going into the bedroom and clicking the task go to sleep whichis on the bed.");
 
@@ -352,7 +348,7 @@ public class Tutorial : MonoBehaviour
          }
  
         //test and fix this day
-        else if (getCurrentDay() == 2)
+        else if (getCurrentDay() == 2 || (getCurrentDay() == 3 && player.getTime() < 8 * 60))
         {
             count = 0;
             computerInteractable();
@@ -407,7 +403,7 @@ public class Tutorial : MonoBehaviour
         }
 
         //test and fix this day
-        else if (getCurrentDay() == 3)
+        else if (getCurrentDay() == 3 || (getCurrentDay() == 4 && player.getTime() < 8 * 60))
         {
             count = 0;
             shoppingInteractable();

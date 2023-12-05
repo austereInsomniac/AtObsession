@@ -261,10 +261,8 @@ public class game_state : MonoBehaviour
     public void updateReputation(int r)
     {
         reputation += r;
-        if (getDay() != 1)
+        if (getDay() != 1 && getDay() == 2 && getTime() == 4 * 60)
         {
-
-
             if (reputation > 100)
             {
                 reputation = 100;
