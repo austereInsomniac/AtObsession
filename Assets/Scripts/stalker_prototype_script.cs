@@ -168,10 +168,10 @@ public class stalker_prototype_script : MonoBehaviour
     TMP_Text choice2Text;
     TMP_Text choice3Text;
     private GameObject checkChitter;
-    private GameObject checkChitterRight;
+    public GameObject checkChitterRight;
     private Button checkChitterRightButton;
     private GameObject checkMessages;
-    private GameObject checkMessagesRight;
+    public GameObject checkMessagesRight;
     private Button checkMessagesRightButton;
     private  GameObject currentStalkerEmail;
     private GameObject currentStalkerDM;
@@ -196,14 +196,8 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEventHandler.SetActive(false);
         splashScreenManager = GetComponent<splash_screen_manager>();
         checkChitter = GameObject.Find("Check_Chitter");
-        checkChitterRight = GameObject.Find("Right_Button_DM");
-        checkChitterRight.SetActive(true);
         checkChitterRightButton = checkChitterRight.GetComponent<Button>();
-        checkChitterRight.SetActive(false);
         checkMessages = GameObject.Find("Check_Email");
-        checkMessages.SetActive(true);
-        checkMessagesRight = GameObject.Find("Right_Button_Email");
-        checkMessages.SetActive(false);
         checkMessagesRightButton = checkMessagesRight.GetComponent<Button>();
         currentStalkerEmail = GameObject.Find("Unread_Email_Six");
         currentStalkerDM = GameObject.Find("Unread_DM_Six");
