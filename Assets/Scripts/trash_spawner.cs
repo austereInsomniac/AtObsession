@@ -51,7 +51,6 @@ public class trash_spawner : MonoBehaviour
     private SpriteRenderer selectTrash()
     {
         int rand = (int)(Random.value * (trashOpen.Count - 1));
-        Debug.Log(trashOpen.Count + " " + rand + " " + trashOpen[rand].name);
         SpriteRenderer temp = trashOpen[rand];
 
         trashClose.Add(trashOpen[rand]);

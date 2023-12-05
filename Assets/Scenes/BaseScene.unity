@@ -11373,8 +11373,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hey there,\r\n\rYou don\u2019t know who I am but you can call me Michael.
-    I have been a long-time viewer of your channel and I love your content. \r                                  
+  m_text: "Hey there,\r\n\rYou don\u2019t know who I am but you will soon. I have
+    been a long-time viewer of your channel and I love your content. \r                                  
     \nI really enjoyed your last playythrough session you did last night. I made
     the $20 dollars donation in chat, remember?\r                                   
     Anyways I am emailing you cuz I just want to let you know that youre really attractive.
@@ -11383,7 +11383,7 @@ MonoBehaviour:
     to you. And then you wouldnt have to worry about being busy.\r                                                                                 
     I think your house is really cute too. I like what you did with the kitchen.
     Maybe I could come over and cook you something while you stream. Just leave your
-    door unlocked some time lol ;)\r\n\rSee you soon,\r\n\rMike XOXO"
+    door unlocked some time lol ;)\r\n\rSee you soon."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -45390,7 +45390,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1001 &1690831653
 PrefabInstance:
@@ -47777,6 +47777,7 @@ GameObject:
   - component: {fileID: 1766642351}
   - component: {fileID: 1766642350}
   - component: {fileID: 1766642352}
+  - component: {fileID: 1766642353}
   m_Layer: 5
   m_Name: Menu Click Blocker
   m_TagString: Untagged
@@ -47886,6 +47887,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1183.6667, y: 658.5338}
   m_EdgeRadius: 0
+--- !u!225 &1766642353
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766642348}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1767889361
 GameObject:
   m_ObjectHideFlags: 0

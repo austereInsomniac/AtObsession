@@ -105,8 +105,8 @@ public class splash_screen_manager : MonoBehaviour
             isSplashShowing = false;
 
             // show hud
-            menuBlocker.enabled = false;
-            menuCollider.enabled = false;
+            //menuBlocker.enabled = false;
+            //menuCollider.enabled = false;
 
             // enable HUD
             if (shouldHUDShow)
@@ -124,8 +124,8 @@ public class splash_screen_manager : MonoBehaviour
             isSplashShowing = false;
 
             // show hud
-            menuBlocker.enabled = false;
-            menuCollider.enabled = false;                
+            //menuBlocker.enabled = false;
+            //menuCollider.enabled = false;                
 
             // enable HUD
             if (shouldHUDShow)

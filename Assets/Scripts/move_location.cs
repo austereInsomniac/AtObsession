@@ -56,10 +56,15 @@ public class move_location : MonoBehaviour
         mainMenu = GameObject.Find("Main Menu");
         mainMenuCanvas = GameObject.Find("Main Menu Canvas");
 
+        buttons = new List<Button>();
+        buttons2 = new List<Button>();
         Button[] buttons0 = GameObject.FindObjectsOfType<Button>();
         for (int i = 0; i < buttons0.Length; i++) {
-            buttons.Add(buttons0[i]);
-            buttons2.Add(buttons0[i]);
+            if (buttons0[i] != null)
+            {
+                buttons.Add(buttons0[i]);
+                buttons2.Add(buttons0[i]);
+            }
         }
 
     }

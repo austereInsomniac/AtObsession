@@ -8,8 +8,7 @@ using UnityEngine.UIElements;
 
 public class toggle_menu : MonoBehaviour
 {
-    // V1 Riley
-    // V2 Mackenzie 10/16/2023+
+    // Mackenzie 
 
     [SerializeField] 
     private CanvasGroup menu;
@@ -44,8 +43,8 @@ public class toggle_menu : MonoBehaviour
     public void closeWithBlocker()
     {
         menu.alpha = 0;
-        menu.blocksRaycasts = false;
-        menuBlocker.enabled = false;
+        //menu.blocksRaycasts = false;
+        //menuBlocker.enabled = false;
     }
 
     public void OnMouseDown()
