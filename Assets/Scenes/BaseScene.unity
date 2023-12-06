@@ -2920,7 +2920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &91907303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4768,7 +4768,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1168949948}
         m_TargetAssemblyTypeName: toggle_menu, NewAssembly
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14795,7 +14795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &583359671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37939,7 +37939,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1168949948}
         m_TargetAssemblyTypeName: toggle_menu, NewAssembly
-        m_MethodName: closeWithBlocker
+        m_MethodName: close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

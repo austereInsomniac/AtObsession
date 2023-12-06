@@ -43,8 +43,8 @@ public class toggle_menu : MonoBehaviour
     public void closeWithBlocker()
     {
         menu.alpha = 0;
-        //menu.blocksRaycasts = false;
-        //menuBlocker.enabled = false;
+        menu.blocksRaycasts = false;
+        menuBlocker.enabled = false;
     }
 
     public void OnMouseDown()

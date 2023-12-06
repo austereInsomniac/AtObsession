@@ -620,7 +620,6 @@ public class game_state : MonoBehaviour
 
     private void notifyOnLocationChange(GameObject oldLocation, GameObject newLocation)
     {
-        Debug.Log(oldLocation.name +  newLocation.name);
         onLocationChanged(oldLocation, newLocation);
     }
 }

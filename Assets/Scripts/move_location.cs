@@ -63,7 +63,6 @@ public class move_location : MonoBehaviour
             if (buttons0[i] != null)
             {
                 buttons.Add(buttons0[i]);
-                buttons2.Add(buttons0[i]);
             }
         }
 
@@ -171,6 +170,6 @@ public class move_location : MonoBehaviour
             
         }
         isBlocked = true;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
     }
 }
