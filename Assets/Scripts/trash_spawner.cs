@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,12 +25,10 @@ public class trash_spawner : MonoBehaviour
         trashClose = new List<SpriteRenderer>();
 
         state = GetComponent<game_state>();
-        state.addOnTimeChange(addTrash);
-
         lastHour = 14;
     }
 
-    private void addTrash(int timeO, int timeN) 
+    public void addTrash(int timeO, int timeN) 
     {
         int currentHour = timeN / 60;
         if(currentHour > lastHour && lastHour != 0) 

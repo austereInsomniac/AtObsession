@@ -2132,7 +2132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.5594, y: -191.4358}
+  m_AnchoredPosition: {x: 6.5594, y: -186}
   m_SizeDelta: {x: 776.1971, y: 119.8891}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &74030044
@@ -2920,7 +2920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &91907303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4768,7 +4768,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1168949948}
         m_TargetAssemblyTypeName: toggle_menu, NewAssembly
-        m_MethodName: close
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8133,6 +8133,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e9f6d09ca8573434a9e21f3bef83ed16, type: 3}
+    - target: {fileID: 286541765081759109, guid: 52a465fe056d7134e8f29dc42f6490ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 754996159545950391, guid: 52a465fe056d7134e8f29dc42f6490ec, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13487,8 +13491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b515760ccb323c4bb361030b85a0fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkChitterRight: {fileID: 0}
-  checkMessagesRight: {fileID: 0}
+  checkChitterRight: {fileID: 568903856}
+  checkMessagesRight: {fileID: 1813217987}
   notification: {fileID: 1943289221}
 --- !u!114 &519420039
 MonoBehaviour:
@@ -13586,7 +13590,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9fada01e6e92fd143aacef8198d230bb, type: 3}
   m_Name: 
@@ -15928,7 +15932,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625788962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -22497,7 +22501,7 @@ Transform:
   m_GameObject: {fileID: 867633149}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27870,7 +27874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183.37079, y: -193.70348}
+  m_AnchoredPosition: {x: -183.37079, y: -187}
   m_SizeDelta: {x: 319.2584, y: 117.407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1053361932
@@ -30984,7 +30988,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 3.1845093, y: 3.0401852, z: 0.19999997}
   m_Center: {x: 0.07572387, y: -1.6179396, z: -0.000000009536743}
@@ -37939,7 +37943,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1168949948}
         m_TargetAssemblyTypeName: toggle_menu, NewAssembly
-        m_MethodName: closeWithBlocker
+        m_MethodName: close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -43043,7 +43047,7 @@ Transform:
   m_GameObject: {fileID: 1584229699}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -47041,7 +47045,7 @@ Transform:
   m_GameObject: {fileID: 1721477667}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59344,6 +59348,10 @@ PrefabInstance:
       value: Bubble Bath
       objectReference: {fileID: 0}
     - target: {fileID: 4751612380222075799, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751612380222075799, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 519420034}
@@ -59469,7 +59477,7 @@ PrefabInstance:
       objectReference: {fileID: 18337623}
     - target: {fileID: 8225783460111959282, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
       propertyPath: m_Name
-      value: Shower
+      value: ShowerB
       objectReference: {fileID: 0}
     - target: {fileID: 8285004932619201268, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
