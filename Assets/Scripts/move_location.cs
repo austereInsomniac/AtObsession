@@ -117,6 +117,7 @@ public class move_location : MonoBehaviour
     public void goToBedroom(){
         moveLocation(bedroom, bedroomCanvas, player.getLocation(), player.getLocationCanvas());
     }
+
     public void goToBathroom()
     {
         moveLocation(bathroom, bathroomCanvas, player.getLocation(), player.getLocationCanvas());
@@ -170,6 +171,6 @@ public class move_location : MonoBehaviour
             
         }
         isBlocked = true;
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.1f);
     }
 }
