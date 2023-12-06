@@ -556,16 +556,16 @@ public class game_state : MonoBehaviour
         notifyOnTimeChanged(time, time);
         notifyOnMoneyChange(money, money);
         notifyOnReputationChange(reputation, reputation);
-        notifyOnLocationChange(location.gameObject, location);
+        notifyOnLocationChange(location, location);
     }
 
     private void Update()
     {
-        // move to main menu
+        /*// move to main menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             locationManager.goToMainMenu();
-        }
+        }*/
     }
 
     // delegate methods
@@ -613,10 +613,12 @@ public class game_state : MonoBehaviour
     {
         onReputationChanged(oldReputation, newReputation);
     }
+
     public void addOnLocationChange(changeLocation changeLocation)
     {
         onLocationChanged += changeLocation;
     }
+
     private void notifyOnLocationChange(GameObject oldLocation, GameObject newLocation)
     {
         onLocationChanged(oldLocation, newLocation);

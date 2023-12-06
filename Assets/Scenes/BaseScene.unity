@@ -4767,8 +4767,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1168949948}
-        m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: closeWithBlocker
+        m_TargetAssemblyTypeName: toggle_menu, NewAssembly
+        m_MethodName: close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13487,6 +13487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b515760ccb323c4bb361030b85a0fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkChitterRight: {fileID: 0}
+  checkMessagesRight: {fileID: 0}
   notification: {fileID: 1943289221}
 --- !u!114 &519420039
 MonoBehaviour:
@@ -14793,7 +14795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &583359671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15118,7 +15120,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594563797}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: bfe5babd1f17711408237ebcf2184a49, type: 2}
   m_CullingMode: 0
@@ -37936,8 +37938,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1168949948}
-        m_TargetAssemblyTypeName: toggle_menu, Assembly-CSharp
-        m_MethodName: close
+        m_TargetAssemblyTypeName: toggle_menu, NewAssembly
+        m_MethodName: closeWithBlocker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
