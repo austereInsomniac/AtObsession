@@ -181,11 +181,18 @@ public class stalker_prototype_script : MonoBehaviour
     private swap_assets swap;
     private splash_screen_manager splashScreenManager;
 
+    private void Awake()
+    {
+
+        // Subscribe to the location change event from game_state
+        player = GameObject.Find("Player").GetComponent<game_state>();
+        player.addOnLocationChange(OnLocationChanged);
+    }
     // Start is called before the first frame update
     void Start()
     {
         // "Player" is the name of the Game Object with the game_state script
-        player = GameObject.Find("Player").GetComponent<game_state>();
+
         move = GetComponent<move_location>();
         stalkerEventHandler = GameObject.Find("Stalker Event Handler");
         stalkerEventHandler.SetActive(true);
@@ -276,8 +283,6 @@ public class stalker_prototype_script : MonoBehaviour
 
         playerChoices = new List<StalkerChoice>();
 
-        // Subscribe to the location change event from game_state
-        player.addOnLocationChange(OnLocationChanged);
     }
 
     private void OnLocationChanged(GameObject oldLocation, GameObject newLocation)

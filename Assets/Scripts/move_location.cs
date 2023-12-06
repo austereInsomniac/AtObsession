@@ -87,19 +87,6 @@ public class move_location : MonoBehaviour
     public GameObject getThisO() {  return thisO; }
     public GameObject getThisCanvas() { return thisCanvas; }
 
-    void Update()
-    {
-        if (Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && isBlocked == true)
-        {
-            foreach(Button button in buttons2)
-            {
-                button.interactable = true;
-            }
-            isBlocked = false;
-            buttons2.Clear();
-        }
-    }
-
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
         // move this room away
@@ -153,10 +140,23 @@ public class move_location : MonoBehaviour
             if(hit.collider == this.GetComponent<BoxCollider2D>())
             {
                 moveLocation(other, otherCanvas, thisO, thisCanvas);
+                displayStartTime = Time.timeSinceLevelLoad;
+                StartCoroutine(OnButtonClicked());
             }
-            displayStartTime = Time.timeSinceLevelLoad;
-            StartCoroutine(OnButtonClicked());
         } 
+    }
+
+    void Update()
+    {
+        if (Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && isBlocked == true)
+        {
+            foreach (Button button in buttons2)
+            {
+                button.interactable = true;
+            }
+            isBlocked = false;
+            buttons2.Clear();
+        }
     }
 
     IEnumerator OnButtonClicked()
