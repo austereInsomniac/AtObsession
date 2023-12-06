@@ -34,8 +34,8 @@ public class StalkerTest
 
         //Test Initialization to "Email" Stalker event
     
-        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("The unknown account has now sent me an email."));//Event text
-        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Bedroom"));//Event location
+        Assert.That(stalker.getStalkerEvent().getEventMessage(), Is.EqualTo("An unknown account has now sent me an email."));//Event text
+        Assert.That(stalker.getStalkerEvent().getEventLocation(), Is.EqualTo("Computer"));//Event location
         Assert.That(stalker.getStalkerEvent().getWellness(), Is.EqualTo(0));//Wellness change
         Assert.That(stalker.getStalkerEvent().getEventNumber(), Is.EqualTo(1)); //Event number
         Assert.That(stalker.getStalkerEvent().getEnding(), Is.EqualTo(1)); // Ending change

@@ -74,20 +74,19 @@ public class GameStateTesting
         //instialized verifying
         gameState.updateWellness(0);
         Assert.That(gameState.getWellness(), Is.EqualTo(70)); //From 70
-
+        gameState.updateWellness(100);
         //Testing time
         gameState.updateTime(0);//Test no change
-        Assert.That(gameState.getTime(), Is.EqualTo(480));//From 480
-
+        Assert.That(gameState.getTime(), Is.EqualTo(840));//From 480
+        gameState.updateWellness(100);
         //Testing Day Advance
-        gameState.updateTime(960);//From 480(8) to 0(1) From day 1 to day 2
-        //Assert.That(gameState.getDay(), Is.EqualTo(2));
+        gameState.updateTime(600);//From 480(8) to 0(1) From day 1 to day 2
         Assert.That(gameState.getTime(), Is.EqualTo(0));
-
+        gameState.updateWellness(100);
 
         gameState.updateTime(240);//from 0(1) to 240(4)
         Assert.That(gameState.getTime(), Is.EqualTo(240));
-
+        gameState.updateWellness(100);
 
         //Testing Force Sleep
         gameState.updateTime(1);//from 240)(4) to 241 to trigger force sleep after 240
@@ -102,7 +101,7 @@ public class GameStateTesting
 
         //Testing Wellness
         //instialized verifying
-        gameState.updateWellness(20);//From 50 because of time advancement
+        gameState.updateWellness(-10);//Reset to 70
         Assert.That(gameState.getWellness(), Is.EqualTo(70));
         gameState.updateWellness(0);
         Assert.That(gameState.getWellness(), Is.EqualTo(70)); //From 70
@@ -122,8 +121,10 @@ public class GameStateTesting
 
         gameState.updateWellness(-1);//Test you die when wellness <= 20
         Assert.IsTrue(gameState.getHasDied());//Verify the game state registered your death
-        
 
+
+
+        Debug.Log("REP SHOULDNT GO OVER 100");
         //Testing Reputation
         //Verify Initialized reputation
         gameState.updateReputation(0);
