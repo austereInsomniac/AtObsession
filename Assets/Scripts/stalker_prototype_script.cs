@@ -21,6 +21,12 @@ public class StalkerChoice
         endingChange = ending;
         reputationChange = reputation;
     } 
+
+    public string getText() {  return choiceText; }
+    public string getNotification() { return choiceNotification;
+    } public int getWellnessChange() {  return wellnessChange; }
+    public int getEndingChange() {  return endingChange; }
+    public int getReputationChange() {  return reputationChange; }
 }
 
 public class StalkerEvents
@@ -196,9 +202,9 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEventHandler.SetActive(false);
         splashScreenManager = GetComponent<splash_screen_manager>();
         checkChitter = GameObject.Find("Check_Chitter");
-        checkChitterRightButton = checkChitterRight.GetComponent<Button>();
+        //checkChitterRightButton = checkChitterRight.GetComponent<Button>();
         checkMessages = GameObject.Find("Check_Email");
-        checkMessagesRightButton = checkMessagesRight.GetComponent<Button>();
+        //checkMessagesRightButton = checkMessagesRight.GetComponent<Button>();
         currentStalkerEmail = GameObject.Find("Unread_Email_Six");
         currentStalkerDM = GameObject.Find("Unread_DM_Six");
 

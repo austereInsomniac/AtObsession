@@ -35,7 +35,7 @@ public class video_making : MonoBehaviour
 
         player.GetComponent<game_state>().updateSubscribers(newSubscribers); //Changes the game state subscribers value
         player.GetComponent<game_state>().updateMoney((int)(subscribers * .02) + Random.Range(-5, 20)); //Assigns a money variable to be 10% of the new subscriber count
-        player.GetComponent<game_state>().updateReputation(3*starCount); //Changes reputation by 3 each video
+        player.GetComponent<game_state>().updateReputation(6*starCount); //Changes reputation by 3 each video
         player.GetComponent<game_state>().updateTime((starCount * 60)); //changes time by star count(amount of half hours) * 60 minutes
         player.GetComponent<game_state>().updateWellness(-(starCount * 3)); // -3 Wellness per hour
 
