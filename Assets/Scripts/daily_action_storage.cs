@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
 // Connor + Mackenzie
 
-class ActionVariable
+public class ActionVariable
 {
     int wellness = 0;
     int time = 0;
@@ -165,6 +166,11 @@ public class daily_action_storage : MonoBehaviour
 
         // toggle any buttons at the start
         toggleButtons(0, 0);
+    }
+
+    public ActionVariable getActionVariable(string key)
+    {
+        return activities[key];
     }
 
     int RandomTimeBig()

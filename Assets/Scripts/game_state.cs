@@ -343,8 +343,10 @@ public class game_state : MonoBehaviour
         // player is hungry
         if (hungry())
         {
+
             // display icon
             hungerHUD.enabled = true;
+
 
             // enable buttons
         }
