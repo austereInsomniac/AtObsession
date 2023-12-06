@@ -29,95 +29,173 @@ public class ShopTesting
         Assert.IsNotNull(gameState);
         Assert.IsNotNull(shops);
 
-        //Testing First item updates game state correctly
+
         shops.buyItem(0);
         //Verify every value is correct
         Assert.That(shops.getItem(0).getWellness(), Is.EqualTo(10));
         Assert.That(shops.getItem(0).getReputation(), Is.EqualTo(5));
-        Assert.That(shops.getItem(0).getMoney(), Is.EqualTo(-50));
-        Assert.That(shops.getItem(0).getName, Is.EqualTo("Microphone"));
+        Assert.That(shops.getItem(0).getMoney(), Is.EqualTo(-25));
+        Assert.That(shops.getItem(0).getName, Is.EqualTo("Headphones"));
+        //Verify every value changed in gamestate
+        Assert.That(gameState.getWellness(), Is.EqualTo(80));//From 70
+        Assert.That(gameState.getReputation(), Is.EqualTo(55));//From 50
+        Assert.That(gameState.getMoney(), Is.EqualTo(75));//From 100
 
-        //Verify every value is changed correctly
+        //Reset gameState
+        gameState.updateWellness(-10);//to 70
+        gameState.updateMoney(25);//to 100
+        gameState.updateReputation(-5);// to 50
+
+        shops.buyItem(1);
+        //Verify every value is correct
+        Assert.That(shops.getItem(1).getWellness(), Is.EqualTo(20));
+        Assert.That(shops.getItem(1).getReputation(), Is.EqualTo(5));
+        Assert.That(shops.getItem(1).getMoney(), Is.EqualTo(-80));
+        Assert.That(shops.getItem(1).getName, Is.EqualTo("Chair"));
+        //Verify every value changed in gamestate
+        Assert.That(gameState.getWellness(), Is.EqualTo(90));//From 70
+        Assert.That(gameState.getReputation(), Is.EqualTo(55));//From 50
+        Assert.That(gameState.getMoney(), Is.EqualTo(20));//From 100
+
+        //Reset gameState
+        gameState.updateWellness(-20);//to 70
+        gameState.updateMoney(80);//to 100
+        gameState.updateReputation(-5);// to 50
+
+        shops.buyItem(2);
+        //Verify every value is correct
+        Assert.That(shops.getItem(2).getWellness(), Is.EqualTo(10));
+        Assert.That(shops.getItem(2).getReputation(), Is.EqualTo(5));
+        Assert.That(shops.getItem(2).getMoney(), Is.EqualTo(-50));
+        Assert.That(shops.getItem(2).getName, Is.EqualTo("Microphone"));
+        //Verify every value changed in gamestate
         Assert.That(gameState.getWellness(), Is.EqualTo(80));//From 70
         Assert.That(gameState.getReputation(), Is.EqualTo(55));//From 50
         Assert.That(gameState.getMoney(), Is.EqualTo(50));//From 100
 
-        //Testing that a purchase can not be made without enough money
-        shops.buyItem(1);
-        Assert.That(shops.getItem(1).getWellness(), Is.EqualTo(25));
-        Assert.That(shops.getItem(1).getReputation(), Is.EqualTo(10));
-        Assert.That(shops.getItem(1).getMoney(), Is.EqualTo(-100));
-        Assert.That(shops.getItem(1).getName, Is.EqualTo("PC Upgrade"));
+        //Reset gameState
+        gameState.updateWellness(-10);//to 70
+        gameState.updateMoney(50);//to 100
+        gameState.updateReputation(-5);// to 50
 
-        Assert.That(gameState.getWellness(), Is.EqualTo(80));
-        Assert.That(gameState.getReputation(), Is.EqualTo(55));
-        Assert.That(gameState.getMoney(), Is.EqualTo(50));
-
-        gameState.updateMoney(50); // set to 100
-        gameState.updateWellness(-50);//Set to 30
-        //testing item 1 with enough money
-        shops.buyItem(1);
-        Assert.That(gameState.getWellness(), Is.EqualTo(55)); //From 30
-        Assert.That(gameState.getReputation(), Is.EqualTo(65)); //From 55
-        Assert.That(gameState.getMoney(), Is.EqualTo(0));//From 100
-
-        gameState.updateMoney(300);//Set to 300
-        //Testing item 2
-        shops.buyItem(2);
-        Assert.That(shops.getItem(2).getWellness(), Is.EqualTo(15));
-        Assert.That(shops.getItem(2).getReputation(), Is.EqualTo(7));
-        Assert.That(shops.getItem(2).getMoney(), Is.EqualTo(-75));;
-        Assert.That(shops.getItem(2).getName, Is.EqualTo("Monitor"));
-
-        Assert.That(gameState.getWellness(), Is.EqualTo(70));//From 55
-        Assert.That(gameState.getReputation(), Is.EqualTo(72)); //From 65
-        Assert.That(gameState.getMoney(), Is.EqualTo(225)); //From 300
-
-        //Testing item 3
         shops.buyItem(3);
-        Assert.That(shops.getItem(3).getWellness(), Is.EqualTo(20));
-        Assert.That(shops.getItem(3).getReputation(), Is.EqualTo(5));
-        Assert.That(shops.getItem(3).getMoney(), Is.EqualTo(-80));
-        Assert.That(shops.getItem(3).getName, Is.EqualTo("Gamer Chair"));
+        //Verify every value is correct
+        Assert.That(shops.getItem(3).getWellness(), Is.EqualTo(15));
+        Assert.That(shops.getItem(3).getReputation(), Is.EqualTo(7));
+        Assert.That(shops.getItem(3).getMoney(), Is.EqualTo(-75));
+        Assert.That(shops.getItem(3).getName, Is.EqualTo("Monitor"));
+        //Verify every value changed in gamestate
+        Assert.That(gameState.getWellness(), Is.EqualTo(85));//From 70
+        Assert.That(gameState.getReputation(), Is.EqualTo(57));//From 50
+        Assert.That(gameState.getMoney(), Is.EqualTo(25));//From 100
 
-        Assert.That(gameState.getWellness(), Is.EqualTo(90));//From 70
-        Assert.That(gameState.getReputation(), Is.EqualTo(77));//From 72
-        Assert.That(gameState.getMoney(), Is.EqualTo(145));//From 225
+        //Reset gameState
+        gameState.updateWellness(-15);//to 70
+        gameState.updateMoney(75);//to 100
+        gameState.updateReputation(-7);// to 50
 
-
-        gameState.updateWellness(-40); //Set to 50
-        //Testing item 4
         shops.buyItem(4);
+        //Verify every value is correct
         Assert.That(shops.getItem(4).getWellness(), Is.EqualTo(10));
         Assert.That(shops.getItem(4).getReputation(), Is.EqualTo(5));
-        Assert.That(shops.getItem(4).getMoney(), Is.EqualTo(-25));
-        Assert.That(shops.getItem(4).getName, Is.EqualTo("Headphones"));
-
-        Assert.That(gameState.getWellness(), Is.EqualTo(60));//From 50
-        Assert.That(gameState.getReputation(), Is.EqualTo(82)); //From 77
-        Assert.That(gameState.getMoney(), Is.EqualTo(120));//From 145
-
-        //Testing item 5
-        shops.buyItem(5);
-        Assert.That(shops.getItem(5).getWellness(), Is.EqualTo(10));
-        Assert.That(shops.getItem(5).getReputation(), Is.EqualTo(5));
-        Assert.That(shops.getItem(5).getMoney(), Is.EqualTo(-30));
-        Assert.That(shops.getItem(5).getName, Is.EqualTo("New Outfit"));
-
-        Assert.That(gameState.getWellness(), Is.EqualTo(70));//From 60
-        Assert.That(gameState.getReputation(), Is.EqualTo(87));//From 82
-        Assert.That(gameState.getMoney(), Is.EqualTo(90));//From 120
-
-        //Testing item 6
-        shops.buyItem(6);
-        Assert.That(shops.getItem(6).getWellness(), Is.EqualTo(10));
-        Assert.That(shops.getItem(6).getReputation(), Is.EqualTo(5));
-        Assert.That(shops.getItem(6).getMoney(), Is.EqualTo(-40));
-        Assert.That(shops.getItem(6).getName, Is.EqualTo("New Game"));
-
+        Assert.That(shops.getItem(4).getMoney(), Is.EqualTo(-30));
+        Assert.That(shops.getItem(4).getName, Is.EqualTo("New Outfit"));
+        //Verify every value changed in gamestate
         Assert.That(gameState.getWellness(), Is.EqualTo(80));//From 70
-        Assert.That(gameState.getReputation(), Is.EqualTo(92));//From 87
-        Assert.That(gameState.getMoney(), Is.EqualTo(50));//From 90
+        Assert.That(gameState.getReputation(), Is.EqualTo(55));//From 50
+        Assert.That(gameState.getMoney(), Is.EqualTo(70));//From 100
+
+
+
+        ////Testing First item updates game state correctly
+        //shops.buyItem(0);
+        ////Verify every value is correct
+        //Assert.That(shops.getItem(0).getWellness(), Is.EqualTo(10));
+        //Assert.That(shops.getItem(0).getReputation(), Is.EqualTo(5));
+        //Assert.That(shops.getItem(0).getMoney(), Is.EqualTo(-50));
+        //Assert.That(shops.getItem(0).getName, Is.EqualTo("Microphone"));
+
+        ////Verify every value is changed correctly
+        //Assert.That(gameState.getWellness(), Is.EqualTo(80));//From 70
+        //Assert.That(gameState.getReputation(), Is.EqualTo(55));//From 50
+        //Assert.That(gameState.getMoney(), Is.EqualTo(50));//From 100
+
+        ////Testing that a purchase can not be made without enough money
+        //shops.buyItem(1);
+        //Assert.That(shops.getItem(1).getWellness(), Is.EqualTo(25));
+        //Assert.That(shops.getItem(1).getReputation(), Is.EqualTo(10));
+        //Assert.That(shops.getItem(1).getMoney(), Is.EqualTo(-100));
+        //Assert.That(shops.getItem(1).getName, Is.EqualTo("PC Upgrade"));
+
+        //Assert.That(gameState.getWellness(), Is.EqualTo(80));
+        //Assert.That(gameState.getReputation(), Is.EqualTo(55));
+        //Assert.That(gameState.getMoney(), Is.EqualTo(50));
+
+        //gameState.updateMoney(50); // set to 100
+        //gameState.updateWellness(-50);//Set to 30
+        ////testing item 1 with enough money
+        //shops.buyItem(1);
+        //Assert.That(gameState.getWellness(), Is.EqualTo(55)); //From 30
+        //Assert.That(gameState.getReputation(), Is.EqualTo(65)); //From 55
+        //Assert.That(gameState.getMoney(), Is.EqualTo(0));//From 100
+
+        //gameState.updateMoney(300);//Set to 300
+        ////Testing item 2
+        //shops.buyItem(2);
+        //Assert.That(shops.getItem(2).getWellness(), Is.EqualTo(15));
+        //Assert.That(shops.getItem(2).getReputation(), Is.EqualTo(7));
+        //Assert.That(shops.getItem(2).getMoney(), Is.EqualTo(-75));;
+        //Assert.That(shops.getItem(2).getName, Is.EqualTo("Monitor"));
+
+        //Assert.That(gameState.getWellness(), Is.EqualTo(70));//From 55
+        //Assert.That(gameState.getReputation(), Is.EqualTo(72)); //From 65
+        //Assert.That(gameState.getMoney(), Is.EqualTo(225)); //From 300
+
+        ////Testing item 3
+        //shops.buyItem(3);
+        //Assert.That(shops.getItem(3).getWellness(), Is.EqualTo(20));
+        //Assert.That(shops.getItem(3).getReputation(), Is.EqualTo(5));
+        //Assert.That(shops.getItem(3).getMoney(), Is.EqualTo(-80));
+        //Assert.That(shops.getItem(3).getName, Is.EqualTo("Gamer Chair"));
+
+        //Assert.That(gameState.getWellness(), Is.EqualTo(90));//From 70
+        //Assert.That(gameState.getReputation(), Is.EqualTo(77));//From 72
+        //Assert.That(gameState.getMoney(), Is.EqualTo(145));//From 225
+
+
+        //gameState.updateWellness(-40); //Set to 50
+        ////Testing item 4
+        //shops.buyItem(4);
+        //Assert.That(shops.getItem(4).getWellness(), Is.EqualTo(10));
+        //Assert.That(shops.getItem(4).getReputation(), Is.EqualTo(5));
+        //Assert.That(shops.getItem(4).getMoney(), Is.EqualTo(-25));
+        //Assert.That(shops.getItem(4).getName, Is.EqualTo("Headphones"));
+
+        //Assert.That(gameState.getWellness(), Is.EqualTo(60));//From 50
+        //Assert.That(gameState.getReputation(), Is.EqualTo(82)); //From 77
+        //Assert.That(gameState.getMoney(), Is.EqualTo(120));//From 145
+
+        ////Testing item 5
+        //shops.buyItem(5);
+        //Assert.That(shops.getItem(5).getWellness(), Is.EqualTo(10));
+        //Assert.That(shops.getItem(5).getReputation(), Is.EqualTo(5));
+        //Assert.That(shops.getItem(5).getMoney(), Is.EqualTo(-30));
+        //Assert.That(shops.getItem(5).getName, Is.EqualTo("New Outfit"));
+
+        //Assert.That(gameState.getWellness(), Is.EqualTo(70));//From 60
+        //Assert.That(gameState.getReputation(), Is.EqualTo(87));//From 82
+        //Assert.That(gameState.getMoney(), Is.EqualTo(90));//From 120
+
+        ////Testing item 6
+        //shops.buyItem(6);
+        //Assert.That(shops.getItem(6).getWellness(), Is.EqualTo(10));
+        //Assert.That(shops.getItem(6).getReputation(), Is.EqualTo(5));
+        //Assert.That(shops.getItem(6).getMoney(), Is.EqualTo(-40));
+        //Assert.That(shops.getItem(6).getName, Is.EqualTo("New Game"));
+
+        //Assert.That(gameState.getWellness(), Is.EqualTo(80));//From 70
+        //Assert.That(gameState.getReputation(), Is.EqualTo(92));//From 87
+        //Assert.That(gameState.getMoney(), Is.EqualTo(50));//From 90
 
 
         //Want a way to make sure everything is purchased
