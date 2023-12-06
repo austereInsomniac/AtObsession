@@ -302,6 +302,7 @@ public class stalker_prototype_script : MonoBehaviour
                 if (day != 3 && day != 5 && day != 9 && day != 13 && stalkerEvent.hasDisplayed == false)
                 {
                     DefaultPlayerChoice(stalkerEvent);
+                    pendingEvent = -1;
                 }
             }
             string location = stalkerEvent.getEventLocation();
@@ -734,6 +735,7 @@ public class stalker_prototype_script : MonoBehaviour
         player.updateReputation(choice.reputationChange);
 
         playerChoices.Add(choice);
+        stalkerEvent.hasDisplayed = false;
     }
 
     private void EndGameEvent(int eventNum)
