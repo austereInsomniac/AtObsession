@@ -15932,7 +15932,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625788962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -59348,6 +59348,10 @@ PrefabInstance:
       value: Bubble Bath
       objectReference: {fileID: 0}
     - target: {fileID: 4751612380222075799, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751612380222075799, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 519420034}
@@ -59473,7 +59477,7 @@ PrefabInstance:
       objectReference: {fileID: 18337623}
     - target: {fileID: 8225783460111959282, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
       propertyPath: m_Name
-      value: Shower
+      value: ShowerB
       objectReference: {fileID: 0}
     - target: {fileID: 8285004932619201268, guid: 626a30774cd9f3947a1b8953302e6b52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

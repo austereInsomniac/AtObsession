@@ -90,7 +90,7 @@ public class daily_action_storage : MonoBehaviour
         restaurant = GameObject.Find("Eat at a restaurant").GetComponent<Button>();
         sleep = GameObject.Find("Go to sleep").GetComponent<Button>();
         nap = GameObject.Find("Take a nap").GetComponent<Button>();
-        shower = GameObject.Find("Shower").GetComponent<Button>();
+        shower = GameObject.Find("ShowerB").GetComponent<Button>();
         bath = GameObject.Find("Bubble Bath").GetComponent<Button>();
 
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
@@ -280,27 +280,6 @@ public class daily_action_storage : MonoBehaviour
             button.interactable = false;
             buttons.Add(key, button);
         }
-
-        if(key.Equals("Do chores living room"))
-        {
-            cleanL.interactable = false;
-            buttons.Add("Do chores", cleanL);
-        }
-        else if (key.Equals("Do chores kitchen"))
-        {
-            cleanK.interactable = false;
-            buttons.Add("Do chores (1)", cleanK);
-        }
-        else if (key.Equals("Do chores bedroom"))
-        {
-            cleanBe.interactable = false;
-            buttons.Add("Do chores (2)", cleanBe);
-        }
-        else if (key.Equals("Do chores bathroom"))
-        {
-            cleanBa.interactable = false;
-            buttons.Add("Do chores (3)", cleanBa);
-        }
     }
 
     private void toggleButtons(int oldT, int newT) 
@@ -347,6 +326,7 @@ public class daily_action_storage : MonoBehaviour
         }
 
         // cleaning
+        trash.addTrash(oldT, newT);
         if (trash.isDirty("LivingRoom"))
         {
             cleanL.interactable = true;
@@ -387,85 +367,89 @@ public class daily_action_storage : MonoBehaviour
 
     public void doAction(string key)
     {
-        // re roll random stats
-        randomizeStats();
-
-        ActionVariable activity = activities[key];
-        string group = activity.getGroup();
-
-        if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group))
+        if (key != null)
         {
-            updateTimesPerDay(group);
+            // re roll random stats
+            randomizeStats();
 
-            // must be before splash screen so notifications work, and before time jump
-            // updating alternate stats
-            if (activity.getGroup() == "food")
+            ActionVariable activity = activities[key];
+            string group = activity.getGroup();
+
+            if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group))
             {
-                state.updateHunger(-4 * 60);
-            }
-            else if (activity.getGroup() == "snack")
-            {
-                state.updateHunger(-1.5f * 60);
-            }
-            else if (activity.getGroup() == "freshen")
-            {
-                state.updateShower(-4 * 60);
-            }
-            else if (activity.getGroup() == "shower")
-            {
-                state.updateShower(-12 * 60);
-            }
-            else if (activity.getGroup() == "bath")
-            {
-                state.updateShower(-16 * 60);
-            }
-            else if (activity.getGroup() == "sleep")
-            {
-                state.updateSleep(-14 * 60);
-            }
-            else if (activity.getGroup() == "nap")
-            {
-                state.updateSleep(-6 * 60);
-            }
-            else if(activity.getGroup() == "chores")
-            {
-                if (key.Equals("Do chores living room"))
+                updateTimesPerDay(group);
+
+                // must be before splash screen so notifications work, and before time jump
+                // updating alternate stats
+                if (activity.getGroup() == "food")
                 {
-                    trash.cleanTrash("LivingRoom");
+                    state.updateHunger(-4 * 60);
                 }
-                else if (key.Equals("Do chores kitchen"))
+                else if (activity.getGroup() == "snack")
                 {
-                    trash.cleanTrash("KitchenT");
+                    state.updateHunger(-1.5f * 60);
                 }
-                else if (key.Equals("Do chores bedroom"))
+                else if (activity.getGroup() == "freshen")
                 {
-                    trash.cleanTrash("BedroomT");
+                    state.updateShower(-4 * 60);
                 }
-                else 
+                else if (activity.getGroup() == "shower")
                 {
-                    trash.cleanTrash("BathroomT");
+                    state.updateShower(-12 * 60);
                 }
+                else if (activity.getGroup() == "bath")
+                {
+                    state.updateShower(-16 * 60);
+                }
+                else if (activity.getGroup() == "sleep")
+                {
+                    state.updateSleep(-14 * 60);
+                }
+                else if (activity.getGroup() == "nap")
+                {
+                    state.updateSleep(-6 * 60);
+                }
+
+                if (activity.getGroup() == "chores")
+                {
+                    if (key.Equals("Do chores living room"))
+                    {
+                        trash.cleanTrash("LivingRoom");
+                    }
+                    else if (key.Equals("Do chores kitchen"))
+                    {
+                        trash.cleanTrash("KitchenT");
+                    }
+                    else if (key.Equals("Do chores bedroom"))
+                    {
+                        trash.cleanTrash("BedroomT");
+                    }
+                    else
+                    {
+                        trash.cleanTrash("BathroomT");
+                    }
+                }
+
+                // update the splash screen before updating stats so that death scenes work
+                GetComponent<splash_screen_manager>().openSplashScreen(key);
+
+                // set the rest of the buttons in the group as off
+                if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
+                {
+                    notInteractable(key, group);
+                }
+
+                // update stats
+                state.updateWellness(activity.getWellness());
+                state.updateTime(activity.getTime());
+                state.updateMoney(activity.getMoney());
+
+                // notifications
+                notificationManager.showWellnessNotification(activity.getText(), state.getWellness());
+
+                // reset times if needed
+                resetTimesPerDay();
             }
-
-            // update the splash screen before updating stats so that death scenes work
-            GetComponent<splash_screen_manager>().openSplashScreen(key);
-
-            // set the rest of the buttons in the group as off
-            if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
-            {
-                notInteractable(key, group);
-            }
-
-            // update stats
-            state.updateWellness(activity.getWellness());
-            state.updateTime(activity.getTime());
-            state.updateMoney(activity.getMoney());
-
-            // notifications
-            notificationManager.showWellnessNotification(activity.getText(), state.getWellness());
-
-            // reset times if needed
-            resetTimesPerDay();
         }
     }
 
