@@ -42,8 +42,9 @@ public class StalkerEvents
 
     int maxOccurrences;
     int currentOccurrences;
+    public bool hasDisplayed;
 
-    public StalkerEvents(string changeMessage, string location, int changeWellness, int newEventNumber, int changeEnding, int changeRep, int maxTimes, int currentTimes)
+    public StalkerEvents(string changeMessage, string location, int changeWellness, int newEventNumber, int changeEnding, int changeRep, int maxTimes, int currentTimes, bool isDisplayed)
     {
         wellness = changeWellness;
         eventNumber = newEventNumber;
@@ -55,6 +56,7 @@ public class StalkerEvents
 
         maxOccurrences = maxTimes;
         currentOccurrences = currentTimes;
+        hasDisplayed = isDisplayed;
     }
 
     public int getWellness() { return wellness; }
@@ -65,6 +67,7 @@ public class StalkerEvents
     public string getEventLocation() {  return eventLocation; }
     public int getCurrentOccurrences() { return currentOccurrences; }
     public int getMaxOccurrences() { return maxOccurrences;}
+    public bool isDisplayed() { return hasDisplayed; }
 
     public void setEventMessage(string newEventMessage)
     {
@@ -174,11 +177,9 @@ public class stalker_prototype_script : MonoBehaviour
     TMP_Text choice2Text;
     TMP_Text choice3Text;
     private GameObject checkChitter;
-    public GameObject checkChitterRight;
-    private Button checkChitterRightButton;
+    public Button checkChitterRight;
     private GameObject checkMessages;
-    public GameObject checkMessagesRight;
-    private Button checkMessagesRightButton;
+    public Button checkMessagesRight;
     private  GameObject currentStalkerEmail;
     private GameObject currentStalkerDM;
 
@@ -189,7 +190,6 @@ public class stalker_prototype_script : MonoBehaviour
 
     private void Awake()
     {
-
         // Subscribe to the location change event from game_state
         player = GameObject.Find("Player").GetComponent<game_state>();
         player.addOnLocationChange(OnLocationChanged);
@@ -209,86 +209,83 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEventHandler.SetActive(false);
         splashScreenManager = GetComponent<splash_screen_manager>();
         checkChitter = GameObject.Find("Check_Chitter");
-        //checkChitterRightButton = checkChitterRight.GetComponent<Button>();
         checkMessages = GameObject.Find("Check_Email");
-        //checkMessagesRightButton = checkMessagesRight.GetComponent<Button>();
         currentStalkerEmail = GameObject.Find("Unread_Email_Six");
         currentStalkerDM = GameObject.Find("Unread_DM_Six");
 
         stalkerEvents = new Dictionary<string, StalkerEvents>();
 
         // Email event 0/1
-        StalkerEvents emailEvent = new StalkerEvents("An unknown account has now sent me an email.", "Computer", 0, 1, 1, -1, 4, 0);
+        StalkerEvents emailEvent = new StalkerEvents("An unknown account has now sent me an email.", "Computer", 0, 1, 1, -1, 4, 0, false);
         emailEvent.AddChoice("Reply to the email", "I should replay to the email. They may be acting a little creepy, but they are one of my fans, they aren’t going to hurt me.", -3, -1, 0);
         emailEvent.AddChoice("Ignore the email", "They keep sending me creepy DMs and now they sent me an email. I should just ignore them and not interact with them at all.", -1, 0, 0);
         emailEvent.AddChoice("Report the email", "This person keeps on sending me really creepy DMs and now they are sending me a creepy email. I need to report them before this gets any worse.", -1, 1, 5);
         stalkerEvents.Add("Email", emailEvent);
 
         // Knocking on window event 1/2
-        StalkerEvents knockingEvent = new StalkerEvents("As I’m near the window a hear a knocking on the window. Almost like someone is trying to get my attention.", "Bedroom", 10, 2, 1, 0, 1, 0);
+        StalkerEvents knockingEvent = new StalkerEvents("As I’m near the window a hear a knocking on the window. Almost like someone is trying to get my attention.", "Bedroom", 10, 2, 1, 0, 1, 0, false);
         knockingEvent.AddChoice("Grab a flashlight and go outside to investigate it", "I grab a flashlight and go outside to see if there is anything there. No one is there but I can see where someone stood to look through the window.", -3, -1, 0);
         knockingEvent.AddChoice("Scream and call the cops", "I screamed and grabbed my phone to call 911. The cops show up and tell me that no one was there but looks like something could have been there but that it wasn’t likely there had been.", -1, 0, 0);
         knockingEvent.AddChoice("Take a photo with your phone", "I pretend like I don’t hear anything as I’m on my phone. I act like I got a phone call and hold my phone up to my ear and take a recording as I walk past the window. Once I walk look at the video and see that there is someone in my window. I call the cops and they take the video as evidence and tell me they will do what they can.", -1, 1, 0);
         stalkerEvents.Add("Knocking on window", knockingEvent);
 
         // Knocking on door event 2/3
-        StalkerEvents doorEvent = new StalkerEvents("Someone is knocking on the front door", "Any", 10, 3, 1, 0, 1, 0);
+        StalkerEvents doorEvent = new StalkerEvents("Someone is knocking on the front door", "Any", 10, 3, 1, 0, 1, 0, false);
         doorEvent.AddChoice("Open the door", "I open the door but there is no one there. I shrug and close the door.", -3, -1, 0);
         doorEvent.AddChoice("Hesitate but open the door slightly", "I hesitate to open the door. Someone knocks again so I decide to open the door slightly and look outside. NO ONE is there! I slam the door closed and lock it!", -1, 0, 0);
         doorEvent.AddChoice("Look through the peephole", "I decide to look through the peep hole of the door. No one is there. It concerns me a little bit so I make sure that my door is locked.", -1, 1, 0);
         stalkerEvents.Add("Knocking on door", doorEvent);
 
         // Suspicious gift event 3/4
-        StalkerEvents giftEvent = new StalkerEvents("I got a package with no return address but on the package it says “From your biggest fan - ?????”", "Living room", 10, 4, 1, 0, 2, 0);
+        StalkerEvents giftEvent = new StalkerEvents("I got a package with no return address but on the package it says “From your biggest fan - ?????”", "Living room", 10, 4, 1, 0, 2, 0, false);
         giftEvent.AddChoice("Open the package and keep the gift", "I got a package without an address. When I opened the package there was a note and a gift. The note was a little creepy, but they say they are one of my biggest fans.", -3, -1, 0);
         giftEvent.AddChoice("Open the package but throw away the gift", "There is no return address but decided to open it to check the contents. There is a gift and a creepy note saying how much they love me and that we should be together. I decided to throw them away.", -1, 0, 0);
         giftEvent.AddChoice("Don’t open the package and throw it away", "There is no return address and even though it seems to be from a fan. To be safe I won’t be opening it and since there is not return address, I threw it away.", -1, 1, 0);
         stalkerEvents.Add("Suspicious gift", giftEvent);
 
         // Window figure event 4/5
-        StalkerEvents windowEvent = new StalkerEvents("As I’m walking by my window I see a shadow figure looking through at me!", "Kitchen", 10, 5, 1, 0, 2, 0);
+        StalkerEvents windowEvent = new StalkerEvents("As I’m walking by my window I see a shadow figure looking through at me!", "Kitchen", 10, 5, 1, 0, 2, 0, false);
         windowEvent.AddChoice("Grab a flashlight and go outside to investigate it", "I grab a flashlight and go outside to see if there is anything there. No one is there but I can see where someone stood to look through the window.", -3, -1, 0);
         windowEvent.AddChoice("Scream and call the cops", "I screamed and grabbed my phone to call 911. The cops show up and tell me that no one was there but looks like something could have been there but that it wasn’t likely there had been.", -1, 0, 0);
         windowEvent.AddChoice("Look out the window", "I kept calm and looked out the window. There was nothing there but decided to lock my door and windows and to keep my phone near me, just in case.", -1, 1, 0);
         stalkerEvents.Add("Window figure", windowEvent);
 
         // Fan game event 5/6
-        StalkerEvents fanGameEvent = new StalkerEvents("While streaming I get a message from the unknown account asking me to play the game they made.", "Bedroom", 10, 6, 1, -1, 1, 0);
+        StalkerEvents fanGameEvent = new StalkerEvents("While streaming I get a message from the unknown account asking me to play the game they made.", "Bedroom", 10, 6, 1, -1, 1, 0, false);
         fanGameEvent.AddChoice("Download and play the game", "I downloaded the game and played the game while streaming. It was a creepy game all about me and what I do in my daily life.", -3, -1, 0);
         fanGameEvent.AddChoice("Download the game but don’t play it", "I decided to download it but decided not to play it. I told them that I might play it at a later time.", -1, 0, 0);
         fanGameEvent.AddChoice("Decline to download and play the game", "I tell them that I will not be downloading the game for safety reasons and that if they wish for me to play it they should upload it to a secure gaming site.", -1, 1, 5);
         stalkerEvents.Add("Fan game", fanGameEvent);
 
         // Unknown call event 6/7
-        StalkerEvents unknownCallEvent = new StalkerEvents("My phone rings. It’s a call from an unknown number.", "Any", 10, 7, 1, 0, 3, 0);
+        StalkerEvents unknownCallEvent = new StalkerEvents("My phone rings. It’s a call from an unknown number.", "Any", 10, 7, 1, 0, 3, 0, false);
         unknownCallEvent.AddChoice("Answer the call", "I answered the phone and say “Hello?” No one responds but I can hear someone breathing heavily on the other end. I say “Hello?” again with no response. It freaks me out, so I hang up.", -3, -1, 0);
         unknownCallEvent.AddChoice("Decline the call", "I don’t know the number so decline the call. I little while later I see that I have a voicemail. I check it but all I hear is heavy breathing and then a robotic voice saying they love me and only they can be with me. It freaks me out and I delete the voicemail.", -1, 0, 0);
         unknownCallEvent.AddChoice("Let it go to voicemail", "Since I don’t know the number, I let it go to voicemail. I then listen to the voicemail that just heavy breathing and then a robotic voice saying they love me and only they can be with me. It freaks me out, but I should save the voicemail just in case and block this number.", -1, 1, 0);
         stalkerEvents.Add("Unknown call", unknownCallEvent);
 
         // Direct message event 7/8
-        StalkerEvents dmEvent = new StalkerEvents("Looks like I got a new DM from a user named NoticeMeSenpaiii", "Computer", 10, 8, 1, 0, 2, 0);
+        StalkerEvents dmEvent = new StalkerEvents("Looks like I got a new DM from a user named NoticeMeSenpaiii", "Computer", 10, 8, 1, 0, 2, 0, false);
         dmEvent.AddChoice("Report the DM", "I don’t know this person and the DM is creepy. I should report them.", -3, -1, 0);
         dmEvent.AddChoice("Reply to the DM", "I don’t know this person and they seem a little creepy, but I should respond to them since they are one of my fans.", -1, 0, 0);
         dmEvent.AddChoice("Ignore the DM", "I don’t know this person and the DM makes them seem a little creepy. I’m going to ignore them.", -1, 1, 0);
         stalkerEvents.Add("Direct message", dmEvent);
 
         // Banging on door event 8/9
-        StalkerEvents bangingEvent = new StalkerEvents("BANG, BANG, BANG! I can hear someone banging on my front door.", "Any", 10, 9, 5, 0, 1, 0);
+        StalkerEvents bangingEvent = new StalkerEvents("BANG, BANG, BANG! I can hear someone banging on my front door.", "Any", 10, 9, 5, 0, 1, 0, false);
         bangingEvent.AddChoice("Open the door", "I call out, “I’m coming, I’m coming!” When I open the door no one is there. I turn around and see a note nailed to my door saying, “This is the last time! YOU ARE MINE!” I sneer as I tear down the note and close the door.", -3, -1, 0);
         bangingEvent.AddChoice("Scream out \"I’m calling the police!\"", "Knowing that I’ve been getting threats I scream out that I’m calling the police. When they get here, they say no one was there but they found a note nailed to the door saying, \"This is the last time! YOU ARE MINE!\"", -1, 0, 0);
         bangingEvent.AddChoice("Look through the peep hole", "I checked who is at the door through the peep hole. NO ONE is there. I cautiously open the door to look outside. I see that there is a note nailed to my door saying, \"This is the last time! YOU ARE MINE!\" I decide to call the police and give them the letter for evidence.", -1, 1, 0);
         stalkerEvents.Add("Banging on door", bangingEvent);
 
         // Trapped in bathroom event 9/10
-        StalkerEvents bathroomEvent = new StalkerEvents("The bathroom door is locked!", "Any", 0, 10, 0, 0, 1, 1);
+        StalkerEvents bathroomEvent = new StalkerEvents("The bathroom door is locked!", "Any", 0, 10, 0, 0, 1, 1, false);
         stalkerEvents.Add("Trapped in bathroom", bathroomEvent);
 
         eventKeys = new List<string>(stalkerEvents.Keys);
         eventHappening = stalkerEvents["Email"];
 
         playerChoices = new List<StalkerChoice>();
-
     }
 
     private void OnLocationChanged(GameObject oldLocation, GameObject newLocation)
@@ -297,12 +294,15 @@ public class stalker_prototype_script : MonoBehaviour
         // Check if there is a pending event
         if (pendingEvent != -1)
         {
-        string eventKey = eventKeys[pendingEvent];
-        StalkerEvents stalkerEvent = stalkerEvents[eventKey];
+            string eventKey = eventKeys[pendingEvent];
+            StalkerEvents stalkerEvent = stalkerEvents[eventKey];
             int day = player.getDay();
             if (pendingEvent == 0 || pendingEvent == 7)
             {
-             
+                if (day != 3 && day != 5 && day != 9 && day != 13 && stalkerEvent.hasDisplayed == false)
+                {
+                    DefaultPlayerChoice(stalkerEvent);
+                }
             }
             string location = stalkerEvent.getEventLocation();
             if (newLocation.name == location)
@@ -328,8 +328,7 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(7);
 
-                checkChitterRightButton.onClick.AddListener(() => SetMessageActive(currentStalkerDM));
-                
+                checkChitterRight.onClick.AddListener(() => SetMessageActive(currentStalkerDM));   
             }
             else if (day == 5 && time >= 10 * 60 && eventCount == 1)
             {
@@ -337,13 +336,13 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(7);
 
-                checkChitterRightButton.onClick.AddListener(() => SetMessageActive(currentStalkerDM));
+                checkChitterRight.onClick.AddListener(() => SetMessageActive(currentStalkerDM));
                 if (time >= 15 * 60 && eventCount == 2)
                 {
                     isOn = false;
                     TriggerStalkerEvent(0);
 
-                    checkMessagesRightButton.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
+                    checkMessagesRight.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
                 }
             }
             else if (day == 7 && time >= 13 * 60 && eventCount == 3)
@@ -357,7 +356,7 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(0);
 
-                checkMessagesRightButton.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
+                checkMessages.GetComponent<Button>().onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
 
                 if (time >= 18 * 60 && eventCount == 6)
                 {
@@ -410,7 +409,7 @@ public class stalker_prototype_script : MonoBehaviour
                     isOn = false;
                     TriggerStalkerEvent(0);
 
-                    checkMessagesRightButton.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
+                    checkMessagesRight.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
 
                     if (time >= 19 * 60 && eventCount == 15)
                     {
@@ -689,6 +688,7 @@ public class stalker_prototype_script : MonoBehaviour
         choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 2 ? choices[2] : null, stalkerEvent));
 
         stalkerEventHandler.SetActive(true);
+        stalkerEvent.hasDisplayed = true;
     }
 
     public void HandlePlayerChoice(StalkerChoice choice, StalkerEvents stalkerEvent)
@@ -757,7 +757,7 @@ public class stalker_prototype_script : MonoBehaviour
 
         if (player.getEnding() < -5)
         {
-            choiceText.text = stalkerEvent.getEventMessage() + "\nBad Ending- The Stalker broke in and found you";
+            choiceText.text = "\nBad Ending- The Stalker broke in and found you";
             isEndingEvent = true;
         }
         else if (player.getEnding() > -5 && player.getEnding() < 5)
@@ -766,7 +766,7 @@ public class stalker_prototype_script : MonoBehaviour
         }
         else if (player.getEnding() > 5)
         {
-            choiceText.text = stalkerEvent.getEventMessage() + "\nGood Ending- You called 911 and the stalker was arrested";
+            choiceText.text = "\nGood Ending- You called 911 and the stalker was arrested";
             isEndingEvent = true;
         }
     }

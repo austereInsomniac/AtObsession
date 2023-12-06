@@ -13491,8 +13491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b515760ccb323c4bb361030b85a0fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkChitterRight: {fileID: 0}
-  checkMessagesRight: {fileID: 0}
+  checkChitterRight: {fileID: 568903856}
+  checkMessagesRight: {fileID: 1813217987}
   notification: {fileID: 1943289221}
 --- !u!114 &519420039
 MonoBehaviour:
