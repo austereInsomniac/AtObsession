@@ -120,7 +120,7 @@ public class daily_action_storage : MonoBehaviour
             { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "You spent $15 to work out at your local gym.") },
             { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "You went for a short walk at your local park.") },
-            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.\r\n") },
+            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
             { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "You decided to do a light warm up.") },
             { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "You chose to do a light workout.") },
             { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "You committed to an intense workout.") },
