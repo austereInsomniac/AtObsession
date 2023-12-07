@@ -63,7 +63,6 @@ public class move_location : MonoBehaviour
             if (buttons0[i] != null)
             {
                 buttons.Add(buttons0[i]);
-                buttons2.Add(buttons0[i]);
             }
         }
 
@@ -86,19 +85,6 @@ public class move_location : MonoBehaviour
 
     public GameObject getThisO() {  return thisO; }
     public GameObject getThisCanvas() { return thisCanvas; }
-
-    void Update()
-    {
-        if (Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && isBlocked == true)
-        {
-            foreach(Button button in buttons2)
-            {
-                button.interactable = true;
-            }
-            isBlocked = false;
-            buttons2.Clear();
-        }
-    }
 
     public void moveLocation(GameObject other_, GameObject otherCanvas_, GameObject this_, GameObject thisCanvas_)
     {
@@ -153,10 +139,23 @@ public class move_location : MonoBehaviour
             if(hit.collider == this.GetComponent<BoxCollider2D>())
             {
                 moveLocation(other, otherCanvas, thisO, thisCanvas);
+                displayStartTime = Time.timeSinceLevelLoad;
+                StartCoroutine(OnButtonClicked());
             }
-            displayStartTime = Time.timeSinceLevelLoad;
-            StartCoroutine(OnButtonClicked());
         } 
+    }
+
+    void Update()
+    {
+        if (Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && isBlocked == true)
+        {
+            foreach (Button button in buttons2)
+            {
+                button.interactable = true;
+            }
+            isBlocked = false;
+            buttons2.Clear();
+        }
     }
 
     IEnumerator OnButtonClicked()
@@ -171,6 +170,6 @@ public class move_location : MonoBehaviour
             
         }
         isBlocked = true;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.05f);
     }
 }
