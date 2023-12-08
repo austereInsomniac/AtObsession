@@ -94,7 +94,7 @@ public class game_state : MonoBehaviour
         day = 1;
         savedDay = 1;
 
-        time = 14*60;
+        time = 8*60;
 
         hunger = 0;
         savedHunger = 0;
@@ -456,7 +456,7 @@ public class game_state : MonoBehaviour
         ending = 0;
         day = 1;
         hasDied = false;
-        time = 14 * 60;
+        time = 8 * 60;
 
         hunger = 0;
         updateHunger(0);
@@ -485,7 +485,7 @@ public class game_state : MonoBehaviour
         ending = 0;
         day = 1;
         hasDied = false;
-        time = 14 * 60;
+        time = 8 * 60;
 
         hunger = 0;
         updateHunger(0);
