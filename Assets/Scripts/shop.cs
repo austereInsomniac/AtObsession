@@ -84,18 +84,18 @@ public class shop : MonoBehaviour
         if (GetComponent<game_state>().getMoney() >= (-1 * item.getMoney()))
         {
             item.purchaseItem(state);
-        }
 
-        if (item.hasSprite())
-        {
-            GameObject alternate = GameObject.Find(item.getName() + "2");
-            GameObject.Find(item.getName()).SetActive(false);
-            alternate.GetComponent<SpriteRenderer>().enabled = true;
-            if(alternate.GetComponent<BoxCollider2D>() != null)
+            if (item.hasSprite())
             {
-                alternate.GetComponent<BoxCollider2D>().enabled = true;
+                GameObject alternate = GameObject.Find(item.getName() + "2");
+                GameObject.Find(item.getName()).SetActive(false);
+                alternate.GetComponent<SpriteRenderer>().enabled = true;
+                if (alternate.GetComponent<BoxCollider2D>() != null)
+                {
+                    alternate.GetComponent<BoxCollider2D>().enabled = true;
+                }
             }
-        }
+        }  
     }
 
     public buyableItem getItem(int index)

@@ -46,14 +46,14 @@ public class Tutorial : MonoBehaviour
     public void computerNotInteractable()
     {
         GameObject computer = GameObject.Find("Monitor");//rename computer object
-        computer.GetComponent<BoxCollider>().enabled = false;
+        computer.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     //turns the box collider on the computer on
     public void computerInteractable()
     {
         GameObject computer = GameObject.Find("Monitor");
-        computer.GetComponent<BoxCollider>().enabled = true;
+        computer.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     //Gets the showNotification method so the notifaction will pop up

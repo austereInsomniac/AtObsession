@@ -56,6 +56,9 @@ public class game_state : MonoBehaviour
     private move_location locationManager;
     private splash_screen_manager splashScreenManager;
 
+    // filter
+    private SpriteRenderer deathFilter;
+
     // testing variables
     public bool testingVideoWellness;
 
@@ -87,6 +90,7 @@ public class game_state : MonoBehaviour
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
         locationManager = GetComponent<move_location>();
         splashScreenManager = GetComponent<splash_screen_manager>();
+        deathFilter =GameObject.Find<"Color Filter - ">
 
         wellness = 70;
         savedWellness = 70;
@@ -466,7 +470,7 @@ public class game_state : MonoBehaviour
         updateSleep(0);
 
         // game over
-        notificationManager.showNotification("You made some mistakes...");
+        notificationManager.showNotification("You didn't take proper care of yourself and died.");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
@@ -495,7 +499,9 @@ public class game_state : MonoBehaviour
         updateSleep(0);
 
         // game over
-        notificationManager.showNotification("You made some mistakes...");
+        notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
+
+        notificationManager.showNotification("\"My reputation is destroyed! I can't do this anymore!\"");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
@@ -512,7 +518,7 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money * 2, money);
 
         // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("You haven't been taking care of yourself...");
+        notificationManager.showNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"");
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
     }
@@ -529,8 +535,7 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money * 2, money);
 
         // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("You haven't been keeping up with your work...");
-        splashScreenManager.openSplashScreen("Hospital");
+        notificationManager.showNotification("\"My reputation is terrible. I need to raise it, or the next time it drops so low I'll give up!\"");
         locationManager.goToBedroom();      
     }
 
