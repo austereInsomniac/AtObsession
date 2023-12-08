@@ -44,6 +44,7 @@ public class Tutorial : MonoBehaviour
     GameObject tv;
     GameObject sleep;
     GameObject wellnessAndRep;
+    GameObject computerScreen;
 
     //Gets current day
     public int getCurrentDay()
@@ -196,7 +197,22 @@ public class Tutorial : MonoBehaviour
         key.SetActive(false);
     }
 
+    public GameObject OnMouseDownFindGameObject()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if (hit.collider == this.GetComponent<BoxCollider2D>())
+            {
+                return hit.collider.GetComponent<GameObject>();
+            }
+        }
+        return null;
+    }
 
     //public void doorsInteractable()
     //{
@@ -240,6 +256,8 @@ public class Tutorial : MonoBehaviour
 
         sleep = GameObject.Find("Go to sleep");
         sleep.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
+        computerScreen = GameObject.Find("Monitor");
 
         //wellnessAndRep = GameObject.Find("");
 
@@ -367,7 +385,7 @@ public class Tutorial : MonoBehaviour
                 count++;
             }
 
-            else if (computerRoom.transform.position == computerLocation && count == 1)
+            else if (computerScreen == OnMouseDownFindGameObject() && count == 1)
             {
                 notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up which you'll get introduced to in the next day.\n" +
                     "Hover over and click on the play button in the top left, this is your content creation.");
