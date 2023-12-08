@@ -90,7 +90,7 @@ public class game_state : MonoBehaviour
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
         locationManager = GetComponent<move_location>();
         splashScreenManager = GetComponent<splash_screen_manager>();
-        deathFilter =GameObject.Find<"Color Filter - ">
+        deathFilter =GameObject.Find("Color Filter - low wellness (1)").GetComponent<SpriteRenderer>();
 
         wellness = 70;
         savedWellness = 70;
@@ -446,36 +446,7 @@ public class game_state : MonoBehaviour
     }
 
     // methods
-    private void killPlayerWellness()
-    {
-        // reset stats
-        money = 100;
-        updateMoney(0);
-        reputation = 50;
-        updateReputation(0);
-        subscribers = 1000;
-        updateSubscribers(0);
-        wellness = 70;
-        updateWellness(0);
-        ending = 0;
-        day = 1;
-        hasDied = false;
-        time = 8 * 60;
-
-        hunger = 0;
-        updateHunger(0);
-        shower = 0;
-        updateShower(0);
-        sleep = 0;
-        updateSleep(0);
-
-        // game over
-        notificationManager.showNotification("You didn't take proper care of yourself and died.");
-        splashScreenManager.openSplashScreen("Game over");
-        locationManager.goToGameOver();
-    }
-
-    private void killPlayerReputation()
+    private IEnumerator killPlayerWellness()
     {
         // reset stats
         money = 100;
@@ -500,13 +471,52 @@ public class game_state : MonoBehaviour
 
         // game over
         notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
+        for (float i = 0.001f; i < 1; i += .001f)
+        {
+            deathFilter.color = i * color2;
+        }
+        yield return new WaitForSeconds(2);
+        notificationManager.showNotification("You didn't take proper care of yourself and died.");
+        splashScreenManager.openSplashScreen("Game over");
+        locationManager.goToGameOver();
+    }
 
+    private IEnumerator killPlayerReputation()
+    {
+        // reset stats
+        money = 100;
+        updateMoney(0);
+        reputation = 50;
+        updateReputation(0);
+        subscribers = 1000;
+        updateSubscribers(0);
+        wellness = 70;
+        updateWellness(0);
+        ending = 0;
+        day = 1;
+        hasDied = false;
+        time = 8 * 60;
+
+        hunger = 0;
+        updateHunger(0);
+        shower = 0;
+        updateShower(0);
+        sleep = 0;
+        updateSleep(0);
+
+        // game over
+        notificationManager.showNotification("\"Ugh... I can't take it anymore...\"");
+        for (float i = 0.001f; i < 1; i+=.001f)
+        {
+            deathFilter.color = i*color2;
+        }
+        yield return new WaitForSeconds(2);
         notificationManager.showNotification("\"My reputation is destroyed! I can't do this anymore!\"");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
     }
 
-    private void playHospitalScene()
+    private IEnumerator playHospitalScene()
     {
         // set stats
         hasDied = true;
@@ -518,6 +528,12 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money * 2, money);
 
         // call hospital scene to ovveride current splash screen
+        notificationManager.showNotification("\"Ugh... I feel really... really dizzy...\"");
+        for (float i = 0.001f; i < 1; i += .001f)
+        {
+            deathFilter.color = i * color2;
+        }
+        yield return new WaitForSeconds(2);
         notificationManager.showNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"");
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
