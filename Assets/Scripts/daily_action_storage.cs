@@ -117,10 +117,10 @@ public class daily_action_storage : MonoBehaviour
             { "Do chores bedroom", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
             { "Do chores bathroom", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
 
-            { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "You spent $15 to work out at your local gym.") },
-            { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.") },
+            { "Go to the gym", new ActionVariable(8, 60, -15.00, "exercise", "You spent $15 to work out at your local gym.") },
+            { "Visit friends", new ActionVariable(15, 45, 0.00, "friends", " You went out and spent some time with your friend.") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "You went for a short walk at your local park.") },
-            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
+            { "Watch TV", new ActionVariable(8, 10, 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
             { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "You decided to do a light warm up.") },
             { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "You chose to do a light workout.") },
             { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "You committed to an intense workout.") },
@@ -171,39 +171,6 @@ public class daily_action_storage : MonoBehaviour
     public ActionVariable getActionVariable(string key)
     {
         return activities[key];
-    }
-
-    int RandomTimeBig()
-    {
-        int randomNumber;
-
-        randomNumber = rand.Next(60 / 5, 120 / 5);
-        randomNumber *= 5;
-        return randomNumber;
-    }
-
-    int RandomTimeSmall()
-    {
-        int randomNumber;
-
-        randomNumber = rand.Next(30 / 5, 60 / 5);
-        randomNumber *= 5;
-        return randomNumber;
-    }
-
-    int RandomWellness()
-    {
-        int randomNumber;
-
-        randomNumber = rand.Next(1, 2);
-        if (randomNumber == 1)
-        {
-            return -15;
-        }
-        if (randomNumber == 2) {
-            return 15;
-        }
-        return 0;
     }
 
     int getMaxTimesPerDay(string key)
@@ -383,11 +350,11 @@ public class daily_action_storage : MonoBehaviour
                 // updating alternate stats
                 if (activity.getGroup() == "food")
                 {
-                    state.updateHunger(-4 * 60);
+                    state.updateHunger(-6 * 60);
                 }
                 else if (activity.getGroup() == "snack")
                 {
-                    state.updateHunger(-1.5f * 60);
+                    state.updateHunger(-2f * 60);
                 }
                 else if (activity.getGroup() == "freshen")
                 {
@@ -407,7 +374,7 @@ public class daily_action_storage : MonoBehaviour
                 }
                 else if (activity.getGroup() == "nap")
                 {
-                    state.updateSleep(-6 * 60);
+                    state.updateSleep(-8 * 60);
                 }
 
                 if (activity.getGroup() == "chores")
@@ -457,10 +424,5 @@ public class daily_action_storage : MonoBehaviour
     {
         // time based
         activities["Go to sleep"] = new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", " You had a night of restful sleep.");
-
-        // random
-        activities["Go to the gym"] = new ActionVariable(8, RandomTimeBig(), 15.00, "exercise", "You spent $15 to work out at your local gym.");
-        activities["Visit friends"] = new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.");
-        activities["Watch TVs"] = new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.");
     }
 }
