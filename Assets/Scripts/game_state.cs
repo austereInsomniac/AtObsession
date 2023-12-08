@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class game_state : MonoBehaviour
 {
@@ -32,17 +33,19 @@ public class game_state : MonoBehaviour
     // hours since you last ate. this will update the UI. if it equal to or greater than 6, you are hungry
     private float hunger;
     private float savedHunger;
-    private SpriteRenderer hungerHUD;
+    private Image hungerHUD;
+    UnityEngine.Color color;
+    UnityEngine.Color color2;
 
     // level of cleanliness
     private float shower;
     private float savedShower;
-    private SpriteRenderer showerHUD;
+    private Image showerHUD;
 
     // level of tiredness
     private float sleep;
     private float savedSleep;
-    private SpriteRenderer sleepHUD;
+    private Image sleepHUD;
 
     // current room and its canvas
     private GameObject location;
@@ -77,9 +80,9 @@ public class game_state : MonoBehaviour
     {
         location = GameObject.FindWithTag("location").gameObject;
         locationCanvas = GameObject.Find("Main Menu Canvas");
-        hungerHUD = GameObject.Find("Hunger HUD").GetComponent<SpriteRenderer>();
-        sleepHUD = GameObject.Find("Sleep HUD").GetComponent<SpriteRenderer>();
-        showerHUD = GameObject.Find("Shower HUD").GetComponent<SpriteRenderer>();
+        hungerHUD = GameObject.Find("HungerHUD").GetComponent<Image>();
+        sleepHUD = GameObject.Find("SleepHUD").GetComponent<Image>();
+        showerHUD = GameObject.FindWithTag("showerHUD").GetComponent<Image>();
 
         notificationManager = GameObject.FindGameObjectWithTag("notifications").GetComponent<notification_manager>();
         locationManager = GetComponent<move_location>();
@@ -110,6 +113,13 @@ public class game_state : MonoBehaviour
 
         hasDied = false;
         savedHasDied = false;
+
+        UnityEngine.Color color = sleepHUD.color;
+        UnityEngine.Color color2 = sleepHUD.color;
+        color.a = .3f;
+        sleepHUD.color = color;
+        hungerHUD.color = color;
+        showerHUD.color = color;
     }
 
     // getters
@@ -141,11 +151,11 @@ public class game_state : MonoBehaviour
 
     public bool getHasDied() {  return hasDied; }
 
-    public SpriteRenderer getHungerHUD() { return hungerHUD; }
+    public Image getHungerHUD() { return hungerHUD; }
 
-    public SpriteRenderer getShowerHUD() {  return showerHUD; }
+    public Image getShowerHUD() {  return showerHUD; }
 
-    public SpriteRenderer getSleepHUD() {  return sleepHUD; }
+    public Image getSleepHUD() {  return sleepHUD; }
 
     // setters 
     public void updateWellness(int w)
@@ -345,7 +355,7 @@ public class game_state : MonoBehaviour
         {
 
             // display icon
-            hungerHUD.enabled = true;
+            hungerHUD.color = color2;
 
 
             // enable buttons
@@ -353,7 +363,7 @@ public class game_state : MonoBehaviour
         else
         {
             // turn off icon
-            hungerHUD.enabled = false;
+            hungerHUD.color = color;
 
             // disable buttons
         }
@@ -380,12 +390,12 @@ public class game_state : MonoBehaviour
         if (needsShower())
         {
             // display icon
-            showerHUD.enabled = true;
+            showerHUD.color = color2;
         }
         else
         {
             // turn off icon
-            showerHUD.enabled = false;
+            showerHUD.color = color;
         }
 
         // for each time jump, lower wellness
@@ -410,11 +420,11 @@ public class game_state : MonoBehaviour
         if (tired())
         {
             // display icon
-            sleepHUD.enabled = true;
+            sleepHUD.color = color2;
         }
         else
         {
-            sleepHUD.enabled = false;
+            sleepHUD.color = color;
         }
 
         // for each time jump, lower wellness
@@ -498,7 +508,7 @@ public class game_state : MonoBehaviour
         updateWellness(0);
 
         // half money
-        money /= 2;
+        money = (int)money / 2;
         notifyOnMoneyChange(money * 2, money);
 
         // call hospital scene to ovveride current splash screen
@@ -515,7 +525,7 @@ public class game_state : MonoBehaviour
         updateReputation(0);
 
         // half money
-        money /= 2;
+        money = (int) money/2;
         notifyOnMoneyChange(money * 2, money);
 
         // call hospital scene to ovveride current splash screen

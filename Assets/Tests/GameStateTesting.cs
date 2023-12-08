@@ -50,11 +50,11 @@ public class GameStateTesting
         Assert.AreEqual(gameState.getMoney() , 100.00);
 
         Assert.IsNotNull(gameState.getHungerHUD());
-        Assert.IsFalse(gameState.getHungerHUD().isVisible);
+        Assert.IsFalse(gameState.getHungerHUD().enabled == true);
         Assert.IsNotNull(gameState.getSleepHUD());
-        Assert.IsFalse(gameState.getSleepHUD().isVisible);
+        Assert.IsFalse(gameState.getSleepHUD().enabled == true);
         Assert.IsNotNull(gameState.getShowerHUD());
-        Assert.IsFalse(gameState.getShowerHUD().isVisible);
+        Assert.IsFalse(gameState.getShowerHUD().enabled == true);
 
 
         yield return null;
@@ -183,11 +183,11 @@ public class GameStateTesting
         Assert.IsNotNull(gameState);
 
         Assert.IsNotNull(gameState.getHungerHUD());
-        Assert.IsFalse(gameState.getHungerHUD().isVisible);
+        Assert.IsFalse(gameState.getHungerHUD().enabled == true);
         Assert.IsNotNull(gameState.getSleepHUD());
-        Assert.IsFalse(gameState.getSleepHUD().isVisible);
+        Assert.IsFalse(gameState.getSleepHUD().enabled == true);
         Assert.IsNotNull(gameState.getShowerHUD());
-        Assert.IsFalse(gameState.getShowerHUD().isVisible);
+        Assert.IsFalse(gameState.getShowerHUD().enabled == true);
 
 
         gameState.updateTime(240);//Make player 1 minute away from hunger
