@@ -331,7 +331,6 @@ public class game_state : MonoBehaviour
     public void moveLocation(GameObject newLocation, GameObject newCanvas)
     {
         notifyOnLocationChange(location, newLocation);
-
         // the players current room has changed
         location = newLocation;
         locationCanvas = newCanvas;
@@ -344,8 +343,10 @@ public class game_state : MonoBehaviour
         // player is hungry
         if (hungry())
         {
+
             // display icon
             hungerHUD.enabled = true;
+
 
             // enable buttons
         }

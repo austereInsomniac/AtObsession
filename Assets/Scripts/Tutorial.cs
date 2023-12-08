@@ -1,15 +1,6 @@
-using PlasticGui.WorkspaceWindow;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEditor.VersionControl;
+
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.UI;
-using Codice.Client.BaseCommands;
-using UnityEditor;
-using UnityEditor.UI;
-using UnityEditor.Graphs;
+
 
 class TutorialPopUps
 {
@@ -286,9 +277,7 @@ public class Tutorial : MonoBehaviour
             else if (count == 1)
             {
                 
-                notificationPopUp("If you hover over the a door or an object and it has a yellow highlight around it, it is clickable.");
-
-                notificationPopUp("These highlights tell you what can and can't be clicked on.");
+                notificationPopUp("If you hover over an object and it has a yellow highlight around it, it is clickable.");
 
                 count++;
 
@@ -296,7 +285,7 @@ public class Tutorial : MonoBehaviour
 
             else if (count == 2 )
             {
-                notificationPopUp("Hover over and click on the TV. Doing so will pop up a menu where you can do a task, do that task.");
+                notificationPopUp("Hover over and click on something. This will open a menu where you can do something. Try it out.");
                 
                 //doorsInteractable(true);
                 count++;
@@ -307,13 +296,13 @@ public class Tutorial : MonoBehaviour
             {
                 //doorsInteractable(false);
 
-                notificationPopUp("Notice you feel better afterwards which means your wellness goes up.");
+                notificationPopUp("Notice you feel better afterwards. That means your wellness went up.");
 
                 //wellnessAndRepHighlightEnabled(wellnessAndRep);
 
-                notificationPopUp("This is your wellness which will rasie and lower based your time and the activities you do.");
+                notificationPopUp("The pink bar is your wellness which will raise and lower based on the activities you do.");
 
-                notificationPopUp("Now explore your apartment and find the activities you can do and which ones will raise or lower your wellness.");
+                notificationPopUp("Explore your apartment and find the activities you can do to raise and lower your wellness.");
 
                 //doorsInteractable(true);
 
@@ -327,9 +316,9 @@ public class Tutorial : MonoBehaviour
             {
                 //doorsInteractable(false);
 
-                notificationShow("This symbol in the bottom right means that you are hungry and need to eat something.");
+                notificationShow("This symbol in the bottom right means you are hungry.");
 
-                notificationPopUp("You can find things to eat in the kitchen with the oven and fridge");
+                notificationPopUp("You can find things to eat in the kitchen.");
 
                 notificationPopUp("You can also find a place to eat at the front door by going out to eat.");
 
@@ -342,9 +331,9 @@ public class Tutorial : MonoBehaviour
             {
                 //doorsInteractable(false);
                 
-                notificationShow("This symbol in the bottom right means you need to shower which you can find in the bathroom.");
+                notificationShow("This symbol in the bottom right means you need to shower. Go to the bathroom to clean up.");
 
-                notificationPopUp("You can either do the bubble bath or take a shower which are both for the bathtub.");
+                notificationPopUp("You can freshen up, take a bubble bath, or take a shower. These will all raise your cleanliness");
 
                 //doorsInteractable (true);
 
@@ -358,7 +347,7 @@ public class Tutorial : MonoBehaviour
 
                 notificationShow("This symbol in the bottom right means you're tired and need to go to sleep.");
 
-                notificationPopUp("You can go to bed by going into the bedroom and clicking the task go to sleep whichis on the bed.");
+                notificationPopUp("You can go to bed by going into the bedroom and clicking on the bed.");
 
                 //doorsInteractable(true);
                 count++;
@@ -387,7 +376,7 @@ public class Tutorial : MonoBehaviour
 
             else if (computerScreen == OnMouseDownFindGameObject() && count == 1)
             {
-                notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up which you'll get introduced to in the next day.\n" +
+                notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up.\n" +
                     "Hover over and click on the play button in the top left, this is your content creation.");
                 count++;
             }
@@ -395,28 +384,27 @@ public class Tutorial : MonoBehaviour
             else if (buttonClickedOn == true && count == 2)
             {
                 notificationPopUp("This is the video creation app, where you can create videos varying in quality." +
-                    "The higher the stars the more money and subscribers you'll get but it'll cost more time and wellness. " +
-                    "This is vise versa for lower stars.");
+                    "The higher the quality, the more money and subscribers you'll get but it'll cost more time and wellness.");
                 setButtonClickedToFalse();
                 count++;
             }
 
             else if (computerRoom.transform.position == computerLocation && count == 3)
             {
-                notificationPopUp("The streaming app allows you to stream videos");
+                notificationPopUp("The streaming app allows you to stream content.");
                 count++;
             }
 
             else if (buttonClickedOn == true && count == 4) //fix this 
             {
-                notificationPopUp("This is the streaming service");
+                notificationPopUp("This is the streaming service.");
                 setButtonClickedToFalse();
                 count++;
             }
 
             else if (count == 5)
             {
-                notificationPopUp("Now explore making videos and streaming, and click on the bed and then click on go to sleep");
+                notificationPopUp("Explore making videos and streaming.");
             }
         }
 
@@ -432,7 +420,7 @@ public class Tutorial : MonoBehaviour
 
             if (buttonClickedOn == true)
             {
-                notificationPopUp("This day you'll learn about the social media and email within the computer.");
+                notificationPopUp("Today you'll learn about the social media and email within the computer.");
                 count++;
             }
 
@@ -445,14 +433,12 @@ public class Tutorial : MonoBehaviour
             else if (buttonClickedOn == true && count == 2) // fix this
             {
                 notificationPopUp("This is the shopping app where you can buy things.");
-                notificationPopUp("Now go back to the main menu of the computer and click on the mail icon.");
                 count++;
             }
 
             else if (buttonClickedOn == true && count == 3)
             {
                 notificationPopUp("This is the email app where you can see the emails you have.");
-                notificationPopUp("Now go back to the main menu of the computer and click on the bird house icon.");
                 setButtonClickedToFalse();
             }
 
@@ -464,7 +450,7 @@ public class Tutorial : MonoBehaviour
 
             else if (count == 5)
             {
-                notificationPopUp("Now explore these new feartures and get use to them");
+                notificationPopUp("Explore these new feartures and get use to them");
             }
    
 

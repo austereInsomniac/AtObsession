@@ -36,46 +36,86 @@ public class VideoMakingTests
 
 
         Assert.That(gameState.getReputation() == 50);
-        gameState.updateReputation(-25);//Set Rep to 25
         for (int i = 1; i < 6; i++)
         {
+            int oldRep = gameState.getReputation();
             gameState.updateWellness(100);//Keep wellness at 100 to prevent death (1*)
             videoMaking.makeVideo(1);//Make a 1 star video
-            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i* 1 * 3))); //Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
+
+            if (gameState.getReputation() == 100)
+            {
+                gameState.updateReputation(-50);
+                oldRep = gameState.getReputation();
+            }
+            Debug.Log(i);
+            Debug.Log(oldRep);
+            Debug.Log((1 * 6) - (2));
+            Assert.That(gameState.getReputation(), Is.EqualTo((oldRep + (1 * 6))-(2))); //Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
         }
 
         gameState.updateReputation(-15);
 
         for (int i = 1; i < 6; i++)
         {
+            int oldRep = gameState.getReputation();
             gameState.updateWellness(100);//1*
             videoMaking.makeVideo(2);
-            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i* 2 * 3))); //Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
+
+            if (gameState.getReputation() == 100)
+            {
+                gameState.updateReputation(-50);
+                oldRep = gameState.getReputation();
+            }
+
+            Assert.That(gameState.getReputation(), Is.EqualTo((oldRep + ( 2 * 6)) - (4 ))); //Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
         }
 
         gameState.updateReputation(-30);
         for (int i = 1; i < 6; i++)
         {
+            int oldRep = gameState.getReputation();
             gameState.updateWellness(100);//1*
             videoMaking.makeVideo(3);
-            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i* 3 * 3)));//Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
+
+            if (gameState.getReputation() == 100)
+            {
+                gameState.updateReputation(-50);
+                oldRep = gameState.getReputation();
+            }
+
+            Assert.That(gameState.getReputation(), Is.EqualTo((oldRep) + ( 3 * 6) - (6 )));//Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
         }
 
         gameState.updateReputation(-45);
         for (int i = 1; i < 6; i++)
         {
+            int oldRep = gameState.getReputation();
             gameState.updateWellness(100);//1*
             videoMaking.makeVideo(4);
-            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i * 4 * 3)));//Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
+
+            if (gameState.getReputation() == 100)
+            {
+                gameState.updateReputation(-50);
+                oldRep = gameState.getReputation();
+            }
+
+            Assert.That(gameState.getReputation(), Is.EqualTo(oldRep+ ( 4 * 6) - (8)));//Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
         }
 
         gameState.updateReputation(-60);
         for (int i = 1; i < 6; i++)
         {
+            int oldRep = gameState.getReputation();
             gameState.updateWellness(100);//1*
             videoMaking.makeVideo(5);
 
-            Assert.That(gameState.getReputation(), Is.EqualTo(25 + (i * 5 * 3)));//Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
+            if (gameState.getReputation() == 100)
+            {
+                gameState.updateReputation(-50);
+                oldRep = gameState.getReputation();
+            }
+
+            Assert.That(gameState.getReputation(), Is.EqualTo(oldRep + (5 * 6) - (10)));//Test that the rep was updated to 25 + (amount of loops)*(star)*(3)
         }
         yield return null;
     }
@@ -181,7 +221,7 @@ public class VideoMakingTests
         Assert.IsNotNull(computerCanvas);
         Assert.IsNotNull(videoMaking);
 
-        for(int i =0; i < 10;i++)
+        for (int i = 0; i < 10; i++)
         {
             gameState.updateWellness(100);//1*
             double origMoney = gameState.getMoney(); //Assign previous money count
@@ -190,8 +230,8 @@ public class VideoMakingTests
 
             int subscribers = gameState.getSubscribers();
             double money = gameState.getMoney();
-            Assert.That(money, Is.AtLeast(((int)(subscribers*0.02)) - 5+origMoney));//At least (new subscribers total*0.02) - (5 + prevous money total)
-            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20+origMoney));//At most (new subscribers total*0.02) -(20+ previous money total)
+            Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));//At least (new subscribers total*0.02) - (5 + prevous money total)
+            Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));//At most (new subscribers total*0.02) -(20+ previous money total)
         }
 
         for (int i = 0; i < 10; i++)
@@ -235,13 +275,16 @@ public class VideoMakingTests
 
         for (int i = 0; i < 10; i++)
         {
+            gameState.testingVideoWellness = true;
             gameState.updateWellness(100);//1*
             double origMoney = gameState.getMoney();//Assign previous money count
-
+            int subscribers = gameState.getSubscribers();
             videoMaking.makeVideo(5);
 
-            int subscribers = gameState.getSubscribers();
+            subscribers = gameState.getSubscribers();
+
             double money = gameState.getMoney();
+
             Assert.That(money, Is.AtLeast(((int)(subscribers * 0.02)) - 5 + origMoney));//Same Formula
             Assert.That(money, Is.AtMost(((int)(subscribers * 0.02)) + 20 + origMoney));//Same Formula
         }

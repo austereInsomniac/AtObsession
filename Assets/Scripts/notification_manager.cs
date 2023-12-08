@@ -1,9 +1,6 @@
 using UnityEngine;
 using TMPro;
-using static Codice.Client.Common.WebApi.WebApiEndpoints;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-using UnityEditor;
-using UnityEngine.Device;
+
 using System.Collections.Generic;
 
 // Joe + Mackenzie

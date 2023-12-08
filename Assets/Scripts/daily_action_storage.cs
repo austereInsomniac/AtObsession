@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
 // Connor + Mackenzie
 
-class ActionVariable
+public class ActionVariable
 {
     int wellness = 0;
     int time = 0;
@@ -89,7 +90,7 @@ public class daily_action_storage : MonoBehaviour
         restaurant = GameObject.Find("Eat at a restaurant").GetComponent<Button>();
         sleep = GameObject.Find("Go to sleep").GetComponent<Button>();
         nap = GameObject.Find("Take a nap").GetComponent<Button>();
-        shower = GameObject.Find("Shower").GetComponent<Button>();
+        shower = GameObject.Find("ShowerB").GetComponent<Button>();
         bath = GameObject.Find("Bubble Bath").GetComponent<Button>();
 
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
@@ -119,7 +120,7 @@ public class daily_action_storage : MonoBehaviour
             { "Go to the gym", new ActionVariable(8, RandomTimeBig(), -15.00, "exercise", "You spent $15 to work out at your local gym.") },
             { "Visit friends", new ActionVariable(RandomWellness(), RandomTimeBig(), 0.00, "friends", " You went out and spent some time with your friend.") },
             { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "You went for a short walk at your local park.") },
-            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.\r\n") },
+            { "Watch TV", new ActionVariable(8, RandomTimeSmall(), 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
             { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "You decided to do a light warm up.") },
             { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "You chose to do a light workout.") },
             { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "You committed to an intense workout.") },
@@ -165,6 +166,11 @@ public class daily_action_storage : MonoBehaviour
 
         // toggle any buttons at the start
         toggleButtons(0, 0);
+    }
+
+    public ActionVariable getActionVariable(string key)
+    {
+        return activities[key];
     }
 
     int RandomTimeBig()
@@ -274,27 +280,6 @@ public class daily_action_storage : MonoBehaviour
             button.interactable = false;
             buttons.Add(key, button);
         }
-
-        if(key.Equals("Do chores living room"))
-        {
-            cleanL.interactable = false;
-            buttons.Add("Do chores", cleanL);
-        }
-        else if (key.Equals("Do chores kitchen"))
-        {
-            cleanK.interactable = false;
-            buttons.Add("Do chores (1)", cleanK);
-        }
-        else if (key.Equals("Do chores bedroom"))
-        {
-            cleanBe.interactable = false;
-            buttons.Add("Do chores (2)", cleanBe);
-        }
-        else if (key.Equals("Do chores bathroom"))
-        {
-            cleanBa.interactable = false;
-            buttons.Add("Do chores (3)", cleanBa);
-        }
     }
 
     private void toggleButtons(int oldT, int newT) 
@@ -341,6 +326,7 @@ public class daily_action_storage : MonoBehaviour
         }
 
         // cleaning
+        trash.addTrash(oldT, newT);
         if (trash.isDirty("LivingRoom"))
         {
             cleanL.interactable = true;
@@ -381,85 +367,89 @@ public class daily_action_storage : MonoBehaviour
 
     public void doAction(string key)
     {
-        // re roll random stats
-        randomizeStats();
-
-        ActionVariable activity = activities[key];
-        string group = activity.getGroup();
-
-        if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group))
+        if (key != null)
         {
-            updateTimesPerDay(group);
+            // re roll random stats
+            randomizeStats();
 
-            // must be before splash screen so notifications work, and before time jump
-            // updating alternate stats
-            if (activity.getGroup() == "food")
+            ActionVariable activity = activities[key];
+            string group = activity.getGroup();
+
+            if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group))
             {
-                state.updateHunger(-4 * 60);
-            }
-            else if (activity.getGroup() == "snack")
-            {
-                state.updateHunger(-1.5f * 60);
-            }
-            else if (activity.getGroup() == "freshen")
-            {
-                state.updateShower(-4 * 60);
-            }
-            else if (activity.getGroup() == "shower")
-            {
-                state.updateShower(-12 * 60);
-            }
-            else if (activity.getGroup() == "bath")
-            {
-                state.updateShower(-16 * 60);
-            }
-            else if (activity.getGroup() == "sleep")
-            {
-                state.updateSleep(-14 * 60);
-            }
-            else if (activity.getGroup() == "nap")
-            {
-                state.updateSleep(-6 * 60);
-            }
-            else if(activity.getGroup() == "chores")
-            {
-                if (key.Equals("Do chores living room"))
+                updateTimesPerDay(group);
+
+                // must be before splash screen so notifications work, and before time jump
+                // updating alternate stats
+                if (activity.getGroup() == "food")
                 {
-                    trash.cleanTrash("LivingRoom");
+                    state.updateHunger(-4 * 60);
                 }
-                else if (key.Equals("Do chores kitchen"))
+                else if (activity.getGroup() == "snack")
                 {
-                    trash.cleanTrash("KitchenT");
+                    state.updateHunger(-1.5f * 60);
                 }
-                else if (key.Equals("Do chores bedroom"))
+                else if (activity.getGroup() == "freshen")
                 {
-                    trash.cleanTrash("BedroomT");
+                    state.updateShower(-4 * 60);
                 }
-                else 
+                else if (activity.getGroup() == "shower")
                 {
-                    trash.cleanTrash("BathroomT");
+                    state.updateShower(-12 * 60);
                 }
+                else if (activity.getGroup() == "bath")
+                {
+                    state.updateShower(-16 * 60);
+                }
+                else if (activity.getGroup() == "sleep")
+                {
+                    state.updateSleep(-14 * 60);
+                }
+                else if (activity.getGroup() == "nap")
+                {
+                    state.updateSleep(-6 * 60);
+                }
+
+                if (activity.getGroup() == "chores")
+                {
+                    if (key.Equals("Do chores living room"))
+                    {
+                        trash.cleanTrash("LivingRoom");
+                    }
+                    else if (key.Equals("Do chores kitchen"))
+                    {
+                        trash.cleanTrash("KitchenT");
+                    }
+                    else if (key.Equals("Do chores bedroom"))
+                    {
+                        trash.cleanTrash("BedroomT");
+                    }
+                    else
+                    {
+                        trash.cleanTrash("BathroomT");
+                    }
+                }
+
+                // update the splash screen before updating stats so that death scenes work
+                GetComponent<splash_screen_manager>().openSplashScreen(key);
+
+                // set the rest of the buttons in the group as off
+                if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
+                {
+                    notInteractable(key, group);
+                }
+
+                // update stats
+                state.updateWellness(activity.getWellness());
+                state.updateTime(activity.getTime());
+                state.updateMoney(activity.getMoney());
+
+                // notifications
+                notificationManager.showWellnessNotification(activity.getText(), state.getWellness());
+
+                // reset times if needed
+                resetTimesPerDay();
             }
-
-            // update the splash screen before updating stats so that death scenes work
-            GetComponent<splash_screen_manager>().openSplashScreen(key);
-
-            // set the rest of the buttons in the group as off
-            if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
-            {
-                notInteractable(key, group);
-            }
-
-            // update stats
-            state.updateWellness(activity.getWellness());
-            state.updateTime(activity.getTime());
-            state.updateMoney(activity.getMoney());
-
-            // notifications
-            notificationManager.showWellnessNotification(activity.getText(), state.getWellness());
-
-            // reset times if needed
-            resetTimesPerDay();
         }
     }
 

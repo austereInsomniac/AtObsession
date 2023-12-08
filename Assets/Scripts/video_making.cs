@@ -19,9 +19,11 @@ public class video_making : MonoBehaviour
     //Does all the math for making a video using starCount as hours
     public void makeVideo(int starCount)
     {
+
         player.makeVideo();
 
         subscribers = player.getSubscribers(); //Sets the local subscribers to be the amount in the game state
+
         reputation = player.getReputation(); //Sets the local reputation to be the amount in the game state
 
         //increase subscribers by: (3*starCount + reputation)/5 % to (3*starCount + reputation+10)/5%
@@ -33,7 +35,7 @@ public class video_making : MonoBehaviour
 
         player.GetComponent<game_state>().updateSubscribers(newSubscribers); //Changes the game state subscribers value
         player.GetComponent<game_state>().updateMoney((int)(subscribers * .02) + Random.Range(-5, 20)); //Assigns a money variable to be 10% of the new subscriber count
-        player.GetComponent<game_state>().updateReputation(3*starCount); //Changes reputation by 3 each video
+        player.GetComponent<game_state>().updateReputation(6*starCount); //Changes reputation by 3 each video
         player.GetComponent<game_state>().updateTime((starCount * 60)); //changes time by star count(amount of half hours) * 60 minutes
         player.GetComponent<game_state>().updateWellness(-(starCount * 3)); // -3 Wellness per hour
 
@@ -45,14 +47,5 @@ public class video_making : MonoBehaviour
         //Debug.Log("Money: " + player.GetComponent<game_state>().getMoney());
         //Debug.Log("Reputation: " + player.GetComponent<game_state>().getReputation());
 
-    }
-    public int getSubscribers()
-    {
-        return subscribers;
-    }
-
-    public int getReputation()
-    {
-        return reputation;
     }
 }
