@@ -26,6 +26,7 @@ class TutorialPopUps
 public class Tutorial : MonoBehaviour
 {
     int count = 0;
+    int count2 = 0;
     private game_state player;
     bool buttonClickedOn;
     public notification_manager notification;
@@ -36,7 +37,9 @@ public class Tutorial : MonoBehaviour
     GameObject sleep;
     GameObject wellnessAndRep;
     GameObject computerScreen;
-
+    GameObject email;
+    GameObject socialMedia;
+    GameObject shopping;
     //Gets current day
     public int getCurrentDay()
     {
@@ -247,9 +250,17 @@ public class Tutorial : MonoBehaviour
 
         sleep = GameObject.Find("Go to sleep");
         sleep.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+        
+        email = GameObject.Find("Check_Email");
+        email.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
+        shopping = GameObject.Find("Go_Shopping");
+        shopping.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
+        socialMedia = GameObject.Find("Check_Chitter");
+        socialMedia.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 
         computerScreen = GameObject.Find("Monitor");
-
         //wellnessAndRep = GameObject.Find("");
 
     }
@@ -260,9 +271,8 @@ public class Tutorial : MonoBehaviour
         //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
         //Fix the hunry, tired, and need to shower if statements as the notification doesn't pop up at the right time
         //Add asset highlights for the UI
-        if (getCurrentDay() == 1 || (getCurrentDay() ==2 && player.getTime() < 8 * 60) )
+        if (getCurrentDay() == 1 || (getCurrentDay() == 2 && player.getTime() < 8 * 60))
         {
-            computerNotInteractable();
             if (buttonClickedOn == true && count == 0)
             {
                 //introduce player to wellness, add the arrow asset
@@ -276,20 +286,20 @@ public class Tutorial : MonoBehaviour
 
             else if (count == 1)
             {
-                
+
                 notificationPopUp("If you hover over an object and it has a yellow highlight around it, it is clickable.");
 
                 count++;
 
             }
 
-            else if (count == 2 )
+            else if (count == 2)
             {
                 notificationPopUp("Hover over and click on something. This will open a menu where you can do something. Try it out.");
-                
+
                 //doorsInteractable(true);
                 count++;
-                
+
             }
 
             else if (buttonClickedOn == true && count == 3)
@@ -302,17 +312,67 @@ public class Tutorial : MonoBehaviour
 
                 notificationPopUp("The pink bar is your wellness which will raise and lower based on the activities you do.");
 
-                notificationPopUp("Explore your apartment and find the activities you can do to raise and lower your wellness.");
+                notificationPopUp("The blue bar is your reputation which whill raise or lower based on the content you create on the computer.");
+
+                notificationPopUp("Go into the bedroom and click on the computer. The bedroom door is the second door on your right.");
 
                 //doorsInteractable(true);
 
                 setButtonClickedToFalse();
-                
+
                 count++;
-       
+
             }
 
-            else if (player.hungry() && count == 4)
+            else if (computerScreen.gameObject.name == OnMouseDownFindGameObject().name && count == 4)
+            {
+                notificationShow("This isthe computer where all of your apps are located.");
+
+                notificationPopUp("Click on the app in the top right.");
+                count++;
+            }
+
+            else if (buttonClickedOn == true && count == 5)
+            {
+                notificationPopUp("This is the video creation app, where you can create videos varying in quality." +
+                    "The higher the quality, the more money and subscribers you'll get but it'll cost more time and wellness.");
+                setButtonClickedToFalse();
+                count++;
+            }
+
+            else if (buttonClickedOn == true && count == 6) //fix this 
+            {
+                notificationPopUp("This is the streaming service.");
+                setButtonClickedToFalse();
+                count++;
+            }
+
+            else if (buttonClickedOn == true && count == 7) // fix this
+            {
+                notificationPopUp("This is the shopping app where you can buy things.");
+                count++;
+            }
+
+            else if (buttonClickedOn == true && count == 8)
+            {
+                notificationPopUp("This is the email app where you can see the emails you have.");
+                setButtonClickedToFalse();
+                count++;
+            }
+
+            else if (buttonClickedOn == true && count == 9)
+            {
+                notificationPopUp("This is chitter which you can check social media.");
+                setButtonClickedToFalse();
+                count++;
+            }
+
+            else if (count == 10)
+            {
+                notificationPopUp("Explore these new feartures and get use to them");
+            }
+
+            else if (player.hungry() && count2 == 0)
             {
                 //doorsInteractable(false);
 
@@ -324,24 +384,24 @@ public class Tutorial : MonoBehaviour
 
                 //doorsInteractable(true);
 
-                count++;
+                count2++;
             }
 
-            else if (player.needsShower() && count == 5)
+            else if (player.needsShower() && count2 == 1)
             {
                 //doorsInteractable(false);
-                
+
                 notificationShow("This symbol in the bottom right means you need to shower. Go to the bathroom to clean up.");
 
                 notificationPopUp("You can freshen up, take a bubble bath, or take a shower. These will all raise your cleanliness");
 
                 //doorsInteractable (true);
 
-                count++;
+                count2++;
 
             }
 
-            else if (player.tired() && count == 6)
+            else if (player.tired() && count2 == 2)
             {
                 //doorsInteractable(false);
 
@@ -350,110 +410,10 @@ public class Tutorial : MonoBehaviour
                 notificationPopUp("You can go to bed by going into the bedroom and clicking on the bed.");
 
                 //doorsInteractable(true);
-                count++;
-            }
-         }
- 
-        //test and fix this day
-        else if (getCurrentDay() == 2 || (getCurrentDay() == 3 && player.getTime() < 8 * 60))
-        {
-            count = 0;
-            computerInteractable();
-            shoppingNotInteractable();
-            emailNotInteractable();
-            chitterNotInteractable();
-            GameObject computerRoom = GameObject.Find("Computer");
-            Vector3 computerLocation = new Vector3(-1000, 0, 0);
-
-            if (buttonClickedOn == true)
-            {
-
-                notificationPopUp("For this day you'll be introduced to content creation\n."
-                    + "Hover over and click on the computer");
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (computerScreen == OnMouseDownFindGameObject() && count == 1)
-            {
-                notificationPopUp("The video creation is where you'll make your money so you can upgrade your set up.\n" +
-                    "Hover over and click on the play button in the top left, this is your content creation.");
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 2)
-            {
-                notificationPopUp("This is the video creation app, where you can create videos varying in quality." +
-                    "The higher the quality, the more money and subscribers you'll get but it'll cost more time and wellness.");
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (computerRoom.transform.position == computerLocation && count == 3)
-            {
-                notificationPopUp("The streaming app allows you to stream content.");
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 4) //fix this 
-            {
-                notificationPopUp("This is the streaming service.");
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (count == 5)
-            {
-                notificationPopUp("Explore making videos and streaming.");
+                count2++;
             }
         }
 
-        //test and fix this day
-        else if (getCurrentDay() == 3 || (getCurrentDay() == 4 && player.getTime() < 8 * 60))
-        {
-            count = 0;
-            shoppingInteractable();
-            emailInteractable();
-            chitterInteractable();
-            GameObject computerRoom = GameObject.Find("Computer");
-            Vector3 computerLocation = new Vector3(-1000, 0, 0);
-
-            if (buttonClickedOn == true)
-            {
-                notificationPopUp("Today you'll learn about the social media and email within the computer.");
-                count++;
-            }
-
-            else if ((computerRoom.transform.position == computerLocation && count == 1))
-            {
-                notificationPopUp("The email and social media apps is the way you can communicate and find out whats going on.");
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 2) // fix this
-            {
-                notificationPopUp("This is the shopping app where you can buy things.");
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 3)
-            {
-                notificationPopUp("This is the email app where you can see the emails you have.");
-                setButtonClickedToFalse();
-            }
-
-            else if (buttonClickedOn == true && count == 4)
-            {
-                notificationPopUp("This is chitter which you can check social media.");
-                setButtonClickedToFalse();
-            }
-
-            else if (count == 5)
-            {
-                notificationPopUp("Explore these new feartures and get use to them");
-            }
-   
-
-        }
+       
     }
 }
