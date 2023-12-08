@@ -30752,9 +30752,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1148756375}
   - component: {fileID: 1148756379}
-  - component: {fileID: 1148756378}
   - component: {fileID: 1148756377}
   - component: {fileID: 1148756376}
+  - component: {fileID: 1148756380}
   m_Layer: 0
   m_Name: Monitor2
   m_TagString: Untagged
@@ -30806,27 +30806,6 @@ MonoBehaviour:
   otherCanvas: {fileID: 1693334876}
   thisO: {fileID: 187794239}
   thisCanvas: {fileID: 440524149}
---- !u!65 &1148756378
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148756374}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 3.1845093, y: 3.0401852, z: 0.19999997}
-  m_Center: {x: 0.07572387, y: -1.6179396, z: -0.000000009536743}
 --- !u!212 &1148756379
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30879,6 +30858,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1148756380
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148756374}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0012106895, y: -1.6422985}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3766785, y: 3.0933475}
+  m_EdgeRadius: 0
 --- !u!1 &1149806992
 GameObject:
   m_ObjectHideFlags: 0
@@ -57995,9 +58019,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2146092709}
   - component: {fileID: 2146092711}
-  - component: {fileID: 2146092710}
   - component: {fileID: 2146092712}
   - component: {fileID: 2146092713}
+  - component: {fileID: 2146092714}
   m_Layer: 0
   m_Name: Monitor
   m_TagString: Untagged
@@ -58021,27 +58045,6 @@ Transform:
   - {fileID: 309552022}
   m_Father: {fileID: 1677566715}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2146092710
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146092708}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.1845093, y: 3.0401852, z: 0.19999997}
-  m_Center: {x: 0.07572387, y: -1.6179396, z: -0.000000009536743}
 --- !u!212 &2146092711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -58122,6 +58125,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0553e3f91ab3f7f4494c589bd2926f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &2146092714
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146092708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0012106895, y: -1.6422985}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3766785, y: 3.0933475}
+  m_EdgeRadius: 0
 --- !u!1001 &3162690518972387169
 PrefabInstance:
   m_ObjectHideFlags: 0
