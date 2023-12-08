@@ -8773,7 +8773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.9, y: -11.8}
+  m_AnchoredPosition: {x: 0.1, y: 70.1}
   m_SizeDelta: {x: 145.2665, y: 135.3346}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &349282365
@@ -8796,7 +8796,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5 Star Stream
+  m_text: 'HIGHEST QUALITY
+
+    TAKES 5 HOURS
+
+    MOST EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
   m_sharedMaterial: {fileID: -1500604297971902915, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
@@ -8823,14 +8827,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -10068,7 +10072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.7, y: -100.4}
+  m_AnchoredPosition: {x: 0.4, y: -18.5}
   m_SizeDelta: {x: 174.2327, y: 146.6276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438138626
@@ -10091,7 +10095,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2 Star Stream
+  m_text: 'LOW QUALITY
+
+    TAKES 2 HOURS
+
+    LOW EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
   m_sharedMaterial: {fileID: -1500604297971902915, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
@@ -10118,14 +10126,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -15607,7 +15615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.2, y: -96.5}
+  m_AnchoredPosition: {x: -0, y: -18}
   m_SizeDelta: {x: 171.7964, y: 143.1931}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615694291
@@ -15630,7 +15638,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3 Star Video
+  m_text: 'MEDIUM QUALITY
+
+    TAKES 3 HOURS
+
+    MEDIUM EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -15657,14 +15669,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -29984,7 +29996,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.4, y: -100.5}
+  m_AnchoredPosition: {x: -1, y: -17}
   m_SizeDelta: {x: 174.2327, y: 146.6276}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131156237
@@ -30007,7 +30019,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2 Star Video
+  m_text: 'LOW QUALITY
+
+    TAKES 2 HOURS
+
+    LOW EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -30034,14 +30050,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -33533,7 +33549,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.4, y: -97.3}
+  m_AnchoredPosition: {x: 0, y: -17}
   m_SizeDelta: {x: 169.0791, y: 144.0508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1271170128
@@ -33556,7 +33572,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 Star Video
+  m_text: 'POOR QUALITY
+
+    TAKES 1 HOUR
+
+    MINIMAL EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -33583,14 +33603,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -34695,7 +34715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.9, y: -97.5}
+  m_AnchoredPosition: {x: -0.4, y: -17.1}
   m_SizeDelta: {x: 169.0791, y: 144.0508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1312616465
@@ -34718,7 +34738,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 Star Stream
+  m_text: 'POOR QUALITY
+
+    TAKES 1 HOUR
+
+    MINIMAL EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
   m_sharedMaterial: {fileID: -1500604297971902915, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
@@ -34745,14 +34769,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -36297,7 +36321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21, y: -98}
+  m_AnchoredPosition: {x: -1.2, y: -16.1}
   m_SizeDelta: {x: 173.0229, y: 148.098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357681991
@@ -36320,7 +36344,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4 Star Stream
+  m_text: 'HIGH QUALITY
+
+    TAKES 4 HOURS
+
+    HIGH EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
   m_sharedMaterial: {fileID: -1500604297971902915, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
@@ -36347,14 +36375,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -39121,7 +39149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14.8, y: -97.3}
+  m_AnchoredPosition: {x: 1, y: -15}
   m_SizeDelta: {x: 171.7961, y: 141.967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1472087655
@@ -39144,7 +39172,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5 Star Video
+  m_text: 'HIGHEST QUALITY
+
+    TAKES 5 HOURS
+
+    MOST EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -39171,14 +39203,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -44193,7 +44225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.3, y: -100.9}
+  m_AnchoredPosition: {x: -0.1, y: -21.1}
   m_SizeDelta: {x: 173.0229, y: 148.098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1644148052
@@ -44216,7 +44248,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4 Star Video
+  m_text: 'HIGH QUALITY
+
+    TAKES 4 HOURS
+
+    HIGH EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
   m_sharedMaterial: {fileID: -7226875067036255561, guid: 4e48a7c7bcee38142bf031c9ce15e5f0, type: 2}
@@ -44243,14 +44279,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -47153,7 +47189,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.6, y: -97.1}
+  m_AnchoredPosition: {x: -0.7, y: -13.3}
   m_SizeDelta: {x: 171.7964, y: 143.1931}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737722227
@@ -47176,7 +47212,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3 Star Stream
+  m_text: 'MEDIUM QUALITY
+
+    TAKES 3 HOURS
+
+    MEDIUM EFFORT'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
   m_sharedMaterial: {fileID: -1500604297971902915, guid: 1acc845e2ceb3594388d7bd480554188, type: 2}
@@ -47203,14 +47243,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
