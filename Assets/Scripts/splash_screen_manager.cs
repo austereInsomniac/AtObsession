@@ -21,7 +21,7 @@ public class splash_screen_manager : MonoBehaviour
     // splash screen timers
     private bool isSplashShowing;
     private float displayTimeAnimated = .9f;
-    private float displayTimeStatic = 1.25f;
+    private float displayTimeStatic = .01f;
     private float displayStartTime;
 
     // HUD
