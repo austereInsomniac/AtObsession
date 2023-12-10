@@ -60,7 +60,7 @@ public class game_state : MonoBehaviour
     private SpriteRenderer deathFilter;
 
     // colors
-    UnityEngine.Color color;
+    UnityEngine.Color color1;
     UnityEngine.Color color2;
     UnityEngine.Color colorB1;
     UnityEngine.Color colorB2;
@@ -124,15 +124,14 @@ public class game_state : MonoBehaviour
         hasDied = false;
         savedHasDied = false;
 
-        UnityEngine.Color color = sleepHUD.color;
-        UnityEngine.Color color2 = sleepHUD.color;
-        UnityEngine.Color colorB1 = new Color(1f, 1f, 1f, 0);
-        UnityEngine.Color colorB2 = new Color(1f, 1f, 1f, 1f);
+        color1 = new Color(1, 1, 1, .3f);
+        color2 = new Color(1, 1, 1, 1f);
+        colorB1 = new Color(0, 0, 0, 0);
+        colorB2 = new Color(0, 0, 0, 1f);
 
-        color.a = .3f;
-        sleepHUD.color = color;
-        hungerHUD.color = color;
-        showerHUD.color = color;
+        sleepHUD.color = color1;
+        hungerHUD.color = color1;
+        showerHUD.color = color1;
     }
 
     // getters
@@ -366,19 +365,13 @@ public class game_state : MonoBehaviour
         // player is hungry
         if (hungry())
         {
-
             // display icon
             hungerHUD.color = color2;
-
-
-            // enable buttons
         }
         else
         {
             // turn off icon
-            hungerHUD.color = color;
-
-            // disable buttons
+            hungerHUD.color = color1;
         }
 
         // for each time jump, lower wellness
@@ -408,7 +401,7 @@ public class game_state : MonoBehaviour
         else
         {
             // turn off icon
-            showerHUD.color = color;
+            showerHUD.color = color1;
         }
 
         // for each time jump, lower wellness
@@ -437,7 +430,7 @@ public class game_state : MonoBehaviour
         }
         else
         {
-            sleepHUD.color = color;
+            sleepHUD.color = color1;
         }
 
         // for each time jump, lower wellness
@@ -455,6 +448,37 @@ public class game_state : MonoBehaviour
     }
 
     // methods
+
+    private IEnumerator playHospitalScene()
+    {
+        // set stats
+        hasDied = true;
+        wellness = 50;
+        updateWellness(0);
+
+        // half money
+        money = (int)money / 2;
+        notifyOnMoneyChange(money * 2, money);
+
+        // call hospital scene to ovveride current splash screen
+        notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
+
+        float elapsed = 0;
+        float duration = 2f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            deathFilter.color = Color.Lerp(colorB1, colorB2, elapsed / duration);
+        }
+
+        yield return new WaitForSeconds(3);
+        deathFilter.color = colorB1;
+
+        notificationManager.showNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"");
+        splashScreenManager.openSplashScreen("Hospital");
+        locationManager.goToBedroom();
+    }
+
     private IEnumerator killPlayerWellness()
     {
         // reset stats
@@ -481,12 +505,28 @@ public class game_state : MonoBehaviour
         // game over
         notificationManager.showNotification("\"Ugh... I feel really... really dizzy...\"");
 
-        deathFilter.color = Color.Lerp(color2, color, 2);
+        deathFilter.color = Color.Lerp(color2, color1, 2);
         yield return new WaitForSeconds(3);
-        deathFilter.color = color;
+        deathFilter.color = colorB1;
         notificationManager.showNotification("You didn't take proper care of yourself and died.");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
+    }
+
+    private void playInfamyScene()
+    {
+        // set stats
+        hasDied = true;
+        reputation = 50;
+        updateReputation(0);
+
+        // half money
+        money = (int) money/2;
+        notifyOnMoneyChange(money * 2, money);
+
+        // call hospital scene to ovveride current splash screen
+        notificationManager.showNotification("\"My reputation is terrible. I need to raise it, or the next time it drops so low I'll give up!\"");
+        locationManager.goToBedroom();      
     }
 
     private IEnumerator killPlayerReputation()
@@ -514,62 +554,14 @@ public class game_state : MonoBehaviour
 
         // game over
         notificationManager.showNotification("\"Ugh... I can't take it anymore...\"");
-        for (float i = 0.001f; i < 1; i+=.001f)
+        for (float i = 0.001f; i < 1; i += .001f)
         {
-            deathFilter.color = i*color2;
+            deathFilter.color = i * color2;
         }
         yield return new WaitForSeconds(2);
         notificationManager.showNotification("\"My reputation is destroyed! I can't do this anymore!\"");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
-    }
-
-    private IEnumerator playHospitalScene()
-    {
-        // set stats
-        hasDied = true;
-        wellness = 50;
-        updateWellness(0);
-
-        // half money
-        money = (int)money / 2;
-        notifyOnMoneyChange(money * 2, money);
-
-        // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
-        float elapsed = 0;
-        float duration = 2f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            deathFilter.color = Color.Lerp(colorB1, colorB2, elapsed/duration);
-        }
-        
-        Debug.Log(deathFilter.color);
-        Debug.Log(colorB1);
-        Debug.Log(colorB2);
-        yield return new WaitForSeconds(3);
-        deathFilter.color = color;
-
-        notificationManager.showNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"");
-        splashScreenManager.openSplashScreen("Hospital");
-        locationManager.goToBedroom();
-    }
-
-    private void playInfamyScene()
-    {
-        // set stats
-        hasDied = true;
-        reputation = 50;
-        updateReputation(0);
-
-        // half money
-        money = (int) money/2;
-        notifyOnMoneyChange(money * 2, money);
-
-        // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("\"My reputation is terrible. I need to raise it, or the next time it drops so low I'll give up!\"");
-        locationManager.goToBedroom();      
     }
 
     public void resetDay()
