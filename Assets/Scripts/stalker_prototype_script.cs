@@ -180,8 +180,27 @@ public class stalker_prototype_script : MonoBehaviour
     public Button checkChitterRight;
     private GameObject checkMessages;
     public Button checkMessagesRight;
-    private  GameObject currentStalkerEmail;
+    public GameObject email1;
+    public GameObject email1Preview;
+    public GameObject email1Options;
+    public GameObject email2;
+    public GameObject email2Preview;
+    public GameObject email2Options;
+    public GameObject email3;
+    public GameObject email3Preview;
+    public GameObject email3Options;
+    public GameObject dm1;
+    public GameObject dm1Preview;
+    public GameObject dm1Options;
+    public GameObject dm2;
+    public GameObject dm2Preview;
+    public GameObject dm2Options;
+    private GameObject currentStalkerEmail;
+    private GameObject currentStalkerEmailPreview;
+    private GameObject currentStalkerEmailOptions;
     private GameObject currentStalkerDM;
+    private GameObject currentStalkerDMPreview;
+    private GameObject currentStalkerDMOptions;
 
     private move_location move;
     public notification_manager notification;
@@ -210,8 +229,12 @@ public class stalker_prototype_script : MonoBehaviour
         splashScreenManager = GetComponent<splash_screen_manager>();
         checkChitter = GameObject.Find("Check_Chitter");
         checkMessages = GameObject.Find("Check_Email");
-        currentStalkerEmail = GameObject.Find("Unread_Email_Six");
-        currentStalkerDM = GameObject.Find("Unread_DM_Six");
+        currentStalkerEmail = email1;
+        currentStalkerEmailPreview = email1Preview;
+        currentStalkerEmailOptions = email1Options;
+        currentStalkerDM = dm1;
+        currentStalkerDMPreview = dm1Preview;
+        currentStalkerDMOptions = dm1Options;
 
         stalkerEvents = new Dictionary<string, StalkerEvents>();
 
@@ -306,7 +329,7 @@ public class stalker_prototype_script : MonoBehaviour
                 }
             }
             string location = stalkerEvent.getEventLocation();
-            if (newLocation.name == location)
+            if (newLocation.name == location && location != "Computer")
             {
                 // Player reached the correct location, proceed with displaying choices
                 DisplayChoices(stalkerEvent);
@@ -329,21 +352,23 @@ public class stalker_prototype_script : MonoBehaviour
                 isOn = false;
                 TriggerStalkerEvent(7);
 
-                checkChitterRight.onClick.AddListener(() => SetMessageActive(currentStalkerDM));   
+                checkChitterRight.onClick.AddListener(() => SetMessageActive(currentStalkerDM, currentStalkerDMPreview, currentStalkerDMOptions));   
             }
             else if (day == 5 && time >= 10 * 60 && eventCount == 1)
             {
-                currentStalkerDM = GameObject.Find("Unread_DM_Four");
+                currentStalkerDM = dm2;
+                currentStalkerDMPreview = dm2Preview;
+                currentStalkerDMOptions = dm2Options;
                 isOn = false;
                 TriggerStalkerEvent(7);
 
-                checkChitterRight.onClick.AddListener(() => SetMessageActive(currentStalkerDM));
+                checkChitterRight.onClick.AddListener(() => SetMessageActive(currentStalkerDM, currentStalkerDMPreview, currentStalkerDMOptions));
                 if (time >= 15 * 60 && eventCount == 2)
                 {
                     isOn = false;
                     TriggerStalkerEvent(0);
 
-                    checkMessagesRight.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
+                    checkMessagesRight.onClick.AddListener(() => SetMessageActive(currentStalkerEmail, currentStalkerEmailPreview, currentStalkerEmailOptions));
                 }
             }
             else if (day == 7 && time >= 13 * 60 && eventCount == 3)
@@ -353,11 +378,13 @@ public class stalker_prototype_script : MonoBehaviour
             }
             else if (day == 9 && time >= 13 * 60 && eventCount == 5)
             {
-                currentStalkerEmail = GameObject.Find("Unread_Email_Three");
+                currentStalkerEmail = email2;
+                currentStalkerEmailPreview = email2Preview;
+                currentStalkerEmailOptions = email2Options;
                 isOn = false;
                 TriggerStalkerEvent(0);
 
-                checkMessages.GetComponent<Button>().onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
+                checkMessages.GetComponent<Button>().onClick.AddListener(() => SetMessageActive(currentStalkerEmail, currentStalkerEmailPreview, currentStalkerEmailOptions));
 
                 if (time >= 18 * 60 && eventCount == 6)
                 {
@@ -406,11 +433,13 @@ public class stalker_prototype_script : MonoBehaviour
 
                 if (time >= 16 * 60 && eventCount == 14)
                 {
-                    currentStalkerEmail = GameObject.Find("Unread_Email_Four");
+                    currentStalkerEmail = email3;
+                    currentStalkerEmailPreview = email3Preview;
+                    currentStalkerEmailOptions = email3Options;
                     isOn = false;
                     TriggerStalkerEvent(0);
 
-                    checkMessagesRight.onClick.AddListener(() => SetMessageActive(currentStalkerEmail));
+                    checkMessagesRight.onClick.AddListener(() => SetMessageActive(currentStalkerEmail, currentStalkerEmailPreview, currentStalkerEmailOptions));
 
                     if (time >= 19 * 60 && eventCount == 15)
                     {
@@ -434,6 +463,36 @@ public class stalker_prototype_script : MonoBehaviour
         if (isEndingEvent && Input.anyKeyDown)
         {
             EndGameEvent(StalkerEvents.finalEventNumber);
+        }
+        if (currentStalkerEmail.activeSelf || currentStalkerDM.activeSelf)
+        {
+            if (dm1.activeSelf && day < 3)
+            {
+                dm1.SetActive(false);
+                dm1Preview.SetActive(false);
+                dm1Options.SetActive(false);
+            }
+            if ((email1.activeSelf || dm2.activeSelf) && day < 5)
+            {
+                email1.SetActive(false);
+                email1Preview.SetActive(false);
+                email1Options.SetActive(false);
+                dm2.SetActive(false);
+                dm2Preview.SetActive(false);
+                dm2Options.SetActive(false);
+            }
+            if (email2.activeSelf && day < 9)
+            {
+                email2.SetActive(false);
+                email2Preview.SetActive(false);
+                email2Options.SetActive(false);
+            }
+            if (email3.activeSelf && day < 13)
+            {
+                email3.SetActive(false);
+                email3Preview.SetActive(false);
+                email3Options.SetActive(false);
+            }
         }
     }
 
@@ -460,9 +519,13 @@ public class stalker_prototype_script : MonoBehaviour
         }
     }
 
-    private void SetMessageActive(GameObject message)
+    private void SetMessageActive(GameObject message, GameObject messagePreview, GameObject messageOptions)
     {
+
         message.SetActive(true);
+        messagePreview.SetActive(true);
+        messageOptions.SetActive(true);
+        
     }
 
     public void TriggerStalkerEvent(int numEvent)

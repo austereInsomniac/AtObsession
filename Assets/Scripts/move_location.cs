@@ -169,11 +169,11 @@ public class move_location : MonoBehaviour
             }
             buttons2.Clear();
 
-            foreach (BoxCollider2D coll in colliders2)
+            /*foreach (BoxCollider2D coll in colliders2)
             {
                 coll.enabled = true;
             }
-            buttons2.Clear();
+            buttons2.Clear();*/
 
             isBlocked = false;
         }
@@ -191,17 +191,7 @@ public class move_location : MonoBehaviour
             
         }
 
-        foreach (BoxCollider2D coll in colliders)
-        {
-            if (coll.enabled == true)
-            {
-                colliders2.Add(coll);
-                coll.enabled = false;
-            }
-
-        }
-
         isBlocked = true;
-        yield return new WaitForSeconds(.02f);
+        yield return new WaitForSeconds(.00001f);
     }
 }
