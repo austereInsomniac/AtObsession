@@ -169,17 +169,11 @@ public class move_location : MonoBehaviour
             }
             buttons2.Clear();
 
-            /*foreach (BoxCollider2D coll in colliders2)
-            {
-                coll.enabled = true;
-            }
-            buttons2.Clear();*/
-
             isBlocked = false;
         }
     }
 
-    IEnumerator OnButtonClicked()
+    public IEnumerator OnButtonClicked()
     {
         foreach (Button button in buttons)
         {

@@ -175,26 +175,31 @@ public class game_state : MonoBehaviour
         wellness += w;
 
         if (wellness > 100)
-        { 
+        {
+            notifyOnWellnessChanged(wellness - w, 100);
             wellness = 100;
-            notifyOnWellnessChanged(wellness - w, wellness);
         }
         else if(wellness <= 20)
         {
-            if (!hasDied)
+            if(wellness <= 0)
             {
-                notifyOnWellnessChanged(wellness - w, wellness);
-                StartCoroutine(playHospitalScene());
-            }
-            else if (wellness <= 0)
-            {
+                notifyOnWellnessChanged(wellness - w, 0);
                 wellness = 0;
-                notifyOnWellnessChanged(wellness - w, wellness);
 
                 if (hasDied)
                 {
                     StartCoroutine(killPlayerWellness());
                 }
+                else
+                {
+                    notifyOnWellnessChanged(wellness - w, wellness);
+                    StartCoroutine(playHospitalScene());
+                }
+            }
+            else if (!hasDied)
+            {
+                notifyOnWellnessChanged(wellness - w, wellness);
+                StartCoroutine(playHospitalScene());
             }
             else
             {
@@ -451,8 +456,27 @@ public class game_state : MonoBehaviour
 
     private IEnumerator playHospitalScene()
     {
+        // call hospital scene to ovveride current splash screen
+        StartCoroutine(notificationManager.holdNotification("\"Ugh... I feel really dizzy...\"", 3));
+        StartCoroutine(locationManager.OnButtonClicked());
+
+        float elapsed = Time.deltaTime;
+        float duration = Time.deltaTime + 2f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            deathFilter.color = (elapsed / duration) * colorB2;
+        }
+
+        yield return new WaitForSeconds(3);
+
+        deathFilter.color = colorB1;
+
+        StartCoroutine(notificationManager.holdNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"", 3));
+        StartCoroutine(splashScreenManager.holdSplashScreen("Hospital", 3));
+        locationManager.goToBedroom();
+
         // set stats
-        hasDied = true;
         wellness = 50;
         updateWellness(0);
 
@@ -460,27 +484,32 @@ public class game_state : MonoBehaviour
         money = (int)money / 2;
         notifyOnMoneyChange(money * 2, money);
 
-        // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
-
-        float elapsed = 0;
-        float duration = 2f;
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            deathFilter.color = Color.Lerp(colorB1, colorB2, elapsed / duration);
-        }
-
-        yield return new WaitForSeconds(3);
-        deathFilter.color = colorB1;
-
-        notificationManager.showNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"");
-        splashScreenManager.openSplashScreen("Hospital");
-        locationManager.goToBedroom();
+        hasDied = true;
     }
 
     private IEnumerator killPlayerWellness()
     {
+        // game over
+        StartCoroutine(notificationManager.holdNotification("\"Ugh... I feel really... really dizzy...\"", 3));
+        StartCoroutine(locationManager.OnButtonClicked());
+        
+        float elapsed = Time.deltaTime;
+        float duration = Time.deltaTime + 2f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            deathFilter.color = (elapsed / duration) * colorB2;
+        }
+
+        yield return new WaitForSeconds(3);
+
+        deathFilter.color = colorB1;
+        StartCoroutine(notificationManager.holdNotification("You didn't take proper care of yourself and died.", 3));
+        StartCoroutine(splashScreenManager.holdSplashScreen("Game over", 3));
+        locationManager.goToGameOver();
+
+        hasDied = false;
+
         // reset stats
         money = 100;
         updateMoney(0);
@@ -492,45 +521,54 @@ public class game_state : MonoBehaviour
         updateWellness(0);
         ending = 0;
         day = 1;
-        hasDied = false;
         time = 8 * 60;
-
         hunger = 0;
         updateHunger(0);
         shower = 0;
         updateShower(0);
         sleep = 0;
         updateSleep(0);
-
-        // game over
-        notificationManager.showNotification("\"Ugh... I feel really... really dizzy...\"");
-
-        deathFilter.color = Color.Lerp(color2, color1, 2);
-        yield return new WaitForSeconds(3);
-        deathFilter.color = colorB1;
-        notificationManager.showNotification("You didn't take proper care of yourself and died.");
-        splashScreenManager.openSplashScreen("Game over");
-        locationManager.goToGameOver();
     }
 
     private void playInfamyScene()
     {
+        // call notif
+        notificationManager.showNotification("\"My reputation is terrible. I need to raise it, or the next time it drops so low I'll give up!\"");
+        locationManager.goToBedroom();
+
         // set stats
         hasDied = true;
         reputation = 50;
         updateReputation(0);
 
         // half money
-        money = (int) money/2;
+        money = (int)money / 2;
         notifyOnMoneyChange(money * 2, money);
-
-        // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("\"My reputation is terrible. I need to raise it, or the next time it drops so low I'll give up!\"");
-        locationManager.goToBedroom();      
     }
 
     private IEnumerator killPlayerReputation()
     {
+        // game over
+        StartCoroutine(notificationManager.holdNotification("\"Ugh... I can't take it anymore...\"", 3));
+        StartCoroutine(locationManager.OnButtonClicked());
+
+        float elapsed = Time.deltaTime;
+        float duration = Time.deltaTime + 2f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            deathFilter.color = (elapsed / duration) * colorB2;
+        }
+
+        yield return new WaitForSeconds(3);
+
+        deathFilter.color = colorB1;
+        StartCoroutine(notificationManager.holdNotification("\"My reputation is destroyed! I can't do this anymore!\"", 3));
+        StartCoroutine(splashScreenManager.holdSplashScreen("Game over", 3));
+        locationManager.goToGameOver();
+
+        hasDied = false;
+
         // reset stats
         money = 100;
         updateMoney(0);
@@ -542,26 +580,13 @@ public class game_state : MonoBehaviour
         updateWellness(0);
         ending = 0;
         day = 1;
-        hasDied = false;
         time = 8 * 60;
-
         hunger = 0;
         updateHunger(0);
         shower = 0;
         updateShower(0);
         sleep = 0;
         updateSleep(0);
-
-        // game over
-        notificationManager.showNotification("\"Ugh... I can't take it anymore...\"");
-        for (float i = 0.001f; i < 1; i += .001f)
-        {
-            deathFilter.color = i * color2;
-        }
-        yield return new WaitForSeconds(2);
-        notificationManager.showNotification("\"My reputation is destroyed! I can't do this anymore!\"");
-        splashScreenManager.openSplashScreen("Game over");
-        locationManager.goToGameOver();
     }
 
     public void resetDay()
