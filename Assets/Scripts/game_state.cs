@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,8 +35,7 @@ public class game_state : MonoBehaviour
     private float hunger;
     private float savedHunger;
     private Image hungerHUD;
-    UnityEngine.Color color;
-    UnityEngine.Color color2;
+    
 
     // level of cleanliness
     private float shower;
@@ -58,6 +58,12 @@ public class game_state : MonoBehaviour
 
     // filter
     private SpriteRenderer deathFilter;
+
+    // colors
+    UnityEngine.Color color;
+    UnityEngine.Color color2;
+    UnityEngine.Color colorB1;
+    UnityEngine.Color colorB2;
 
     // testing variables
     public bool testingVideoWellness;
@@ -120,6 +126,9 @@ public class game_state : MonoBehaviour
 
         UnityEngine.Color color = sleepHUD.color;
         UnityEngine.Color color2 = sleepHUD.color;
+        UnityEngine.Color colorB1 = new Color(1f, 1f, 1f, 0);
+        UnityEngine.Color colorB2 = new Color(1f, 1f, 1f, 1f);
+
         color.a = .3f;
         sleepHUD.color = color;
         hungerHUD.color = color;
@@ -176,7 +185,7 @@ public class game_state : MonoBehaviour
             if (!hasDied)
             {
                 notifyOnWellnessChanged(wellness - w, wellness);
-                playHospitalScene();
+                StartCoroutine(playHospitalScene());
             }
             else if (wellness <= 0)
             {
@@ -185,7 +194,7 @@ public class game_state : MonoBehaviour
 
                 if (hasDied)
                 {
-                    killPlayerWellness();
+                    StartCoroutine(killPlayerWellness());
                 }
             }
             else
@@ -296,7 +305,7 @@ public class game_state : MonoBehaviour
 
                     if (hasDied)
                     {
-                        killPlayerReputation();
+                        StartCoroutine(killPlayerReputation());
                     }
                 }
                 else
@@ -470,12 +479,11 @@ public class game_state : MonoBehaviour
         updateSleep(0);
 
         // game over
-        notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
-        for (float i = 0.001f; i < 1; i += .001f)
-        {
-            deathFilter.color = i * color2;
-        }
-        yield return new WaitForSeconds(2);
+        notificationManager.showNotification("\"Ugh... I feel really... really dizzy...\"");
+
+        deathFilter.color = Color.Lerp(color2, color, 2);
+        yield return new WaitForSeconds(3);
+        deathFilter.color = color;
         notificationManager.showNotification("You didn't take proper care of yourself and died.");
         splashScreenManager.openSplashScreen("Game over");
         locationManager.goToGameOver();
@@ -528,12 +536,21 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money * 2, money);
 
         // call hospital scene to ovveride current splash screen
-        notificationManager.showNotification("\"Ugh... I feel really... really dizzy...\"");
-        for (float i = 0.001f; i < 1; i += .001f)
+        notificationManager.showNotification("\"Ugh... I feel really dizzy...\"");
+        float elapsed = 0;
+        float duration = 2f;
+        while (elapsed < duration)
         {
-            deathFilter.color = i * color2;
+            elapsed += Time.deltaTime;
+            deathFilter.color = Color.Lerp(colorB1, colorB2, elapsed/duration);
         }
-        yield return new WaitForSeconds(2);
+        
+        Debug.Log(deathFilter.color);
+        Debug.Log(colorB1);
+        Debug.Log(colorB2);
+        yield return new WaitForSeconds(3);
+        deathFilter.color = color;
+
         notificationManager.showNotification("Sigh \"You really need to take better care of yourself. \nNext time we won't be able to help you\"");
         splashScreenManager.openSplashScreen("Hospital");
         locationManager.goToBedroom();
