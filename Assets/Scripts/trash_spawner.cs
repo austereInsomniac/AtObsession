@@ -4,28 +4,28 @@ using UnityEngine;
 public class trash_spawner : MonoBehaviour
 {
     List<SpriteRenderer> trash;
-    List<SpriteRenderer> trashOpen;
-    List<SpriteRenderer> trashClose;
+    List<SpriteRenderer> trashHidden;
+    List<SpriteRenderer> trashVisible;
 
     game_state state;
     private int lastHour;
 
     void Awake()
     {
+        trash = new List<SpriteRenderer>();
+        trashHidden = new List<SpriteRenderer>();
+        trashVisible = new List<SpriteRenderer>();
+
         // grab all the trash
         GameObject[] trashItems = GameObject.FindGameObjectsWithTag("trash");
-        trash = new List<SpriteRenderer>();
-
         for (int i = 0; i < trashItems.Length; i++)
         {
             trash.Add(trashItems[i].GetComponent<SpriteRenderer>());
+            trashHidden.Add(trashItems[i].GetComponent<SpriteRenderer>());
         }
 
-        trashOpen = trash;
-        trashClose = new List<SpriteRenderer>();
-
         state = GetComponent<game_state>();
-        lastHour = 14;
+        lastHour = 8;
     }
 
     public void addTrash(int timeO, int timeN) 
@@ -35,7 +35,7 @@ public class trash_spawner : MonoBehaviour
         {
             for (int i = 0; i < currentHour % lastHour; i++)
                 {
-                    if(trashOpen.Count > 0) 
+                    if(trashHidden.Count > 0) 
                     {
                         selectTrash().enabled = true;
                     }  
@@ -47,38 +47,37 @@ public class trash_spawner : MonoBehaviour
     // select a random available trash
     private SpriteRenderer selectTrash()
     {
-        int rand = (int)(Random.value * (trashOpen.Count - 1));
-        SpriteRenderer temp = trashOpen[rand];
+        int rand = (int)(Random.value * (trashHidden.Count - 1));
+        SpriteRenderer temp = trashHidden[rand];
 
-        trashClose.Add(trashOpen[rand]);
-        trashOpen.Remove(trashOpen[rand]);
+        trashVisible.Add(trashHidden[rand]);
+        trashHidden.Remove(trashHidden[rand]);
         return temp;
-
     }
 
     public void cleanTrash(string room)
     {
-        for(int i = 0; i < trash.Count; i++)
+        state.updateTime(0);
+        for(int i = 0; i < trashVisible.Count; i++)
         {
-            if (trash[i].name.Equals(room))
+            if (trashVisible[i].name.Equals(room))
             {
-                trashOpen.Add(trash[i]);
-                trashClose.Remove(trash[i]);
-                trash[i].enabled = false;
+                trashVisible[i].enabled = false;
+                trashHidden.Add(trashVisible[i]);
+                trashVisible.Remove(trashVisible[i]);
             }
         }
     }
 
     public bool isDirty(string room)
     {
-        for (int i = 0; i < trashClose.Count; i++)
+        for (int i = 0; i < trashVisible.Count; i++)
         {
-            if (trashClose[i].name.Equals(room))
+            if (trashVisible[i].name.Equals(room))
             {
                 return true;
             }
         }
-
         return false;
     }
 }

@@ -112,32 +112,32 @@ public class daily_action_storage : MonoBehaviour
             // wellness, time, money
 
             // living room
-            { "Do chores living room", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
-            { "Do chores kitchen", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
-            { "Do chores bedroom", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
-            { "Do chores bathroom", new ActionVariable(10, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores living room", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores kitchen", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores bedroom", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores bathroom", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
 
-            { "Go to the gym", new ActionVariable(8, 60, -15.00, "exercise", "You spent $15 to work out at your local gym.") },
-            { "Visit friends", new ActionVariable(15, 45, 0.00, "friends", " You went out and spent some time with your friend.") },
-            { "Go for a walk", new ActionVariable(10, 25, 0, "walk", "You went for a short walk at your local park.") },
-            { "Watch TV", new ActionVariable(8, 10, 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
-            { "Warm up", new ActionVariable(8, 30, 0.00, "exercise", "You decided to do a light warm up.") },
-            { "Light workout", new ActionVariable(14, 75, 0.00, "exercise", "You chose to do a light workout.") },
+            { "Go to the gym", new ActionVariable(12, 60, -15.00, "exercise", "You spent $15 to work out at your local gym.") },
+            { "Visit friends", new ActionVariable(10, 45, -10.00, "friends", " You went out and spent some time with your friend.") },
+            { "Go for a walk", new ActionVariable(7, 35, 0, "walk", "You went for a short walk at your local park.") },
+            { "Watch TV", new ActionVariable(8, 55, 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
+            { "Warm up", new ActionVariable(5, 30, 0.00, "exercise", "You decided to do a light warm up.") },
+            { "Light workout", new ActionVariable(12, 75, 0.00, "exercise", "You chose to do a light workout.") },
             { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "You committed to an intense workout.") },
-            { "Eat at a restaurant", new ActionVariable(10, 60, -25.00, "food", "You spent $25 to eat out.") },//hunger
+            { "Eat at a restaurant", new ActionVariable(20, 60, -25.00, "food", "You spent $25 to eat out.") },//hunger
 
             // kitchen
-            { "Cook food", new ActionVariable(10, 30, -5.00, "food", "You spent $5 on groceries to cook food at home.") },//hunger
-            { "Eat a snack", new ActionVariable(10, 5, 0.00, "snack", "You ate a small snack.") },//hunger
+            { "Cook food", new ActionVariable(9, 30, -5.00, "food", "You spent $5 on groceries to cook food at home.") },//hunger
+            { "Eat a snack", new ActionVariable(3, 10, 0.00, "snack", "You ate a small snack.") },//hunger
 
             // bedroom
             { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "You had a night of restful sleep.") },
             { "Take a nap", new ActionVariable(20, 120, 0.00, "nap", "You took a short power nap.") },
 
             // bathroom
-            { "Freshen up", new ActionVariable(3, 5, 0.00, "Freshen up", "You quickly freshened up.") },
-            { "Shower", new ActionVariable(8, 20, 0.00, "shower", "You took a quick shower.") },
-            { "Bubble bath", new ActionVariable(12, 45, 0.00, "bath", "You took a long relaxing bubble bath.") }
+            { "Freshen up", new ActionVariable(3, 10, 0.00, "Freshen up", "You quickly freshened up.") },
+            { "Shower", new ActionVariable(8, 25, 0.00, "shower", "You took a quick shower.") },
+            { "Bubble bath", new ActionVariable(16, 45, 0.00, "bath", "You took a long relaxing bubble bath.") }
         };
 
         // set up time limits
@@ -336,7 +336,7 @@ public class daily_action_storage : MonoBehaviour
     {
         if (key != null)
         {
-            // re roll random stats
+            // re roll random for sleep
             randomizeStats();
 
             ActionVariable activity = activities[key];
@@ -377,25 +377,7 @@ public class daily_action_storage : MonoBehaviour
                     state.updateSleep(-8 * 60);
                 }
 
-                if (activity.getGroup() == "chores")
-                {
-                    if (key.Equals("Do chores living room"))
-                    {
-                        trash.cleanTrash("LivingRoom");
-                    }
-                    else if (key.Equals("Do chores kitchen"))
-                    {
-                        trash.cleanTrash("KitchenT");
-                    }
-                    else if (key.Equals("Do chores bedroom"))
-                    {
-                        trash.cleanTrash("BedroomT");
-                    }
-                    else
-                    {
-                        trash.cleanTrash("BathroomT");
-                    }
-                }
+                
 
                 // update the splash screen before updating stats so that death scenes work
                 GetComponent<splash_screen_manager>().openSplashScreen(key);
@@ -416,6 +398,27 @@ public class daily_action_storage : MonoBehaviour
 
                 // reset times if needed
                 resetTimesPerDay();
+
+                // clean trash
+                if (activity.getGroup() == "chores")
+                {
+                    if (key.Equals("Do chores living room"))
+                    {
+                        trash.cleanTrash("LivingRoom");
+                    }
+                    else if (key.Equals("Do chores kitchen"))
+                    {
+                        trash.cleanTrash("KitchenT");
+                    }
+                    else if (key.Equals("Do chores bedroom"))
+                    {
+                        trash.cleanTrash("BedroomT");
+                    }
+                    else
+                    {
+                        trash.cleanTrash("BathroomT");
+                    }
+                }
             }
         }
     }
