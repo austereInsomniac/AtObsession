@@ -231,6 +231,10 @@ public class game_state : MonoBehaviour
             {
                 updateReputation(-50);
             }
+            else if(videosMadeToday != 0)
+            {
+                updateReputation(-30);
+            }
 
             videosMadeToday = 0;
         }
