@@ -288,7 +288,7 @@ public class game_state : MonoBehaviour
     public void updateReputation(int r)
     {
         reputation += r;
-        if (getDay() != 1 && getDay() == 2 && getTime() == 4 * 60)
+        if (getTime() == 4 * 60)
         {
             if (reputation > 100)
             {
@@ -352,6 +352,10 @@ public class game_state : MonoBehaviour
         {
             money = 9999;
         }
+        else if(money <= 0)
+        {
+            money = 0;
+        }
         notifyOnMoneyChange(money - m, money);
     }
  
@@ -366,6 +370,11 @@ public class game_state : MonoBehaviour
     public void updateHunger(float t)
     {
         hunger += t;
+
+        if (hunger >= 8)
+        {
+            hunger = 8;
+        }
 
         // player is hungry
         if (hungry())
@@ -397,6 +406,10 @@ public class game_state : MonoBehaviour
     {
         shower += t;
 
+        if (shower >= 20)
+        {
+            shower = 20;
+        }
         // player is dirty
         if (needsShower())
         {
@@ -426,6 +439,10 @@ public class game_state : MonoBehaviour
     public void updateSleep(float t)
     {
         sleep += t;
+        if(sleep >= 24)
+        {
+            sleep = 24;
+        }
 
         // player is tired
         if (tired())
@@ -453,7 +470,6 @@ public class game_state : MonoBehaviour
     }
 
     // methods
-
     private IEnumerator playHospitalScene()
     {
         // call hospital scene to ovveride current splash screen
@@ -600,10 +616,6 @@ public class game_state : MonoBehaviour
         subscribers = savedSubscribers;
         ending = savedEnding;
         time = 480;
-        if(day == 1)
-        {
-            time = 14 * 60;
-        }
         hunger = savedHunger;
         sleep = savedSleep;
         shower = savedShower;
@@ -614,6 +626,9 @@ public class game_state : MonoBehaviour
 
         // reset HUD + splash screen
         splashScreenManager.openSplashScreen("reset");
+        notificationManager.menuBlocker.enabled = false;
+        notificationManager.menuCollider.enabled = false;
+        notificationManager.hudCanvas.blocksRaycasts = false;
 
         // call delegates
         notifyOnWellnessChanged(wellness, wellness);
@@ -621,15 +636,6 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money, money);
         notifyOnReputationChange(reputation, reputation);
         notifyOnLocationChange(location, location);
-    }
-
-    private void Update()
-    {
-        /*// move to main menu
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            locationManager.goToMainMenu();
-        }*/
     }
 
     // delegate methods

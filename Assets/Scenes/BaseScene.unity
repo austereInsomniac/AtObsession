@@ -14261,7 +14261,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -8.912201, y: -1.8743554}
+  m_Offset: {x: -8.912201, y: -1.0448425}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14272,7 +14272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3784752, y: 2.6220386}
+  m_Size: {x: 1.3784752, y: 4.2810645}
   m_EdgeRadius: 0
 --- !u!212 &527392077
 SpriteRenderer:
@@ -16273,7 +16273,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625788962}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -23015,6 +23015,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0ee4a1792dd8f43429d220133df90386, type: 3}
+    - target: {fileID: 286541765081759109, guid: 52a465fe056d7134e8f29dc42f6490ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 754996159545950391, guid: 52a465fe056d7134e8f29dc42f6490ec, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -53336,6 +53340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a30c20193d78d34194720aa1ba71f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuBlocker: {fileID: 0}
+  menuCollider: {fileID: 0}
+  hudCanvas: {fileID: 0}
 --- !u!114 &1943289222
 MonoBehaviour:
   m_ObjectHideFlags: 0
