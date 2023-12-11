@@ -16,10 +16,10 @@ public class notification_manager : MonoBehaviour
 
     private Queue<string> notificationQueue;
 
-    private UnityEngine.UI.Image menuBlocker;
-    private BoxCollider2D menuCollider;
+    public UnityEngine.UI.Image menuBlocker;
+    public BoxCollider2D menuCollider;
 
-    private CanvasGroup hudCanvas;
+    public CanvasGroup hudCanvas;
 
     void Start()
     {
@@ -62,6 +62,17 @@ public class notification_manager : MonoBehaviour
         notificationQueue.Enqueue(message);
     }
 
+    public IEnumerator<UnityEngine.WaitForSeconds> holdNotification(string message, float time)
+    {
+        // Set the notification message
+        showNotification(message);
+        isNotificationShowing = false;
+
+        // wait and disable
+        yield return new WaitForSeconds(time);
+        disableNotification();
+    }
+
     public void showWellnessNotification(string action, int newW)
     {
         string text = action;
@@ -77,7 +88,7 @@ public class notification_manager : MonoBehaviour
         }
         else if(newW <= 60)
         {
-            text += "\nYou feel normal";
+            text += "\nYou feel like normal";
         }
         else if (newW <= 80)
         {

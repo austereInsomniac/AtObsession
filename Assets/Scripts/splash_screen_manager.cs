@@ -21,7 +21,7 @@ public class splash_screen_manager : MonoBehaviour
     // splash screen timers
     private bool isSplashShowing;
     private float displayTimeAnimated = .9f;
-    private float displayTimeStatic = 1.25f;
+    private float displayTimeStatic = .01f;
     private float displayStartTime;
 
     // HUD
@@ -94,25 +94,37 @@ public class splash_screen_manager : MonoBehaviour
         }
     }
 
+    void disableSplash()
+    {
+        splashScreen.enabled = false;
+        splashScreenAnimated.enabled = false;
+        isSplashShowing = false;
+
+        // enable HUD
+        if (shouldHUDShow)
+        {
+            HUD.alpha = 1;
+        }
+    }
+
+    public IEnumerator<UnityEngine.WaitForSeconds> holdSplashScreen(string key, float time)
+    {
+        // Set the notification message
+        openSplashScreen(key);
+        isSplashShowing = false;
+
+        // wait and disable
+        yield return new WaitForSeconds(time);
+        disableSplash();
+    }
+
     // Update turns off the splash after a set time
     void Update()
     {
         // static splash
         if (splashScreen.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeStatic + displayStartTime && Input.anyKeyDown)
         {
-            // close splash
-            splashScreen.enabled = false;
-            isSplashShowing = false;
-
-            // show hud
-            //menuBlocker.enabled = false;
-            //menuCollider.enabled = false;
-
-            // enable HUD
-            if (shouldHUDShow)
-            {
-                HUD.alpha = 1;
-            }
+            disableSplash();
         }
 
         if (splashScreenAnimated.enabled == true && isSplashShowing && Time.timeSinceLevelLoad >= displayTimeAnimated + displayStartTime)
@@ -120,18 +132,8 @@ public class splash_screen_manager : MonoBehaviour
             // close splash
             splashScreenAnimator.ResetTrigger("Start Animation");
             splashScreenAnimator.SetTrigger("End Animation");
-            splashScreenAnimated.enabled = false;
-            isSplashShowing = false;
 
-            // show hud
-            //menuBlocker.enabled = false;
-            //menuCollider.enabled = false;                
-
-            // enable HUD
-            if (shouldHUDShow)
-            {
-                HUD.alpha = 1;
-            }
+            disableSplash();
         }
     }
 }

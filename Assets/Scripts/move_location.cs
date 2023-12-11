@@ -33,11 +33,10 @@ public class move_location : MonoBehaviour
     private GameObject gameOverCanvas;
     private GameObject mainMenu;
     private GameObject mainMenuCanvas;
+    private GameObject credits;
 
     private List<Button> buttons;
     private List<Button> buttons2;
-    private List<BoxCollider2D> colliders;
-    private List<BoxCollider2D> colliders2;
 
     private bool isBlocked = false;
     private float displayTimeStatic = 1.25f;
@@ -58,6 +57,7 @@ public class move_location : MonoBehaviour
         gameOverCanvas = GameObject.Find("Game Over Canvas");
         mainMenu = GameObject.Find("Main Menu");
         mainMenuCanvas = GameObject.Find("Main Menu Canvas");
+        credits = GameObject.Find("Credits");
 
         buttons = new List<Button>();
         buttons2 = new List<Button>();
@@ -68,18 +68,6 @@ public class move_location : MonoBehaviour
                 buttons.Add(buttons0[i]);
             }
         }
-
-        colliders = new List<BoxCollider2D>();
-        colliders2 = new List<BoxCollider2D>();
-        BoxCollider2D[] colliders0 = GameObject.FindObjectsOfType<BoxCollider2D>();
-        for (int i = 0; i < colliders0.Length; i++)
-        {
-            if (colliders0[i] != null)
-            {
-                colliders.Add(colliders0[i]);
-            }
-        }
-
     }
 
     public GameObject getBedroom() {  return bedroom; }
@@ -141,6 +129,11 @@ public class move_location : MonoBehaviour
         moveLocation(mainMenu,mainMenuCanvas, player.getLocation(), player.getLocationCanvas());
     }
 
+    public void goToCredits()
+    {
+        moveLocation(credits, credits, player.getLocation(), player.getLocationCanvas());
+    }
+
     public void OnMouseDown()
     {
         if (Input.GetMouseButtonDown(0))
@@ -169,17 +162,11 @@ public class move_location : MonoBehaviour
             }
             buttons2.Clear();
 
-            foreach (BoxCollider2D coll in colliders2)
-            {
-                coll.enabled = true;
-            }
-            buttons2.Clear();
-
             isBlocked = false;
         }
     }
 
-    IEnumerator OnButtonClicked()
+    public IEnumerator OnButtonClicked()
     {
         foreach (Button button in buttons)
         {
@@ -191,17 +178,7 @@ public class move_location : MonoBehaviour
             
         }
 
-        foreach (BoxCollider2D coll in colliders)
-        {
-            if (coll.enabled == true)
-            {
-                colliders2.Add(coll);
-                coll.enabled = false;
-            }
-
-        }
-
         isBlocked = true;
-        yield return new WaitForSeconds(.02f);
+        yield return new WaitForSeconds(.00001f);
     }
 }
