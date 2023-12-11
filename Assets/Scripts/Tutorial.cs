@@ -1,4 +1,5 @@
 
+using Codice.CM.Common;
 using UnityEngine;
 
 
@@ -41,6 +42,8 @@ public class Tutorial : MonoBehaviour
     GameObject email;
     GameObject socialMedia;
     GameObject shopping;
+    GameObject exit;
+    GameObject exitIcons;
     GameObject locationStored = null;
     //Gets current day
     public int getCurrentDay()
@@ -132,6 +135,39 @@ public class Tutorial : MonoBehaviour
         emailButton.GetComponent<UnityEngine.UI.Button>().enabled = false;
     }
 
+    public void streamingInteractable()
+    {
+        GameObject streming = GameObject.Find("Check_Tritch");
+        streaming.GetComponent<UnityEngine.UI.Button>().enabled=true;
+    }
+
+    public void streamingNotInteractable()
+    {
+        GameObject streaming = GameObject.Find("Check_Tritch");
+        streaming.GetComponent<UnityEngine.UI.Button>().enabled = false;
+    }
+
+    public void exitIconsInteractable()
+    {
+        GameObject exitIcon = GameObject.Find("Exit_To_Icons");
+        exitIcon.GetComponent<UnityEngine.UI.Button>().enabled = true;
+    }
+    public void exitIconsNotInteractable()
+    {
+        GameObject exitIcon = GameObject.Find("Exit_To_Icons");
+        exitIcon.GetComponent<UnityEngine.UI.Button>().enabled = false;
+    }
+    public void exitInteractable()
+    {
+        GameObject exit = GameObject.Find("Exit_Screen");
+        exit.GetComponent<UnityEngine.UI.Button>().enabled = true;
+    }
+
+    public void exitNotInteractable()
+    {
+        GameObject exit = GameObject.Find("Exit_Screen");
+        exit.GetComponent<UnityEngine.UI.Button>().enabled = false;
+    }
     public void toggleBoxCollider(string item, bool key)
     {
 
@@ -152,17 +188,31 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public void buttonsInteractable(bool key)
+    {
+        toggleButton("Weights", key);
+    }
+
+    public void bedroomInteractable()
+    {
+        GameObject bedroom = GameObject.Find("Bedroom Door");
+        bedroom.GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public void bedroomNotInteractable()
+    {
+        GameObject bedroom = GameObject.Find("Bedroom Door");
+        bedroom.GetComponent<BoxCollider2D>().enabled = false;
+    }
     public void doorsInteractable(bool key)
     {
         toggleBoxCollider("Kitchen Door", key);
         toggleBoxCollider("Kitchen Door (1)", key);
-        toggleBoxCollider("Bedroom Door", key);
         toggleBoxCollider("Bathroom Door", key);
         toggleBoxCollider("Exit Bedroom", key);
         toggleBoxCollider("Kitchen Arrow", key);
         toggleBoxCollider("Front Door", key);
         toggleBoxCollider("Exit Arrow", key);
-        toggleBoxCollider("TV", key);
         toggleBoxCollider("Front Door", key);
         toggleBoxCollider("Broom", key);
         toggleBoxCollider("Workout", key);
@@ -170,7 +220,11 @@ public class Tutorial : MonoBehaviour
         toggleBoxCollider("Lamp", key);
         toggleBoxCollider("Fridge", key);
         toggleBoxCollider("Oven", key);
-
+        toggleBoxCollider("Bed", key);
+        toggleBoxCollider("Window Left", key);
+        toggleBoxCollider("Windows Right", key);
+        toggleBoxCollider("Lamp", key);
+        toggleBoxCollider("Weights", key);
 
 
         //kitchenDoorDay.GetComponent<BoxCollider2D>().enabled = false;
@@ -291,6 +345,7 @@ public class Tutorial : MonoBehaviour
         {
             if (buttonClickedOn == true && count == 0)
             {
+                
                 //introduce player to wellness, add the arrow asset
                 //doorsInteractable(false);
                 notificationShow("Welcome streamer.");
@@ -311,7 +366,9 @@ public class Tutorial : MonoBehaviour
 
             else if (count == 2)
             {
-                notificationPopUp("Hover over and click on something. This will open a menu where you can do something. Try it out.");
+                doorsInteractable(false);
+                bedroomNotInteractable();
+                notificationPopUp("Hover over and click on the TV. This will open a menu where you can do something. Try it out.");
 
                 //doorsInteractable(true);
                 count++;
@@ -321,7 +378,7 @@ public class Tutorial : MonoBehaviour
             else if (buttonClickedOn == true && count == 3)
             {
                 //doorsInteractable(false);
-
+                bedroomInteractable();
                 notificationPopUp("Notice you feel better afterwards. That means your wellness went up.");
 
                 //wellnessAndRepHighlightEnabled(wellnessAndRep);
@@ -341,7 +398,6 @@ public class Tutorial : MonoBehaviour
 
             else if (locationStored == computerScreen && count == 4)
             {
-
                 notificationShow("This is the computer where all of your apps are located.");
 
                 notificationPopUp("Click on the app in the top left.");
@@ -351,6 +407,7 @@ public class Tutorial : MonoBehaviour
 
             else if (buttonClickedOn == true && count == 5)
             {
+
                 notificationShow("This is the video creation app, where you can create videos varying in quality.");
 
                 notificationPopUp("The higher the quality, the more money and subscribers you'll get but it'll cost more time and wellness.");
