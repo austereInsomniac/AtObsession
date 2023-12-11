@@ -33,6 +33,7 @@ public class move_location : MonoBehaviour
     private GameObject gameOverCanvas;
     private GameObject mainMenu;
     private GameObject mainMenuCanvas;
+    private GameObject credits;
 
     private List<Button> buttons;
     private List<Button> buttons2;
@@ -56,6 +57,7 @@ public class move_location : MonoBehaviour
         gameOverCanvas = GameObject.Find("Game Over Canvas");
         mainMenu = GameObject.Find("Main Menu");
         mainMenuCanvas = GameObject.Find("Main Menu Canvas");
+        credits = GameObject.Find("Credits");
 
         buttons = new List<Button>();
         buttons2 = new List<Button>();
@@ -125,6 +127,11 @@ public class move_location : MonoBehaviour
     public void goToMainMenu()
     {
         moveLocation(mainMenu,mainMenuCanvas, player.getLocation(), player.getLocationCanvas());
+    }
+
+    public void goToCredits()
+    {
+        moveLocation(credits, credits, player.getLocation(), player.getLocationCanvas());
     }
 
     public void OnMouseDown()
