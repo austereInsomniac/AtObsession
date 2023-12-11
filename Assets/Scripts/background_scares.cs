@@ -11,6 +11,8 @@ public class background_scares : MonoBehaviour
     public notification_manager notification;
     int scare = 0;
 
+    public AudioClip clickSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,23 +24,27 @@ public class background_scares : MonoBehaviour
 
     private void OnTimeChanged(int oldTime, int newTime)
     {
-        int timeChange = newTime - oldTime;
-        scare = timeChange + scare;
-        int wellness = player.getWellness();
         int day = player.getDay();
-
-        if (scare >= 4*60 && day >= 3 && wellness <= 60)
+        int time = player.getTime();
+        if (day >= 3 && time >= 8 * 60)
         {
-            if (swappableAssets.Length > 0)
+            int timeChange = newTime - oldTime;
+            scare = timeChange + scare;
+            int wellness = player.getWellness();
+
+            if (scare >= 4 * 60 && wellness <= 60)
             {
-                int randomScare = Random.Range(0, swappableAssets.Length);
-                TriggerScare(randomScare);
+                if (swappableAssets.Length > 0)
+                {
+                    int randomScare = Random.Range(0, swappableAssets.Length);
+                    TriggerScare(randomScare);
+                }
+                else
+                {
+                    Debug.Log("No swappable assets");
+                }
+                scare -= scare;
             }
-            else
-            {
-                Debug.Log("No swappable assets");
-            }
-            scare -= scare;
         }
     }
 
@@ -48,6 +54,18 @@ public class background_scares : MonoBehaviour
 
     }
 
+    private void OnMouseDown()
+    {
+        PlayClickSound();
+    }
+
+    private void PlayClickSound()
+    {
+        if (clickSound != null)
+        {
+            AudioSource.PlayClipAtPoint(clickSound, transform.position);
+        }
+    }
     private void TriggerScare(int scareNum)
     {
         string scareMessage = "I hear something...";
@@ -66,7 +84,10 @@ public class background_scares : MonoBehaviour
         }
 
         swap = swappableAssets[scareNum].GetComponent<swap_assets>();
-
+        if (swappableAssets[scareNum].name == "Sink - off")
+        {
+            PlayClickSound();
+        }
         if (swap != null)
         {
             swap.swapObjects();
