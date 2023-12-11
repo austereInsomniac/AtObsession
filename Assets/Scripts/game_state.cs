@@ -600,10 +600,6 @@ public class game_state : MonoBehaviour
         subscribers = savedSubscribers;
         ending = savedEnding;
         time = 480;
-        if(day == 1)
-        {
-            time = 14 * 60;
-        }
         hunger = savedHunger;
         sleep = savedSleep;
         shower = savedShower;
@@ -621,15 +617,6 @@ public class game_state : MonoBehaviour
         notifyOnMoneyChange(money, money);
         notifyOnReputationChange(reputation, reputation);
         notifyOnLocationChange(location, location);
-    }
-
-    private void Update()
-    {
-        /*// move to main menu
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            locationManager.goToMainMenu();
-        }*/
     }
 
     // delegate methods

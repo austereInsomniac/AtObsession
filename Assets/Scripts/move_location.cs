@@ -36,8 +36,6 @@ public class move_location : MonoBehaviour
 
     private List<Button> buttons;
     private List<Button> buttons2;
-    private List<BoxCollider2D> colliders;
-    private List<BoxCollider2D> colliders2;
 
     private bool isBlocked = false;
     private float displayTimeStatic = 1.25f;
@@ -68,18 +66,6 @@ public class move_location : MonoBehaviour
                 buttons.Add(buttons0[i]);
             }
         }
-
-        colliders = new List<BoxCollider2D>();
-        colliders2 = new List<BoxCollider2D>();
-        BoxCollider2D[] colliders0 = GameObject.FindObjectsOfType<BoxCollider2D>();
-        for (int i = 0; i < colliders0.Length; i++)
-        {
-            if (colliders0[i] != null)
-            {
-                colliders.Add(colliders0[i]);
-            }
-        }
-
     }
 
     public GameObject getBedroom() {  return bedroom; }
