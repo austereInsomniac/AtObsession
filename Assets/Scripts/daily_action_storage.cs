@@ -336,7 +336,7 @@ public class daily_action_storage : MonoBehaviour
     {
         if (key != null)
         {
-            // re roll random stats
+            // re roll random for sleep
             randomizeStats();
 
             ActionVariable activity = activities[key];
@@ -377,25 +377,7 @@ public class daily_action_storage : MonoBehaviour
                     state.updateSleep(-8 * 60);
                 }
 
-                if (activity.getGroup() == "chores")
-                {
-                    if (key.Equals("Do chores living room"))
-                    {
-                        trash.cleanTrash("LivingRoom");
-                    }
-                    else if (key.Equals("Do chores kitchen"))
-                    {
-                        trash.cleanTrash("KitchenT");
-                    }
-                    else if (key.Equals("Do chores bedroom"))
-                    {
-                        trash.cleanTrash("BedroomT");
-                    }
-                    else
-                    {
-                        trash.cleanTrash("BathroomT");
-                    }
-                }
+                
 
                 // update the splash screen before updating stats so that death scenes work
                 GetComponent<splash_screen_manager>().openSplashScreen(key);
@@ -416,6 +398,27 @@ public class daily_action_storage : MonoBehaviour
 
                 // reset times if needed
                 resetTimesPerDay();
+
+                // clean trash
+                if (activity.getGroup() == "chores")
+                {
+                    if (key.Equals("Do chores living room"))
+                    {
+                        trash.cleanTrash("LivingRoom");
+                    }
+                    else if (key.Equals("Do chores kitchen"))
+                    {
+                        trash.cleanTrash("KitchenT");
+                    }
+                    else if (key.Equals("Do chores bedroom"))
+                    {
+                        trash.cleanTrash("BedroomT");
+                    }
+                    else
+                    {
+                        trash.cleanTrash("BathroomT");
+                    }
+                }
             }
         }
     }
