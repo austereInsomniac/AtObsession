@@ -16,10 +16,10 @@ public class notification_manager : MonoBehaviour
 
     private Queue<string> notificationQueue;
 
-    private UnityEngine.UI.Image menuBlocker;
-    private BoxCollider2D menuCollider;
+    public UnityEngine.UI.Image menuBlocker;
+    public BoxCollider2D menuCollider;
 
-    private CanvasGroup hudCanvas;
+    public CanvasGroup hudCanvas;
 
     void Start()
     {

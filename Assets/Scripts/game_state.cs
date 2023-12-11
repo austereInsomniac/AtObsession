@@ -626,6 +626,9 @@ public class game_state : MonoBehaviour
 
         // reset HUD + splash screen
         splashScreenManager.openSplashScreen("reset");
+        notificationManager.menuBlocker.enabled = false;
+        notificationManager.menuCollider.enabled = false;
+        notificationManager.hudCanvas.blocksRaycasts = false;
 
         // call delegates
         notifyOnWellnessChanged(wellness, wellness);

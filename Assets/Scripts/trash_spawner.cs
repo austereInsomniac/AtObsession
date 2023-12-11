@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Mackenzie 
+
 public class trash_spawner : MonoBehaviour
 {
     List<SpriteRenderer> trash;
