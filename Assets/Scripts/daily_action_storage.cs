@@ -342,7 +342,7 @@ public class daily_action_storage : MonoBehaviour
             ActionVariable activity = activities[key];
             string group = activity.getGroup();
 
-            if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group))
+            if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group) && state.getMoney() > -activity.getMoney() )
             {
                 updateTimesPerDay(group);
 
@@ -376,8 +376,6 @@ public class daily_action_storage : MonoBehaviour
                 {
                     state.updateSleep(-8 * 60);
                 }
-
-                
 
                 // update the splash screen before updating stats so that death scenes work
                 GetComponent<splash_screen_manager>().openSplashScreen(key);
@@ -418,6 +416,7 @@ public class daily_action_storage : MonoBehaviour
                     {
                         trash.cleanTrash("BathroomT");
                     }
+                    toggleButtons(0, 0);
                 }
             }
         }

@@ -66,7 +66,7 @@ public class game_state : MonoBehaviour
     UnityEngine.Color colorB2;
 
     // testing variables
-    public bool testingVideoWellness;
+    public bool testingVideoWellness = false;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
