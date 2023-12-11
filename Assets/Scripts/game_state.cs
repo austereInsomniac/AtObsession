@@ -66,7 +66,7 @@ public class game_state : MonoBehaviour
     UnityEngine.Color colorB2;
 
     // testing variables
-    public bool testingVideoWellness;
+    public bool testingVideoWellness = false;
 
     // delegates 
     public delegate void changeWellness(int oldWellness, int newWellness);
@@ -375,9 +375,9 @@ public class game_state : MonoBehaviour
     {
         hunger += t;
 
-        if (hunger >= 8)
+        if (hunger >= 8*60)
         {
-            hunger = 8;
+            hunger = 8*60;
         }
 
         // player is hungry
@@ -410,9 +410,9 @@ public class game_state : MonoBehaviour
     {
         shower += t;
 
-        if (shower >= 20)
+        if (shower >= 20*60)
         {
-            shower = 20;
+            shower = 20 * 60;
         }
         // player is dirty
         if (needsShower())
@@ -443,9 +443,9 @@ public class game_state : MonoBehaviour
     public void updateSleep(float t)
     {
         sleep += t;
-        if(sleep >= 24)
+        if(sleep >= 24 * 60)
         {
-            sleep = 24;
+            sleep = 24 * 60;
         }
 
         // player is tired
@@ -524,7 +524,7 @@ public class game_state : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         deathFilter.color = colorB1;
-        StartCoroutine(notificationManager.holdNotification("You didn't take proper care of yourself and died.", 3));
+        StartCoroutine(notificationManager.holdNotification("You didn't take proper care of yourself... \nThis is the end...", 3));
         StartCoroutine(splashScreenManager.holdSplashScreen("Game over", 3));
         locationManager.goToGameOver();
 
