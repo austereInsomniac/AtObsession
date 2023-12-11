@@ -53340,6 +53340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a30c20193d78d34194720aa1ba71f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuBlocker: {fileID: 0}
+  menuCollider: {fileID: 0}
+  hudCanvas: {fileID: 0}
 --- !u!114 &1943289222
 MonoBehaviour:
   m_ObjectHideFlags: 0
