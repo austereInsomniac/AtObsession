@@ -137,7 +137,7 @@ public class daily_action_storage : MonoBehaviour
             // bathroom
             { "Freshen up", new ActionVariable(3, 10, 0.00, "Freshen up", "You quickly freshened up.") },
             { "Shower", new ActionVariable(8, 25, 0.00, "shower", "You took a quick shower.") },
-            { "Bubble bath", new ActionVariable(16, 45, 0.00, "bath", "You took a long relaxing bubble bath.") }
+            { "Bubble bath", new ActionVariable(16, 45, 0.00, "shower", "You took a long relaxing bubble bath.") }
         };
 
         // set up time limits
@@ -240,6 +240,14 @@ public class daily_action_storage : MonoBehaviour
             buttons.Add("Light workout", lightW);
             buttons.Add("Intense workout", intense);
             buttons.Add("Go to the gym", gym);
+        }
+        else if (group.Equals("shower"))
+        {
+            shower.interactable = false;
+            bath.interactable = false;
+
+            buttons.Add("Shower", shower);
+            buttons.Add("Bubble bath", bath);
         }
         else
         {
