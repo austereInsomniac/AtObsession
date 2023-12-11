@@ -112,10 +112,10 @@ public class daily_action_storage : MonoBehaviour
             // wellness, time, money
 
             // living room
-            { "Do chores living room", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
-            { "Do chores kitchen", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
-            { "Do chores bedroom", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the living room.") },
-            { "Do chores bathroom", new ActionVariable(9, 60, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores living room", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores kitchen", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores bedroom", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores bathroom", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
 
             { "Go to the gym", new ActionVariable(12, 60, -15.00, "exercise", "You spent $15 to work out at your local gym.") },
             { "Visit friends", new ActionVariable(10, 45, -10.00, "friends", " You went out and spent some time with your friend.") },
