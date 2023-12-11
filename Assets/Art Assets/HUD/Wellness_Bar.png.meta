@@ -165,10 +165,10 @@ TextureImporter:
       name: Wellness_Bar_0
       rect:
         serializedVersion: 2
-        x: 720
-        y: 930
-        width: 1185
-        height: 120
+        x: 1465
+        y: 1027
+        width: 443
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
