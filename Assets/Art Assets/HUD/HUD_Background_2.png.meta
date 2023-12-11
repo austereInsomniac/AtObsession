@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fcb927c45d8c6a74080fdb7f23fd4ec5
+guid: 24f9cc5d81a9dfb42adfb90de5cd3787
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -162,13 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bar_HL_0
+      name: HUD_Background_2_0
       rect:
         serializedVersion: 2
-        x: 1457
-        y: 1020
-        width: 458
-        height: 60
+        x: 1290
+        y: 952
+        width: 630
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0b830f85a916514a87a821c5a35dddf
-      internalID: 2022919686
+      spriteID: f1c466df9fe9a9f47ab4c592cf50188c
+      internalID: 474414077
       vertices: []
       indices: 
       edges: []
@@ -193,7 +193,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bar_HL_0: 2022919686
+      HUD_Background_2_0: 474414077
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
