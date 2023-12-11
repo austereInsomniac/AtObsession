@@ -165,10 +165,10 @@ TextureImporter:
       name: Hunger_Icons_0
       rect:
         serializedVersion: 2
-        x: 525
-        y: 112
-        width: 855
-        height: 855
+        x: 1296
+        y: 2
+        width: 113
+        height: 113
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
