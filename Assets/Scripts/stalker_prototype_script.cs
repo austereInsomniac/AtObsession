@@ -159,6 +159,8 @@ public class StalkerEvents
 public class stalker_prototype_script : MonoBehaviour
 {
     private bool isOn = true;
+    private bool isEnd = false;
+    private bool isGameEnding = false;
     private bool isEndingEvent = false;
     List<string> eventKeys;
     Dictionary<string, StalkerEvents> stalkerEvents;
@@ -169,6 +171,8 @@ public class stalker_prototype_script : MonoBehaviour
     private int eventNum;
     private int pendingEvent = -1; // Set to -1 to indicate no pending event
     private int eventCount;
+    private float displayTime = 3.0f;
+    private float displayStartTime;
 
     private game_state player;
     GameObject stalkerEventHandler;
@@ -305,7 +309,7 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEvents.Add("Banging on door", bangingEvent);
 
         // Trapped in bathroom event 9/10
-        StalkerEvents bathroomEvent = new StalkerEvents("CRASH\"AWWWWW SOMEONE IS BREAKING IN! I NEED TO FIND A PLACE TO HIDE AND CALL THE COPS!", "Any", 0, 10, 0, 0, 1, 1, false, Resources.Load<AudioClip>("Assets/Household Items SFX/Mobile/Mobile_Vibre (5).wav"));
+        StalkerEvents bathroomEvent = new StalkerEvents("CRASH\"AWWWWW SOMEONE IS BREAKING IN! I NEED TO FIND A PLACE TO HIDE AND CALL THE COPS!", "Any", 0, 10, 0, 0, 1, 1, false, Resources.Load<AudioClip>("Assets/Household Items SFX/Breakable/Breakable_Glass (3).wav"));
         stalkerEvents.Add("Trapped in bathroom", bathroomEvent);
 
         eventKeys = new List<string>(stalkerEvents.Keys);
@@ -465,6 +469,10 @@ public class stalker_prototype_script : MonoBehaviour
         }
         if (isEndingEvent && Input.anyKeyDown)
         {
+            EndingEvent();
+        }
+        if (isGameEnding && Input.anyKeyDown)
+        {
             EndGameEvent(StalkerEvents.finalEventNumber);
         }
         if (currentStalkerEmail.activeSelf || currentStalkerDM.activeSelf)
@@ -496,6 +504,10 @@ public class stalker_prototype_script : MonoBehaviour
                 email3Preview.SetActive(false);
                 email3Options.SetActive(false);
             }
+        }
+        if (isEnd && Time.timeSinceLevelLoad >= displayTime + displayStartTime)
+        {
+            ReturnToMenu();
         }
     }
 
@@ -575,7 +587,7 @@ public class stalker_prototype_script : MonoBehaviour
 
                         if (notification != null)
                         {
-                            notification.showNotification(eventMessage);
+                            notification.queNotification(eventMessage);
                         }
                     }
                 }
@@ -598,7 +610,7 @@ public class stalker_prototype_script : MonoBehaviour
                     }
                     if (notification != null)
                     {
-                        notification.showNotification(eventMessage);
+                        notification.queNotification(eventMessage);
                     }
                     pendingEvent = numEvent;
                 }
@@ -617,9 +629,10 @@ public class stalker_prototype_script : MonoBehaviour
 
             if (notification != null)
             {
-                notification.showNotification(eventMessage);
+                notification.queNotification(eventMessage);
             }
-            EndingEvent();
+            isEndingEvent = true;
+            move.goToBathroom();
         }
     }
 
@@ -830,14 +843,25 @@ public class stalker_prototype_script : MonoBehaviour
     {
         if (eventNum == StalkerEvents.finalEventNumber)
         {
-            splashScreenManager.openSplashScreen("Game over");
-            move.goToGameOver();
+            move.goToCredits();
             stalkerEventHandler.SetActive(false);
+            isEnd = true;
+
+            // Record start time
+            displayStartTime = Time.timeSinceLevelLoad;
         }
+    }
+
+    private void ReturnToMenu()
+    {
+
+        move.goToMainMenu();
     }
 
     private void EndingEvent()
     {
+        splashScreenManager.openSplashScreen("Ending");
+        isEndingEvent = false;
         stalkerEventHandler.SetActive(true);
 
         if (choice1 != null) Destroy(choice1);
@@ -847,17 +871,17 @@ public class stalker_prototype_script : MonoBehaviour
         if (player.getEnding() < -5)
         {
             choiceText.text = "Yesterday it was found that a famous streamer's house was broken into, they were found murdered. The suspect is still at large and is considered armed and dangerous";
-            isEndingEvent = true;
+            isGameEnding = true;
         }
         else if (player.getEnding() > -5 && player.getEnding() < 5)
         {
             choiceText.text = "Sadly yesterday another streamer has made a video stating that they can no longer deal with being a streamer and has decided to stop and to find a different job to make a living.";
-            isEndingEvent = true;
+            isGameEnding = true;
         }
         else if (player.getEnding() > 5)
         {
             choiceText.text = "Yesterday a person known as NoticeMeSenpaii was arrested while trying to break into a famous streamers house. They will be prosecuted, and the streamer was not harmed in this incident. ";
-            isEndingEvent = true;
+            isGameEnding = true;
         }
     }
 }
