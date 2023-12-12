@@ -63,6 +63,8 @@ public class daily_action_storage : MonoBehaviour
     Button shower;
     Button bath;
 
+    Button friends;
+
     Button warmup;
     Button lightW;
     Button intense;
@@ -93,6 +95,8 @@ public class daily_action_storage : MonoBehaviour
         shower = GameObject.Find("ShowerB").GetComponent<Button>();
         bath = GameObject.Find("Bubble Bath").GetComponent<Button>();
 
+        friends = GameObject.Find("Visit friends").GetComponent<Button>();
+
         warmup = GameObject.Find("Warm up").GetComponent<Button>();
         lightW = GameObject.Find("Light workout").GetComponent<Button>();
         intense = GameObject.Find("Intense workout").GetComponent<Button>();
@@ -112,32 +116,32 @@ public class daily_action_storage : MonoBehaviour
             // wellness, time, money
 
             // living room
-            { "Do chores living room", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the living room.") },
-            { "Do chores kitchen", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
-            { "Do chores bedroom", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the living room.") },
-            { "Do chores bathroom", new ActionVariable(9, 30, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores living room", new ActionVariable(12, 30, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores kitchen", new ActionVariable(12, 30, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
+            { "Do chores bedroom", new ActionVariable(12, 30, 0.00, "chores", "You spent some time doing some chores around the living room.") },
+            { "Do chores bathroom", new ActionVariable(12, 30, 0.00, "chores", "You spent some time doing some chores around the kitchen.") },
 
-            { "Go to the gym", new ActionVariable(12, 60, -15.00, "exercise", "You spent $15 to work out at your local gym.") },
-            { "Visit friends", new ActionVariable(10, 45, -10.00, "friends", " You went out and spent some time with your friend.") },
-            { "Go for a walk", new ActionVariable(7, 35, 0, "walk", "You went for a short walk at your local park.") },
-            { "Watch TV", new ActionVariable(8, 55, 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
-            { "Warm up", new ActionVariable(5, 30, 0.00, "exercise", "You decided to do a light warm up.") },
-            { "Light workout", new ActionVariable(12, 75, 0.00, "exercise", "You chose to do a light workout.") },
-            { "Intense workout", new ActionVariable(25, 120, 0.00, "exercise", "You committed to an intense workout.") },
-            { "Eat at a restaurant", new ActionVariable(20, 60, -25.00, "food", "You spent $25 to eat out.") },//hunger
+            { "Go to the gym", new ActionVariable(27, 90, -15.00, "exercise", "You spent $15 to work out at your local gym.") },
+            { "Visit friends", new ActionVariable(19, 65, -10.00, "friends", " You went out and spent some time with your friend.") },
+            { "Go for a walk", new ActionVariable(20, 60, 0, "walk", "You went for a short walk at your local park.") },
+            { "Watch TV", new ActionVariable(15, 75, 0.00, "entertainment", "You’ve watched an episode of your favorite show.") },
+            { "Warm up", new ActionVariable(10, 30, 0.00, "exercise", "You decided to do a light warm up.") },
+            { "Light workout", new ActionVariable(17, 75, 0.00, "exercise", "You chose to do a light workout.") },
+            { "Intense workout", new ActionVariable(30, 120, 0.00, "exercise", "You committed to an intense workout.") },
+            { "Eat at a restaurant", new ActionVariable(20, 120, -25.00, "food", "You spent $25 to eat out.") },//hunger
 
             // kitchen
-            { "Cook food", new ActionVariable(9, 30, -5.00, "food", "You spent $5 on groceries to cook food at home.") },//hunger
-            { "Eat a snack", new ActionVariable(3, 10, 0.00, "snack", "You ate a small snack.") },//hunger
+            { "Cook food", new ActionVariable(15, 60, -5.00, "food", "You spent $5 on groceries to cook food at home.") },//hunger
+            { "Eat a snack", new ActionVariable(7, 15, 0.00, "snack", "You ate a small snack.") },//hunger
 
             // bedroom
-            { "Go to sleep", new ActionVariable(30, 32*60 - state.getTime(), 0.00, "sleep", "You had a night of restful sleep.") },
-            { "Take a nap", new ActionVariable(20, 120, 0.00, "nap", "You took a short power nap.") },
+            { "Go to sleep", new ActionVariable(70, 32*60 - state.getTime(), 0.00, "sleep", "You had a night of restful sleep.") },
+            { "Take a nap", new ActionVariable(50, 180, 0.00, "nap", "You took a short power nap.") },
 
             // bathroom
-            { "Freshen up", new ActionVariable(3, 10, 0.00, "Freshen up", "You quickly freshened up.") },
-            { "Shower", new ActionVariable(8, 25, 0.00, "shower", "You took a quick shower.") },
-            { "Bubble bath", new ActionVariable(16, 45, 0.00, "shower", "You took a long relaxing bubble bath.") }
+            { "Freshen up", new ActionVariable(7, 15, 0.00, "Freshen up", "You quickly freshened up.") },
+            { "Shower", new ActionVariable(15, 55, 0.00, "shower", "You took a quick shower.") },
+            { "Bubble bath", new ActionVariable(20, 85, 0.00, "shower", "You took a long relaxing bubble bath.") }
         };
 
         // set up time limits
@@ -221,6 +225,7 @@ public class daily_action_storage : MonoBehaviour
     //Sets the buttons to not interactable when the user has used them up for the current day
     public void notInteractable(string key, string group)
     {
+
         if (group.Equals("food"))
         {
             cook.interactable = false;
@@ -231,6 +236,7 @@ public class daily_action_storage : MonoBehaviour
         }
         else if (group.Equals("exercise"))
         {
+            
             warmup.interactable = false;
             lightW.interactable = false;
             intense.interactable = false;
@@ -249,11 +255,18 @@ public class daily_action_storage : MonoBehaviour
             buttons.Add("Shower", shower);
             buttons.Add("Bubble bath", bath);
         }
+        else if (group.Equals("excerise") && state.getMoney() <= 15 && name.Equals("Go to the gym"))
+        {
+            gym.interactable = false;
+
+            buttons.Add("Go to the gym", gym);
+        }
         else
         {
-            Button button = GameObject.Find(key).GetComponent<Button>();
-            button.interactable = false;
-            buttons.Add(key, button);
+                Debug.Log("Shouldnt run");
+                Button button = GameObject.Find(key).GetComponent<Button>();
+                button.interactable = false;
+                buttons.Add(key, button);
         }
     }
 
@@ -345,7 +358,7 @@ public class daily_action_storage : MonoBehaviour
         if (key != null)
         {
             // re roll random for sleep
-            randomizeStats();
+            //randomizeStats();
 
             ActionVariable activity = activities[key];
             string group = activity.getGroup();
@@ -389,10 +402,19 @@ public class daily_action_storage : MonoBehaviour
                 GetComponent<splash_screen_manager>().openSplashScreen(key);
 
                 // set the rest of the buttons in the group as off
-                if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
+                if (group == "excerise" || group =="friends" || group == "food")
                 {
                     notInteractable(key, group);
                 }
+                else
+                {
+                    if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
+                    {
+                        notInteractable(key, group);
+                    }
+
+                }
+                
 
                 // update stats
                 state.updateWellness(activity.getWellness());
