@@ -11,8 +11,6 @@ public class background_scares : MonoBehaviour
     public notification_manager notification;
     int scare = 0;
 
-    public AudioClip clickSound;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -54,18 +52,6 @@ public class background_scares : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
-    {
-        PlayClickSound();
-    }
-
-    private void PlayClickSound()
-    {
-        if (clickSound != null)
-        {
-            AudioSource.PlayClipAtPoint(clickSound, transform.position);
-        }
-    }
     private void TriggerScare(int scareNum)
     {
         string scareMessage = "I hear something...";
@@ -84,10 +70,7 @@ public class background_scares : MonoBehaviour
         }
 
         swap = swappableAssets[scareNum].GetComponent<swap_assets>();
-        if (swappableAssets[scareNum].name == "Sink - off")
-        {
-            PlayClickSound();
-        }
+
         if (swap != null)
         {
             swap.swapObjects();
