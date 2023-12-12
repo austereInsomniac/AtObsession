@@ -3,7 +3,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Connor + Mackenzie
+// Mackenzie + Connor 
 
 public class ActionVariable
 {
@@ -160,7 +160,7 @@ public class daily_action_storage : MonoBehaviour
             { "freshen", 2},
             { "shower", 1},
             { "bath", 1 },
-            { "exercise", 1},
+            { "exercise", 2},
 
             // no limits
             { "sleep", 999},
@@ -225,63 +225,76 @@ public class daily_action_storage : MonoBehaviour
     //Sets the buttons to not interactable when the user has used them up for the current day
     public void notInteractable(string key, string group)
     {
-
-        if (group.Equals("food"))
+        if (getCurrentTimesPerDay(group) == getMaxTimesPerDay(group))
         {
-            cook.interactable = false;
-            restaurant.interactable = false;
+            if (group.Equals("food"))
+            {
+                cook.interactable = false;
+                restaurant.interactable = false;
 
-            buttons.Add("Cook food", cook);
-            buttons.Add("Eat at a restaurant", restaurant);
-        }
-        else if (group.Equals("exercise"))
-        {
-            
-            warmup.interactable = false;
-            lightW.interactable = false;
-            intense.interactable = false;
-            gym.interactable = false;
+                buttons.Add("Cook food", cook);
+                buttons.Add("Eat at a restaurant", restaurant);
+            }
+            else if (group.Equals("exercise"))
+            {
+                warmup.interactable = false;
+                lightW.interactable = false;
+                intense.interactable = false;
+                gym.interactable = false;
 
-            buttons.Add("Warm up", warmup);
-            buttons.Add("Light workout", lightW);
-            buttons.Add("Intense workout", intense);
-            buttons.Add("Go to the gym", gym);
-        }
-        else if (group.Equals("shower"))
-        {
-            shower.interactable = false;
-            bath.interactable = false;
+                buttons.Add("Warm up", warmup);
+                buttons.Add("Light workout", lightW);
+                buttons.Add("Intense workout", intense);
+                buttons.Add("Go to the gym", gym);
+            }
+            else if (group.Equals("shower"))
+            {
+                shower.interactable = false;
+                bath.interactable = false;
 
-            buttons.Add("Shower", shower);
-            buttons.Add("Bubble bath", bath);
-        }
-        else if (group.Equals("excerise") && state.getMoney() <= 15 && name.Equals("Go to the gym"))
-        {
-            gym.interactable = false;
-
-            buttons.Add("Go to the gym", gym);
-        }
-        else
-        {
-                Debug.Log("Shouldnt run");
-                Button button = GameObject.Find(key).GetComponent<Button>();
-                button.interactable = false;
-                buttons.Add(key, button);
+                buttons.Add("Shower", shower);
+                buttons.Add("Bubble bath", bath);
+            }
         }
     }
 
     private void toggleButtons(int oldT, int newT) 
     {
-        if (state.hungry())
+        if (state.hungry() && state.getMoney() >= -activities["Cook food"].getMoney() && getCurrentTimesPerDay("food") != getMaxTimesPerDay("food"))
         {
             cook.interactable = true;
-            restaurant.interactable = true;
             
         }
         else
         {
             cook.interactable = false;
+        }
+
+        if (state.hungry() && state.getMoney() >= -activities["Eat at a restaurant"].getMoney() && getCurrentTimesPerDay("food") != getMaxTimesPerDay("food"))
+        {
+            restaurant.interactable = true;
+        }
+        else
+        {
             restaurant.interactable = false;
+        }
+
+        if (state.getMoney() >= -activities["Go to the gym"].getMoney() && getCurrentTimesPerDay("exercise") < getMaxTimesPerDay("exercise"))
+        {
+            gym.interactable = true;
+        }
+        else
+        {
+            gym.interactable = false;
+        }
+
+        if (state.getMoney() >= -activities["Visit friends"].getMoney() && getCurrentTimesPerDay("friends") != getMaxTimesPerDay("friends"))
+        {
+            friends.interactable = true;
+        }
+        else
+        {
+            friends.interactable = false;
         }
 
         if (state.needsShower())
@@ -358,12 +371,12 @@ public class daily_action_storage : MonoBehaviour
         if (key != null)
         {
             // re roll random for sleep
-            //randomizeStats();
+            randomizeStats();
 
             ActionVariable activity = activities[key];
             string group = activity.getGroup();
 
-            if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group) && state.getMoney() > -activity.getMoney() )
+            if (getCurrentTimesPerDay(group) < getMaxTimesPerDay(group) && state.getMoney() >= -activity.getMoney() )
             {
                 updateTimesPerDay(group);
 
@@ -402,7 +415,7 @@ public class daily_action_storage : MonoBehaviour
                 GetComponent<splash_screen_manager>().openSplashScreen(key);
 
                 // set the rest of the buttons in the group as off
-                if (group == "excerise" || group =="friends" || group == "food")
+                if (group == "excercise" || group =="shower" || group == "food")
                 {
                     notInteractable(key, group);
                 }
@@ -414,7 +427,6 @@ public class daily_action_storage : MonoBehaviour
                     }
 
                 }
-                
 
                 // update stats
                 state.updateWellness(activity.getWellness());
