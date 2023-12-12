@@ -165,10 +165,10 @@ TextureImporter:
       name: Bar_HL_0
       rect:
         serializedVersion: 2
-        x: 1457
-        y: 1020
-        width: 458
-        height: 60
+        x: 1284
+        y: 945
+        width: 636
+        height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

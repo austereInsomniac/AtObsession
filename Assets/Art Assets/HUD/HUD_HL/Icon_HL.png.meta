@@ -165,10 +165,10 @@ TextureImporter:
       name: Icon_HL_0
       rect:
         serializedVersion: 2
-        x: 510
-        y: 90
-        width: 900
-        height: 900
+        x: 1288
+        y: 0
+        width: 128
+        height: 123
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

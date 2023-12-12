@@ -233,7 +233,7 @@ public class game_state : MonoBehaviour
             }
             else if(videosMadeToday != 0)
             {
-                updateReputation(-30);
+                //updateReputation(-30);
             }
 
             videosMadeToday = 0;
@@ -292,8 +292,8 @@ public class game_state : MonoBehaviour
     public void updateReputation(int r)
     {
         reputation += r;
-        if (getTime() == 8 * 60)
-        {
+       // if (getTime() == 8 * 60)
+        //{
             if (reputation > 100)
             {
                 reputation = 100;
@@ -325,7 +325,7 @@ public class game_state : MonoBehaviour
             {
                 notifyOnReputationChange(reputation - r, reputation);
             }
-        }
+        //}
     }
 
     public void makeVideo()

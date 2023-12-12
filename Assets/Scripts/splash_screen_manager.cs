@@ -54,7 +54,10 @@ public class splash_screen_manager : MonoBehaviour
             // non actions
             { "reset", Resources.Load<Sprite>("Hospital_Concepts_V001 1") },
             { "Hospital", Resources.Load<Sprite>("Hospital_Concepts_V001 1") },
-            { "Game over", Resources.Load<Sprite>("Hospital_Concepts_V001 1") }
+            { "Game over", Resources.Load<Sprite>("Hospital_Concepts_V001 1") },
+
+            // ending
+            { "Ending", Resources.Load<Sprite>("Computer_Breaking_News") }
         };
     }
 
@@ -84,7 +87,7 @@ public class splash_screen_manager : MonoBehaviour
         menuCollider.enabled = true;
 
         // destroy HUD if we die
-        if (key.Equals("Game over"))
+        if (key.Equals("Game over") || key.Equals("Ending"))
         {
             shouldHUDShow = false;
         }
