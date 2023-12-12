@@ -33,17 +33,17 @@ public class trash_spawner : MonoBehaviour
     public void addTrash(int timeO, int timeN) 
     {
         int currentHour = timeN / 60;
-        if(currentHour > lastHour && lastHour != 0) 
+        if(currentHour > (lastHour + 1) && lastHour != 0) 
         {
             for (int i = 0; i < currentHour % lastHour; i++)
                 {
-                    if(trashHidden.Count > 0) 
+                    if(trashHidden.Count > 0 && i % 2 == 0) 
                     {
                         selectTrash().enabled = true;
                     }  
                 }
-        }
-        lastHour = currentHour;
+            lastHour = currentHour;
+        } 
     }
 
     // select a random available trash
