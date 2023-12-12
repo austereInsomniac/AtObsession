@@ -10,12 +10,26 @@ public class swap_assets : MonoBehaviour
     SpriteRenderer thisObject;
     asset_highlighter highlightManager;
 
+    private AudioSource audioSource; // Reference to the AudioSource component on this object
+    public bool isSink; // Set this to true in the Inspector for the sink object
+
+
     public void Start()
     {
         // the alternate object must be the second child behind the highlight
         other = GetComponentsInChildren<SpriteRenderer>()[2];
         thisObject = GetComponent<SpriteRenderer>();
         highlightManager = GetComponent<asset_highlighter>();
+
+        // Get the AudioSource component attached to this object
+        audioSource = GetComponent<AudioSource>();
+
+        // Check if this object is the sink and has an AudioSource
+        if (isSink && audioSource != null)
+        {
+            // Set the audio clip to loop for the sink
+            audioSource.loop = true;
+        }
     }
 
     // swaps the visibility of this objectc and the cooresponding object
@@ -25,6 +39,28 @@ public class swap_assets : MonoBehaviour
         other.enabled = !other.enabled;
         thisObject.enabled = !thisObject.enabled;
         highlightManager.swapHighlight();
+
+        // Check if the AudioSource component is attached and has an AudioClip
+        if (audioSource != null && audioSource.clip != null)
+        {
+            // If it's the sink, start or stop the looping based on visibility
+            if (isSink)
+            {
+                if (other.enabled)
+                {
+                    audioSource.Play(); // Start looping when the sink is visible
+                }
+                else
+                {
+                    audioSource.Stop(); // Stop looping when the sink is invisible
+                }
+            }
+            else
+            {
+                // Play the sound once for non-sink objects
+                audioSource.PlayOneShot(audioSource.clip);
+            }
+        }
     }
 
     public void OnMouseDown()
