@@ -1,6 +1,7 @@
 
 using Codice.CM.Common;
 using UnityEngine;
+using System.Runtime.CompilerServices;
 
 
 class TutorialPopUps
@@ -45,6 +46,8 @@ public class Tutorial : MonoBehaviour
     GameObject exit;
     GameObject exitIcons;
     GameObject locationStored = null;
+    double cooldown = 0.1;
+    double valueSubtractedOffCooldown = 0;
     //Gets current day
     public int getCurrentDay()
     {
@@ -160,13 +163,13 @@ public class Tutorial : MonoBehaviour
     public void exitInteractable()
     {
         GameObject exit = GameObject.Find("Exit_Screen");
-        exit.GetComponent<UnityEngine.UI.Button>().enabled = true;
+        exit.GetComponent<UnityEngine.UI.Button>().interactable = true;
     }
 
     public void exitNotInteractable()
     {
         GameObject exit = GameObject.Find("Exit_Screen");
-        exit.GetComponent<UnityEngine.UI.Button>().enabled = false;
+        exit.GetComponent<UnityEngine.UI.Button>().interactable = false;
     }
     public void toggleBoxCollider(string item, bool key)
     {
@@ -337,173 +340,185 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(OnMouseDownFindGameObject() + " function call");
-        //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
-        //Fix the hunry, tired, and need to shower if statements as the notification doesn't pop up at the right time
-        //Add asset highlights for the UI
-        if (getCurrentDay() == 1 || (getCurrentDay() == 2 && player.getTime() < 8 * 60))
+        if (cooldown > 0)
         {
-            if (buttonClickedOn == true && count == 0)
-            {
-                
-                //introduce player to wellness, add the arrow asset
-                //doorsInteractable(false);
-                notificationShow("Welcome streamer.");
-                setButtonClickedToFalse();
-                //wellnessAndRepHighlightDisabled(wellnessAndRep);
-                count++;
-
-            }
-
-            else if (count == 1)
-            {
-
-                notificationPopUp("If you hover over an object and it has a yellow highlight around it, it is clickable.");
-
-                count++;
-
-            }
-
-            else if (count == 2)
-            {
-                doorsInteractable(false);
-                bedroomNotInteractable();
-                notificationPopUp("Hover over and click on the TV. This will open a menu where you can do something. Try it out.");
-
-                //doorsInteractable(true);
-                count++;
-
-            }
-
-            else if (buttonClickedOn == true && count == 3)
-            {
-                //doorsInteractable(false);
-                bedroomInteractable();
-                notificationPopUp("Notice you feel better afterwards. That means your wellness went up.");
-
-                //wellnessAndRepHighlightEnabled(wellnessAndRep);
-
-                notificationPopUp("The pink bar is your wellness which will raise and lower based on the activities you do.");
-
-                notificationPopUp("The blue bar is your reputation which whill raise or lower based on the content you create on the computer.");
-
-                notificationPopUp("Go into the bedroom and click on the computer. The bedroom door is the second door on your right.");
-
-                //doorsInteractable(true);
-
-                setButtonClickedToFalse();
-                count++;
-
-            }
-
-            else if (locationStored == computerScreen && count == 4)
-            {
-                notificationShow("This is the computer where all of your apps are located.");
-
-                notificationPopUp("Click on the app in the top left.");
-                setButtonClickedToFalse() ;
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 5)
-            {
-
-                notificationShow("This is the video creation app, where you can create videos varying in quality.");
-
-                notificationPopUp("The higher the quality, the more money and subscribers you'll get but it'll cost more time and wellness.");
-
-                notificationPopUp("Now click on the bottom middle app which is your streaming app.");
-
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 6) //fix this 
-            {
-                notificationShow("This is the streaming service, where you can stream content live.");
-
-                notificationPopUp("The more time you stream for the more subscribers and money you get but the more time and wellness it takes.");
-
-                notificationPopUp("Now click on the top right app which is your shopping app.");
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 7) // fix this
-            {
-                notificationShow("This is the shopping app where you can buy things.");
-
-                notificationPopUp("In this app you can buy upgrades for your setup");
-
-                notificationPopUp("Now click on the top middle app which is your email app.");
-                
-                setButtonClickedToFalse();
-
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 8)
-            {
-                notificationShow("This is the email app where you can see the emails you have.");
-
-                notificationPopUp("You can also reply to emails and delete emails.");
-
-                notificationPopUp("Now click on the bottom left app which is chitter");
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (buttonClickedOn == true && count == 9)
-            {
-                notificationShow("This is chitter which you can check social media.");
-
-                notificationPopUp("Now explore these new features and see what activities you can, as well as the apps in the computer.");
-                setButtonClickedToFalse();
-                count++;
-            }
-
-            else if (player.hungry() && count2 == 0)
-            {
-                //doorsInteractable(false);
-
-                notificationShow("This symbol in the bottom right means you are hungry.");
-
-                notificationPopUp("You can find things to eat in the kitchen.");
-
-                notificationPopUp("You can also find a place to eat at the front door by going out to eat.");
-
-                //doorsInteractable(true);
-
-                count2++;
-            }
-
-            else if (player.needsShower() && count2 == 1)
-            {
-                //doorsInteractable(false);
-
-                notificationShow("This symbol in the bottom right means you need to shower. Go to the bathroom to clean up.");
-
-                notificationPopUp("You can freshen up, take a bubble bath, or take a shower. These will all raise your cleanliness");
-
-                //doorsInteractable (true);
-
-                count2++;
-
-            }
-
-            else if (player.tired() && count2 == 2)
-            {
-                //doorsInteractable(false);
-
-                notificationShow("This symbol in the bottom right means you're tired and need to go to sleep.");
-
-                notificationPopUp("You can go to bed by going into the bedroom and clicking on the bed.");
-
-                //doorsInteractable(true);
-                count2++;
-            }
+            cooldown -= Time.deltaTime;
+            return;
         }
+            //Debug.Log(OnMouseDownFindGameObject() + " function call");
+            //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
+            //Fix the hunry, tired, and need to shower if statements as the notification doesn't pop up at the right time
+            //Add asset highlights for the UI
+            if (getCurrentDay() == 1 || (getCurrentDay() == 2 && player.getTime() < 8 * 60))
+            {
+                if (buttonClickedOn == true && count == 0)
+                {
 
-       
+                    //introduce player to wellness, add the arrow asset
+                    //doorsInteractable(false);
+                    notificationShow("Welcome streamer.");
+                    setButtonClickedToFalse();
+                    //wellnessAndRepHighlightDisabled(wellnessAndRep);
+                    count++;
+
+                }
+
+                else if (count == 1)
+                {
+
+                    notificationPopUp("If you hover over an object and it has a yellow highlight around it, it is clickable.");
+
+                    count++;
+
+                }
+
+                else if (count == 2)
+                {
+                    doorsInteractable(false);
+                    bedroomNotInteractable();
+                    notificationPopUp("Hover over and click on the TV. This will open a menu where you can do something. Try it out.");
+
+                    //doorsInteractable(true);
+                    count++;
+
+                }
+
+                else if (buttonClickedOn == true && count == 3)
+                {
+                    //doorsInteractable(false);
+                    bedroomInteractable();
+                    notificationPopUp("Notice you feel better afterwards. That means your wellness went up.");
+
+                    //wellnessAndRepHighlightEnabled(wellnessAndRep);
+
+                    notificationPopUp("The pink bar is your wellness which will raise and lower based on the activities you do.");
+
+                    notificationPopUp("The blue bar is your reputation which whill raise or lower based on the content you create on the computer.");
+
+                    notificationPopUp("Go into the bedroom and click on the computer. The bedroom door is the second door on your right.");
+
+                    //doorsInteractable(true);
+
+                    setButtonClickedToFalse();
+                    count++;
+
+                }
+
+                else if (locationStored == computerScreen && count == 4)
+                { 
+                    cooldown = 1.5;
+                    count++;
+                }
+                else if (locationStored == computerScreen && count == 5)
+                {
+                    
+                    exitNotInteractable();
+                    notificationShow("This is the computer where all of your apps are located.");
+
+                    notificationPopUp("Click on the app in the top left.");
+                    setButtonClickedToFalse();
+                    count++;
+                }
+
+                else if (buttonClickedOn == true && count == 6)
+                {
+
+                    notificationShow("This is the video creation app, where you can create videos varying in quality.");
+
+                    notificationPopUp("The higher the quality, the more money and subscribers you'll get but it'll cost more time and wellness.");
+
+                    notificationPopUp("Now click on the bottom middle app which is your streaming app.");
+
+                    setButtonClickedToFalse();
+                    count++;
+                }
+
+                else if (buttonClickedOn == true && count == 7) //fix this 
+                {
+                    notificationShow("This is the streaming service, where you can stream content live.");
+
+                    notificationPopUp("The more time you stream for the more subscribers and money you get but the more time and wellness it takes.");
+
+                    notificationPopUp("Now click on the top right app which is your shopping app.");
+                    setButtonClickedToFalse();
+                    count++;
+                }
+
+                else if (buttonClickedOn == true && count == 8) // fix this
+                {
+                    notificationShow("This is the shopping app where you can buy things.");
+
+                    notificationPopUp("In this app you can buy upgrades for your setup");
+
+                    notificationPopUp("Now click on the top middle app which is your email app.");
+
+                    setButtonClickedToFalse();
+
+                    count++;
+                }
+
+                else if (buttonClickedOn == true && count == 9)
+                {
+                    notificationShow("This is the email app where you can see the emails you have.");
+
+                    notificationPopUp("You can also reply to emails and delete emails.");
+
+                    notificationPopUp("Now click on the bottom left app which is chitter");
+                    setButtonClickedToFalse();
+                    count++;
+                }
+
+                else if (buttonClickedOn == true && count == 10)
+                {
+                    notificationShow("This is chitter which you can check social media.");
+
+                    notificationPopUp("Now explore these new features and see what activities you can, as well as the apps in the computer.");
+                    setButtonClickedToFalse();
+                    count++;
+                }
+
+                else if (player.hungry() && count2 == 0)
+                {
+                    //doorsInteractable(false);
+
+                    notificationShow("This symbol in the bottom right means you are hungry.");
+
+                    notificationPopUp("You can find things to eat in the kitchen.");
+
+                    notificationPopUp("You can also find a place to eat at the front door by going out to eat.");
+
+                    //doorsInteractable(true);
+
+                    count2++;
+                }
+
+                else if (player.needsShower() && count2 == 1)
+                {
+                    //doorsInteractable(false);
+
+                    notificationShow("This symbol in the bottom right means you need to shower. Go to the bathroom to clean up.");
+
+                    notificationPopUp("You can freshen up, take a bubble bath, or take a shower. These will all raise your cleanliness");
+
+                    //doorsInteractable (true);
+
+                    count2++;
+
+                }
+
+                else if (player.tired() && count2 == 2)
+                {
+                    //doorsInteractable(false);
+
+                    notificationShow("This symbol in the bottom right means you're tired and need to go to sleep.");
+
+                    notificationPopUp("You can go to bed by going into the bedroom and clicking on the bed.");
+
+                    //doorsInteractable(true);
+                    count2++;
+                }
+            }
+
+
     }
 }

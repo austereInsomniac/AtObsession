@@ -171,7 +171,7 @@ public class move_location : MonoBehaviour
         foreach (Button button in buttons)
         {
             if(button.interactable == true)
-            { 
+            {
                 buttons2.Add(button);
                 button.interactable = false;
             }
