@@ -47,7 +47,6 @@ public class Tutorial : MonoBehaviour
     GameObject exitIcons;
     GameObject locationStored = null;
     double cooldown = 0.1;
-    double valueSubtractedOffCooldown = 0;
     //Gets current day
     public int getCurrentDay()
     {
@@ -356,7 +355,10 @@ public class Tutorial : MonoBehaviour
 
                     //introduce player to wellness, add the arrow asset
                     //doorsInteractable(false);
-                    notificationShow("Welcome streamer.");
+                    notificationShow("Welcome to your apartment streamer");
+
+                    notificationPopUp("You just bought this apartment to follow your dreams of being a content creator.");
+                    notificationPopUp("First I'll get you started with some basics.");
                     setButtonClickedToFalse();
                     //wellnessAndRepHighlightDisabled(wellnessAndRep);
                     count++;
