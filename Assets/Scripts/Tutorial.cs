@@ -414,7 +414,6 @@ public class Tutorial : MonoBehaviour
                 else if (locationStored == computerScreen && count == 5)
                 {
                     
-                    exitNotInteractable();
                     notificationShow("This is the computer where all of your apps are located.");
 
                     notificationPopUp("Click on the app in the top left.");
@@ -475,6 +474,7 @@ public class Tutorial : MonoBehaviour
                     notificationShow("This is chitter which you can check social media.");
 
                     notificationPopUp("Now explore these new features and see what activities you can, as well as the apps in the computer.");
+                doorsInteractable(true);
                     setButtonClickedToFalse();
                     count++;
                 }
