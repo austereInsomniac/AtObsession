@@ -555,7 +555,6 @@ public class stalker_prototype_script : MonoBehaviour
             {
                 eventHappening = stalkerEvent;
                 string eventMessage = stalkerEvent.getEventMessage();
-                Debug.Log(eventMessage);
                 eventNum = numEvent;
 
                 // Play the associated sound for event
@@ -593,15 +592,17 @@ public class stalker_prototype_script : MonoBehaviour
                 }
                 else
                 {
-                    if (numEvent == 0 || numEvent == 7)
+                    if (stalkerEvent.getEventNumber() == 1 || stalkerEvent.getEventNumber() == 8)
                     {
-                        if (numEvent == 0)
+                        if (stalkerEvent.getEventNumber() == 1)
                         {
                             eventMessage = "I just got an Email in Messages. I should check it on my computer soon.";
+                            currentStalkerEmail.GetComponent<Button>().onClick.AddListener(() => DisplayChoices(stalkerEvent));
                         }
                         else
                         {
                             eventMessage = "I just got a DM on Chitter. I should check it on my computer soon.";
+                            currentStalkerDM.GetComponent<Button>().onClick.AddListener(() => DisplayChoices(stalkerEvent));
                         }
                     }
                     else
@@ -810,15 +811,52 @@ public class stalker_prototype_script : MonoBehaviour
             // Hide the stalker event handler
             stalkerEventHandler.SetActive(false);
 
+            // Check the length of choice.choiceNotification in terms of words
+            int maxWordsForSingleNotification = 20;
+            int wordCount = choice.choiceNotification.Split(' ').Length;
+
             // Show notification
             if (notification != null)
             {
-                notification.showNotification(choice.choiceNotification);
+                if (wordCount > maxWordsForSingleNotification)
+                {
+                    // If it's a long message, use queLongNotification
+                    queLongNotification(choice.choiceNotification);
+                }
+                else
+                {
+                    // If it's a short message, use showNotification
+                    notification.showNotification(choice.choiceNotification);
+                }
             }
         }
         else
         {
             Debug.Log("Invalid Choice");
+        }
+    }
+
+    public void queLongNotification(string longNotification)
+    {
+        int maxWordsPerNotification = 20;
+
+        // Split the long notification into words
+        string[] words = longNotification.Split(' ');
+
+        // Split the words into smaller parts
+        List<string> notificationParts = new List<string>();
+
+        for (int i = 0; i < words.Length; i += maxWordsPerNotification)
+        {
+            int length = Mathf.Min(maxWordsPerNotification, words.Length - i);
+            string part = string.Join(" ", words, i, length);
+            notificationParts.Add(part);
+        }
+
+        // Queue each part for display
+        foreach (string part in notificationParts)
+        {
+            notification.queNotification(part);
         }
     }
 
