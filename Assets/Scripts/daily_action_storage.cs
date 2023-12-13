@@ -150,17 +150,17 @@ public class daily_action_storage : MonoBehaviour
         maxTimesPerDay = new Dictionary<string, int>()
         {
             // other limits
-            { "food", 3 },
+            { "food", 999 },
             { "snack", 999},
             { "nap", 999},
 
             // normal
             { "chores", 999 },
-            { "walk", 2},
+            { "walk", 999},
             { "freshen", 999},
             { "shower", 999},
             { "bath", 999 },
-            { "exercise", 2},
+            { "exercise", 999},
 
             // no limits
             { "sleep", 999},
