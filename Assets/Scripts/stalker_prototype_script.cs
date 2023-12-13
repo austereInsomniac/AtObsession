@@ -302,7 +302,7 @@ public class stalker_prototype_script : MonoBehaviour
         stalkerEvents.Add("Direct message", dmEvent);
 
         // Banging on door event 8/9
-        StalkerEvents bangingEvent = new StalkerEvents("BANG, BANG, BANG! I can hear someone banging on my front door.", "Any", 10, 9, 5, 0, 1, 0, false, Resources.Load<AudioClip>("Assets/Household Items SFX/Mobile/Mobile_Vibre (5).wav"));
+        StalkerEvents bangingEvent = new StalkerEvents("BANG, BANG, BANG! I can hear someone banging on my front door.", "Any", 10, 9, 5, 0, 1, 0, false, null);
         bangingEvent.AddChoice("Open door", "I call out, \"I知 coming, I知 coming!\" When I open the door no one is there. I turn around and see a note nailed to my door saying, \"This is the last time! YOU ARE MINE! - NoticeMeSenpaii\" I sneer as I tear down the note and close the door.", -3, -1, 0);
         bangingEvent.AddChoice("Scream \"I知 calling the police!\"", "Knowing that I致e been getting threats I scream out that I知 calling the police. When they get here, they say no one was there but they found a note nailed to the door saying, \"This is the last time! YOU ARE MINE! - NoticeMeSenpaii\"", -1, 0, 0);
         bangingEvent.AddChoice("Look through peephole", "I checked who is at the door through the peep hole. NO ONE is there. I cautiously open the door to look outside. I see that there is a note nailed to my door saying, \"This is the last time! YOU ARE MINE! - NoticeMeSenpaii\" I decided to call the police and give them the letter for evidence.", -1, 1, 0);
@@ -562,6 +562,7 @@ public class stalker_prototype_script : MonoBehaviour
 
                 string location = stalkerEvent.getEventLocation();
                 stalkerEvent.IncrementOccurrences();
+                eventCount++;
 
                 // Check if the player is in the required location
                 if (IsPlayerInRequiredLocation(location) || location == "Any")
@@ -569,7 +570,6 @@ public class stalker_prototype_script : MonoBehaviour
                     if (location != "Computer")
                     {
                         DisplayChoices(stalkerEvent);
-                        eventCount++;
                     }
                     else
                     {
