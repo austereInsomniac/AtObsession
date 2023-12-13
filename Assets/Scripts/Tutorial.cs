@@ -336,11 +336,6 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
-            return;
-        }
             //Debug.Log(OnMouseDownFindGameObject() + " function call");
             //fix the doorsInteractable where the player can click on other buttons while the tutorial is up
             //Fix the hunry, tired, and need to shower if statements as the notification doesn't pop up at the right time
@@ -402,13 +397,7 @@ public class Tutorial : MonoBehaviour
                     count++;
 
                 }
-
                 else if (locationStored == computerScreen && count == 4)
-                { 
-                    cooldown = 1.5;
-                    count++;
-                }
-                else if (locationStored == computerScreen && count == 5)
                 {
                     
                     notificationShow("This is the computer where all of your apps are located.");
@@ -418,7 +407,7 @@ public class Tutorial : MonoBehaviour
                     count++;
                 }
 
-                else if (buttonClickedOn == true && count == 6)
+                else if (buttonClickedOn == true && count == 5)
                 {
 
                     notificationShow("This is the video creation app, where you can create videos varying in quality.");
@@ -431,7 +420,7 @@ public class Tutorial : MonoBehaviour
                     count++;
                 }
 
-                else if (buttonClickedOn == true && count == 7) //fix this 
+                else if (buttonClickedOn == true && count == 6) //fix this 
                 {
                     notificationShow("This is the streaming service, where you can stream content live.");
 
@@ -442,7 +431,7 @@ public class Tutorial : MonoBehaviour
                     count++;
                 }
 
-                else if (buttonClickedOn == true && count == 8) // fix this
+                else if (buttonClickedOn == true && count == 7) // fix this
                 {
                     notificationShow("This is the shopping app where you can buy things.");
 
@@ -455,7 +444,7 @@ public class Tutorial : MonoBehaviour
                     count++;
                 }
 
-                else if (buttonClickedOn == true && count == 9)
+                else if (buttonClickedOn == true && count == 8)
                 {
                     notificationShow("This is the email app where you can see the emails you have.");
 
@@ -466,7 +455,7 @@ public class Tutorial : MonoBehaviour
                     count++;
                 }
 
-                else if (buttonClickedOn == true && count == 10)
+                else if (buttonClickedOn == true && count == 9)
                 {
                     notificationShow("This is chitter which you can check social media.");
 
