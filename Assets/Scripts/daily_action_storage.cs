@@ -151,15 +151,15 @@ public class daily_action_storage : MonoBehaviour
         {
             // other limits
             { "food", 3 },
-            { "snack", 3},
-            { "nap", 1},
+            { "snack", 999},
+            { "nap", 999},
 
             // normal
             { "chores", 999 },
             { "walk", 2},
-            { "freshen", 2},
-            { "shower", 1},
-            { "bath", 1 },
+            { "freshen", 999},
+            { "shower", 999},
+            { "bath", 999 },
             { "exercise", 2},
 
             // no limits
