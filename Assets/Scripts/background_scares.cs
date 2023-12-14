@@ -76,7 +76,7 @@ public class background_scares : MonoBehaviour
             swap.swapObjects();
             if (notification != null)
             {
-                notification.queNotification(scareMessage);
+                notification.showNotification(scareMessage);
             }
         }
     }

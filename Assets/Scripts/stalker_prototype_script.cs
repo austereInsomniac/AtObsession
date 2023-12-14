@@ -586,7 +586,7 @@ public class stalker_prototype_script : MonoBehaviour
 
                         if (notification != null)
                         {
-                            notification.queNotification(eventMessage);
+                            notification.showNotification(eventMessage);
                         }
                     }
                 }
@@ -611,7 +611,7 @@ public class stalker_prototype_script : MonoBehaviour
                     }
                     if (notification != null)
                     {
-                        notification.queNotification(eventMessage);
+                        notification.showNotification(eventMessage);
                     }
                     pendingEvent = numEvent;
                 }
@@ -630,7 +630,7 @@ public class stalker_prototype_script : MonoBehaviour
 
             if (notification != null)
             {
-                notification.queNotification(eventMessage);
+                notification.showNotification(eventMessage);
             }
             isEndingEvent = true;
             move.goToBathroom();
@@ -684,6 +684,7 @@ public class stalker_prototype_script : MonoBehaviour
                 stalkerEvent.setChoice2("Report email");
 
                 stalkerEvent.setChoice3("Ignore email");
+                stalkerEvent.hasDisplayed = false;
             }
             else if (stalkerEvent.getEventNumber() == 4)
             {
@@ -727,6 +728,8 @@ public class stalker_prototype_script : MonoBehaviour
                 stalkerEvent.setChoice2("Report DM");
 
                 stalkerEvent.setChoice3("Ignore DM");
+
+                stalkerEvent.hasDisplayed = false;
             }
 
             if (stalkerEvent.getCurrentOccurrences() > 2)
@@ -741,6 +744,8 @@ public class stalker_prototype_script : MonoBehaviour
                     stalkerEvent.setChoice2("Ignore email");
 
                     stalkerEvent.setChoice3("Report email to cops");
+
+                    stalkerEvent.hasDisplayed = false;
                 }
                 else if (stalkerEvent.getEventNumber() == 7)
                 {
@@ -770,28 +775,31 @@ public class stalker_prototype_script : MonoBehaviour
 
     private void DisplayChoices(StalkerEvents stalkerEvent)
     {
-        choiceText.text = stalkerEvent.getEventMessage();
-        choice1Text = choice1.GetComponentInChildren<TMP_Text>();
-        choice2Text = choice2.GetComponentInChildren<TMP_Text>();
-        choice3Text = choice3.GetComponentInChildren<TMP_Text>();
+        if (!stalkerEvent.isDisplayed())
+        {
+            choiceText.text = stalkerEvent.getEventMessage();
+            choice1Text = choice1.GetComponentInChildren<TMP_Text>();
+            choice2Text = choice2.GetComponentInChildren<TMP_Text>();
+            choice3Text = choice3.GetComponentInChildren<TMP_Text>();
 
-        // Get choices from the event
-        List<StalkerChoice> choices = stalkerEvent.GetChoices();
+            // Get choices from the event
+            List<StalkerChoice> choices = stalkerEvent.GetChoices();
 
-        // Option 1
-        choice1Text.text = choices.Count > 0 ? choices[0].choiceText : "";
-        choice1.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 0 ? choices[0] : null, stalkerEvent));
+            // Option 1
+            choice1Text.text = choices.Count > 0 ? choices[0].choiceText : "";
+            choice1.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 0 ? choices[0] : null, stalkerEvent));
 
-        // Option 2
-        choice2Text.text = choices.Count > 1 ? choices[1].choiceText : "";
-        choice2.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 1 ? choices[1] : null, stalkerEvent));
+            // Option 2
+            choice2Text.text = choices.Count > 1 ? choices[1].choiceText : "";
+            choice2.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 1 ? choices[1] : null, stalkerEvent));
 
-        // Option 3
-        choice3Text.text = choices.Count > 2 ? choices[2].choiceText : "";
-        choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 2 ? choices[2] : null, stalkerEvent));
+            // Option 3
+            choice3Text.text = choices.Count > 2 ? choices[2].choiceText : "";
+            choice3.GetComponent<Button>().onClick.AddListener(() => HandlePlayerChoice(choices.Count > 2 ? choices[2] : null, stalkerEvent));
 
-        stalkerEventHandler.SetActive(true);
-        stalkerEvent.hasDisplayed = true;
+            stalkerEventHandler.SetActive(true);
+            stalkerEvent.hasDisplayed = true;
+        }
     }
 
     public void HandlePlayerChoice(StalkerChoice choice, StalkerEvents stalkerEvent)
@@ -853,10 +861,11 @@ public class stalker_prototype_script : MonoBehaviour
             notificationParts.Add(part);
         }
 
-        // Queue each part for display
-        foreach (string part in notificationParts)
+        notification.showNotification(notificationParts[0]);
+
+        for (int i = 1; i < notificationParts.Count; i++)
         {
-            notification.queNotification(part);
+            notification.queNotification(notificationParts[i]);
         }
     }
 
