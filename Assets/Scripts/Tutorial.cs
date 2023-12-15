@@ -305,6 +305,9 @@ public class Tutorial : MonoBehaviour
         startGame = GameObject.Find("Start Game");
         startGame.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 
+        startGame = GameObject.Find("Start Game 2");
+        startGame.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
+
         videoCreation = GameObject.Find("Make_Video");
         videoCreation.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => buttonClicked());
 

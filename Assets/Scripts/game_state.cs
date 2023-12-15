@@ -449,7 +449,7 @@ public class game_state : MonoBehaviour
         }
 
         // player is tired
-        if (tired())
+        if (tired() && time >= (60 * 22))
         {
             // display icon
             sleepHUD.color = color2;

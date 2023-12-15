@@ -317,7 +317,7 @@ public class daily_action_storage : MonoBehaviour
             nap.interactable = false;
         }
 
-        if(state.tired() && state.getTime() > 22 * 60)
+        if(state.tired() && state.getTime() > 22 * 60 || state.getTime() < 8 * 60)
         {
             sleep.interactable = true;
         }
