@@ -463,7 +463,7 @@ public class Tutorial : MonoBehaviour
                     notificationShow("This is chitter which you can check social media.");
 
                     notificationPopUp("Now explore these new features and see what activities you can, as well as the apps in the computer.");
-                doorsInteractable(true);
+                    doorsInteractable(true);
                     setButtonClickedToFalse();
                     count++;
                 }
@@ -477,10 +477,11 @@ public class Tutorial : MonoBehaviour
                     notificationPopUp("You can find things to eat in the kitchen.");
 
                     notificationPopUp("You can also find a place to eat at the front door by going out to eat.");
+                    doorsInteractable(true);
 
-                    //doorsInteractable(true);
+                //doorsInteractable(true);
 
-                    count2++;
+                count2++;
                 }
 
                 else if (player.needsShower() && count2 == 1)
